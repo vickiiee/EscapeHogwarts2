@@ -30,7 +30,7 @@ public class GuiLoadingVickie extends GUIApplication{
 			 File fontFile = new File("images/HARRYP.ttf");
 			 Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
-			 Font baseFont=font.deriveFont(20f); //default 
+			 Font baseFont=font.deriveFont(70f); //default 
 			 
 			 StyledComponent.setBaseFont(baseFont);
 
