@@ -1,5 +1,5 @@
 package hPLightsOutStephKev;
 
-public class DFG {
+public class GameScreen {
 
 }
