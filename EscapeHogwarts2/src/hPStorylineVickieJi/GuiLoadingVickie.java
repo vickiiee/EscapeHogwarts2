@@ -27,7 +27,7 @@ public class GuiLoadingVickie extends GUIApplication{
 	public void initScreen() {
 		//StyledComponent.setTextColor(Color.white);
 		try {
-			 File fontFile = new File("resources/Bangers.ttf");
+			 File fontFile = new File("images/HARRYP.ttf");
 			 Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
 			 Font baseFont=font.deriveFont(20f); //default 
