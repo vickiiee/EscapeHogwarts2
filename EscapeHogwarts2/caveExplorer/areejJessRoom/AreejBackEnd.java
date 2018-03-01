@@ -6,7 +6,7 @@ import caveExplorer.CaveExplorer;
 
 public class AreejBackEnd {
 
-//	private AreejSupport frontend;
+//	private AreejSupport front end;
 	private static int[][] mainBoard;
 	private static boolean userMove;
 
@@ -87,13 +87,14 @@ public class AreejBackEnd {
 			{
 				System.out.println("Pick a number between 0 and 6!");
 			}
+
 		}
 	
 	}
 	
-	//public static void debugPrint(String s) {
-//		System.out.println(s);
-	//}
+	/*public static void debugPrint(String s) {
+		System.out.println(s);
+	}*/
 	
 	public static int getIndex(int[][] board, int col) {
 		for(int[] a: board) {
@@ -169,7 +170,6 @@ public class AreejBackEnd {
 	
 	public static int checkDiagRight(int r, int c,int p){
 		
-	
 		int row = r+1;
 		int col = c+2;
 		int count = 0;
