@@ -27,7 +27,6 @@ public class JiMenu extends FullFunctionScreen{
 		play.setSize(80);
 		description.setForeground(Color.LIGHT_GRAY);
 		play.setForeground(Color.LIGHT_GRAY);
-
 		setVisible(true);
 	}
 
@@ -52,12 +51,10 @@ public class JiMenu extends FullFunctionScreen{
 			
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
-				
+				//setScreen Scene1
 			}
 		});
 		viewObjects.add(play);
-
 	}
-
+	
 }
