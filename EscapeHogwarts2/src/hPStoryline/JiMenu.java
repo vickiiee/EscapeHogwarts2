@@ -48,8 +48,6 @@ public class JiMenu extends FullFunctionScreen{
 		description = new TextArea(650, 330, 700, 400, "and The Escape Of Hogwarts");
 		viewObjects.add(description);
 
-		
-		
 		play = new Button(410, 320, 400, 400, "Play", new Action() {
 			
 			@Override
