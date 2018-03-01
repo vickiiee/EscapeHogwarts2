@@ -8,6 +8,8 @@ import guiTeacher.components.StyledComponent;
 
 public class GuiLoadingVickie extends GUIApplication{
 
+	public static Scene1 scene1;
+
 	public GuiLoadingVickie(int width, int height) {
 		super(width, height);
 		setVisible(true);
@@ -41,7 +43,7 @@ public class GuiLoadingVickie extends GUIApplication{
 			 }
 
 		menu = new JiMenu(getWidth(), getHeight());
-		
+		scene1 = new Scene1(getWidth(), getHeight());
 		
 		setScreen(menu);
 		
