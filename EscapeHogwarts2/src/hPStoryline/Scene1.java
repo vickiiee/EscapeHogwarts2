@@ -8,6 +8,7 @@ import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 
 public class Scene1 extends FullFunctionScreen{
 
@@ -29,7 +30,7 @@ public class Scene1 extends FullFunctionScreen{
 			
 			@Override
 			public void act() {
-				
+				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(magicSquares);
