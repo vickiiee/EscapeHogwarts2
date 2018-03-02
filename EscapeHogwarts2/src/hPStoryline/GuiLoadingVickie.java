@@ -5,6 +5,7 @@ import java.io.File;
 
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
+import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 
 public class GuiLoadingVickie extends GUIApplication{
