@@ -8,6 +8,7 @@ import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 
 public class Scene1 extends FullFunctionScreen{
