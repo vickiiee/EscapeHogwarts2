@@ -16,7 +16,7 @@ public class JiMenu extends FullFunctionScreen{
 	private Graphic logo;
 	private Button play;
 	private Graphic harrylogo;
-	private Visible hogwarts;
+	private Graphic hogwarts;
 	private Graphic background;
 	private TextLabel description;
 	private Graphic birdies;
@@ -47,7 +47,7 @@ public class JiMenu extends FullFunctionScreen{
 		description = new TextArea(650, 330, 700, 400, "and The Escape Of Hogwarts");
 		viewObjects.add(description);
 
-		play = new Button(410, 320, 400, 400, "Play", new Action() {
+		play = new Button(550, 450, 100, 100, "Play", new Action() {
 			
 			@Override
 			public void act() {
@@ -55,6 +55,8 @@ public class JiMenu extends FullFunctionScreen{
 			}
 		});
 		viewObjects.add(play);
+		
+
 	}
 	
 }
