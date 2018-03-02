@@ -14,7 +14,8 @@ public class GuiLoadingVickie extends GUIApplication{
 	}
 
 	public static GuiLoadingVickie loading;
-	public static Menu menu;
+	public static JiMenu menu;
+	public static Scene1 scene1;
 	
 	public static void main(String[] args) {
 		loading = new GuiLoadingVickie(1200, 800);
@@ -30,7 +31,7 @@ public class GuiLoadingVickie extends GUIApplication{
 			 File fontFile = new File("images/HARRYP.ttf");
 			 Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
-			 Font baseFont=font.deriveFont(20f); //default 
+			 Font baseFont=font.deriveFont(70f); //default 
 			 
 			 StyledComponent.setBaseFont(baseFont);
 
@@ -40,8 +41,8 @@ public class GuiLoadingVickie extends GUIApplication{
 
 			 }
 
-		menu = new Menu(getWidth(), getHeight());
-		
+		menu = new JiMenu(getWidth(), getHeight());
+		scene1 = new Scene1(getWidth(), getHeight());
 		
 		setScreen(menu);
 		
