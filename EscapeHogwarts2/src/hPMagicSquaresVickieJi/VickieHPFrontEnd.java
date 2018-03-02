@@ -9,6 +9,8 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 
 public class VickieHPFrontEnd extends FullFunctionScreen{
 
+	private Graphic background;
+
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
 		setVisible(true);
@@ -16,7 +18,9 @@ public class VickieHPFrontEnd extends FullFunctionScreen{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		// TODO Auto-generated method stub
+		background = new Graphic(0, 0, getWidth(), getHeight(), "images/background3.jpg");
+		viewObjects.add(background);
+		
 		Graphic board = new Graphic(300,100,700,700, "images/mSBoard.jpg");
 		viewObjects.add(board);
 		
