@@ -14,6 +14,7 @@ public class Scene1 extends FullFunctionScreen{
 
 	private Graphic background;
 	private Button magicSquares;
+	private Button connectFour;
 
 	public Scene1(int width, int height) {
 		super(width, height);
@@ -34,6 +35,15 @@ public class Scene1 extends FullFunctionScreen{
 			}
 		});
 		viewObjects.add(magicSquares);
+		
+		connectFour = new Button(100, 550, 200, 75, "Connect Four", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new ConnectFourAreej(getWidth(), getHeight()));
+			}
+		});
+		viewObjects.add(connectFour);
 	}
 
 }
