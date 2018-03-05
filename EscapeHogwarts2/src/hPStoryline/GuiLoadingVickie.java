@@ -1,50 +1,52 @@
 package hPStoryline;
 
-import java.awt.Color;
-import java.util.List;
+import java.awt.Font;
+import java.io.File;
 
-import guiTeacher.components.Action;
-import guiTeacher.components.Button;
-import guiTeacher.components.Graphic;
-import guiTeacher.interfaces.Visible;
-import guiTeacher.userInterfaces.FullFunctionScreen;
-import hPConnect4Areej.ConnectFourAreej;
-import hPMagicSquaresVickieJi.VickieHPFrontEnd;
+import guiTeacher.GUIApplication;
+import guiTeacher.components.StyledComponent;
 
-public class Scene1 extends FullFunctionScreen{
+public class GuiLoadingVickie extends GUIApplication{
 
-	private Graphic background;
-	private Button magicSquares;
-	private Button connectFour;
-
-	public Scene1(int width, int height) {
+	public GuiLoadingVickie(int width, int height) {
 		super(width, height);
 		setVisible(true);
-		magicSquares.setForeground(Color.LIGHT_GRAY);
+	}
+
+	public static GuiLoadingVickie loading;
+	public static JiMenu menu;
+	public static Scene1 scene1;
+	
+	public static void main(String[] args) {
+		loading = new GuiLoadingVickie(1200, 800);
+		
+		 Thread runner = new Thread(loading);
+		 runner.start();
 	}
 
 	@Override
-	public void initAllObjects(List<Visible> viewObjects) {
-		background = new Graphic(0, 0, getWidth(), getHeight(), "images/castle.jpg");
-		viewObjects.add(background);
+	public void initScreen() {
+		//StyledComponent.setTextColor(Color.white);
+		try {
+			 File fontFile = new File("images/HARRYP.ttf");
+			 Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+			 Font baseFont=font.deriveFont(70f); //default 
+			 
+			 StyledComponent.setBaseFont(baseFont);
+
+			 } catch (Exception e) {
+
+			 e.printStackTrace();
+
+			 }
+
+		menu = new JiMenu(getWidth(), getHeight());
+		scene1 = new Scene1(getWidth(), getHeight());
 		
-		magicSquares = new Button(100, 450, 300, 75, "Magic Squares", new Action() {
-			
-			@Override
-			public void act() {
-				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
-			}
-		});
-		viewObjects.add(magicSquares);
+		setScreen(menu);
 		
-		connectFour = new Button(100, 550, 200, 75, "Connect Four", new Action() {
-			
-			@Override
-			public void act() {
-				GuiLoadingVickie.loading.setScreen(new ConnectFourAreej(getWidth(), getHeight()));
-			}
-		});
-		viewObjects.add(connectFour);
+		GUIApplication.enableCursorChange = true;
 	}
 
 }
