@@ -1,8 +1,12 @@
-package jiVickieRoom;
+package hPMagicSquaresVickieJi;
 
-public class JiBackEnd implements VickieSupport {
+import jiVickieRoom.JiSupport;
+import jiVickieRoom.VickieSupport;
+
+public class JiHPBackEnd implements VickieSupport {
 	
 	private int[][] magicSquares;
+	
 	private JiSupport frontend;
 
 	private final static String CORNER_NUMS = "2648";
@@ -14,11 +18,11 @@ public class JiBackEnd implements VickieSupport {
 	private int iStartingRow = 1;
 	private int iStartingCol = 1;
 	
-	private int iRow;
-	private int iCol;
-	private int iNum;
+	private int iRow;  //Integer Row #
+	private int iCol;  //Integer Col #
+	private int iNum;  //Integer Number #
 
-	public JiBackEnd(JiSupport frontend) {
+	public JiHPBackEnd(JiSupport frontend) {
 		this.frontend = frontend;
 		magicSquares = new int[3][3];
 	}
@@ -36,12 +40,15 @@ public class JiBackEnd implements VickieSupport {
 		createInitiateNum();
 		if (iStartingNum != 5) {
 			if(isCornerNumber(iStartingNum)) {
-				//outer starting (0,0) (0,2) (2,0) (2,2)
+				//randomize outer starting box
+				// (0,0) (0,2) (2,0) (2,2)
+				
 				iStartingRow = getRandomInitialIndex();
 				iStartingCol = getRandomInitialIndex();
 			}
 			else {
-				//inner starting (0,1) (1,0) (1,2) (2,1)
+				//randomize inner starting box
+				// (0,1) (1,0) (1,2) (2,1)
 				int random = generateNumber(4); 
 				if(random == 0) {
 					iStartingRow = 0;
@@ -68,6 +75,7 @@ public class JiBackEnd implements VickieSupport {
 		
 		magicSquares[iStartingRow][iStartingCol] = iStartingNum;
 	}
+	
 	
 	public void placeNumbers(String nums) {
 		String SRow;
