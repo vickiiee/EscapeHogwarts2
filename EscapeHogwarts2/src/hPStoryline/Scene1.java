@@ -2,6 +2,8 @@ package hPStoryline;
 
 import java.util.List;
 
+import guiTeacher.components.Action;
+import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
@@ -9,6 +11,7 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 public class Scene1 extends FullFunctionScreen{
 
 	private Graphic background;
+	private Button stephStory;
 
 	public Scene1(int width, int height) {
 		super(width, height);
@@ -19,6 +22,15 @@ public class Scene1 extends FullFunctionScreen{
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/castle.jpg");
 		viewObjects.add(background);
+		
+		stephStory = new Button(200,200,200,200,"enter", new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 
 }
