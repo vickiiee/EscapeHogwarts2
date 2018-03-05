@@ -12,8 +12,6 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 public class Scene1 extends FullFunctionScreen{
 
 	private Graphic background;
-	private Button magicSquares;
-	private Button connectFour;
 	private Button lightsOut;
 
 	public Scene1(int width, int height) {
@@ -27,13 +25,13 @@ public class Scene1 extends FullFunctionScreen{
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/castle.jpg");
 		viewObjects.add(background);
 		
-		magicSquares = new Button(100, 450, 300, 75, "Lights Out", new Action() {
+		lightsOut = new Button(100, 450, 300, 75, "Side Story", new Action() {
 			
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new StephStory(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(lightsOut);
-		
+	}		
 }
