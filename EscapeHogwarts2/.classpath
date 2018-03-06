@@ -6,5 +6,6 @@
 	<classpathentry kind="src" path="gui"/>
 	<classpathentry kind="src" path="images"/>
 	<classpathentry kind="src" path="simg"/>
+	<classpathentry kind="src" path="kimg"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
