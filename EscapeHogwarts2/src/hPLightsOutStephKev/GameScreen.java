@@ -53,7 +53,7 @@ public class GameScreen extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		Graphic gamebg = new Graphic(0,0, getWidth(), getHeight(), "images/mirrorOfErised.jpg");
+		Graphic gamebg = new Graphic(0,0, getWidth(), getHeight(), "kimages/mirrorOfErised.jpg");
 		viewObjects.add(gamebg);
 		
 		List<Button> lightsRowOne = new ArrayList<Button>(5);

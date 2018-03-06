@@ -17,7 +17,7 @@ public class GuiLoadingVickie extends GUIApplication{
 	public static JiMenu menu;
 	public static Scene1 scene1;
 	public static StephStory story;
-	
+	public static KevinStory kStory;
 	
 	public static void main(String[] args) {
 		loading = new GuiLoadingVickie(1200, 800);
@@ -46,6 +46,7 @@ public class GuiLoadingVickie extends GUIApplication{
 		menu = new JiMenu(getWidth(), getHeight());
 		scene1 = new Scene1(getWidth(), getHeight());
 		story = new StephStory(getWidth(), getHeight());
+		kStory = new KevinStory(getWidth(), getHeight());
 		
 		setScreen(menu);
 		
