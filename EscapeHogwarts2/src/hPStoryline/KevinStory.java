@@ -21,10 +21,10 @@ public class KevinStory extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		backImg = new Graphic(0, 0, 1600, 1600, "simg/background.jpg");
+		backImg = new Graphic(0, 0, 1600, 1600, "kimg/dementorBackground.jpg");
 		viewObjects.add(backImg);
 		
-		description = new TextArea(650, 330, 700, 400, "Harry Potter");
+		description = new TextArea(650, 330, 700, 400, "The Dementor's Kiss");
 		viewObjects.add(description);
 
 	}
