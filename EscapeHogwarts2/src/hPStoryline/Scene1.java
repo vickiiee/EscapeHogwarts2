@@ -34,4 +34,6 @@ public class Scene1 extends FullFunctionScreen{
 		});
 		viewObjects.add(lightsOut);
 	}		
+	
+	//dsd
 }
