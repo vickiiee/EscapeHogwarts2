@@ -14,33 +14,41 @@ public class VickieHPFrontEnd extends FullFunctionScreen{
 
 	private Graphic background;
 	
-	private Button one;
-	private Button two;
-	private Button three;
-	private Button four;
-	private Button five;
-	private Button six;
-	private Button seven;
-	private Button eight;
-	private Button nine;
+	private Button b1;
+	private Button b2;
+	private Button b3;
+	private Button b4;
+	private Button b5;
+	private Button b6;
+	private Button b7;
+	private Button b8;
+	private Button b9;
 
-	private Button oneG;
-	private Button twoG;
-	private Button threeG;
-	private Button fourG;
-	private Button fiveG;
-	private Button sixG;
-	private Button sevenG;
-	private Button eightG;
-	private Button nineG;
+	//GRID BUTTONS
+	private Button g1;
+	private Button g2;
+	private Button g3;
+	private Button g4;
+	private Button g5;
+	private Button g6;
+	private Button g7;
+	private Button g8;
+	private Button g9;
+	
+	private Button[] numberButtons;
+	private Button[] gridButtons;
+	
+	private TextArea[] txt;
+	
+	private TextArea t1;
 	
 	private String numClicked;
 	private int boxClicked;
 	
 	private TextArea error;
 	
-	public VickieHPFrontEnd(int width, int height) {
-		super(width, height);
+	public VickieHPFrontEnd(int width, int hb8) {
+		super(width, hb8);
 		setVisible(true);
 	}
 
@@ -48,6 +56,18 @@ public class VickieHPFrontEnd extends FullFunctionScreen{
 	public void initAllObjects(List<Visible> viewObjects) {
 		numClicked = "0";
 		Color back =newColorWithAlpha(Color.white, 70);
+		
+		Button n [] = new Button[9];
+		numberButtons = n;
+		
+		Button g [] = new Button[9];
+		gridButtons = g;
+		
+		TextArea t[] = new TextArea[9];
+		txt = t;
+		
+		
+		
 		
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/background3.jpg");
 		viewObjects.add(background);
@@ -62,214 +82,242 @@ public class VickieHPFrontEnd extends FullFunctionScreen{
 		viewObjects.add(error);
 		error.setVisible(false);
 		
+		for(int i = 0; i<9;i++) {
+			if(i==0 || i<3) {
+				numberButtons[i] = new Button(50 + 110*i, 300, 100,100, i+1+"",back, null);
+				viewObjects.add(numberButtons[i]);
+			} else if(i==3|| i<6){
+				numberButtons[i] = new Button(50 + 110*(i-3), 410, 100,100, i+1+"",back, null);
+				viewObjects.add(numberButtons[i]);
+			} else if(i==7|| i<9){
+				numberButtons[i] = new Button(50 + 110*(i-6), 520, 100,100, i+1+"",back, null);
+				viewObjects.add(numberButtons[i]);
+			}
+		}
+		
 // buttons 
-		one = new Button(50, 300, 100,100, "1", back, new Action() {
+		/*b1 = new Button(50, 300, 100,100, "1", back, new Action() {
 			@Override
 			public void act() {
-				numClicked = one.getText();
-				one.setBackground(Color.white);
+				numClicked = b1.getText();
+				b1.setBackground(Color.white);
 				error.setVisible(false);
 			}	
 		});
-		viewObjects.add(one);
+		viewObjects.add(b1);
 		
-		two = new Button(160, 300, 100,100, "2", back, new Action() {
+		b2 = new Button(160, 300, 100,100, "2", back, new Action() {
 			@Override
 			public void act() {
-				numClicked = two.getText();
-				two.setBackground(Color.white);
+				numClicked = b2.getText();
+				b2.setBackground(Color.white);
 				error.setVisible(false);
 			}
 		});
-		viewObjects.add(two);
+		viewObjects.add(b2);
 		
-		three = new Button(270, 300, 100,100, "3", back, new Action() {
+		b3 = new Button(270, 300, 100,100, "3", back, new Action() {
 			@Override
 			public void act() {
-				numClicked = three.getText();
-				three.setBackground(Color.white);
+				numClicked = b3.getText();
+				b3.setBackground(Color.white);
 				error.setVisible(false);
 			}
 		});
-		viewObjects.add(three);
+		viewObjects.add(b3);
 		
-		four = new Button(50, 410, 100,100, "4", back, new Action() {
+		b4 = new Button(50, 410, 100,100, "4", back, new Action() {
 			@Override
 			public void act() {
-				numClicked = four.getText();
-				four.setBackground(Color.white);
+				numClicked = b4.getText();
+				b4.setBackground(Color.white);
 				error.setVisible(false);
 			}	
 		});
-		viewObjects.add(four);
+		viewObjects.add(b4);
 		
-		five = new Button(160, 410, 100,100, "5", back, new Action() {
+		b5 = new Button(160, 410, 100,100, "5", back, new Action() {
 			@Override
 			public void act() {
-				five.setVisible(false);
-				numClicked = five.getText();
-				five.setBackground(Color.white);
-				five.setVisible(true);
+				b5.setVisible(false);
+				numClicked = b5.getText();
+				b5.setBackground(Color.white);
+				b5.setVisible(true);
 				error.setVisible(true);
 			}
 		});
-		viewObjects.add(five);
+		viewObjects.add(b5);
 		
-		six = new Button(270, 410, 100,100, "6", back, new Action() {
+		b6 = new Button(270, 410, 100,100, "6", back, new Action() {
 			@Override
 			public void act() {
-				numClicked = six.getText();
-				six.setBackground(Color.white);
+				numClicked = b6.getText();
+				b6.setBackground(Color.white);
 				error.setVisible(false);
 			}
 		});
-		viewObjects.add(six);
+		viewObjects.add(b6);
 		
-		seven = new Button(50, 520, 100,100, "7", back, new Action() {
+		b7 = new Button(50, 520, 100,100, "7", back, new Action() {
 			@Override
 			public void act() {
-				numClicked = seven.getText();
-				seven.setBackground(Color.white);
+				numClicked = b7.getText();
+				b7.setBackground(Color.white);
 				error.setVisible(false);
 			}
 			
 		});
-		viewObjects.add(seven);
+		viewObjects.add(b7);
 		
-		eight = new Button(160, 520, 100,100, "8", back, new Action() {
+		b8 = new Button(160, 520, 100,100, "8", back, new Action() {
 			@Override
 			public void act() {
-				numClicked = eight.getText();
-				eight.setBackground(Color.white);
+				numClicked = b8.getText();
+				b8.setBackground(Color.white);
 				error.setVisible(false);
 			}
 		});
-		viewObjects.add(eight);
+		viewObjects.add(b8);
 		
-		nine = new Button(270, 520, 100,100, "9", back, new Action() {
+		b9 = new Button(270, 520, 100,100, "9", back, new Action() {
 			@Override
 			public void act() {
-				numClicked = nine.getText();
-				nine.setBackground(Color.white);
+				numClicked = b9.getText();
+				b9.setBackground(Color.white);
 				error.setVisible(false);
 			}
 		});
-		viewObjects.add(nine);
+		viewObjects.add(b9);*/
 	
 //buttons on grid
-		oneG = new Button(500, 100, 195,195, "?", back, new Action() {
+		t1 = new TextArea(500,100,195,195, "?");
+		g1 = new Button(500, 100, 195,195, "", back, new Action() {
 			@Override
 			public void act() {
 				if(numClicked.equals("0")) {
 					error.setVisible(true);
 				}else {
-					oneG.setText(numClicked);
+					t1.setText(numClicked);
+					t1.update();
 				}
 			}
 		});
-		viewObjects.add(oneG);
+		viewObjects.add(g1);
+		viewObjects.add(t1);
 		
-		twoG = new Button(702, 100, 195,195, "?", back, new Action() {
+		
+		g2 = new Button(702, 100, 195,195, "?", back, new Action() {
 			@Override
 			public void act() {
 				if(numClicked.equals("0")) {
 					error.setVisible(true);
 				}else {
-					twoG.setText(numClicked);
+					g2.setText(numClicked);
 				}
 			}
 		});
-		viewObjects.add(twoG);
+		viewObjects.add(g2);
 		
-		threeG = new Button(905, 100, 195,195, "?", back, new Action() {
+		g3 = new Button(905, 100, 195,195, "?", back, new Action() {
 			@Override
 			public void act() {
 				if(numClicked.equals("0")) {
 					error.setVisible(true);
 				}else {
-					threeG.setText(numClicked);
+					g3.setText(numClicked);
 				}
 			}
 		});
-		viewObjects.add(threeG);
+		viewObjects.add(g3);
 		
-		fourG = new Button(500, 302, 195,195, "?", back, new Action() {
+		g4 = new Button(500, 302, 195,195, "?", back, new Action() {
 
 			@Override
 			public void act() {
 				if(numClicked.equals("0")) {
 					error.setVisible(true);
 				}else {
-					fourG.setText(numClicked);
+					g4.setText(numClicked);
 				}
 			}
 		});
-		viewObjects.add(fourG);
+		viewObjects.add(g4);
 		
-		fiveG = new Button(727, 327, 145,145, "?", Color.white, new Action() { //702, 302 195,195
+		g5 = new Button(727, 327, 145,145, "?", Color.white, new Action() { //702, 302 195,195
 			@Override
 			public void act() {
 				if(numClicked.equals("0")) {
 					error.setVisible(true);
 				}else {
-					fiveG.setText(numClicked);
+					g5.setText(numClicked);
 				}
 			}
 		});
-		viewObjects.add(fiveG);
+		viewObjects.add(g5);
 		
-		sixG = new Button(905, 302, 195,195, "?", back, new Action() {
+		g6 = new Button(905, 302, 195,195, "?", back, new Action() {
 			@Override
 			public void act() {
 				if(numClicked.equals("0")) {
 					error.setVisible(true);
 				}else {
-					sixG.setText(numClicked);
+					g6.setText(numClicked);
 				}
 			}
 		});
-		viewObjects.add(sixG);
+		viewObjects.add(g6);
 		
-		sevenG = new Button(500, 505, 195,195, "?", back, new Action() {
+		g7 = new Button(500, 505, 195,195, "?", back, new Action() {
 			@Override
 			public void act() {
 				if(numClicked.equals("0")) {
 					error.setVisible(true);
 				}else {
-					sevenG.setText(numClicked);
+					g7.setText(numClicked);
 				}
 			}
 		});
-		viewObjects.add(sevenG);
+		viewObjects.add(g7);
 
-		eightG = new Button(702, 505, 195,195, "?", back, new Action() {
+		g8 = new Button(702, 505, 195,195, "?", back, new Action() {
 			@Override
 			public void act() {
 				if(numClicked.equals("0")) {
 					error.setVisible(true);
 				}else {
-					eightG.setText(numClicked);
+					g8.setText(numClicked);
 				}
 			}
 		});
-		viewObjects.add(eightG);
+		viewObjects.add(g8);
 		
-		nineG = new Button(905, 505, 195,195, "?", back, new Action() {
+		g9 = new Button(905, 505, 195,195, "?", back, new Action() {
 			@Override
 			public void act() {
 				if(numClicked.equals("0")) {
 					error.setVisible(true);
 				}else {
-					nineG.setText(numClicked);
+					g9.setText(numClicked);
 				}
 			}
 		});
-		viewObjects.add(nineG);
+		viewObjects.add(g9);
 		
 	}
 	
-	public static Color newColorWithAlpha(Color original, int alpha) {
+	public Color newColorWithAlpha(Color original, int alpha) {
 	    return new Color(original.getRed(), original.getGreen(), original.getBlue(), alpha);
 	}
 
+	public void changeButtonColor(int num) {
+		for(int i = 1; i < 10; i++) {
+			if(i == num) {
+				String s = "b" + num; 
+				//s.setBackground(Color.white);
+			}else
+			{
+				
+			}
+		}
+	}
 }
