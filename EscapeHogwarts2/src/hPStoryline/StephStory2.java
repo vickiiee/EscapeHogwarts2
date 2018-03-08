@@ -12,6 +12,7 @@ public class StephStory2 extends FullFunctionScreen {
 
 	private TextArea title;
 	private Graphic background;
+	private Graphic chatbox;
 	
 	public StephStory2(int width, int height) {
 		super(width, height);
@@ -25,7 +26,9 @@ public class StephStory2 extends FullFunctionScreen {
 		
 		title = new TextArea(150, 50, 700, 400, "Welcome");
 		viewObjects.add(title);
-
+		
+		chatbox = new Graphic(100,800,1000, 1000, "simg/textbox.png");
+		viewObjects.add(chatbox);
 	}
 
 }

@@ -37,7 +37,7 @@ public class StephStory extends FullFunctionScreen {
 		
 		description = new TextArea(100, 200, 500, 500, "");
 		
-		broom = new ClickableGraphic(1000, 700, 150, 150, "simg/broom.jpg");
+		broom = new ClickableGraphic(900, 700, 200, 200, "simg/broom.png");
 		viewObjects.add(broom);
 		broom.setAction(new Action() {
 			
