@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import guiTeacher.components.Action;
+import guiTeacher.components.Button;
 import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
@@ -16,46 +17,59 @@ public class StephStory extends FullFunctionScreen {
 	private ClickableGraphic broom;
 	private TextArea description;
 	private TextArea title;
+	private Button load;
+	private Button newGame;
+	private Button quit;
 	private int click = 0;
 	
 	public StephStory(int width, int height) {
 		super(width, height);
-		title.setForeground(Color.LIGHT_GRAY);
 		title.setSize(80);
-		description.setForeground(Color.LIGHT_GRAY);
+		title.setForeground(Color.WHITE);
 		description.setSize(50);
+		description.setForeground(Color.WHITE);
 		setVisible(true);
 	}
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		backImg = new Graphic(0, 0, 1600, 1600, "simg/background.jpg");
+		backImg = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg3.jpg");
 		viewObjects.add(backImg);
 		
 		title = new TextArea(50, 50, 700, 400, "Harry Potter Spin-off");
 		viewObjects.add(title);
 		
-		description = new TextArea(100, 200, 500, 500, "");
+		description = new TextArea(100, 200, 500, 500, "You are Harry Potter. Continue the storyline to see what your future holds...");
+		viewObjects.add(description);
 		
-		broom = new ClickableGraphic(900, 700, 200, 200, "simg/broom.png");
-		viewObjects.add(broom);
-		broom.setAction(new Action() {
+		load = new Button(50,700,300,50,"Load Game",Color.GRAY,new Action() {
 			
+			@Override
 			public void act() {
-				click++;	
-				broomClick();
+				//GuiLoadingVickie.loading.setScreen(new StephStory2(getWidth(), getHeight()));
 			}
 		});
-	}
-	
-	public void broomClick() {
-		if(click == 1) {
-			description.setText("You are Harry Potter. Continue the storyline to see what your future holds...");
-			viewObjects.add(description);
-		}else {
-			GuiLoadingVickie.loading.setScreen(new StephStory2(getWidth(), getHeight()));
-		}
+		viewObjects.add(load);
 		
+		newGame = new Button(430,700,300,50,"New Game",Color.GRAY,new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new StephStory2(getWidth(), getHeight()));
+			}
+		});
+		viewObjects.add(newGame);
+		
+		quit = new Button(800,700,300,50,"Quit",Color.GRAY,new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new Scene1(getWidth(), getHeight()));
+			}
+		});
+		viewObjects.add(quit);
+		
+	
 	}
 
 }

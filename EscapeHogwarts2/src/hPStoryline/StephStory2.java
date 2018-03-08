@@ -17,17 +17,18 @@ public class StephStory2 extends FullFunctionScreen {
 	public StephStory2(int width, int height) {
 		super(width, height);
 		title.setSize(80);
+		title.setForeground(Color.LIGHT_GRAY);
 	}
 	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		background = new Graphic(0, 0, 1300, 1300, "simg/bg2.jpg");
+		background = new Graphic(0, 0, getWidth(), getHeight(), "simg/background.jpg");
 		viewObjects.add(background);
 		
 		title = new TextArea(150, 50, 700, 400, "Welcome");
 		viewObjects.add(title);
 		
-		chatbox = new Graphic(100,800,1000, 1000, "simg/textbox.png");
+		chatbox = new Graphic(0,0,1200, 600, "simg/textbox.png");
 		viewObjects.add(chatbox);
 	}
 
