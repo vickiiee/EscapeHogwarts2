@@ -51,7 +51,7 @@ public class JiMenu extends FullFunctionScreen{
 			
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new DKTitle(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new Scene1(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(play);
