@@ -2,7 +2,6 @@ package hPStoryline;
 
 import java.util.List;
 
-import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
@@ -17,6 +16,7 @@ public class DKIntro extends FullFunctionScreen {
 	
 	public DKIntro(int width, int height) {
 		super(width, height);
+		textBox.setSize(50);
 		
 	}
 
@@ -25,7 +25,7 @@ public class DKIntro extends FullFunctionScreen {
 		backgroundImg = new Graphic(0, 0, getWidth(), getHeight(), "kimg/trainStation.png");
 		viewObjects.add(backgroundImg);
 		
-		textBox = new TextArea(300, 550, 600, 200, "As Harry boarded the Hogwart's Express,");
+		textBox = new TextArea(250, 450, 650, 500, "As Harry boarded the Hogwart's Express for his third year in Hogwarts, he never expected to meet every magical prisoner's worst nightmare");
 		viewObjects.add(textBox);
 		
 	}

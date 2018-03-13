@@ -13,11 +13,13 @@ public class Scene1 extends FullFunctionScreen{
 
 	private Graphic background;
 	private Button lightsOut;
+	private Button dKiss;
 
 	public Scene1(int width, int height) {
 		super(width, height);
 		setVisible(true);
 		lightsOut.setForeground(Color.LIGHT_GRAY);
+		dKiss.setForeground(Color.WHITE);
 	}
 
 	@Override
@@ -25,7 +27,7 @@ public class Scene1 extends FullFunctionScreen{
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/castle.jpg");
 		viewObjects.add(background);
 		
-		lightsOut = new Button(100, 450, 300, 75, "Side Story", new Action() {
+		lightsOut = new Button(100, 350, 300, 75, "Side Story", new Action() {
 			
 			@Override
 			public void act() {
@@ -33,6 +35,15 @@ public class Scene1 extends FullFunctionScreen{
 			}
 		});
 		viewObjects.add(lightsOut);
+		
+		dKiss = new Button(500, 640, 500, 100, "The Dementor's Kiss", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new DKTitle(getWidth(), getHeight()));
+			}
+		});
+		viewObjects.add(dKiss);
 	}		
 	
 	//dsd
