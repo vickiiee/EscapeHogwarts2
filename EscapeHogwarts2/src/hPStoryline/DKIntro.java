@@ -1,7 +1,9 @@
 package hPStoryline;
 
+import java.awt.Color;
 import java.util.List;
 
+import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
@@ -11,12 +13,16 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 public class DKIntro extends FullFunctionScreen {
 
 	private Graphic backgroundImg;
-	private Button title;
+	private Button next;
 	private TextArea textBox;
 	
 	public DKIntro(int width, int height) {
 		super(width, height);
+		
 		textBox.setSize(50);
+		textBox.setForeground(Color.LIGHT_GRAY);
+		
+		next.setForeground(Color.LIGHT_GRAY);
 		
 	}
 
@@ -25,8 +31,18 @@ public class DKIntro extends FullFunctionScreen {
 		backgroundImg = new Graphic(0, 0, getWidth(), getHeight(), "kimg/trainStation.png");
 		viewObjects.add(backgroundImg);
 		
-		textBox = new TextArea(250, 450, 650, 500, "As Harry boarded the Hogwart's Express for his third year in Hogwarts, he never expected to meet every magical prisoner's worst nightmare");
+		textBox = new TextArea(225, 475, 675, 320, "As Harry boarded the Hogwart's Express for his third year in Hogwarts, he never expected to meet every otherworldly criminal's worst nightmare");
 		viewObjects.add(textBox);
+		
+		next = new Button(700, 650, 100, 100, "->", new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		viewObjects.add(next);
 		
 	}
 
