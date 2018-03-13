@@ -14,20 +14,18 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 public class StephStory extends FullFunctionScreen {
 
 	private Graphic backImg;
-	private ClickableGraphic broom;
-	private TextArea description;
 	private TextArea title;
 	private Button load;
 	private Button newGame;
 	private Button quit;
-	private int click = 0;
 	
 	public StephStory(int width, int height) {
 		super(width, height);
-		title.setSize(80);
+		title.setSize(50);
 		title.setForeground(Color.WHITE);
-		description.setSize(50);
-		description.setForeground(Color.WHITE);
+		load.setSize(30);
+		newGame.setSize(30);
+		quit.setSize(30);
 		setVisible(true);
 	}
 
@@ -36,13 +34,10 @@ public class StephStory extends FullFunctionScreen {
 		backImg = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg3.jpg");
 		viewObjects.add(backImg);
 		
-		title = new TextArea(50, 50, 700, 400, "Harry Potter Spin-off");
+		title = new TextArea(710, 680, 700, 400, "Spin-off");
 		viewObjects.add(title);
 		
-		description = new TextArea(100, 200, 500, 500, "You are Harry Potter. Continue the storyline to see what your future holds...");
-		viewObjects.add(description);
-		
-		load = new Button(50,700,300,50,"Load Game",Color.GRAY,new Action() {
+		load = new Button(1000,100,100,50,"Load Game", Color.LIGHT_GRAY,new Action() {
 			
 			@Override
 			public void act() {
@@ -51,7 +46,7 @@ public class StephStory extends FullFunctionScreen {
 		});
 		viewObjects.add(load);
 		
-		newGame = new Button(430,700,300,50,"New Game",Color.GRAY,new Action() {
+		newGame = new Button(1000,175,100,50,"New Game",Color.LIGHT_GRAY,new Action() {
 			
 			@Override
 			public void act() {
@@ -60,7 +55,7 @@ public class StephStory extends FullFunctionScreen {
 		});
 		viewObjects.add(newGame);
 		
-		quit = new Button(800,700,300,50,"Quit",Color.GRAY,new Action() {
+		quit = new Button(1000,250,100,50,"Quit",Color.LIGHT_GRAY,new Action() {
 			
 			@Override
 			public void act() {
