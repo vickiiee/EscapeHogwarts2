@@ -53,6 +53,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 	private TextArea counter;
 	private int count;
 
+	private Color trans;
+	
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
 		setVisible(true);
@@ -63,7 +65,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 		numClicked = "0";
 		i = 0;
 		Color back = newColorWithAlpha(Color.white, 70);
-
+		trans = newColorWithAlpha(Color.white, 70);
 		Button n[] = new Button[9];
 		numberButtons = n;
 
@@ -102,6 +104,21 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 			} else if (i == 6 || i < 9) {
 				numberButtons[i] = new Button(50 + 110 * (i - 6), 520, 100, 100, i + 1 + "", back, null);
 				viewObjects.add(numberButtons[i]);
+			}
+		}
+		
+		t1 = new TextArea(580, 150, 195, 195, "?");
+
+		for (i = 0; i < txt.length; i++) {
+			if (i == 0 || i < 3) {
+				txt[i] = new TextArea(580 + 110 * i, 150, 195, 195, "?");
+				viewObjects.add(txt[i]);
+			} else if (i == 3 || i < 6) {
+				txt[i] = new TextArea(580 + 110 * (i - 3), 460, 195, 195, "?");
+				viewObjects.add(txt[i]);
+			} else if (i == 6 || i < 9) {
+				txt[i] = new TextArea(580 + 110 * (i - 6), 770, 195, 195, "?");
+				viewObjects.add(txt[i]);
 			}
 		}
 
@@ -212,6 +229,18 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 		// buttons on grid
 		t1 = new TextArea(580, 150, 195, 195, "?");
 		
+		for (i = 0; i < txt.length; i++) {
+			if (i == 0 || i < 3) {
+				txt[i] = new TextArea(580 + 110 * i, 150, 195, 195,"?");
+				viewObjects.add(txt[i]);
+			} else if (i == 3 || i < 6) {
+				txt[i] = new TextArea(580 + 110 * (i - 3), 150, 195, 195, "?");
+				viewObjects.add(txt[i]);
+			} else if (i == 6 || i < 9) {
+				txt[i] = new TextArea(580 + 110 * (i - 6), 520, 195, 195,"?");
+				viewObjects.add(txt[i]);
+			}
+		}
 		
 		
 		
@@ -268,7 +297,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 		});
 		viewObjects.add(g4);
 
-		g5 = new Button(702, 302, 195, 195, "?", Color.white, new Action() {
+		g5 = new Button(702, 302, 195, 195, "?", back, new Action() {
 			@Override
 			public void act() {
 				if (numClicked.equals("0")) {
@@ -335,13 +364,20 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 	}
 
 	public void changeButtonColor(int num) {
-		for (int i = 1; i < 10; i++) {
-			if (i == num) {
-				String s = "b" + num;
-				// s.setBackground(Color.white);
+		for (int i = 0; i < 9; i++) {
+			numberButtons[i].setVisible(false);
+			numberButtons[i].setBackground(null);
+			numberButtons[i].setVisible(true);
+			numberButtons[i].setVisible(false);
+			numberButtons[i].setBackground(newColorWithAlpha(Color.white, 100));
+			numberButtons[i].setVisible(true);
+			
+			
+			/*if (i == num) {
+				numberButtons[num].setBackground(Color.white);
 			} else {
-
-			}
+				
+			}*/
 		}
 	}
 
@@ -350,8 +386,13 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 		numClicked = numberButtons[num].getText();
 		count++;
 		counter.setText("" + count);
+		
+		changeButtonColor(num);
+		
 		numberButtons[num].setVisible(false);
+		
 		numberButtons[num].setBackground(Color.white);
+		
 		numberButtons[num].setVisible(true);
 		error.setVisible(false);
 	}
