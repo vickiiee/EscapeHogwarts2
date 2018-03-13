@@ -18,7 +18,7 @@ public class Scene1 extends FullFunctionScreen{
 	public Scene1(int width, int height) {
 		super(width, height);
 		setVisible(true);
-		lightsOut.setForeground(Color.LIGHT_GRAY);
+		lightsOut.setForeground(Color.WHITE);
 		dKiss.setForeground(Color.WHITE);
 	}
 
@@ -46,5 +46,4 @@ public class Scene1 extends FullFunctionScreen{
 		viewObjects.add(dKiss);
 	}		
 	
-	//dsd
 }

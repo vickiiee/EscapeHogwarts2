@@ -19,9 +19,11 @@ public class StephStory2 extends FullFunctionScreen {
 	private TextArea name;
 	private TextArea dialogue;
 	private ClickableGraphic nextB;
+	private String[] quotes;
 	
 	public StephStory2(int width, int height) {
 		super(width, height);
+		String[] quotes = {"Let's just leave him, Kevin will us if we're late.", "..."};
 		name.setSize(40);
 		dialogue.setSize(35);
 		dialogue.setForeground(Color.WHITE);
@@ -40,7 +42,7 @@ public class StephStory2 extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
+				storyline();
 				
 			}
 		});
@@ -55,6 +57,10 @@ public class StephStory2 extends FullFunctionScreen {
 		dialogue = new TextArea(180,590,1000,500,"Where are you going Harry? Class is the other way.");
 		viewObjects.add(dialogue);
 		
+	}
+	
+	public void storyline() {
+		for(int i = 0; i < quotes.length; i++);
 		
 	}
 
