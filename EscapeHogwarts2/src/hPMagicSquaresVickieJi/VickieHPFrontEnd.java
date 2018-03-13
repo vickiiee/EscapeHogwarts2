@@ -212,7 +212,11 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 		// buttons on grid
 		t1 = new TextArea(580, 150, 195, 195, "?");
 		
-		for(int i = 0; i<10; )
+		
+		
+		
+		//for(int i = 0; i<10; )
+			
 		g1 = new Button(500, 100, 195, 195, "", back, new Action() {
 			@Override
 			public void act() {
