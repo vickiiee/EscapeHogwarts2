@@ -16,7 +16,7 @@ import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 
 public class Scene1 extends FullFunctionScreen{
-//
+
 	private Graphic background;
 	private Button magicSquares;
 	private Button connectFour;
