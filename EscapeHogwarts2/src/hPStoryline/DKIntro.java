@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import guiTeacher.components.Action;
-import guiTeacher.components.Button;
+import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
@@ -13,16 +13,14 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 public class DKIntro extends FullFunctionScreen {
 
 	private Graphic backgroundImg;
-	private Button next;
 	private TextArea textBox;
+	private ClickableGraphic arrow;
 	
 	public DKIntro(int width, int height) {
 		super(width, height);
 		
 		textBox.setSize(50);
 		textBox.setForeground(Color.LIGHT_GRAY);
-		
-		next.setForeground(Color.LIGHT_GRAY);
 		
 	}
 
@@ -34,15 +32,16 @@ public class DKIntro extends FullFunctionScreen {
 		textBox = new TextArea(225, 475, 675, 320, "As Harry boarded the Hogwart's Express for his third year in Hogwarts, he never expected to meet every otherworldly criminal's worst nightmare");
 		viewObjects.add(textBox);
 		
-		next = new Button(700, 650, 100, 100, "->", new Action() {
+		arrow = new ClickableGraphic(1000, 650, "kimg/arrow.png");
+		arrow.setAction(new Action() {
 			
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
+				GuiLoadingVickie.loading.setScreen(new DKTrain(getWidth(), getHeight()));
 				
 			}
 		});
-		viewObjects.add(next);
+		viewObjects.add(arrow);
 		
 	}
 
