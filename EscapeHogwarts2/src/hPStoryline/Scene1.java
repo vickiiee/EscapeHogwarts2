@@ -127,13 +127,13 @@ public class Scene1 extends FullFunctionScreen{
 		dialogueTxt.setText("Now now, what do we have here?"); //professor
 		Timer();
 		
-		dialogueTxt.setText("Oh hey! W-We were just taking a walk. You know, fresh air."); //harry
+		dialogueTxt.setText("Oh hey! W-We were just taking a walk."); //harry
 		Timer();
 		
 		//minigame
 		
 		//when harry wins mini game
-		dialogueTxt.setText("Well off I go, I have matters to attend to."); //professor
+		dialogueTxt.setText("Well off you go, I have matters to attend to."); //professor
 		
 		//when harry loses mini game
 		dialogueTxt.setText("Be back to your rooms right this moment. I don't want to see more trouble going around."); //professor
