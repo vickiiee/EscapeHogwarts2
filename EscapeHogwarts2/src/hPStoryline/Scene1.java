@@ -101,14 +101,18 @@ public class Scene1 extends FullFunctionScreen{
 		charRon.setVisible(false);
 		charHerm.setVisible(true);
 		((TextLabel) charName).setText("Hermione: ");
-		dialogueTxt.setText("What if we get caught?"); //hermione
+		dialogueTxt.setText("What if you get caught?"); //hermione
 		Timer();
 		
 		charHerm.setVisible(false);
 		charHarry.setVisible(true);
 		((TextLabel) charName).setText("Harry: ");
-		dialogueTxt.setText("This might be our only chance to go to Hogsmeade!"); //harry
-		//harry explains why they are going there
+		dialogueTxt.setText("This might be our only chance to go to Hogsmeade together!"); //harry
+		Timer();
+		dialogueTxt.setText("Can you imagine all the things we'll do there?!");
+		Timer();
+		dialogueTxt.setText("We especially have to go to Honeydukes, the sweets are in high "
+				+ "demand!");
 	}
 	
 	public void storyLine2() {
