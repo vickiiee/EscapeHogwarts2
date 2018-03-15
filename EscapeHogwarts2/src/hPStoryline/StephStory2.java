@@ -19,11 +19,14 @@ public class StephStory2 extends FullFunctionScreen {
 	private TextArea name;
 	private TextArea dialogue;
 	private ClickableGraphic nextB;
-	private String[] quotes;
+	private ClickableGraphic prevB; 
+	private int clicks;
+	private String[] quotes = {"Where are you going Harry? Class is the other way.","Lets just leave him, professor will kill us if we're late.", "..."};
+	private String[] matchName = {"Hermione","Dean", "Harry"};
 	
 	public StephStory2(int width, int height) {
 		super(width, height);
-		String[] quotes = {"Let's just leave him, Kevin will us if we're late.", "..."};
+		clicks = 0;
 		name.setSize(40);
 		dialogue.setSize(35);
 		dialogue.setForeground(Color.WHITE);
@@ -42,11 +45,24 @@ public class StephStory2 extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
+				clicks++;
 				storyline();
 				
 			}
 		});
 		viewObjects.add(nextB);
+		
+		prevB = new ClickableGraphic(65, 700, 50, 50, "simg/symbol.png");
+		prevB.setAction(new Action() {
+			
+			@Override
+			public void act() {
+				clicks--;
+				storyline();
+				
+			}
+		});
+		viewObjects.add(prevB);
 		
 		hermione = new Graphic(100,100,100,100,"simg/emma.jpg");
 		viewObjects.add(hermione);
@@ -60,8 +76,11 @@ public class StephStory2 extends FullFunctionScreen {
 	}
 	
 	public void storyline() {
-		for(int i = 0; i < quotes.length; i++);
-		
+		String r = quotes[clicks];
+		dialogue.setText(r);
+		dialogue.update();
+		String f = matchName[clicks];
+		name.setText(f);
+		name.update();
 	}
-
 }
