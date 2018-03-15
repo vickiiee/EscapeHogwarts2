@@ -17,30 +17,7 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 public class VickieHPFrontEnd extends FullFunctionScreen {
 
 	private Graphic background;
-
-	private Button b1;
-	private Button b2;
-	private Button b3;
-	private Button b4;
-	private Button b5;
-	private Button b6;
-	private Button b7;
-	private Button b8;
-	private Button b9;
-
-	// GRID BUTTONS
-	private Button g1;
-	private Button g2;
-	private Button g3;
-	private Button g4;
-	private Button g5;
-	private Button g6;
-	private Button g7;
-	private Button g8;
-	private Button g9;
-
 	private int i;
-	private int act;
 
 	private Button[] numberButtons;
 	private Button[] gridButtons;
@@ -50,7 +27,6 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 	private TextArea t1;
 
 	private String numClicked;
-	private int boxClicked;
 
 	private TextArea error;
 
@@ -248,46 +224,78 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 		
 
 		
+		font();
+	}
+
+	public void font() {
 		try {
 			 File fontFile = new File("images/HARRYP.ttf");
 			 Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
 			 Font baseFont=font.deriveFont(150f); //default 
+			 Font b=font.deriveFont(70f);
 			 
 			 for(int i = 0; i<txt.length; i++) {
-				  txt[i].setFont(baseFont);
+				 String q = txt[i].getText();
+				 if(q.equals("?")) {
+					 txt[i].setFont(b);
+					 
+					// txt[i].move(newX, newY, durationMS);
+				 }else {
+					 txt[i].setFont(baseFont);
+				 }
+				  
 			 }
 			 
-			 for(int i = 0; i<gridButtons.length; i++) {
-				 gridButtons[i].setFont(baseFont);
-			 }
-			
-			 
-			 
-
 			 } catch (Exception e) {
 
 			 e.printStackTrace();
 
 			 }
 	}
-
 	public void updateGrid(int num) {
 		if (numClicked.equals("0")) {
 			error.setVisible(true);
 		} else {
 			for(int i = 0; i<txt.length; i++) {
+				//font();
 				String nC = numClicked+"";
 				String n = txt[i].getText();
 				if(nC.equals(n)) {
+				//	font();
 					txt[i].setText("?");
+					
+									if (i == 0 || i < 3) {
+										txt[i].move(580 + 203 * i, 150,100);
+										viewObjects.add(txt[i]);
+									} else if (i == 3 || i < 6) {
+										txt[i].move(580 + 203 * (i - 3), 350, 100);// y+203
+										viewObjects.add(txt[i]);
+									} else if (i == 6 || i < 9) {
+									txt[i].move(580 + 203 * (i - 6), 562, 100);
+									viewObjects.add(txt[i]);
+								}
+						}
+					
+					
 					txt[num].update();
+					//font();
 				}
-				txt[num].setText(numClicked+"");
 				
+			
+			if (num == 0 || num < 3) {
+				txt[num].move(560 + (203*num), 105,100);
+			} else if (num == 3 || num < 6) {
+				txt[num].move(560 + (203 * (num - 3)), 308, 100);// y+203
+			} else if (num == 6 || num < 9) {
+			txt[num].move(560 + 203 * (num - 6), 511, 100);
 			}
 			
-		}
+				txt[num].setText(numClicked+"");
+				font();
+			}
+			
+		
 	}
 	
 	public Color newColorWithAlpha(Color original, int alpha) {
