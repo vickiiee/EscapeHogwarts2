@@ -18,6 +18,7 @@ public class DKTrain extends FullFunctionScreen {
 		
 		textBox.setSize(100);
 		textBox.setForeground(Color.gray);
+		textBox.setFont();
 	}
 
 	@Override
