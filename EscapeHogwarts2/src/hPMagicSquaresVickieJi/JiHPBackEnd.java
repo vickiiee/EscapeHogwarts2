@@ -36,7 +36,7 @@ public class JiHPBackEnd implements VickieSupport {
 		return num;
 	}
 	
-	public void chooseStartingPoint() {
+	public void chooseStartingPoint() { //choose point start
 		createInitiateNum();
 		if (iStartingNum != 5) {
 			if(isCornerNumber(iStartingNum)) {
@@ -149,7 +149,7 @@ public class JiHPBackEnd implements VickieSupport {
 		return (int)(Math.random() * max);
 	}
 
-	public boolean isNumeric(String str) {  
+	public boolean isNumeric(String str) {  //check for number
 	  try  
 	  {  
 	    Double.parseDouble(str);  
@@ -174,7 +174,7 @@ public class JiHPBackEnd implements VickieSupport {
 		
 	}
 	
-	public boolean checkTotal() {
+	public boolean checkTotal() { //check total every time number added
 		for(int row = 0; row < MATRIX_SIZE; row++) {
 			int rowTotal = 0;
 			for(int col = 0; col < MATRIX_SIZE; col++) {
@@ -216,7 +216,7 @@ public class JiHPBackEnd implements VickieSupport {
 		return true;
 	}
 
-	public void cheatCode() {
+	public void cheatCode() { //cheat 
 		magicSquares = ANSWER;
 		frontend.displayTheGrid();
 		frontend.endGame();

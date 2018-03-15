@@ -30,8 +30,23 @@ public class Scene1 extends FullFunctionScreen{
 	private Graphic background2;
 	private String[] storyLine1 = {"Ron..!! Hermione..!", 
 			"Wake up, we ought to go out now!", "We don't got much time now, we must leave before anyone sees us!","...",
-			""};
+			"Harry, are you sure about this?", "What if you get caught?", 
+			"This might be our only chance to go to Hogsmeade together! Besides, once I get my invisibility cloak "
+			+ "I'll be fine.", "Can you imagine all the things we'll do there?!",
+			"We especially have to go to Honeydukes, the sweets are in high demand!"};
 
+	private String[] storyLine2 = {"...", "If we go past this hallway, we might just make it to the hidden "
+			+ "closet where my cloak is.", "Everyone rarely comes here so-", "Har-", 
+			"Now now, what are you doing at this hour?", "Hey! W-We were just taking a walk.",
+			"Harry wasn't feeling well so we thought we'd accompany him.",
+			"Well off you go, I have matters to attend to.",
+			"Be back to your rooms right this moment. I don't want to see more trouble going around."};
+	
+	private String[] storyLine3 = {"Phew, that was close.", "Harry, which way do we go now?", 
+			"You see that room upstairs?", "We just need to enter the right pattern to enter."};
+	
+	private String[] storyLine4 = {};
+	
 	public Scene1(int width, int height) {
 		super(width, height);
 		setVisible(true);
@@ -55,12 +70,12 @@ public class Scene1 extends FullFunctionScreen{
 	
 	public void Timer() {
 		Timer timer = new Timer();
-		TimerTask task;
-		task = new TimerTask() {
+		TimerTask task = new TimerTask() {
 			@Override
 			public void run() { 
 				int seconds = 3;
 				if (seconds > 0) {
+					System.out.println("Seconds:" + seconds);
 					seconds--;
 				} else {
 					cancel();
@@ -83,36 +98,33 @@ public class Scene1 extends FullFunctionScreen{
 	}
 	
 	public void storyLine1() {
-		dialogueTxt.setText("Ron..!! Hermione..!");
-		Timer();
-		dialogueTxt.setText("Wake up, we ought to go out now!");
-		Timer();
-		dialogueTxt.setText("We don't got much time now, we must leave before anyone sees us!");
-		Timer();
-		dialogueTxt.setText("...");
+		dialogueTxt.setText("Ron..!! Hermione..! It's Hogsmeade Day!");
 		Timer();
 		
-		charHarry.setVisible(false);
-		charRon.setVisible(true);
-		((TextLabel) charName).setText("Ron: ");
+		dialogueTxt.setText("Wake up, we ought to go out now!");
+		Timer();
+		
+		dialogueTxt.setText("We don't got much time now, we must leave before anyone sees us!");
+		Timer();
+		
+		dialogueTxt.setText("...");
+		Timer();
+
 		dialogueTxt.setText("Harry, are you sure about this?"); //ron
 		Timer();
 		
-		charRon.setVisible(false);
-		charHerm.setVisible(true);
-		((TextLabel) charName).setText("Hermione: ");
 		dialogueTxt.setText("What if you get caught?"); //hermione
 		Timer();
 		
-		charHerm.setVisible(false);
-		charHarry.setVisible(true);
-		((TextLabel) charName).setText("Harry: ");
-		dialogueTxt.setText("This might be our only chance to go to Hogsmeade together!"); //harry
+		dialogueTxt.setText("This might be our only chance to go to Hogsmeade together! "
+				+ " Besides, once I get my invisibility cloak I'll be fine."); //harry
 		Timer();
+		
 		dialogueTxt.setText("Can you imagine all the things we'll do there?!");
 		Timer();
+		
 		dialogueTxt.setText("We especially have to go to Honeydukes, the sweets are in high "
-				+ "demand!");
+				+ "demand!"); //harry
 	}
 	
 	public void storyLine2() {
@@ -121,33 +133,50 @@ public class Scene1 extends FullFunctionScreen{
 		
 		dialogueTxt.setText("...");
 		Timer();
-		dialogueTxt.setText("If we go past this hallway, we might just make it past the others.");
+		dialogueTxt.setText("If we go past this hallway, we might just make it to"
+				+ " the hidden closet where my cloak is.");
 		Timer();
 		dialogueTxt.setText("Everyone rarely comes here so-");
 		Timer();
-		dialogueTxt.setText("Oh!");
+		dialogueTxt.setText("Har-"); //ron
 		Timer();
 		
-		dialogueTxt.setText("Now now, what do we have here?"); //professor
+		dialogueTxt.setText("Now now, what are you doing at this hour?"); //professor
 		Timer();
 		
-		dialogueTxt.setText("Oh hey! W-We were just taking a walk."); //harry
+		dialogueTxt.setText("Hey! W-We were just taking a walk."); //harry
 		Timer();
 		
-		//minigame
+		dialogueTxt.setText("Harry wasn't feeling well so we "
+				+ "thought we'd accompany him."); //herm
+		
+		//minigame to persuade professor
 		
 		//when harry wins mini game
 		dialogueTxt.setText("Well off you go, I have matters to attend to."); //professor
 		
 		//when harry loses mini game
-		dialogueTxt.setText("Be back to your rooms right this moment. I don't want to see more trouble going around."); //professor
+		dialogueTxt.setText("Be back to your rooms right this moment. I don't want to "
+				+ "see more trouble going around."); //professor
 	}
 	
-	public void storyLine2_1(){
+	public void storyLine3(){
 		//when harry wins minigame 1
+		//"Phew, that was close." //ron
 		
+		//"Harry, which way do we go now?" //herm
+		
+		//"You see that room upstairs?" //harry
+		
+		//"We just need to enter the right pattern to enter." //harry
+		
+		//minigame 2
 	}
 	
+	public void storyLine4() {
+		//harry gets cloak
+		//harry gets out of hogwarts without being detected
+	}
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 
