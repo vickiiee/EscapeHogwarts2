@@ -21,8 +21,8 @@ public class StephStory2 extends FullFunctionScreen {
 	private ClickableGraphic nextB;
 	private ClickableGraphic prevB; 
 	private int clicks;
-	private String[] quotes = {"Where are you going Harry? Class is the other way.","Lets just leave him, professor will kill us if we're late.", "..."};
-	private String[] matchName = {"Hermione","Dean", "Harry"};
+	private String[] quotes = {"Where are you going Harry? Class is the other way.","Lets just leave him, Mcgonagall will kill us if we're late.", "...","Potter! Weasley! Granger! Why are you late to my class again?!"};
+	private String[] matchName = {"Hermione","Ron", "Harry","Mcgonagall"};
 	
 	public StephStory2(int width, int height) {
 		super(width, height);
