@@ -76,6 +76,14 @@ public class StephStory2 extends FullFunctionScreen {
 	}
 	
 	public void storyline() {
+		if(clicks == 3) {
+			background.loadImages("simg/classroom.jpg", 1200, 800);
+			hermione.setVisible(false);
+		}
+		else {
+			background.loadImages("simg/background.jpg", 1200, 800);
+			hermione.setVisible(true);
+		}
 		String r = quotes[clicks];
 		dialogue.setText(r);
 		dialogue.update();
