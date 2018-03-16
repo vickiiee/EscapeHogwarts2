@@ -17,6 +17,7 @@ import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 
 public class Scene1 extends FullFunctionScreen{
 
+	private int seconds;
 	private Graphic background;
 	private Button magicSquares;
 	private Button connectFour;
@@ -46,13 +47,17 @@ public class Scene1 extends FullFunctionScreen{
 			"You see that room upstairs?", "We just need to enter the right pattern to enter."};
 	
 	private String[] storyLine4 = {};
+	private int startSeq;
 	
 	public Scene1(int width, int height) {
 		super(width, height);
+		setVisible(false);
 		setVisible(true);
 		((TextLabel) charName).setSize(40);
 		dialogueTxt.setSize(35);
-		storyLine1();
+		
+		
+		
 		magicSquares.setForeground(Color.LIGHT_GRAY);
 	}
 
@@ -68,15 +73,16 @@ public class Scene1 extends FullFunctionScreen{
 		 //Timer();
 	}
 	
-	public void Timer() {
+	public void Timers() {
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() { 
-				int seconds = 3;
+				System.out.println("run");
 				if (seconds > 0) {
-					System.out.println("Seconds:" + seconds); //testing 
 					seconds--;
+					System.out.println("Seconds:" + seconds); //testing 
+					
 				} else {
 					cancel();
 				}
@@ -98,30 +104,31 @@ public class Scene1 extends FullFunctionScreen{
 	}
 	
 	public void storyLine1() {
+		System.out.println("Ron..!! Hermione..! It's Hogsmeade Day!");
 		dialogueTxt.setText("Ron..!! Hermione..! It's Hogsmeade Day!");
-		Timer();
+		Timers();
 		
 		dialogueTxt.setText("Wake up, we ought to go out now!");
-		Timer();
+		//Timer();
 		
 		dialogueTxt.setText("We don't got much time now, we must leave before anyone sees us!");
-		Timer();
+		//Timer();
 		
 		dialogueTxt.setText("...");
-		Timer();
+		//Timer();
 
 		dialogueTxt.setText("Harry, are you sure about this?"); //ron
-		Timer();
+		//Timer();
 		
 		dialogueTxt.setText("What if you get caught?"); //hermione
-		Timer();
+		//Timer();
 		
 		dialogueTxt.setText("This might be our only chance to go to Hogsmeade together! "
 				+ " Besides, once I get my invisibility cloak I'll be fine."); //harry
-		Timer();
+		//Timer();
 		
 		dialogueTxt.setText("Can you imagine all the things we'll do there?!");
-		Timer();
+		//Timer();
 		
 		dialogueTxt.setText("We especially have to go to Honeydukes, the sweets are in high "
 				+ "demand!"); //harry
@@ -132,20 +139,20 @@ public class Scene1 extends FullFunctionScreen{
 		background1.setVisible(true);
 		
 		dialogueTxt.setText("...");
-		Timer();
+		//Timer();
 		dialogueTxt.setText("If we go past this hallway, we might just make it to"
 				+ " the hidden closet where my cloak is.");
-		Timer();
+		//Timer();
 		dialogueTxt.setText("Everyone rarely comes here so-");
-		Timer();
+		//Timer();
 		dialogueTxt.setText("Har-"); //ron
-		Timer();
+		//Timer();
 		
 		dialogueTxt.setText("Now now, what are you doing at this hour?"); //professor
-		Timer();
+		//Timer();
 		
 		dialogueTxt.setText("Hey! W-We were just taking a walk."); //harry
-		Timer();
+		//Timer();
 		
 		dialogueTxt.setText("Harry wasn't feeling well so we "
 				+ "thought we'd accompany him."); //herm
@@ -179,7 +186,10 @@ public class Scene1 extends FullFunctionScreen{
 	}
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-
+		seconds = 3;
+		startSeq = 100;
+		
+		System.out.println("hi");
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/castle.jpg");
 		viewObjects.add(background);
 		
@@ -229,7 +239,10 @@ public class Scene1 extends FullFunctionScreen{
 		dialogueTxt = new TextArea(530, 650, 300, 100, "");
 		viewObjects.add(dialogueTxt);
 
-
+		if(startSeq == 100) {
+			System.out.println("tyufujfv");
+			storyLine1();
+		}
 	}
 
 }
