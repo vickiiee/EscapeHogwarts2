@@ -75,7 +75,7 @@ public class Scene1 extends FullFunctionScreen{
 			public void run() { 
 				int seconds = 3;
 				if (seconds > 0) {
-					System.out.println("Seconds:" + seconds);
+					System.out.println("Seconds:" + seconds); //testing 
 					seconds--;
 				} else {
 					cancel();
