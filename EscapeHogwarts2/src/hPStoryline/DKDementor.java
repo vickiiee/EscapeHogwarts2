@@ -1,5 +1,6 @@
 package hPStoryline;
 
+import java.awt.Color;
 import java.util.List;
 
 import guiTeacher.components.Action;
@@ -17,7 +18,8 @@ public class DKDementor extends FullFunctionScreen{
 	
 	public DKDementor(int width, int height) {
 		super(width, height);
-		
+		textBox.setSize(60);
+		textBox.setForeground(Color.WHITE);
 	}
 
 	@Override
@@ -27,7 +29,7 @@ public class DKDementor extends FullFunctionScreen{
 		viewObjects.add(backgroundImg);
 		
 		
-		textBox = new TextArea(175, 150, 400, 300, "");
+		textBox = new TextArea(150, 455, 850, 300, "As the Dementor entered the compartment, water froze and windows frosted over. The embodiment of despair wrought death with its mere presence.");
 		viewObjects.add(textBox);
 		
 		arrow = new ClickableGraphic(1000, 650, "kimg/arrow.png");
