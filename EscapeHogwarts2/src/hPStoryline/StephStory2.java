@@ -64,7 +64,7 @@ public class StephStory2 extends FullFunctionScreen {
 		});
 		viewObjects.add(prevB);
 		
-		hermione = new Graphic(100,100,100,100,"simg/emma.jpg");
+		hermione = new Graphic(700,260,400,400,"simg/emma.png");
 		viewObjects.add(hermione);
 		
 		name = new TextArea(220,530,200,200,"Hermione");
