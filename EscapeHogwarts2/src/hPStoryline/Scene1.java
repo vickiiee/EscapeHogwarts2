@@ -124,7 +124,7 @@ public class Scene1 extends FullFunctionScreen {
 	}
 
 	public void storyLine1() {
-		dialogueTxt.setText("Ron..!! Hermione..! It's Hogsmeade Day!");
+		dialogueTxt.setText("Ron..!! Hermione..! It's time to go to Hogsmeade!");
 		runStoryLine1();
 
 		dialogueTxt.setText("Wake up, we ought to go out now!");
