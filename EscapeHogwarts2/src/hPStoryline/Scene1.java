@@ -85,6 +85,7 @@ public class Scene1 extends FullFunctionScreen {
 
 					if (s1 > -1 && s1 < 9) {
 						String n = storyLine1[s1];
+						dialogueTxt.setText(n);
 						System.out.println(n);
 						seconds = 3;
 					} else {
@@ -96,6 +97,18 @@ public class Scene1 extends FullFunctionScreen {
 			}
 		};
 		timer.schedule(task, 0, 1000);
+	}
+	
+	public void runStoryLine2() {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+			}
+		};
 	}
 
 	public void switchCharName() {
@@ -255,6 +268,8 @@ public class Scene1 extends FullFunctionScreen {
 		dialogueTxt = new TextArea(530, 650, 300, 100, "");
 		viewObjects.add(dialogueTxt);
 
+		
+		
 		if (startSeq == 100) {
 			storyLine1();
 		}
