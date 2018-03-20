@@ -13,11 +13,12 @@ public class DKTitle extends FullFunctionScreen {
 	
 	private Graphic backgroundImg;
 	private Button title;
+	private Button summary;
 	
 	public DKTitle(int width, int height) {
 		super(width, height);
 		title.setForeground(Color.LIGHT_GRAY);
-		
+		summary.setForeground(Color.LIGHT_GRAY);
 	}
 
 	@Override
@@ -35,6 +36,15 @@ public class DKTitle extends FullFunctionScreen {
 		});
 		viewObjects.add(title);
 
+		summary = new Button(950, 400, 250, 100, "Summary", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new DKSummary(getWidth(), getHeight()));
+				
+			}
+		});
+		viewObjects.add(summary);
 	}
 
 	
