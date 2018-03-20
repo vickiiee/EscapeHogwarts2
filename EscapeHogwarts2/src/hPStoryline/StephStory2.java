@@ -14,7 +14,7 @@ public class StephStory2 extends FullFunctionScreen {
 
 	private Graphic background;
 	private Graphic chatbox;
-	private Graphic hermione;
+	private Graphic switchImg;
 	private TextArea narrator;
 	private TextArea name;
 	private TextArea dialogue;
@@ -23,6 +23,8 @@ public class StephStory2 extends FullFunctionScreen {
 	private int clicks;
 	private String[] quotes = {"Where are you going Harry? Class is the other way.","Lets just leave him, Mcgonagall will kill us if we're late.", "...","Potter! Weasley! Granger! Why are you late to my class again?!"};
 	private String[] matchName = {"Hermione","Ron", "Harry","Mcgonagall"};
+	private String[] imagesList = {"simg/emma.png", "simg/ron.jpg", "simg/harry.jpg"};
+	private String[] bgList = {"simg/classroom.jpg", "simg/teaching.jpg"};
 	
 	public StephStory2(int width, int height) {
 		super(width, height);
@@ -47,6 +49,8 @@ public class StephStory2 extends FullFunctionScreen {
 			public void act() {
 				clicks++;
 				storyline();
+				updateImgScreen();
+				updateBackground();
 				
 			}
 		});
@@ -59,13 +63,15 @@ public class StephStory2 extends FullFunctionScreen {
 			public void act() {
 				clicks--;
 				storyline();
+				updateImgScreen();
+				updateBackground();
 				
 			}
 		});
 		viewObjects.add(prevB);
 		
-		hermione = new Graphic(700,260,400,400,"simg/emma.png");
-		viewObjects.add(hermione);
+		switchImg = new Graphic(700,260,400,400,"simg/emma.png");
+		viewObjects.add(switchImg);
 		
 		name = new TextArea(220,530,200,200,"Hermione");
 		viewObjects.add(name);
@@ -76,19 +82,32 @@ public class StephStory2 extends FullFunctionScreen {
 	}
 	
 	public void storyline() {
-		if(clicks == 3) {
-			background.loadImages("simg/classroom.jpg", 1200, 800);
-			hermione.setVisible(false);
+		for(int i = 0; i < quotes.length - 1; i ++) {
+			String r = quotes[clicks];
+			dialogue.setText(r);
+			dialogue.update();
+			String f = matchName[clicks];
+			name.setText(f);
+			name.update();
 		}
-		else {
-			background.loadImages("simg/background.jpg", 1200, 800);
-			hermione.setVisible(true);
-		}
-		String r = quotes[clicks];
-		dialogue.setText(r);
+		dialogue.setText("");
 		dialogue.update();
-		String f = matchName[clicks];
-		name.setText(f);
+		name.setText("");
 		name.update();
+	}
+	
+	public void updateImgScreen() {
+		for(int i = 0; i < imagesList.length - 1; i++) {
+			String s = imagesList[i];
+			switchImg.loadImages(s, 400, 400);
+		}
+		switchImg.setVisible(false);
+	}
+	
+	public void updateBackground() {
+		if(clicks >= 3) {
+			String f = bgList[clicks];
+			background.loadImages(f, 1200, 800);
+		}
 	}
 }
