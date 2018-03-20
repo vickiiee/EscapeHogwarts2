@@ -1,6 +1,6 @@
 package hPMagicSquaresVickieJi;
 
-public interface VickieSupport {
+public interface VickieHPSupport {
 
 	//void checkMultiples(String character);
 	//when adding numbers to game, add in array

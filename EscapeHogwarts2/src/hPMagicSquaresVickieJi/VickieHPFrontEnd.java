@@ -13,53 +13,51 @@ import guiTeacher.components.TextArea;
 import guiTeacher.components.TextBox;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import jiVickieRoom.JiBackEnd;
+import jiVickieRoom.VickieSupport;
 
-public class VickieHPFrontEnd extends FullFunctionScreen {
+public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 
-	private Graphic background;
-	private int i;
-
+	private VickieHPSupport backend;
+	
 	private Button[] numberButtons;
 	private Button[] gridButtons;
-
-	private TextArea[] txt;
-
-	private TextArea t1;
+	private TextArea[] txtAreas;
 
 	private String numClicked;
 
 	private TextArea error;
+	private TextArea counter; //testing purposes
+	
+	private int count; // testing purposes
 
-	private TextArea counter;
-	private int count;
-
-	private TextBox tb;
+	//private TextBox tb;
 
 	private Color trans;
 
+	private int placeHolder;
+
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
+		backend = new JiHPBackEnd(this);
+		
 		setVisible(true);
 	}
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		numClicked = "0";
-		i = 0;
+
 		Color back = newColorWithAlpha(Color.white, 70);
-		trans = newColorWithAlpha(Color.white, 70);
-		Button n[] = new Button[9];
-		numberButtons = n;
+		
+		numberButtons = new Button[9];
+		gridButtons= new Button[9];
+		txtAreas= new TextArea[9];
 
-		Button g[] = new Button[9];
-		gridButtons = g;
 
-		TextArea t[] = new TextArea[9];
-		txt = t;
+		count = 0; //testing purposes
 
-		count = 0;
-
-		background = new Graphic(0, 0, getWidth(), getHeight(), "images/background3.jpg");
+		Graphic background = new Graphic(0, 0, getWidth(), getHeight(), "images/background3.jpg");
 		viewObjects.add(background);
 
 		Graphic board = new Graphic(450, 50, 700, 700, "images/mSBoard.jpg");
@@ -72,11 +70,11 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 		viewObjects.add(error);
 		error.setVisible(false);
 
-		counter = new TextArea(50, 50, 700, 700, "" + count);
+		counter = new TextArea(50, 50, 700, 700, "" + count); //testing purposes
 		viewObjects.add(counter);
 
 		// create buttons
-		for (i = 0; i < numberButtons.length; i++) {
+		for (int i = 0; i < numberButtons.length; i++) {
 			if (i == 0 || i < 3) {
 				numberButtons[i] = new Button(50 + 110 * i, 300, 100, 100, i + 1 + "", back, null);
 				viewObjects.add(numberButtons[i]);
@@ -134,8 +132,9 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 				numButtonAction(8);
 			}
 		});
+		
 		// BUTTONS ON GRD
-		for (i = 0; i < gridButtons.length; i++) {
+		for (int i = 0; i < gridButtons.length; i++) {
 			if (i == 0 || i < 3) {
 				gridButtons[i] = new Button(500 + 202 * i, 100, 195, 195, "", back, null);
 				viewObjects.add(gridButtons[i]);
@@ -148,7 +147,23 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 			}
 		}
 
-		gridButtons[0].setAction(new Action() {
+		//https://stackoverflow.com/questions/25394296/java-loop-to-create-action-listeners
+		for(int i = 0; i < gridButtons.length; i++) {
+			placeHolder = i;
+			gridButtons[i].setAction(new Action() {
+
+				@Override
+				public void act() {
+					count++;
+					counter.setText("" + count);
+					updateGrid(placeHolder--);
+					
+				}
+				
+			});
+		}
+		
+		/*gridButtons[0].setAction(new Action() {
 			public void act() {
 				updateGrid(0);
 			}
@@ -192,7 +207,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 			public void act() {
 				updateGrid(8);
 			}
-		});
+		});*/
 		/*
 		 * for(i = 0; i<gridButtons.length; i++) { gridButtons[i].setAction(new Action()
 		 * {
@@ -202,21 +217,22 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 		 * 
 		 * }); }
 		 */
-
-		for (i = 0; i < txt.length; i++) {
+		
+		//Create TextAreas
+		for (int i = 0; i < txtAreas.length; i++) {
 			if (i == 0 || i < 3) {
-				txt[i] = new TextArea(580 + 203 * i, 150, 195, 195, "?");
-				viewObjects.add(txt[i]);
+				txtAreas[i] = new TextArea(580 + 203 * i, 150, 195, 195, "?");
+				viewObjects.add(txtAreas[i]);
 			} else if (i == 3 || i < 6) {
-				txt[i] = new TextArea(580 + 203 * (i - 3), 350, 195, 195, "?");// y+203
-				viewObjects.add(txt[i]);
+				txtAreas[i] = new TextArea(580 + 203 * (i - 3), 350, 195, 195, "?");// y+203
+				viewObjects.add(txtAreas[i]);
 			} else if (i == 6 || i < 9) {
-				txt[i] = new TextArea(580 + 203 * (i - 6), 562, 195, 195, "?");
-				viewObjects.add(txt[i]);
+				txtAreas[i] = new TextArea(580 + 203 * (i - 6), 562, 195, 195, "?");
+				viewObjects.add(txtAreas[i]);
 			}
 		}
-		tb = new TextBox(100, 100, 100, 100, "hiiiiiii");
-		viewObjects.add(tb);
+		//tb = new TextBox(100, 100, 100, 100, "hiiiiiii");
+	//	viewObjects.add(tb);
 
 		font();
 	}
@@ -229,14 +245,14 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 			Font baseFont = font.deriveFont(150f); // default
 			Font b = font.deriveFont(70f);
 
-			for (int i = 0; i < txt.length; i++) {
-				String q = txt[i].getText();
+			for (int i = 0; i < txtAreas.length; i++) {
+				String q = txtAreas[i].getText();
 				if (q.equals("?")) {
-					txt[i].setFont(b);
+					txtAreas[i].setFont(b);
 
-					// txt[i].move(newX, newY, durationMS);
+					// txtAreas[i].move(newX, newY, durationMS);
 				} else {
-					txt[i].setFont(baseFont);
+					txtAreas[i].setFont(baseFont);
 				}
 
 			}
@@ -252,39 +268,39 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 		if (numClicked.equals("0")) {
 			error.setVisible(true);
 		} else {
-			for (int i = 0; i < txt.length; i++) {
+			for (int i = 0; i < txtAreas.length; i++) {
 				// font();
-				String nC = numClicked + "";
-				String n = txt[i].getText();
-				if (nC.equals(n)) {
+				//String nC = numClicked + "";
+				String n = txtAreas[i].getText();
+				if (numClicked.equals(n)) {
 					// font();
-					txt[i].setText("?");
+					txtAreas[i].setText("?");
 
 					if (i == 0 || i < 3) {
-						txt[i].move(580 + 203 * i, 150, 100);
-						viewObjects.add(txt[i]);
+						txtAreas[i].move(580 + 203 * i, 150, 100);
+						viewObjects.add(txtAreas[i]);
 					} else if (i == 3 || i < 6) {
-						txt[i].move(580 + 203 * (i - 3), 350, 100);// y+203
-						viewObjects.add(txt[i]);
+						txtAreas[i].move(580 + 203 * (i - 3), 350, 100);// y+203
+						viewObjects.add(txtAreas[i]);
 					} else if (i == 6 || i < 9) {
-						txt[i].move(580 + 203 * (i - 6), 562, 100);
-						viewObjects.add(txt[i]);
+						txtAreas[i].move(580 + 203 * (i - 6), 562, 100);
+						viewObjects.add(txtAreas[i]);
 					}
 				}
 
-				txt[num].update();
+				txtAreas[num].update();
 				// font();
 			}
 
 			if (num == 0 || num < 3) {
-				txt[num].move(560 + (203 * num), 105, 100);
+				txtAreas[num].move(560 + (203 * num), 105, 100);
 			} else if (num == 3 || num < 6) {
-				txt[num].move(560 + (203 * (num - 3)), 308, 100);// y+203
+				txtAreas[num].move(560 + (203 * (num - 3)), 308, 100);// y+203
 			} else if (num == 6 || num < 9) {
-				txt[num].move(560 + 203 * (num - 6), 511, 100);
+				txtAreas[num].move(560 + 203 * (num - 6), 511, 100);
 			}
 
-			txt[num].setText(numClicked + "");
+			txtAreas[num].setText(numClicked);
 			font();
 		}
 
@@ -300,7 +316,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen {
 			numberButtons[i].setBackground(null);
 			numberButtons[i].setVisible(true);
 			numberButtons[i].setVisible(false);
-			numberButtons[i].setBackground(newColorWithAlpha(Color.white, 100));
+			numberButtons[i].setBackground(newColorWithAlpha(Color.white, 120));
 			numberButtons[i].setVisible(true);
 
 			/*

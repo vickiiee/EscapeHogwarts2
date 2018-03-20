@@ -1,13 +1,11 @@
 package hPMagicSquaresVickieJi;
 
-import jiVickieRoom.JiSupport;
-import jiVickieRoom.VickieSupport;
 
-public class JiHPBackEnd implements VickieSupport {
+public class JiHPBackEnd implements VickieHPSupport {
 	
 	private int[][] magicSquares;
 	
-	private JiSupport frontend;
+	private JiHPSupport frontend;
 
 	private final static String CORNER_NUMS = "2648";
 	private final static int MAGIC_SUM = 15;
@@ -22,7 +20,7 @@ public class JiHPBackEnd implements VickieSupport {
 	private int iCol;  //Integer Col #
 	private int iNum;  //Integer Number #
 
-	public JiHPBackEnd(JiSupport frontend) {
+	public JiHPBackEnd(JiHPSupport frontend) {
 		this.frontend = frontend;
 		magicSquares = new int[3][3];
 	}
@@ -83,7 +81,7 @@ public class JiHPBackEnd implements VickieSupport {
 		String SNum;
 		int len = nums.length();
 		 if(len > 5 || len <5) {
-			frontend.error();
+//			frontend.error();
 		 }else {
 			  SRow = nums.substring(0, 1);
 			  SCol = nums.substring(2, 3);
@@ -94,20 +92,20 @@ public class JiHPBackEnd implements VickieSupport {
 				 iCol = Integer.parseInt(SCol);
 				 iNum = Integer.parseInt(SNum);
 				
-				frontend.doNotOverride();
+//				frontend.doNotOverride();
 				
 				if(iNum<10 && iNum>0 && iRow<3 && iRow>=0 && iCol<3 && iCol>=0) {
 					resetMultiples(iNum);
 					magicSquares[iRow][iCol] = iNum;
-					frontend.displayTheGrid();
-					frontend.complete();
+//					frontend.displayTheGrid();
+//					frontend.complete();
 				}else
 				{
-					frontend.error();
+//					frontend.error();
 				}
 				
 			}else {
-				frontend.error();
+//				frontend.error();
 			}
 		 }
 		
@@ -218,8 +216,8 @@ public class JiHPBackEnd implements VickieSupport {
 
 	public void cheatCode() { //cheat 
 		magicSquares = ANSWER;
-		frontend.displayTheGrid();
-		frontend.endGame();
+//		frontend.displayTheGrid();
+//		frontend.endGame();
 	}
 
 	public int[][] getBoxes() {
