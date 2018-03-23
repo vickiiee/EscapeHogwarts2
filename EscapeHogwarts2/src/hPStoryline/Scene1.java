@@ -20,12 +20,12 @@ public class Scene1 extends FullFunctionScreen {
 	private int seconds;
 	private int s1;
 	private int s2;
-	private int s3;
-	private int s4;
+	//private int s3;
+	//private int s4;
 	private boolean endS1;
 	private boolean endS2;
-	private boolean endS3;
-	private boolean endS4;
+	//private boolean endS3;
+	//private boolean endS4;
 
 	private Graphic background;
 	private Button magicSquares;
@@ -38,18 +38,18 @@ public class Scene1 extends FullFunctionScreen {
 	private Graphic charRon;
 	private Graphic background1;
 	private Graphic background2;
-	
+
 	private String[] storyLine1;
 	private String[] storyLine2;
-	private String[] storyLine3;
-	private String[] storyLine4;
+	//private String[] storyLine3;
+	//private String[] storyLine4;
 	private boolean startSeq;
-	
+
 	private String[] charNames = {"Harry: ", "Hermione: ", "Ron: "};
 	private Graphic[] charImages = {charHarry, charHerm, charRon};
 	private Graphic[] bkgrnds = {background1, background2};
 	private Visible continueBtn;
-	
+
 	public Scene1(int width, int height) {
 		super(width, height);
 		setVisible(false);
@@ -113,15 +113,15 @@ public class Scene1 extends FullFunctionScreen {
 				}
 
 			}
-			
+
 		};
 		timer.schedule(task, 0, 1000);
 	}
-	
+
 	public void runStoryLine2() {
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
-		
+
 			@Override
 			public void run() {
 				if (endS2) {
@@ -134,6 +134,7 @@ public class Scene1 extends FullFunctionScreen {
 					s2++;
 
 					if (s2 > -1 && s2 < storyLine2.length) {
+						/*
 						if(s2 == 0) {
 							switchCharName("Hermione: ");
 							switchCharImage(charHerm);
@@ -148,6 +149,7 @@ public class Scene1 extends FullFunctionScreen {
 								}
 							}
 						}
+						 */
 						String n2 = storyLine2[s2];
 						dialogueTxt.setText(n2);
 						System.out.println(n2);
@@ -155,7 +157,6 @@ public class Scene1 extends FullFunctionScreen {
 					} else {
 						endS2 = true;
 						//minigame
-						//runStoryLine3();
 					}
 
 				}
@@ -164,11 +165,11 @@ public class Scene1 extends FullFunctionScreen {
 		};
 		timer.schedule(task, 0, 1000);
 	}
-	
+	/*
 	public void runStoryLine3() {
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
-		
+
 			@Override
 			public void run() {
 				if (endS3) {
@@ -197,11 +198,11 @@ public class Scene1 extends FullFunctionScreen {
 		};
 		timer.schedule(task, 0, 1000);
 	}
-	
+
 	public void runStoryLine4() {
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
-		
+
 			@Override
 			public void run() {
 				if (endS4) {
@@ -221,7 +222,7 @@ public class Scene1 extends FullFunctionScreen {
 					} else {
 						endS4 = true;
 						//minigame
-						
+
 					}
 
 				}
@@ -230,7 +231,7 @@ public class Scene1 extends FullFunctionScreen {
 		};
 		timer.schedule(task, 0, 1000);
 	}
-
+	 */
 	public void switchCharName(String cName) {
 		for(int i = 0; i < charNames.length; i++) {
 			if(charNames[i] == cName) {
@@ -244,7 +245,7 @@ public class Scene1 extends FullFunctionScreen {
 			if(charImages[i] == charImage) {
 				for(int j = 0; j < charImages.length; j++) {
 					if(charImages[j] != charImage) {
-					charImages[j].setVisible(false);
+						charImages[j].setVisible(false);
 					}
 				}
 				charImage.setVisible(true);
@@ -257,34 +258,22 @@ public class Scene1 extends FullFunctionScreen {
 			if(bkgrnds[i] == bkgrnd) {
 				for(int j = 0; j < bkgrnds.length; j++) {
 					if(bkgrnds[j] != bkgrnd) {
-					bkgrnds[j].setVisible(false);
+						bkgrnds[j].setVisible(false);
 					}
 				}
 				bkgrnd.setVisible(true);
 			}
 		}
 	}
-	
+
 	private void continueScenes() {
 		if(endS1 && !endS2) {
 			runStoryLine2();
 			switchBkgrnd(background2);
 			continueBtn.setVisible(false);
 		}else {
-			if(endS1 && endS2 && !endS3) {
-				runStoryLine3();
-				continueBtn.setVisible(false);
-			}else {
-				if(endS1 && endS2 && endS3 && !endS4) {
-					runStoryLine4();
-					continueBtn.setVisible(false);
-				}else {
-					//finish
-				}
-			}
+			//minigame
 		}
-		
-		
 	}
 
 	@Override
@@ -293,33 +282,41 @@ public class Scene1 extends FullFunctionScreen {
 		s1 = -1;
 		endS1 = false;
 		endS2 = false;
-		endS3 = false;
-		endS4 = false;
+		//endS3 = false;
+		//endS4 = false;
 
 		String[] n = { "Ron..!! Hermione..!", "Wake up, we ought to go out now!",
 				"We don't got much time now, we must leave before anyone sees us!", "...",
-				"Harry, are you sure about this?", "What if you get caught?",
+				"Harry, are you still sure about this?", "What if you get caught?",
 				"This might be our only chance to go to Hogsmeade together! Besides, once I get my invisibility cloak "
 						+ "I'll be fine.",
-				"Can you imagine all the things we'll do there?!",
-				"We especially have to go to Honeydukes, the sweets are in high demand!" };
+						"Can you imagine all the things we'll do there?!",
+		"We especially have to go to Honeydukes, the sweets are in high demand!" };
 		storyLine1 = n;
-		
-		String[] n2 = {"Phew, that was close.", "Harry, which way do we go now?",
+
+		String[] n2 = {"We need to make it to the station by the afternoon.", "At this time ... it looks like we have a few"
+				+ " hours at most.", "Make sure you both got all your thi-"
+				,"Harry!!! We forgot our tickets for the train back in ___", "My goodness, if it wasns't for you Ron I would"
+						+ " have not known at all.", "I know where it is but we have to enter the correct passcode since"
+								+ " they changed it this semester."};
+
+		/*
+				"It is oddly quiet at this hour.", "Everyone must happen to be asleep.", "Harry, which way do we go now?",
 				"You see that room upstairs?", "We just need to enter the right pattern to enter."};
+		 */
 		storyLine2 = n2;
-		
+		/*
 		String[] n3 = {"Oh no, the power's on!", "If we enter the next door we might trigger the alarm.",
 				"Let's make sure no one knows we're here."};
 		storyLine3 = n3;
-		
+
 		String[] n4 = {"...", "If we go past this hallway, we might just make it to the hidden closet where my cloak is.",
 				"Everyone rarely comes here so-", "Har-", "Now now, what are you doing at this hour?",
 				"Hey! W-We were just taking a walk.", "Harry wasn't feeling well so we thought we'd accompany him.",
 				"Well off you go, I have matters to attend to.",
 				"Be back to your rooms right this moment. I don't want to see more trouble going around."};
 		storyLine4 = n4;
-
+		 */
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/castle.jpg");
 		viewObjects.add(background);
 
@@ -369,9 +366,9 @@ public class Scene1 extends FullFunctionScreen {
 
 		dialogueTxt = new TextArea(530, 650, 300, 100, "");
 		viewObjects.add(dialogueTxt);
-		
+
 		continueBtn = new Button(740, 600, 300, 100, "Continue", new Action() {
-			
+
 			@Override
 			public void act() {
 				continueScenes();
@@ -380,7 +377,7 @@ public class Scene1 extends FullFunctionScreen {
 		});
 		viewObjects.add(continueBtn);
 		continueBtn.setVisible(false);
-		
+
 		if (startSeq) {
 			runStoryLine1();
 		}
