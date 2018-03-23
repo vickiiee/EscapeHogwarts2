@@ -48,6 +48,7 @@ public class Scene1 extends FullFunctionScreen {
 	private String[] charNames = {"Harry: ", "Hermione: ", "Ron: "};
 	private Graphic[] charImages = {charHarry, charHerm, charRon};
 	private Graphic[] bkgrnds = {background1, background2};
+	private Visible continueBtn;
 	
 	public Scene1(int width, int height) {
 		super(width, height);
@@ -106,10 +107,7 @@ public class Scene1 extends FullFunctionScreen {
 						seconds = 1;
 					} else {
 						endS1 = true;
-						//if win minigame
-						//runStoryLine2();
-						
-						//else lose
+						continueBtn.setVisible(true);
 					}
 
 				}
@@ -136,12 +134,28 @@ public class Scene1 extends FullFunctionScreen {
 					s2++;
 
 					if (s2 > -1 && s2 < storyLine2.length) {
+						if(s2 == 0) {
+							switchCharName("Hermione: ");
+							switchCharImage(charHerm);
+						}else {
+							if(s2 == 1) {
+								switchCharName("Ron: ");
+								switchCharImage(charRon);
+							}else {
+								if(s2 != 0 && s2 != 1) {
+									switchCharName("Harry: ");
+									switchCharImage(charHarry);
+								}
+							}
+						}
 						String n2 = storyLine2[s2];
 						dialogueTxt.setText(n2);
 						System.out.println(n2);
-						seconds = 3;
+						seconds = 1;
 					} else {
 						endS2 = true;
+						//minigame
+						//runStoryLine3();
 					}
 
 				}
@@ -173,6 +187,8 @@ public class Scene1 extends FullFunctionScreen {
 						seconds = 3;
 					} else {
 						endS3 = true;
+						//minigame
+						//runStoryLine4();
 					}
 
 				}
@@ -204,6 +220,8 @@ public class Scene1 extends FullFunctionScreen {
 						seconds = 3;
 					} else {
 						endS4 = true;
+						//minigame
+						
 					}
 
 				}
@@ -246,13 +264,36 @@ public class Scene1 extends FullFunctionScreen {
 			}
 		}
 	}
+	
+	private void continueScenes() {
+		if(endS1 && !endS2) {
+			runStoryLine2();
+			continueBtn.setVisible(false);
+		}else {
+			if(endS1 && endS2 && !endS3) {
+				runStoryLine3();
+				continueBtn.setVisible(false);
+			}else {
+				if(endS1 && endS2 && endS3 && !endS4) {
+					runStoryLine4();
+					continueBtn.setVisible(false);
+				}else {
+					//finish
+				}
+			}
+		}
+		
+		
+	}
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		//seconds = 3;
 		startSeq = true;
 		s1 = -1;
 		endS1 = false;
+		endS2 = false;
+		endS3 = false;
+		endS4 = false;
 
 		String[] n = { "Ron..!! Hermione..!", "Wake up, we ought to go out now!",
 				"We don't got much time now, we must leave before anyone sees us!", "...",
@@ -327,6 +368,17 @@ public class Scene1 extends FullFunctionScreen {
 
 		dialogueTxt = new TextArea(530, 650, 300, 100, "");
 		viewObjects.add(dialogueTxt);
+		
+		continueBtn = new Button(740, 600, 300, 100, "Continue", new Action() {
+			
+			@Override
+			public void act() {
+				continueScenes();
+			}
+
+		});
+		viewObjects.add(continueBtn);
+		continueBtn.setVisible(false);
 		
 		if (startSeq) {
 			runStoryLine1();
