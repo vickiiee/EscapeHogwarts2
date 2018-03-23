@@ -2,6 +2,9 @@ package hPMagicSquaresVickieJi;
 
 import java.awt.Color;
 
+import guiTeacher.components.Button;
+import guiTeacher.components.TextArea;
+
 public interface JiHPSupport {
 
 	void font();
@@ -13,5 +16,9 @@ public interface JiHPSupport {
 	void changeButtonColor(int num);
 	
 	void numButtonAction(int num);
+	
+	Button[] getGridButtons();
+	
+	TextArea[] getTxtAreas();
 	
 }

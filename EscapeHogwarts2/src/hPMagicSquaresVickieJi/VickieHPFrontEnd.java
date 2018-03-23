@@ -23,6 +23,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 	private Button[] numberButtons;
 	private Button[] gridButtons;
 	private TextArea[] txtAreas;
+	
+	private int [] values;
 
 	private String numClicked;
 
@@ -37,6 +39,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 
 	private int placeHolder;
 
+	private int[][] magicSquares;
+
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
 		backend = new JiHPBackEnd(this);
@@ -46,6 +50,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		
 		numClicked = "0";
 
 		Color back = newColorWithAlpha(Color.white, 70);
@@ -53,10 +58,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 		numberButtons = new Button[9];
 		gridButtons= new Button[9];
 		txtAreas= new TextArea[9];
-
+		values = new int[9];
 
 		count = 0; //testing purposes
-
+//			if(count == 0)backend.chooseStartingPoint();
 		Graphic background = new Graphic(0, 0, getWidth(), getHeight(), "images/background3.jpg");
 		viewObjects.add(background);
 
@@ -148,7 +153,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 		}
 
 		//https://stackoverflow.com/questions/25394296/java-loop-to-create-action-listeners
-		for(int i = 0; i < gridButtons.length; i++) {
+		/*for(int i = 0; i < gridButtons.length; i++) {
 			placeHolder = i;
 			gridButtons[i].setAction(new Action() {
 
@@ -161,53 +166,62 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 				}
 				
 			});
-		}
+		}*/
 		
-		/*gridButtons[0].setAction(new Action() {
+		gridButtons[0].setAction(new Action() { //(0,0)
 			public void act() {
 				updateGrid(0);
+				setValues(0,0);
+				
 			}
 		});
-		gridButtons[1].setAction(new Action() {
+		gridButtons[1].setAction(new Action() { //(0,1)
 			public void act() {
 				updateGrid(1);
+				setValues(0,1);
 			}
 		});
-		gridButtons[2].setAction(new Action() {
+		gridButtons[2].setAction(new Action() { //(0,2)
 			public void act() {
 				updateGrid(2);
+				setValues(0,2);
 			}
 		});
-		gridButtons[3].setAction(new Action() {
+		gridButtons[3].setAction(new Action() { //(1,0)
 			public void act() {
-				updateGrid(3);
+				setValues(1,0);
 			}
 		});
-		gridButtons[4].setAction(new Action() {
+		gridButtons[4].setAction(new Action() { //(1,1)
 			public void act() {
 				updateGrid(4);
+				setValues(1,1);
 			}
 		});
-		gridButtons[5].setAction(new Action() {
+		gridButtons[5].setAction(new Action() { //(1,2)
 			public void act() {
 				updateGrid(5);
+				setValues(1,2);
 			}
 		});
-		gridButtons[6].setAction(new Action() {
+		gridButtons[6].setAction(new Action() { //(2,0)
 			public void act() {
 				updateGrid(6);
+				setValues(2,0);
 			}
 		});
-		gridButtons[7].setAction(new Action() {
+		gridButtons[7].setAction(new Action() { //(2,1)
 			public void act() {
 				updateGrid(7);
+				setValues(2,1);
 			}
 		});
-		gridButtons[8].setAction(new Action() {
+		gridButtons[8].setAction(new Action() { //(2,2)
 			public void act() {
 				updateGrid(8);
+				setValues(2,2);
 			}
-		});*/
+		});
 		/*
 		 * for(i = 0; i<gridButtons.length; i++) { gridButtons[i].setAction(new Action()
 		 * {
@@ -235,6 +249,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 	//	viewObjects.add(tb);
 
 		font();
+		setUpGrid();
 	}
 
 	public void font() {
@@ -343,4 +358,41 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 		error.setVisible(false);
 	}
 
+	public void convertOnetoTwoD() {
+		magicSquares = backend.getBoxes();
+		
+		
+	}
+	
+	public void setValues(int row, int col) {
+		magicSquares = backend.getBoxes();
+		
+		magicSquares[row][col] = Integer.parseInt(numClicked);
+	}
+	
+	public  Button[] getGridButtons(){
+		return gridButtons;
+	}
+	
+	public  TextArea[] getTxtAreas(){
+		return txtAreas;
+	}
+	
+	public void setUpGrid() {
+		int place = 0;
+
+		for(int x = 0; x<2; x++) {
+			for(int y = 0; y < 2; y++) {
+				place++;
+				//int s = backend.getInitiateNum();
+				//if(magicSquares[x][y]== s) {
+					//Button [] g = frontend.getGridButtons();
+					gridButtons[place].setAction(null);
+					System.out.println(place);
+					//TextArea [] t = frontend.getTxtAreas();
+				//	txtAreas[place].setText(s+"");
+				//}
+			}
+		}
+	}
 }
