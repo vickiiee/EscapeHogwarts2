@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import guiTeacher.components.Action;
+import guiTeacher.components.Button;
 import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
@@ -20,11 +21,15 @@ public class StephStory2 extends FullFunctionScreen {
 	private TextArea dialogue;
 	private ClickableGraphic nextB;
 	private ClickableGraphic prevB; 
+	private Button choice1; 
+	private Button choice2; 
 	private int clicks;
-	private String[] quotes = {"Where are you going Harry? Class is the other way.","Lets just leave him, Mcgonagall will kill us if we're late.", "...","Potter! Weasley! Granger! Why are you late to my class again?!"};
-	private String[] matchName = {"Hermione","Ron", "Harry","Mcgonagall"};
+	private String[] quotes = {"Where are you going Harry? Class is the other way.","Lets just leave him, "
+			+ "Mcgonagall will kill us if we're late.","...","Potter! Weasley! Granger! Why are you late to my class again?!",
+			"We got lost.", "Moving on, today's lesson will be about potions, gather your things and follow me.", "Choose a partner and we'll begin."};
+	private String[] matchName = {"Hermione","Ron", "Harry","Mcgonagall", "Hermione", "Mcgonagall", "Mcgonagall"};
 	private String[] imagesList = {"simg/emma.png", "simg/ron.jpg", "simg/harry.jpg"};
-	private String[] bgList = {"simg/classroom.jpg", "simg/teaching.jpg"};
+	private String[] bgList = {"simg/classroom.jpg", "simg/class.jpg", "simg/class2.jpg", "simg/teaching.jpg"};
 	
 	public StephStory2(int width, int height) {
 		super(width, height);
@@ -49,9 +54,6 @@ public class StephStory2 extends FullFunctionScreen {
 			public void act() {
 				clicks++;
 				storyline();
-				updateImgScreen();
-				updateBackground();
-				
 			}
 		});
 		viewObjects.add(nextB);
@@ -63,9 +65,6 @@ public class StephStory2 extends FullFunctionScreen {
 			public void act() {
 				clicks--;
 				storyline();
-				updateImgScreen();
-				updateBackground();
-				
 			}
 		});
 		viewObjects.add(prevB);
@@ -79,35 +78,47 @@ public class StephStory2 extends FullFunctionScreen {
 		dialogue = new TextArea(180,590,1000,500,"Where are you going Harry? Class is the other way.");
 		viewObjects.add(dialogue);
 		
+		choice1 = new Button(200, 600, 100, 50, "Hermione", Color.darkGray, new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		choice2 = new Button(800, 600, 100, 50, "Ron", Color.darkGray, new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 	
 	public void storyline() {
-		for(int i = 0; i < quotes.length - 1; i ++) {
-			String r = quotes[clicks];
-			dialogue.setText(r);
-			dialogue.update();
-			String f = matchName[clicks];
-			name.setText(f);
-			name.update();
-		}
-		dialogue.setText("");
+		String r = quotes[clicks];
+		dialogue.setText(r);
 		dialogue.update();
-		name.setText("");
-		name.update();
-	}
-	
-	public void updateImgScreen() {
-		for(int i = 0; i < imagesList.length - 1; i++) {
-			String s = imagesList[i];
-			switchImg.loadImages(s, 400, 400);
+		String f = matchName[clicks];
+		name.setText(f);
+		name.update();	
+		if(clicks == 3) {
+			switchImg.setVisible(false);
+			background.loadImages("simg/classroom.jpg", 1200, 800);		
 		}
-		switchImg.setVisible(false);
-	}
-	
-	public void updateBackground() {
-		if(clicks >= 3) {
-			String f = bgList[clicks];
-			background.loadImages(f, 1200, 800);
+		if(clicks == 4) {
+			switchImg.setVisible(false);
+			background.loadImages("simg/class.jpg", 1200, 800);		
+		}
+		if(clicks == 5) {
+			switchImg.setVisible(false);
+			background.loadImages("simg/classroom.jpg", 1200, 800);		
+		}
+		if(clicks > 5) {
+			switchImg.setVisible(false);
+			background.loadImages("simg/teaching.jpg", 1200, 800);		
 		}
 	}
 }
