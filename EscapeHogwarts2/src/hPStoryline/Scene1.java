@@ -268,6 +268,7 @@ public class Scene1 extends FullFunctionScreen {
 	private void continueScenes() {
 		if(endS1 && !endS2) {
 			runStoryLine2();
+			switchBkgrnd(background2);
 			continueBtn.setVisible(false);
 		}else {
 			if(endS1 && endS2 && !endS3) {
