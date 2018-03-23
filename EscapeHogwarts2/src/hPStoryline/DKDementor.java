@@ -15,6 +15,7 @@ public class DKDementor extends FullFunctionScreen{
 	private Graphic backgroundImg;
 	private TextArea textBox;
 	private ClickableGraphic arrow;
+	private ClickableGraphic back;
 	
 	public DKDementor(int width, int height) {
 		super(width, height);
@@ -29,11 +30,22 @@ public class DKDementor extends FullFunctionScreen{
 		viewObjects.add(backgroundImg);
 		
 		
-		textBox = new TextArea(150, 455, 850, 300, "As the Dementor entered the compartment, water froze and windows frosted over. The embodiment of despair wrought death with its mere presence.");
+		textBox = new TextArea(150, 455, 850, 300, "As the Dementor entered the compartment, water froze and windows frosted over. The embodiment of despair wrought death with its mere presence");
 		viewObjects.add(textBox);
 		
-		arrow = new ClickableGraphic(1000, 650, "kimg/arrow.png");
+		arrow = new ClickableGraphic(1000, 650, "kimg/arrowWhite.png");
 		arrow.setAction(new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new DKKiss(getWidth(), getHeight()));
+				
+			}
+		});
+		viewObjects.add(arrow);
+		
+		back = new ClickableGraphic(25,25,200,100, "kimg/arrowWhiteBack.png");
+		back.setAction(new Action() {
 			
 			@Override
 			public void act() {
@@ -41,6 +53,6 @@ public class DKDementor extends FullFunctionScreen{
 				
 			}
 		});
-		viewObjects.add(arrow);
+		viewObjects.add(back);
 	}
 }

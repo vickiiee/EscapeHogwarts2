@@ -15,6 +15,7 @@ public class DKTrain extends FullFunctionScreen {
 	private Graphic backgroundImg;
 	private TextArea textBox;
 	private ClickableGraphic arrow;
+	private ClickableGraphic back;
 	
 	public DKTrain(int width, int height) {
 		super(width, height);
@@ -32,7 +33,7 @@ public class DKTrain extends FullFunctionScreen {
 		textBox = new TextArea(175, 150, 400, 300, "A Dementor");
 		viewObjects.add(textBox);
 		
-		arrow = new ClickableGraphic(1000, 650, "kimg/arrow.png");
+		arrow = new ClickableGraphic(1000, 650, "kimg/arrowWhite.png");
 		arrow.setAction(new Action() {
 			
 			@Override
@@ -42,6 +43,17 @@ public class DKTrain extends FullFunctionScreen {
 			}
 		});
 		viewObjects.add(arrow);
+		
+		back = new ClickableGraphic(25,25,200,100, "kimg/arrowWhiteBack.png");
+		back.setAction(new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new DKIntro(getWidth(), getHeight()));
+				
+			}
+		});
+		viewObjects.add(back);
 	}
 
 }

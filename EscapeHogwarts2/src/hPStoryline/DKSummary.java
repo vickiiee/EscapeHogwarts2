@@ -3,6 +3,9 @@ package hPStoryline;
 import java.awt.Color;
 import java.util.List;
 
+import guiTeacher.components.Action;
+import guiTeacher.components.Button;
+import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
@@ -13,6 +16,7 @@ public class DKSummary extends FullFunctionScreen {
 	private Graphic backgroundImg;
 	private TextArea title;
 	private TextArea summary;
+	private ClickableGraphic back;
 	
 	public DKSummary(int width, int height) {
 		super(width, height);
@@ -32,6 +36,17 @@ public class DKSummary extends FullFunctionScreen {
 		
 		summary = new TextArea(200,300,700,750,"In The Dementor's Kiss, you, the player, are a new professor in Hogwarts School of Witchcraft and Wizardry. In the process of replacing Remus Lupin, the original Defense Against the Dark Arts professor, you must save Harry Potter from magical creatures, other professors, and even himself.");
 		viewObjects.add(summary);
+		
+		back = new ClickableGraphic(25,25,200,100, "kimg/arrowWhiteBack.png");
+		back.setAction(new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new DKTitle(getWidth(), getHeight()));
+				
+			}
+		});
+		viewObjects.add(back);
 	}
 
 }
