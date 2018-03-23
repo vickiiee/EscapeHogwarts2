@@ -87,13 +87,19 @@ public class Scene1 extends FullFunctionScreen {
 
 					if (s1 > -1 && s1 < storyLine1.length) {
 						String n = storyLine1[s1];
-						if(s1 >= 0 && s1 <= 3 && s1 >=5) {
+						if(s1 != 4 && s1!=5) {
 							switchCharName("Harry: ");
 							switchCharImage(charHarry);
 						}else {
-							//if(s1) {
-								
-							//}
+							if(s1 == 4) {
+								switchCharName("Ron: ");
+								switchCharImage(charRon);
+							} else {
+								if(s1 == 5) {
+									switchCharName("Hermione: ");
+									switchCharImage(charHerm);
+								}
+							}
 						}
 						dialogueTxt.setText(n);
 						System.out.println(n);
@@ -243,7 +249,7 @@ public class Scene1 extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		seconds = 3;
+		//seconds = 3;
 		startSeq = true;
 		s1 = -1;
 		endS1 = false;
@@ -304,11 +310,12 @@ public class Scene1 extends FullFunctionScreen {
 		dialogue = new Graphic(400, 500, 400, 300, "images/diaglogue.png");
 		viewObjects.add(dialogue);
 
-		charName = new TextArea(530, 545, 200, 75, "Harry:");
+		charName = new TextArea(530, 545, 200, 75, "");
 		viewObjects.add(charName);
 
 		charHarry = new Graphic(450, 545, 100, 100, "images/charHarry.jpg");
 		viewObjects.add(charHarry);
+		charHarry.setVisible(false);
 
 		charHerm = new Graphic(450, 545, 100, 100, "images/charHerm.jpg");
 		viewObjects.add(charHerm);
