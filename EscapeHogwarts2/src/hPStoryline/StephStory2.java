@@ -16,6 +16,10 @@ public class StephStory2 extends FullFunctionScreen {
 	private Graphic background;
 	private Graphic chatbox;
 	private Graphic switchImg;
+	private Graphic bg1;
+	private Graphic bg2;
+	private Graphic bg3;
+	private Graphic bg4;
 	private TextArea narrator;
 	private TextArea name;
 	private TextArea dialogue;
@@ -29,7 +33,7 @@ public class StephStory2 extends FullFunctionScreen {
 			"We got lost.", "Moving on, today's lesson will be about potions, gather your things and follow me.", "Choose a partner and we'll begin."};
 	private String[] matchName = {"Hermione","Ron", "Harry","Mcgonagall", "Hermione", "Mcgonagall", "Mcgonagall"};
 	private String[] imagesList = {"simg/emma.png", "simg/ron.jpg", "simg/harry.jpg"};
-	private String[] bgList = {"simg/classroom.jpg", "simg/class.jpg", "simg/class2.jpg", "simg/teaching.jpg"};
+	private Graphic[] bg = {bg1, bg2, bg3, bg4};
 	
 	public StephStory2(int width, int height) {
 		super(width, height);
@@ -43,6 +47,8 @@ public class StephStory2 extends FullFunctionScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0, 0, getWidth(), getHeight(), "simg/background.jpg");
 		viewObjects.add(background);
+		
+		
 		
 		chatbox = new Graphic(80,80,1200,700, "simg/textbox.png");
 		viewObjects.add(chatbox);
@@ -95,6 +101,19 @@ public class StephStory2 extends FullFunctionScreen {
 				
 			}
 		});
+	}
+	
+	public void switchBkgrnd(Graphic bg) {
+		for(int i = 0; i < bg.length; i++) {
+			if(bg[i] == bg) {
+				for(int j = 0; j < bg.length; j++) {
+					if(bg[j] != bg) {
+						bg[j].setVisible(false);
+					}
+				}
+				bg.setVisible(true);
+			}
+		}
 	}
 	
 	public void storyline() {
