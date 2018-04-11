@@ -279,7 +279,7 @@ public class Scene1 extends FullFunctionScreen {
 		});
 		viewObjects.add(connectLine);
 
-		dialogue = new Graphic(400, 500, 400, 300, "images/diaglogue.png");
+		dialogue = new Graphic(400, 500, 500, 400, "images/diaglogue.png");
 		viewObjects.add(dialogue);
 
 		charName = new TextArea(530, 545, 200, 75, "");
@@ -297,7 +297,7 @@ public class Scene1 extends FullFunctionScreen {
 		viewObjects.add(charRon);
 		charRon.setVisible(false);
 
-		dialogueTxt = new TextArea(530, 650, 300, 100, "");
+		dialogueTxt = new TextArea(530, 650, 400, 300, "");
 		viewObjects.add(dialogueTxt);
 
 		continueBtn = new Button(740, 600, 300, 100, "Continue", new Action() {
