@@ -47,7 +47,7 @@ public class Storyline extends FullFunctionScreen {
 			public void act() {
 				GuiLoadingVickie.loading.setScreen(new Scene1(getWidth(), getHeight()));
 			}
-		});
+		}); 
 		viewObjects.add(quit);
 		
 		nick = new Graphic(0, 0, 1200, 800, "images/sirnick.jpg");
