@@ -34,7 +34,7 @@ public class DKSummary extends FullFunctionScreen {
 		title = new TextArea(550,100,200,100,"Overview");
 		viewObjects.add(title);
 		
-		summary = new TextArea(200,300,700,750,"In The Dementor's Kiss, you, the player, are a new professor in Hogwarts School of Witchcraft and Wizardry. In the process of replacing Remus Lupin, the original Defense Against the Dark Arts professor, you must save Harry Potter from magical creatures, other professors, and even himself.");
+		summary = new TextArea(200,300,800,750,"In The Dementor's Kiss, you, the player, are a new professor in Hogwarts School of Witchcraft and Wizardry. In the process of replacing Remus Lupin, the original Defense Against the Dark Arts professor, you must save Harry Potter from magical creatures, other professors, and even himself.");
 		viewObjects.add(summary);
 		
 		back = new ClickableGraphic(25,25,200,100, "kimg/arrowWhiteBack.png");
