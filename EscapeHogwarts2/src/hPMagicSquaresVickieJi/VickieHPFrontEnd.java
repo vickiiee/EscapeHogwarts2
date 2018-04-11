@@ -147,18 +147,21 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 		});
 		
 		// BUTTONS ON GRD
-		/*for (int i = 0; i < gridButtons.length; i++) {
+		for (int i = 0; i < gridButtons.length; i++) {
 			if (i == 0 || i < 3) {
 				gridButtons[i] = new Button(500 + 202 * i, 100, 195, 195, "", back, null);
 				viewObjects.add(gridButtons[i]);
+				System.out.println("Gi = " + i);
 			} else if (i == 3 || i < 6) {
 				gridButtons[i] = new Button(500 + 202 * (i - 3), 302, 195, 195, "", back, null);
 				viewObjects.add(gridButtons[i]);
+				System.out.println("Gi = " + i);
 			} else if (i == 6 || i < 9) {
 				gridButtons[i] = new Button(500 + 202 * (i - 6), 505, 195, 195, "", back, null);
 				viewObjects.add(gridButtons[i]);
+				System.out.println("Gi = " + i);
 			}
-		}*/
+		}
 		
 		for(int i = 0; i< 9; i++) {
 			
