@@ -3,6 +3,7 @@ package hPMagicSquaresVickieJi;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import guiTeacher.components.Action;
@@ -22,6 +23,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 	
 	private Button[] numberButtons;
 	private Button[] gridButtons;
+	private ArrayList<MagicSquareGridButtons> gB;
 	private TextArea[] txtAreas;
 	
 	private int [] values;
@@ -57,9 +59,15 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 		
 		numberButtons = new Button[9];
 		gridButtons= new Button[9];
+		gB = new ArrayList<MagicSquareGridButtons>();
 		txtAreas= new TextArea[9];
 		values = new int[9];
-
+		
+		
+		
+		
+		
+		
 		count = 0; //testing purposes
 //			if(count == 0)backend.chooseStartingPoint();
 		Graphic background = new Graphic(0, 0, getWidth(), getHeight(), "images/background3.jpg");
@@ -139,7 +147,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 		});
 		
 		// BUTTONS ON GRD
-		for (int i = 0; i < gridButtons.length; i++) {
+		/*for (int i = 0; i < gridButtons.length; i++) {
 			if (i == 0 || i < 3) {
 				gridButtons[i] = new Button(500 + 202 * i, 100, 195, 195, "", back, null);
 				viewObjects.add(gridButtons[i]);
@@ -150,8 +158,32 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 				gridButtons[i] = new Button(500 + 202 * (i - 6), 505, 195, 195, "", back, null);
 				viewObjects.add(gridButtons[i]);
 			}
+		}*/
+		
+		for(int i = 0; i< 9; i++) {
+			
+			int r = 0;
+			int c = -1;
+			if(i == 0 || i < 3) {
+				gB.add(new MagicSquareGridButtons(500 + 202 * i, 100, 195, 195, "", back,null, r,c++));
+				viewObjects.add(gB.get(i));
+				System.out.println("i = " + i);
+			}
+			r = 1; 
+			c = -1;
+			if(i == 3 || i < 6) {
+				gB.add(new MagicSquareGridButtons(500 + 202 * (i - 3), 302, 195, 195, "", back, null, r,c++));
+				viewObjects.add(gB.get(i));
+				System.out.println("i = " + i);
+			}
+			r = 2; 
+			c = -1;
+			if(i == 6 || i < 9) {
+				gB.add(new MagicSquareGridButtons(500 + 202 * (i - 6), 505, 195, 195, "", back, null, r,c++));
+				viewObjects.add(gB.get(i));
+				System.out.println("i = " + i);
+			}
 		}
-
 		//https://stackoverflow.com/questions/25394296/java-loop-to-create-action-listeners
 		/*for(int i = 0; i < gridButtons.length; i++) {
 			placeHolder = i;
@@ -168,7 +200,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 			});
 		}*/
 		
-		gridButtons[0].setAction(new Action() { //(0,0)
+		/*gridButtons[0].setAction(new Action() { //(0,0)
 			public void act() {
 				updateGrid(0);
 				//setValues(0,0);
@@ -222,7 +254,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 				updateGrid(8);
 				//setValues(2,2);
 			}
-		});
+		});*/
 		/*
 		 * for(i = 0; i<gridButtons.length; i++) { gridButtons[i].setAction(new Action()
 		 * {
