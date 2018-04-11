@@ -315,5 +315,4 @@ public class Scene1 extends FullFunctionScreen {
 			runStoryLine1();
 		}
 	}
-
 }
