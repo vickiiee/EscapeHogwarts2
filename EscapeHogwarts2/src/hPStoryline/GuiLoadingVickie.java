@@ -21,7 +21,7 @@ public class GuiLoadingVickie extends GUIApplication{
 	public static VickieHPFrontEnd magicSquares;
 	public static ConnectFourAreej c4;
 	
-	public static Storyline cline;
+	//public static Storyline cline;
 	
 	public static void main(String[] args) {
 		loading = new GuiLoadingVickie(1200, 800);
@@ -52,7 +52,7 @@ public class GuiLoadingVickie extends GUIApplication{
 		magicSquares = new VickieHPFrontEnd(getWidth(), getHeight());
 		c4 = new ConnectFourAreej(getWidth(), getHeight());
 		
-		cline = new Storyline(getWidth(),getHeight());
+		//cline = new Storyline(getWidth(),getHeight());
 		
 		setScreen(menu);
 		
