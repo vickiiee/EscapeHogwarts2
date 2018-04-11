@@ -171,55 +171,56 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 		gridButtons[0].setAction(new Action() { //(0,0)
 			public void act() {
 				updateGrid(0);
-				setValues(0,0);
+				//setValues(0,0);
 				
 			}
 		});
 		gridButtons[1].setAction(new Action() { //(0,1)
 			public void act() {
 				updateGrid(1);
-				setValues(0,1);
+				//setValues(0,1);
 			}
 		});
 		gridButtons[2].setAction(new Action() { //(0,2)
 			public void act() {
 				updateGrid(2);
-				setValues(0,2);
+				//setValues(0,2);
 			}
 		});
 		gridButtons[3].setAction(new Action() { //(1,0)
 			public void act() {
-				setValues(1,0);
+				updateGrid(3);
+				//setValues(1,0);
 			}
 		});
 		gridButtons[4].setAction(new Action() { //(1,1)
 			public void act() {
 				updateGrid(4);
-				setValues(1,1);
+				//setValues(1,1);
 			}
 		});
 		gridButtons[5].setAction(new Action() { //(1,2)
 			public void act() {
 				updateGrid(5);
-				setValues(1,2);
+				//setValues(1,2);
 			}
 		});
 		gridButtons[6].setAction(new Action() { //(2,0)
 			public void act() {
 				updateGrid(6);
-				setValues(2,0);
+				//setValues(2,0);
 			}
 		});
 		gridButtons[7].setAction(new Action() { //(2,1)
 			public void act() {
 				updateGrid(7);
-				setValues(2,1);
+				//setValues(2,1);
 			}
 		});
 		gridButtons[8].setAction(new Action() { //(2,2)
 			public void act() {
 				updateGrid(8);
-				setValues(2,2);
+				//setValues(2,2);
 			}
 		});
 		/*
@@ -249,7 +250,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 	//	viewObjects.add(tb);
 
 		font();
-		setUpGrid();
+		//setUpGrid();
 	}
 
 	public void font() {

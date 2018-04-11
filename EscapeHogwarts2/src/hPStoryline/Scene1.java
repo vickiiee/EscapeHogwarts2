@@ -27,6 +27,8 @@ public class Scene1 extends FullFunctionScreen {
 	//private boolean endS3;
 	//private boolean endS4;
 
+	private Button connectLine;
+	
 	private Graphic background;
 	private Button magicSquares;
 	private Button connectFour;
@@ -273,6 +275,15 @@ public class Scene1 extends FullFunctionScreen {
 			}
 		});
 		viewObjects.add(connectFour);
+		
+		connectLine = new Button(100, 450, 200, 75, "C4 Storyline", new Action() {
+
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new Storyline(getWidth(), getHeight()));
+			}
+		});
+		viewObjects.add(connectLine);
 
 		dialogue = new Graphic(400, 500, 400, 300, "images/diaglogue.png");
 		viewObjects.add(dialogue);
