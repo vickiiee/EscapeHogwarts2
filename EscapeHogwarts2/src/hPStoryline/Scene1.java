@@ -274,7 +274,7 @@ public class Scene1 extends FullFunctionScreen {
 
 			@Override
 			public void act() {
-				//GuiLoadingVickie.loading.setScreen(new Storyline(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new Storyline(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(connectLine);
@@ -315,4 +315,5 @@ public class Scene1 extends FullFunctionScreen {
 			runStoryLine1();
 		}
 	}
+
 }
