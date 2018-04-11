@@ -50,7 +50,7 @@ public class Storyline extends FullFunctionScreen {
 		}); 
 		viewObjects.add(quit);
 		
-		nick = new Graphic(0, 0, 1200, 800, "images/sirnick.jpg");
+		nick = new Graphic(40, 700, 100, 100, "images/sirnick.jpg");
 		viewObjects.add(nick);
 		
 	
