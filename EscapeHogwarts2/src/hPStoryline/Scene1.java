@@ -134,62 +134,24 @@ public class Scene1 extends FullFunctionScreen {
 					s2++;
 
 					if (s2 > -1 && s2 < storyLine2.length) {
-						/*
-						if(s2 == 0) {
-							switchCharName("Hermione: ");
-							switchCharImage(charHerm);
+						if(s2 == 0 || s2 == 2 || s2 == 6) {
+							switchCharName("Ron: ");
+							switchCharImage(charRon);
 						}else {
-							if(s2 == 1) {
-								switchCharName("Ron: ");
-								switchCharImage(charRon);
+							if(s2 != 5) {
+								switchCharName("Hermione: ");
+								switchCharImage(charHerm);
 							}else {
-								if(s2 != 0 && s2 != 1) {
-									switchCharName("Harry: ");
-									switchCharImage(charHarry);
-								}
+								switchCharName("Harry: ");
+								switchCharImage(charHarry);
 							}
 						}
-						 */
 						String n2 = storyLine2[s2];
 						dialogueTxt.setText(n2);
 						System.out.println(n2);
 						seconds = 1;
 					} else {
 						endS2 = true;
-						//minigame
-					}
-
-				}
-
-			}
-		};
-		timer.schedule(task, 0, 1000);
-	}
-	/*
-	public void runStoryLine3() {
-		Timer timer = new Timer();
-		TimerTask task = new TimerTask() {
-
-			@Override
-			public void run() {
-				if (endS3) {
-					cancel();
-				} else if (seconds > 0) {
-					seconds--;
-					System.out.println("Seconds:" + seconds); // testing
-
-				} else if (seconds == 0) {
-					s3++;
-
-					if (s3 > -1 && s3 < storyLine2.length) {
-						String n3 = storyLine3[s3];
-						dialogueTxt.setText(n3);
-						System.out.println(n3);
-						seconds = 3;
-					} else {
-						endS3 = true;
-						//minigame
-						//runStoryLine4();
 					}
 
 				}
@@ -199,39 +161,6 @@ public class Scene1 extends FullFunctionScreen {
 		timer.schedule(task, 0, 1000);
 	}
 
-	public void runStoryLine4() {
-		Timer timer = new Timer();
-		TimerTask task = new TimerTask() {
-
-			@Override
-			public void run() {
-				if (endS4) {
-					cancel();
-				} else if (seconds > 0) {
-					seconds--;
-					System.out.println("Seconds:" + seconds); // testing
-
-				} else if (seconds == 0) {
-					s4++;
-
-					if (s4 > -1 && s2 < storyLine4.length) {
-						String n4 = storyLine2[s4];
-						dialogueTxt.setText(n4);
-						System.out.println(n4);
-						seconds = 3;
-					} else {
-						endS4 = true;
-						//minigame
-
-					}
-
-				}
-
-			}
-		};
-		timer.schedule(task, 0, 1000);
-	}
-	 */
 	public void switchCharName(String cName) {
 		for(int i = 0; i < charNames.length; i++) {
 			if(charNames[i] == cName) {
@@ -273,6 +202,7 @@ public class Scene1 extends FullFunctionScreen {
 			continueBtn.setVisible(false);
 		}else {
 			//minigame
+			//GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
 		}
 	}
 
@@ -282,9 +212,7 @@ public class Scene1 extends FullFunctionScreen {
 		s1 = -1;
 		endS1 = false;
 		endS2 = false;
-		//endS3 = false;
-		//endS4 = false;
-
+		
 		String[] n = { "Ron..!! Hermione..!", "Wake up, we ought to go out now!",
 				"We don't got much time now, we must leave before anyone sees us!", "...",
 				"Harry, are you still sure about this?", "What if you get caught?",
@@ -296,15 +224,15 @@ public class Scene1 extends FullFunctionScreen {
 
 		String[] n2 = {"We need to make it to the station by the afternoon.", "At this time ... it looks like we have a few"
 				+ " hours at most.", "Make sure you both got all your thi-"
-				,"Harry!!! We forgot our tickets for the train back in Dumbledore's headquarters.", "My goodness, if it wasn't for you Ron, I would"
+				,"Harry!!! We forgot our tickets for the train back in Dumbledore's headquarters.", "My goodness, if it wasn't for you, Ron, I would"
 						+ " have not known at all.", "I know where it is but we have to enter the correct passcode since"
-								+ " they changed it this term."};
-
+								+ " they changed it this term.", "We better be quick before anyone suspects you're going."};
+		storyLine2 = n2;
 		/*
 				"It is oddly quiet at this hour.", "Everyone must happen to be asleep.", "Harry, which way do we go now?",
 				"You see that room upstairs?", "We just need to enter the right pattern to enter."};
 		 */
-		storyLine2 = n2;
+		
 		/*
 		String[] n3 = {"Oh no, the power's on!", "If we enter the next door we might trigger the alarm.",
 				"Let's make sure no one knows we're here."};
