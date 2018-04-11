@@ -3,7 +3,6 @@ package jiVickieRoom;
 public class JiBackEnd implements VickieSupport {
 	
 	private int[][] magicSquares;
-	
 	private JiSupport frontend;
 
 	private final static String CORNER_NUMS = "2648";
@@ -15,9 +14,9 @@ public class JiBackEnd implements VickieSupport {
 	private int iStartingRow = 1;
 	private int iStartingCol = 1;
 	
-	private int iRow;  //Integer Row #
-	private int iCol;  //Integer Col #
-	private int iNum;  //Integer Number #
+	private int iRow;
+	private int iCol;
+	private int iNum;
 
 	public JiBackEnd(JiSupport frontend) {
 		this.frontend = frontend;
@@ -37,15 +36,12 @@ public class JiBackEnd implements VickieSupport {
 		createInitiateNum();
 		if (iStartingNum != 5) {
 			if(isCornerNumber(iStartingNum)) {
-				//randomize outer starting box
-				// (0,0) (0,2) (2,0) (2,2)
-				
+				//outer starting (0,0) (0,2) (2,0) (2,2)
 				iStartingRow = getRandomInitialIndex();
 				iStartingCol = getRandomInitialIndex();
 			}
 			else {
-				//randomize inner starting box
-				// (0,1) (1,0) (1,2) (2,1)
+				//inner starting (0,1) (1,0) (1,2) (2,1)
 				int random = generateNumber(4); 
 				if(random == 0) {
 					iStartingRow = 0;
@@ -72,7 +68,6 @@ public class JiBackEnd implements VickieSupport {
 		
 		magicSquares[iStartingRow][iStartingCol] = iStartingNum;
 	}
-	
 	
 	public void placeNumbers(String nums) {
 		String SRow;
