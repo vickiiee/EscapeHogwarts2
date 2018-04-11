@@ -28,7 +28,7 @@ public class Storyline extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		background = new Graphic(0, 0, 1200, 800, "images/stairs.jpg");
+		background = new Graphic(0, 0, getWidth(), getHeight(), "images/stairs.jpg");
 		viewObjects.add(background);
 		
 		
