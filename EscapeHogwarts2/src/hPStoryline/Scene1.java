@@ -20,12 +20,8 @@ public class Scene1 extends FullFunctionScreen {
 	private int seconds;
 	private int s1;
 	private int s2;
-	//private int s3;
-	//private int s4;
 	private boolean endS1;
 	private boolean endS2;
-	//private boolean endS3;
-	//private boolean endS4;
 
 	private Button connectLine;
 	
@@ -43,8 +39,6 @@ public class Scene1 extends FullFunctionScreen {
 
 	private String[] storyLine1;
 	private String[] storyLine2;
-	//private String[] storyLine3;
-	//private String[] storyLine4;
 	private boolean startSeq;
 
 	private String[] charNames = {"Harry: ", "Hermione: ", "Ron: "};
@@ -62,6 +56,7 @@ public class Scene1 extends FullFunctionScreen {
 		magicSquares.setForeground(Color.LIGHT_GRAY);
 	}
 
+	/*
 	public String displayDialogue(String text) {
 		for (int i = 0; i < text.length(); i++) {
 			append(dialogueTxt, text.charAt(i));
@@ -71,8 +66,8 @@ public class Scene1 extends FullFunctionScreen {
 
 	public void append(TextArea word, char letter) {
 		word.setText(word.getText() + letter);
-		// Timer();
 	}
+	*/
 
 	public void runStoryLine1() {
 		Timer timer = new Timer();
@@ -203,7 +198,6 @@ public class Scene1 extends FullFunctionScreen {
 			switchBkgrnd(background2);
 			continueBtn.setVisible(false);
 		}else {
-			//minigame
 			//GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
 		}
 	}
@@ -280,7 +274,7 @@ public class Scene1 extends FullFunctionScreen {
 
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new Storyline(getWidth(), getHeight()));
+				//GuiLoadingVickie.loading.setScreen(new Storyline(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(connectLine);
