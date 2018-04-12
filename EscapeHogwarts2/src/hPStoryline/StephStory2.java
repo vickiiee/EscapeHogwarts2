@@ -48,7 +48,21 @@ public class StephStory2 extends FullFunctionScreen {
 		background = new Graphic(0, 0, getWidth(), getHeight(), "simg/background.jpg");
 		viewObjects.add(background);
 		
+		bg1 = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg1.jpg");
+		viewObjects.add(bg1);
+		bg1.setVisible(false);
 		
+		bg2 = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg2.jpg");
+		viewObjects.add(bg2);
+		bg2.setVisible(false);
+		
+		bg3 = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg3.jpg");
+		viewObjects.add(bg3);
+		bg3.setVisible(false);
+		
+		bg4 = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg4.jpg");
+		viewObjects.add(bg4);
+		bg4.setVisible(false);
 		
 		chatbox = new Graphic(80,80,1200,700, "simg/textbox.png");
 		viewObjects.add(chatbox);
@@ -103,15 +117,15 @@ public class StephStory2 extends FullFunctionScreen {
 		});
 	}
 	
-	public void switchBkgrnd(Graphic bg) {
+	public void switchBkgrnd(Graphic bgs) {
 		for(int i = 0; i < bg.length; i++) {
-			if(bg[i] == bg) {
+			if(bg[i] == bgs) {
 				for(int j = 0; j < bg.length; j++) {
-					if(bg[j] != bg) {
+					if(bg[j] != bgs) {
 						bg[j].setVisible(false);
 					}
 				}
-				bg.setVisible(true);
+				bgs.setVisible(true);
 			}
 		}
 	}
@@ -124,20 +138,16 @@ public class StephStory2 extends FullFunctionScreen {
 		name.setText(f);
 		name.update();	
 		if(clicks == 3) {
-			switchImg.setVisible(false);
-			background.loadImages("simg/classroom.jpg", 1200, 800);		
+			switchBkgrnd(bg1);
 		}
 		if(clicks == 4) {
-			switchImg.setVisible(false);
-			background.loadImages("simg/class.jpg", 1200, 800);		
+			switchBkgrnd(bg2);
 		}
 		if(clicks == 5) {
-			switchImg.setVisible(false);
-			background.loadImages("simg/classroom.jpg", 1200, 800);		
+			switchBkgrnd(bg3);
 		}
 		if(clicks > 5) {
-			switchImg.setVisible(false);
-			background.loadImages("simg/teaching.jpg", 1200, 800);		
+			switchBkgrnd(bg4);
 		}
 	}
 }
