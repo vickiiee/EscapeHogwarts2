@@ -23,7 +23,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 	
 	private Button[] numberButtons;
 	private Button[] gridButtons;
-	private ArrayList<MagicSquareGridButtons> gB;
+	//private ArrayList<MagicSquareGridButtons> gB;
+	private MagicSquareGridButtons[] gB;
 	private TextArea[] txtAreas;
 	
 	private int [] values;
@@ -40,26 +41,29 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 	private Color trans;
 
 	private int placeHolder;
+	
+	private int c;
 
 	private int[][] magicSquares;
 
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
-		backend = new JiHPBackEnd(this);
+		//
 		
 		setVisible(true);
 	}
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		
+		backend = new JiHPBackEnd(this);
 		numClicked = "0";
 
 		Color back = newColorWithAlpha(Color.white, 70);
 		
 		numberButtons = new Button[9];
 		gridButtons= new Button[9];
-		gB = new ArrayList<MagicSquareGridButtons>();
+		//gB = new ArrayList<MagicSquareGridButtons>();
+		gB = new MagicSquareGridButtons[9];
 		txtAreas= new TextArea[9];
 		values = new int[9];
 		
@@ -147,7 +151,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 		});
 		
 		// BUTTONS ON GRD
-		for (int i = 0; i < gridButtons.length; i++) {
+		/*for (int i = 0; i < gridButtons.length; i++) {
 			if (i == 0 || i < 3) {
 				gridButtons[i] = new Button(500 + 202 * i, 100, 195, 195, "", back, null);
 				viewObjects.add(gridButtons[i]);
@@ -161,9 +165,48 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 				viewObjects.add(gridButtons[i]);
 				System.out.println("Gi = " + i);
 			}
+		}*/
+		c = -1;
+		
+		for (int i = 0; i < gB.length; i++) {
+			int r = 0;
+	
+			//System.out.println("Coords:(" + r + "," + c + ")");
+			if (i == 0 || i < 3) {
+				c = c+1;
+				gB[i] = new MagicSquareGridButtons(500 + 202 * i, 100, 195, 195, "", back,null, r, c);
+				viewObjects.add(gB[i]);
+				//System.out.println("Coords:(" + r + "," + c + ")");
+				System.out.println(gB[i].getCoord());
+				System.out.println("Gi = " + i);
+				if(i ==2) {
+					c = -1;
+				}
+			} else if (i == 3 || i < 6) {
+				r =1;
+				c = c+1;
+				gB[i] = new MagicSquareGridButtons(500 + 202 * (i - 3), 302, 195, 195, "", back, null, r,c);
+				viewObjects.add(gB[i]);
+				//System.out.println("Coords:(" + r + "," + c);
+				System.out.println(gB[i].getCoord());
+				System.out.println("Gi = " + i);
+				if(i ==5) {
+					c = -1;
+				}
+			} else if (i == 6 || i < 9) {
+				r = 2;
+				c = c+1;
+				gB[i] = new MagicSquareGridButtons(500 + 202 * (i - 6), 505, 195, 195, "", back, null, r,c);
+				viewObjects.add(gB[i]);
+				//System.out.println("Coords:(" + r + "," + c);
+				System.out.println(gB[i].getCoord());
+				System.out.println("Gi = " + i);
+				
+			}
 		}
 		
-		for(int i = 0; i< 9; i++) {
+		//ARRAYLIST
+		/*for(int i = 0; i< 9; i++) {
 			
 			int r = 0;
 			int c = -1;
@@ -186,7 +229,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 				viewObjects.add(gB.get(i));
 				System.out.println("i = " + i);
 			}
-		}
+		}*/
 		//https://stackoverflow.com/questions/25394296/java-loop-to-create-action-listeners
 		/*for(int i = 0; i < gridButtons.length; i++) {
 			placeHolder = i;
@@ -203,61 +246,61 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 			});
 		}*/
 		
-		/*gridButtons[0].setAction(new Action() { //(0,0)
+		gB[0].setAction(new Action() { //(0,0)
 			public void act() {
 				updateGrid(0);
 				//setValues(0,0);
 				
 			}
 		});
-		gridButtons[1].setAction(new Action() { //(0,1)
+		gB[1].setAction(new Action() { //(0,1)
 			public void act() {
 				updateGrid(1);
 				//setValues(0,1);
 			}
 		});
-		gridButtons[2].setAction(new Action() { //(0,2)
+		gB[2].setAction(new Action() { //(0,2)
 			public void act() {
 				updateGrid(2);
 				//setValues(0,2);
 			}
 		});
-		gridButtons[3].setAction(new Action() { //(1,0)
+		gB[3].setAction(new Action() { //(1,0)
 			public void act() {
 				updateGrid(3);
 				//setValues(1,0);
 			}
 		});
-		gridButtons[4].setAction(new Action() { //(1,1)
+		gB[4].setAction(new Action() { //(1,1)
 			public void act() {
 				updateGrid(4);
 				//setValues(1,1);
 			}
 		});
-		gridButtons[5].setAction(new Action() { //(1,2)
+		gB[5].setAction(new Action() { //(1,2)
 			public void act() {
 				updateGrid(5);
 				//setValues(1,2);
 			}
 		});
-		gridButtons[6].setAction(new Action() { //(2,0)
+		gB[6].setAction(new Action() { //(2,0)
 			public void act() {
 				updateGrid(6);
 				//setValues(2,0);
 			}
 		});
-		gridButtons[7].setAction(new Action() { //(2,1)
+		gB[7].setAction(new Action() { //(2,1)
 			public void act() {
 				updateGrid(7);
 				//setValues(2,1);
 			}
 		});
-		gridButtons[8].setAction(new Action() { //(2,2)
+		gB[8].setAction(new Action() { //(2,2)
 			public void act() {
 				updateGrid(8);
 				//setValues(2,2);
 			}
-		});*/
+		});
 		/*
 		 * for(i = 0; i<gridButtons.length; i++) { gridButtons[i].setAction(new Action()
 		 * {
@@ -284,11 +327,11 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 		//tb = new TextBox(100, 100, 100, 100, "hiiiiiii");
 	//	viewObjects.add(tb);
 
-		font();
-		//setUpGrid();
+	//	font();
+		setUpGrid();
 	}
 
-	public void font() {
+	public void font(int num) {
 		try {
 			File fontFile = new File("images/HARRYP.ttf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -296,7 +339,9 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 			Font baseFont = font.deriveFont(150f); // default
 			Font b = font.deriveFont(70f);
 
+			txtAreas[num].setFont(baseFont);
 			for (int i = 0; i < txtAreas.length; i++) {
+				if(i != num) {
 				String q = txtAreas[i].getText();
 				if (q.equals("?")) {
 					txtAreas[i].setFont(b);
@@ -305,7 +350,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 				} else {
 					txtAreas[i].setFont(baseFont);
 				}
-
+				}
 			}
 
 		} catch (Exception e) {
@@ -416,19 +461,81 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 	
 	public void setUpGrid() {
 		int place = 0;
-
-		for(int x = 0; x<2; x++) {
-			for(int y = 0; y < 2; y++) {
+		backend.chooseStartingPoint();
+		int s = backend.getInitiateNum();
+		int r = backend.getRowNum();
+		int c = backend.getColNum();
+		String p = r+","+c;
+		/*for(int x = 0; x<3; x++) {
+			for(int y = 0; y < 3; y++) {
 				place++;
-				//int s = backend.getInitiateNum();
-				//if(magicSquares[x][y]== s) {
+				
+				//convertOnetoTwoD();
+				if(magicSquares[x][y]== s) {
 					//Button [] g = frontend.getGridButtons();
 					gridButtons[place].setAction(null);
 					System.out.println(place);
 					//TextArea [] t = frontend.getTxtAreas();
 				//	txtAreas[place].setText(s+"");
-				//}
+				}
 			}
+		}*/
+		
+		for(int i = 0; i<gB.length; i++) {
+			System.out.println("String p = gB[i].getCoord();"+p);
+			String h = gB[i].getCoord();
+			System.out.println("String h = gB[i].getCoord();"+h);
+			if(p.equals(h)) {
+				gB[i].setAction(null);
+				txtAreas[i].setText(""+s);
+				txtAreas[i].setForeground(Color.red); //maroon color
+				if (i == 0 || i < 3) {
+					txtAreas[i].move(560 + (203 * i), 105, 100);
+				} else if (i == 3 || i < 6) {
+					txtAreas[i].move(560 + (203 * (i - 3)), 308, 100);// y+203
+				} else if (i == 6 || i < 9) {
+					txtAreas[i].move(560 + 203 * (i - 6), 511, 100);
+				}font();
+			}
+		}
+		
+		for(int i = 0; i< numberButtons.length;i++) {
+			int o = Integer.parseInt(numberButtons[i].getText());
+			if(o == s) {
+				numberButtons[i].setAction(null);
+				numberButtons[i].setBackground(Color.black);
+				numberButtons[i].update();
+			}
+		}
+	}
+
+	@Override
+	public void font() {
+		try {
+			File fontFile = new File("images/HARRYP.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+			Font baseFont = font.deriveFont(150f); // default
+			Font b = font.deriveFont(70f);
+
+			
+			for (int i = 0; i < txtAreas.length; i++) {
+	
+				String q = txtAreas[i].getText();
+				if (q.equals("?")) {
+					txtAreas[i].setFont(b);
+
+					// txtAreas[i].move(newX, newY, durationMS);
+				} else {
+					txtAreas[i].setFont(baseFont);
+				}
+				
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
 		}
 	}
 }

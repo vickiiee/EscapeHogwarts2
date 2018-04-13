@@ -65,7 +65,7 @@ public class JiHPBackEnd implements VickieHPSupport {
 		
 	
 	//VICKIE
-		int place = 0;
+		/*int place = 0;
 
 			for(int x = 0; x<3; x++) {
 				for(int y = 0; y < 3; y++) {
@@ -78,7 +78,7 @@ public class JiHPBackEnd implements VickieHPSupport {
 						t[place].setText(iStartingNum+"");
 					}
 				}
-			}
+			}*/
 		}
 	
 

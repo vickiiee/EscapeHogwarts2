@@ -29,4 +29,10 @@ public class MagicSquareGridButtons extends Button{
 	public int getCol() {
 		return col;
 	}
+	
+	public String getCoord() {
+		String s = row+","+col;
+		
+		return s;
+	}
 }
