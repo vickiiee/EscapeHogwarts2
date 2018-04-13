@@ -56,10 +56,22 @@ public class Scene1 extends FullFunctionScreen {
 		magicSquares.setForeground(Color.LIGHT_GRAY);
 	}
 
-	/*
-	public String displayDialogue(String text) {
-		for (int i = 0; i < text.length(); i++) {
-			append(dialogueTxt, text.charAt(i));
+	
+	public String displayDialogue(String[] text) {
+		
+		
+		
+		for (int i = 0; i < text.length; i++) {
+			String phrase = text[i];
+			for(int j = 0; j < phrase.length(); i++) {
+				append(dialogueTxt, phrase.charAt(i));
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		return "";
 	}
@@ -67,7 +79,6 @@ public class Scene1 extends FullFunctionScreen {
 	public void append(TextArea word, char letter) {
 		word.setText(word.getText() + letter);
 	}
-	*/
 
 	public void runStoryLine1() {
 		Timer timer = new Timer();
@@ -100,6 +111,8 @@ public class Scene1 extends FullFunctionScreen {
 							}
 						}
 						dialogueTxt.setText(n);
+						//displayDialogue(s1);
+						//make timer to write out every phrase??
 						System.out.println(n);
 						seconds = 1;
 					} else {
@@ -224,6 +237,9 @@ public class Scene1 extends FullFunctionScreen {
 						+ " have not known at all.", "I know where it is but we have to enter the correct passcode since"
 								+ " they changed it this term.", "We better be quick before anyone suspects you're going."};
 		storyLine2 = n2;
+		
+		//String[] n3 = {};
+		//storyLine3 = n3;
 		/*
 				"It is oddly quiet at this hour.", "Everyone must happen to be asleep.", "Harry, which way do we go now?",
 				"You see that room upstairs?", "We just need to enter the right pattern to enter."};
