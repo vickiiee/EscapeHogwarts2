@@ -53,6 +53,24 @@ public class Storyline extends FullFunctionScreen {
 		nick = new Graphic(40, 700, 100, 100, "images/sirnick.jpg");
 		viewObjects.add(nick);
 		
+		/*
+		"It is oddly quiet at this hour.", "Everyone must happen to be asleep.", "Harry, which way do we go now?",
+		"You see that room upstairs?", "We just need to enter the right pattern to enter."};
+ */
+
+/*
+String[] n3 = {"Oh no, the power's on!", "If we enter the next door we might trigger the alarm.",
+		"Let's make sure no one knows we're here."};
+storyLine3 = n3;
+
+String[] n4 = {"...", "If we go past this hallway, we might just make it to the hidden closet where my cloak is.",
+		"Everyone rarely comes here so-", "Har-", "Now now, what are you doing at this hour?",
+		"Hey! W-We were just taking a walk.", "Harry wasn't feeling well so we thought we'd accompany him.",
+		"Well off you go, I have matters to attend to.",
+		"Be back to your rooms right this moment. I don't want to see more trouble going around."};
+storyLine4 = n4;
+ */
+		
 	
 	}
 
