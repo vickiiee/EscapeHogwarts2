@@ -24,7 +24,7 @@ public class Storyline extends FullFunctionScreen {
 		load.setSize(30);
 		quit.setSize(30);
 		setVisible(true);
-	}
+	} 
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
