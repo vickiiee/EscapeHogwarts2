@@ -162,6 +162,7 @@ public class Scene1 extends FullFunctionScreen {
 						seconds = 1;
 					} else {
 						endS2 = true;
+						continueBtn.setVisible(true);
 					}
 
 				}
@@ -209,10 +210,10 @@ public class Scene1 extends FullFunctionScreen {
 		if(endS1 && !endS2) {
 			runStoryLine2();
 			switchBkgrnd(background2);
-			continueBtn.setVisible(false);
 		}else {
-			//GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+			GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
 		}
+		continueBtn.setVisible(false);
 	}
 
 	@Override
