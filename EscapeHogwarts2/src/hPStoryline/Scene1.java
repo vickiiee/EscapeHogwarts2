@@ -247,7 +247,7 @@ public class Scene1 extends FullFunctionScreen {
 
 		String[] n2 = {"We need to make it to the station by the afternoon.", "At this time ... it looks like we have a few"
 				+ " hours at most.", "Make sure you both got all your thi-"
-				,"Harry!!! We forgot our tickets for the train back in Dumbledore's headquarters.", "My goodness, if it wasn't for you, Ron, I would"
+				,"Harry!!! We forgot our tickets for the train back in the common rooms!", "My goodness, if it wasn't for you, Ron, I would"
 						+ " have not known at all.", "I know where it is but we have to enter the correct passcode since"
 								+ " they changed it this term.", "We better be quick before anyone suspects you're going."};
 		storyLine2 = n2;
