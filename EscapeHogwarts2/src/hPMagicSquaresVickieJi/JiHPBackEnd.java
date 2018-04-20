@@ -61,8 +61,9 @@ public class JiHPBackEnd implements VickieHPSupport {
 			}
 		}
 
+		iStartingRow = 1;
+		iStartingCol = 1;
 		magicSquares[iStartingRow][iStartingCol] = iStartingNum;
-		//magicSquares[1][1] = iStartingNum;
 		
 	
 	//VICKIE
