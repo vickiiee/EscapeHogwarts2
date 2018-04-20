@@ -56,10 +56,8 @@ public class Scene1 extends FullFunctionScreen {
 		magicSquares.setForeground(Color.LIGHT_GRAY);
 	}
 
-	
+	/*
 	public String displayDialogue(String[] text) {
-		
-		
 		
 		for (int i = 0; i < text.length; i++) {
 			String phrase = text[i];
@@ -74,6 +72,20 @@ public class Scene1 extends FullFunctionScreen {
 			}
 		}
 		return "";
+	}
+	*/
+	public String displayPhrase(String txt) {
+		dialogueTxt.setText("");
+		for(int i = 0; i < txt.length(); i++) {
+			append(dialogueTxt, txt.charAt(i));
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return "";//
 	}
 
 	public void append(TextArea word, char letter) {
@@ -110,8 +122,8 @@ public class Scene1 extends FullFunctionScreen {
 								}
 							}
 						}
-						dialogueTxt.setText(n);
-						//displayDialogue(s1);
+						//dialogueTxt.setText(n);
+						displayPhrase(storyLine1[s1]);
 						//make timer to write out every phrase??
 						System.out.println(n);
 						seconds = 1;
@@ -157,8 +169,9 @@ public class Scene1 extends FullFunctionScreen {
 							}
 						}
 						String n2 = storyLine2[s2];
-						dialogueTxt.setText(n2);
-						System.out.println(n2);
+						//dialogueTxt.setText(n2);
+						displayPhrase(storyLine2[s2]);
+						//System.out.println(n2);
 						seconds = 1;
 					} else {
 						endS2 = true;
@@ -223,13 +236,13 @@ public class Scene1 extends FullFunctionScreen {
 		endS1 = false;
 		endS2 = false;
 		
-		String[] n = { "Ron..!! Hermione..!", "Wake up, we ought to go out now!",
+		String[] n = { "Ron..!! Hermione..!", "Wake up, we ought to go now!",
 				"We don't got much time now, we must leave before anyone sees us!", "...",
 				"Harry, are you still sure about this?", "What if you get caught?",
 				"This might be our only chance to go to Hogsmeade together! Besides, once I get my invisibility cloak "
 						+ "I'll be fine.",
 						"Can you imagine all the things we'll do there?!",
-		"We especially have to go to Honeydukes, the sweets are in high demand!" };
+		"We especially have to go to Honeydukes, the sweets are top priority!" };
 		storyLine1 = n;
 
 		String[] n2 = {"We need to make it to the station by the afternoon.", "At this time ... it looks like we have a few"
