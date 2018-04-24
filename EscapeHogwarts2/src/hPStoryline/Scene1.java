@@ -89,8 +89,12 @@ public class Scene1 extends FullFunctionScreen {
 		return "";//
 	}
 
-	public void setWord(String t) {
-		//word.setText(t);
+	public void setWord(String complete) {
+		dialogueTxt.setText(complete);
+	}
+	
+	public void getWord() {
+		return;
 	}
 	
 	public void append(TextArea word, char letter) {
