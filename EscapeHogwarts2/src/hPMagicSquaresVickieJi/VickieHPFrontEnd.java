@@ -23,7 +23,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 	
 	private Button[] numberButtons;
 	private Button[] gridButtons;
-	//private ArrayList<MagicSquareGridButtons> gB;
+	
 	private MagicSquareGridButtons[] gB;
 	private TextArea[] txtAreas;
 	
@@ -36,8 +36,6 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 	
 	private int count; // testing purposes
 
-	//private TextBox tb;
-
 	private Color trans;
 
 	private int placeHolder;
@@ -46,9 +44,11 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 
 	private int[][] magicSquares;
 
+	private int s; //getInitiateNum()
+
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
-		//
+		
 		
 		setVisible(true);
 	}
@@ -205,46 +205,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 			}
 		}
 		
-		//ARRAYLIST
-		/*for(int i = 0; i< 9; i++) {
-			
-			int r = 0;
-			int c = -1;
-			if(i == 0 || i < 3) {
-				gB.add(new MagicSquareGridButtons(500 + 202 * i, 100, 195, 195, "", back,null, r,c++));
-				viewObjects.add(gB.get(i));
-				System.out.println("i = " + i);
-			}
-			r = 1; 
-			c = -1;
-			if(i == 3 || i < 6) {
-				gB.add(new MagicSquareGridButtons(500 + 202 * (i - 3), 302, 195, 195, "", back, null, r,c++));
-				viewObjects.add(gB.get(i));
-				System.out.println("i = " + i);
-			}
-			r = 2; 
-			c = -1;
-			if(i == 6 || i < 9) {
-				gB.add(new MagicSquareGridButtons(500 + 202 * (i - 6), 505, 195, 195, "", back, null, r,c++));
-				viewObjects.add(gB.get(i));
-				System.out.println("i = " + i);
-			}
-		}*/
-		//https://stackoverflow.com/questions/25394296/java-loop-to-create-action-listeners
-		/*for(int i = 0; i < gridButtons.length; i++) {
-			placeHolder = i;
-			gridButtons[i].setAction(new Action() {
-
-				@Override
-				public void act() {
-					count++;
-					counter.setText("" + count);
-					updateGrid(placeHolder--);
-					
-				}
-				
-			});
-		}*/
+		
 		
 		gB[0].setAction(new Action() { //(0,0)
 			public void act() {
@@ -406,15 +367,24 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 		return new Color(original.getRed(), original.getGreen(), original.getBlue(), alpha);
 	}
 
-	public void changeButtonColor(int num) {
+	public void changeButtonColor(int num, int initial) {
+		System.out.println("Initial num from method = " + initial);
 		for (int i = 0; i < 9; i++) {
-			numberButtons[i].setVisible(false);
-			numberButtons[i].setBackground(null);
-			numberButtons[i].setVisible(true);
-			numberButtons[i].setVisible(false);
-			numberButtons[i].setBackground(newColorWithAlpha(Color.white, 120));
-			numberButtons[i].setVisible(true);
-
+			if(i!=initial-1) {
+				numberButtons[i].setVisible(false);
+				numberButtons[i].setBackground(null);
+				numberButtons[i].setVisible(true);
+				numberButtons[i].setVisible(false);
+				numberButtons[i].setBackground(newColorWithAlpha(Color.white, 120));
+				numberButtons[i].setVisible(true);
+			}else {
+				numberButtons[initial-1].setVisible(false);
+				numberButtons[initial-1].setBackground(null);
+				numberButtons[initial-1].setVisible(true);
+				numberButtons[initial-1].setVisible(false);
+				numberButtons[initial-1].setBackground(Color.black);
+				numberButtons[initial-1].setVisible(true);
+			}
 			/*
 			 * if (i == num) { numberButtons[num].setBackground(Color.white); } else {
 			 * 
@@ -429,7 +399,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 		count++;
 		counter.setText("" + count);
 
-		changeButtonColor(num);
+		changeButtonColor(num, s);
 
 		numberButtons[num].setVisible(false);
 
@@ -462,7 +432,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 	public void setUpGrid() {
 		int place = 0;
 		backend.chooseStartingPoint();
-		int s = backend.getInitiateNum();
+		s = backend.getInitiateNum();
+		System.out.println("Initial num from backend = " + s);
 		int r = backend.getRowNum();
 		int c = backend.getColNum();
 		String p = r+","+c;
@@ -538,4 +509,5 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport{
 
 		}
 	}
+
 }
