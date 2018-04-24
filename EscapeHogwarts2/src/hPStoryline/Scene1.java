@@ -45,6 +45,7 @@ public class Scene1 extends FullFunctionScreen {
 	private Graphic[] charImages = {charHarry, charHerm, charRon};
 	private Graphic[] bkgrnds = {background1, background2};
 	private Visible continueBtn;
+	private Button skipBtn;
 
 	public Scene1(int width, int height) {
 		super(width, height);
@@ -88,6 +89,10 @@ public class Scene1 extends FullFunctionScreen {
 		return "";//
 	}
 
+	public void setWord(String t) {
+		//word.setText(t);
+	}
+	
 	public void append(TextArea word, char letter) {
 		word.setText(word.getText() + letter);
 	}
@@ -330,7 +335,16 @@ public class Scene1 extends FullFunctionScreen {
 		dialogueTxt = new TextArea(530, 600, 300, 500, "");
 		viewObjects.add(dialogueTxt);
 
-		//skipBtn =
+		skipBtn = new Button(470, 450, 300, 500, "Skip", new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		//viewObjects.add(skipBtn);
+		
 		continueBtn = new Button(740, 600, 300, 100, "Continue", new Action() {
 
 			@Override
