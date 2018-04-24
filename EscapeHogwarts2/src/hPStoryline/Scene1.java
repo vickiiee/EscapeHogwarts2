@@ -101,7 +101,7 @@ public class Scene1 extends FullFunctionScreen {
 					cancel();
 				} else if (seconds > 0) {
 					seconds--;
-					System.out.println("Seconds:" + seconds); // testing
+					//System.out.println("Seconds:" + seconds); // testing
 
 				} else if (seconds == 0) {
 					s1++;
@@ -125,7 +125,7 @@ public class Scene1 extends FullFunctionScreen {
 						//dialogueTxt.setText(n);
 						displayPhrase(storyLine1[s1]);
 						//make timer to write out every phrase??
-						System.out.println(n);
+						//System.out.println(n);
 						seconds = 1;
 					} else {
 						endS1 = true;
@@ -150,7 +150,7 @@ public class Scene1 extends FullFunctionScreen {
 					cancel();
 				} else if (seconds > 0) {
 					seconds--;
-					System.out.println("Seconds:" + seconds); // testing
+					//System.out.println("Seconds:" + seconds); // testing
 
 				} else if (seconds == 0) {
 					s2++;
@@ -330,6 +330,7 @@ public class Scene1 extends FullFunctionScreen {
 		dialogueTxt = new TextArea(530, 600, 300, 500, "");
 		viewObjects.add(dialogueTxt);
 
+		//skipBtn =
 		continueBtn = new Button(740, 600, 300, 100, "Continue", new Action() {
 
 			@Override
