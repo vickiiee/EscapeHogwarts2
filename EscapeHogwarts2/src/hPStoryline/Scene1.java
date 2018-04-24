@@ -92,7 +92,7 @@ public class Scene1 extends FullFunctionScreen {
 	public void setWord(String complete) {
 		dialogueTxt.setText(complete);
 	}
-	
+	//
 	public void getWord() {
 		return;
 	}
