@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
@@ -22,30 +21,31 @@ public class Scene1 extends FullFunctionScreen {
 	private int s2;
 	private boolean endS1;
 	private boolean endS2;
-
-	private Button connectLine;
+	private boolean startSeq;
 	
 	private Graphic background;
-	private Button magicSquares;
-	private Button connectFour;
-	private Graphic dialogue;
-	private Graphic charHarry;
-	private Visible charName;
-	private TextArea dialogueTxt;
 	private Graphic charHerm;
 	private Graphic charRon;
 	private Graphic background1;
 	private Graphic background2;
+	private Graphic dialogue;
+	private Graphic charHarry;
+	
+	private Button magicSquares;
+	private Button connectFour;
+	private Button connectLine;
+	private Button continueBtn;
+	//private Button skipBtn;
+	
+	private TextArea charName;
+	private TextArea dialogueTxt;
 
 	private String[] storyLine1;
 	private String[] storyLine2;
-	private boolean startSeq;
-
 	private String[] charNames = {"Harry", "Hermione", "Ron"};
+	
 	private Graphic[] charImages = {charHarry, charHerm, charRon};
 	private Graphic[] bkgrnds = {background1, background2};
-	private Visible continueBtn;
-	private Button skipBtn;
 
 	public Scene1(int width, int height) {
 		super(width, height);
@@ -57,24 +57,6 @@ public class Scene1 extends FullFunctionScreen {
 		magicSquares.setForeground(Color.LIGHT_GRAY);
 	}
 
-	/*
-	public String displayDialogue(String[] text) {
-		
-		for (int i = 0; i < text.length; i++) {
-			String phrase = text[i];
-			for(int j = 0; j < phrase.length(); i++) {
-				append(dialogueTxt, phrase.charAt(i));
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		return "";
-	}
-	*/
 	public String displayPhrase(String txt) {
 		dialogueTxt.setText("");
 		for(int i = 0; i < txt.length(); i++) {
@@ -82,11 +64,10 @@ public class Scene1 extends FullFunctionScreen {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		return "";//
+		return "";
 	}
 
 	public void setWord(String complete) {
@@ -110,8 +91,6 @@ public class Scene1 extends FullFunctionScreen {
 					cancel();
 				} else if (seconds > 0) {
 					seconds--;
-					//System.out.println("Seconds:" + seconds); // testing
-
 				} else if (seconds == 0) {
 					s1++;
 
@@ -131,10 +110,7 @@ public class Scene1 extends FullFunctionScreen {
 								}
 							}
 						}
-						//dialogueTxt.setText(n);
 						displayPhrase(storyLine1[s1]);
-						//make timer to write out every phrase??
-						//System.out.println(n);
 						seconds = 1;
 					} else {
 						endS1 = true;
@@ -159,8 +135,6 @@ public class Scene1 extends FullFunctionScreen {
 					cancel();
 				} else if (seconds > 0) {
 					seconds--;
-					//System.out.println("Seconds:" + seconds); // testing
-
 				} else if (seconds == 0) {
 					s2++;
 
@@ -178,9 +152,7 @@ public class Scene1 extends FullFunctionScreen {
 							}
 						}
 						String n2 = storyLine2[s2];
-						//dialogueTxt.setText(n2);
 						displayPhrase(storyLine2[s2]);
-						//System.out.println(n2);
 						seconds = 1;
 					} else {
 						endS2 = true;
@@ -261,25 +233,6 @@ public class Scene1 extends FullFunctionScreen {
 								+ " they changed it this term.", "We better be quick before anyone suspects you're going."};
 		storyLine2 = n2;
 		
-		//String[] n3 = {};
-		//storyLine3 = n3;
-		/*
-				"It is oddly quiet at this hour.", "Everyone must happen to be asleep.", "Harry, which way do we go now?",
-				"You see that room upstairs?", "We just need to enter the right pattern to enter."};
-		 */
-		
-		/*
-		String[] n3 = {"Oh no, the power's on!", "If we enter the next door we might trigger the alarm.",
-				"Let's make sure no one knows we're here."};
-		storyLine3 = n3;
-
-		String[] n4 = {"...", "If we go past this hallway, we might just make it to the hidden closet where my cloak is.",
-				"Everyone rarely comes here so-", "Har-", "Now now, what are you doing at this hour?",
-				"Hey! W-We were just taking a walk.", "Harry wasn't feeling well so we thought we'd accompany him.",
-				"Well off you go, I have matters to attend to.",
-				"Be back to your rooms right this moment. I don't want to see more trouble going around."};
-		storyLine4 = n4;
-		 */
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/castle.jpg");
 		viewObjects.add(background);
 
@@ -338,16 +291,6 @@ public class Scene1 extends FullFunctionScreen {
 
 		dialogueTxt = new TextArea(210, 590, 700, 500, "");
 		viewObjects.add(dialogueTxt);
-
-		skipBtn = new Button(470, 450, 300, 500, "Skip", new Action() {
-			
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		//viewObjects.add(skipBtn);
 		
 		continueBtn = new Button(740, 630, 300, 100, "Continue", new Action() {
 
@@ -363,6 +306,18 @@ public class Scene1 extends FullFunctionScreen {
 		if (startSeq) {
 			runStoryLine1();
 		}
+		
+		/*
+		skipBtn = new Button(470, 450, 300, 500, "Skip", new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		//viewObjects.add(skipBtn);
+		*/
 	}
 
 }
