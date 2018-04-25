@@ -45,9 +45,6 @@ public class StephStory2 extends FullFunctionScreen {
 	private int s1;
 	private int s2;
 	
-	private String[] quotes = {"Where are you going Harry? Class is the other way.","Lets just leave him, "
-			+ "Mcgonagall will kill us if we're late.","...","Potter! Weasley! Granger! Why are you late to my class again?!",
-			"We got lost.", "Moving on, today's lesson will be about potions, gather your things and follow me.", "Choose a partner and we'll begin."};
 	private String[] storyLine1;
 	private String[] storyLine2;
 	private String[] matchName = {"Hermione", "Ron", "Harry", "Mcgonagall"};
@@ -69,6 +66,14 @@ public class StephStory2 extends FullFunctionScreen {
 		s1 = -1;
 		endS1 = false;
 		endS2 = false;
+		
+		String[] n = {"Where are you going Harry? Class is the other way.","Lets just leave him, "
+				+ "Mcgonagall will kill us if we're late.","...","Potter! Weasley! Granger!"
+						+ " Why are you late to my class again?!",
+						"We got lost.", "Moving on, today's lesson will be about potions, "
+						+ "gather your things and follow me.", 
+						"Choose a partner and we'll begin."};
+		storyLine1 = n;
 		
 		background = new Graphic(0, 0, getWidth(), getHeight(), "simg/background.jpg");
 		viewObjects.add(background);
@@ -116,13 +121,13 @@ public class StephStory2 extends FullFunctionScreen {
 		viewObjects.add(harry);
 		harry.setVisible(false);
 		
-		name = new TextArea(220,530,200,200,"Hermione");
+		name = new TextArea(220,530,200,200,"");
 		viewObjects.add(name);
 		
-		dialogue = new TextArea(180,590,1000,500,"Where are you going Harry? Class is the other way.");
+		dialogue = new TextArea(180,590,1000,500,"");
 		viewObjects.add(dialogue);
 		
-		choice1 = new Button(200, 600, 100, 50, "Hermione", Color.darkGray, new Action() {
+		choice1 = new Button(200, 600, 100, 50, "", Color.darkGray, new Action() {
 			
 			@Override
 			public void act() {
@@ -131,7 +136,7 @@ public class StephStory2 extends FullFunctionScreen {
 			}
 		});
 		
-		choice2 = new Button(800, 600, 100, 50, "Ron", Color.darkGray, new Action() {
+		choice2 = new Button(800, 600, 100, 50, "", Color.darkGray, new Action() {
 			
 			@Override
 			public void act() {
@@ -139,6 +144,20 @@ public class StephStory2 extends FullFunctionScreen {
 				
 			}
 		});
+		
+		continueBtn = new Button(740, 600, 300, 100, "Continue", new Action() {
+			
+			@Override
+			public void act() {
+				continueScenes();
+			}
+			});
+			viewObjects.add(continueBtn);
+			continueBtn.setVisible(false);
+		
+			if (startSeq) {
+				runStoryLine1();
+			}
 	}
 	
 	public String displayPhrase(String txt) {
@@ -176,7 +195,7 @@ public class StephStory2 extends FullFunctionScreen {
 	public void switchCharName(String cName) {
 		for(int i = 0; i < matchName.length; i++) {
 			if(matchName[i] == cName) {
-				((TextLabel) name).setText(cName);
+				name.setText(cName);
 			}
 		}
 	}
@@ -192,33 +211,17 @@ public class StephStory2 extends FullFunctionScreen {
 				charImage.setVisible(true);
 			}
 		}
-		
-	/*	
-	continueBtn = new Button(740, 600, 300, 100, "Continue", new Action() {
-	
-		@Override
-		public void act() {
-			continueScenes();
-		}
-		});
-		viewObjects.add(continueBtn);
-		continueBtn.setVisible(false);
-	
-		if (startSeq) {
-			runStoryLine1();
-		}
 	}
-
+			
 	private void continueScenes() {
 		if(endS1 && !endS2) {
-			runStoryLine2();
-			switchBkgrnd(background2);
+			//runStoryLine2();
+			//switchBkgrnd(background2);
 		}else {
-			GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+			//GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
 		}
 		continueBtn.setVisible(false);
 	}
-	*/
 
 
 	public void runStoryLine1() {
@@ -266,24 +269,4 @@ public class StephStory2 extends FullFunctionScreen {
 		timer.schedule(task, 0, 1000);
 	}
 	
-	public void storyline() {
-		String r = quotes[clicks];
-		dialogue.setText(r);
-		dialogue.update();
-		String f = matchName[clicks];
-		name.setText(f);
-		name.update();	
-		if(clicks == 3) {
-			switchBkgrnd(bg1);
-		}
-		if(clicks == 4) {
-			switchBkgrnd(bg2);
-		}
-		if(clicks == 5) {
-			switchBkgrnd(bg3);
-		}
-		if(clicks > 5) {
-			switchBkgrnd(bg4);
-		}
-	}
 }
