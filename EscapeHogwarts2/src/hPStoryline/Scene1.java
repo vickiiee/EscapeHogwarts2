@@ -318,7 +318,7 @@ public class Scene1 extends FullFunctionScreen {
 		});
 		viewObjects.add(connectLine);
 
-		dialogue = new Graphic(370, 470, 500, 400, "images/diaglogue.png");
+		dialogue = new Graphic(370, 470, 500, 400, "images/textbox.png");
 		viewObjects.add(dialogue);
 
 		charName = new TextArea(530, 545, 200, 75, "");
