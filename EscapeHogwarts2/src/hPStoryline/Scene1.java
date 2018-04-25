@@ -41,7 +41,7 @@ public class Scene1 extends FullFunctionScreen {
 	private String[] storyLine2;
 	private boolean startSeq;
 
-	private String[] charNames = {"Harry: ", "Hermione: ", "Ron: "};
+	private String[] charNames = {"Harry", "Hermione", "Ron"};
 	private Graphic[] charImages = {charHarry, charHerm, charRon};
 	private Graphic[] bkgrnds = {background1, background2};
 	private Visible continueBtn;
@@ -51,9 +51,9 @@ public class Scene1 extends FullFunctionScreen {
 		super(width, height);
 		setVisible(false);
 		setVisible(true);
-		((TextLabel) charName).setSize(40);
-		dialogueTxt.setSize(35);
-
+		((TextLabel) charName).setSize(50);
+		dialogueTxt.setSize(40);
+		dialogueTxt.setTextColor(Color.WHITE);
 		magicSquares.setForeground(Color.LIGHT_GRAY);
 	}
 
@@ -118,15 +118,15 @@ public class Scene1 extends FullFunctionScreen {
 					if (s1 > -1 && s1 < storyLine1.length) {
 						String n = storyLine1[s1];
 						if(s1 != 4 && s1!=5) {
-							switchCharName("Harry: ");
+							switchCharName("Harry");
 							switchCharImage(charHarry);
 						}else {
 							if(s1 == 4) {
-								switchCharName("Ron: ");
+								switchCharName("Ron");
 								switchCharImage(charRon);
 							} else {
 								if(s1 == 5) {
-									switchCharName("Hermione: ");
+									switchCharName("Hermione");
 									switchCharImage(charHerm);
 								}
 							}
@@ -166,14 +166,14 @@ public class Scene1 extends FullFunctionScreen {
 
 					if (s2 > -1 && s2 < storyLine2.length) {
 						if(s2 == 0 || s2 == 2 || s2 == 6) {
-							switchCharName("Ron: ");
+							switchCharName("Ron");
 							switchCharImage(charRon);
 						}else {
 							if(s2 != 5) {
-								switchCharName("Hermione: ");
+								switchCharName("Hermione");
 								switchCharImage(charHerm);
 							}else {
-								switchCharName("Harry: ");
+								switchCharName("Harry");
 								switchCharImage(charHarry);
 							}
 						}
@@ -318,13 +318,13 @@ public class Scene1 extends FullFunctionScreen {
 		});
 		viewObjects.add(connectLine);
 
-		dialogue = new Graphic(370, 470, 500, 400, "images/textbox.png");
+		dialogue = new Graphic(80,80,1200,700, "images/textbox.png");
 		viewObjects.add(dialogue);
 
-		charName = new TextArea(530, 545, 200, 75, "");
+		charName = new TextArea(230, 520, 200, 75, "");
 		viewObjects.add(charName);
 
-		charHarry = new Graphic(450, 545, 100, 100, "images/charHarry.jpg");
+		charHarry = new Graphic(750, 460, 100, 100, "images/charHarry.jpg");
 		viewObjects.add(charHarry);
 		charHarry.setVisible(false);
 
@@ -336,7 +336,7 @@ public class Scene1 extends FullFunctionScreen {
 		viewObjects.add(charRon);
 		charRon.setVisible(false);
 
-		dialogueTxt = new TextArea(530, 600, 300, 500, "");
+		dialogueTxt = new TextArea(210, 590, 700, 500, "");
 		viewObjects.add(dialogueTxt);
 
 		skipBtn = new Button(470, 450, 300, 500, "Skip", new Action() {
@@ -349,7 +349,7 @@ public class Scene1 extends FullFunctionScreen {
 		});
 		//viewObjects.add(skipBtn);
 		
-		continueBtn = new Button(740, 600, 300, 100, "Continue", new Action() {
+		continueBtn = new Button(740, 630, 300, 100, "Continue", new Action() {
 
 			@Override
 			public void act() {
