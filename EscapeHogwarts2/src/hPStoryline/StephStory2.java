@@ -78,17 +78,6 @@ public class StephStory2 extends FullFunctionScreen {
 		});
 		viewObjects.add(nextB);
 		
-		prevB = new ClickableGraphic(65, 700, 50, 50, "simg/symbol.png");
-		prevB.setAction(new Action() {
-			
-			@Override
-			public void act() {
-				clicks--;
-				storyline();
-			}
-		});
-		viewObjects.add(prevB);
-		
 		//switchImg = new Graphic(700,260,400,400,"simg/emma.png");
 		//viewObjects.add(switchImg);
 		
@@ -115,6 +104,25 @@ public class StephStory2 extends FullFunctionScreen {
 				
 			}
 		});
+	}
+	
+	public String displayPhrase(String txt) {
+		dialogue.setText("");
+		for(int i = 0; i < txt.length(); i++) {
+			append(dialogue, txt.charAt(i));
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return "";//
+	}
+	
+
+	public void append(TextArea word, char letter) {
+		word.setText(word.getText() + letter);
 	}
 	
 	public void switchBkgrnd(Graphic bgs) {
