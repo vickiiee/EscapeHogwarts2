@@ -31,7 +31,7 @@ public class StephStory extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		backImg = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg3.jpg");
+		backImg = new Graphic(0, 0, getWidth(), getHeight(), "simg/background3.jpg");
 		viewObjects.add(backImg);
 		
 		title = new TextArea(710, 680, 700, 400, "Spin-off");

@@ -89,8 +89,8 @@ public class StephStory2 extends FullFunctionScreen {
 		});
 		viewObjects.add(prevB);
 		
-		switchImg = new Graphic(700,260,400,400,"simg/emma.png");
-		viewObjects.add(switchImg);
+		//switchImg = new Graphic(700,260,400,400,"simg/emma.png");
+		//viewObjects.add(switchImg);
 		
 		name = new TextArea(220,530,200,200,"Hermione");
 		viewObjects.add(name);
