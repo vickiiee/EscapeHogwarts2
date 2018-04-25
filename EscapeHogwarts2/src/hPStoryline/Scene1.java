@@ -233,6 +233,8 @@ public class Scene1 extends FullFunctionScreen {
 								+ " they changed it this term.", "We better be quick before anyone suspects you're going."};
 		storyLine2 = n2;
 		
+		//String[] n3 = {"There it is!", "My cloak!", "I can make it to Hogsmeade now!"};
+		
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/castle.jpg");
 		viewObjects.add(background);
 
