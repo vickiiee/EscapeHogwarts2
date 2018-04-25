@@ -328,7 +328,7 @@ public class Scene1 extends FullFunctionScreen {
 		viewObjects.add(charHarry);
 		charHarry.setVisible(false);
 
-		charHerm = new Graphic(450, 545, 100, 100, "images/charHerm.jpg");
+		charHerm = new Graphic(450, 545, 100, 100, "images/ZcharHerm.jpg");
 		viewObjects.add(charHerm);
 		charHerm.setVisible(false);
 
