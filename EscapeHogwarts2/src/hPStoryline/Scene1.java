@@ -324,15 +324,15 @@ public class Scene1 extends FullFunctionScreen {
 		charName = new TextArea(230, 520, 200, 75, "");
 		viewObjects.add(charName);
 
-		charHarry = new Graphic(750, 460, 100, 100, "images/charHarry.jpg");
+		charHarry = new Graphic(700,260,400,400, "images/charHarry1.png");
 		viewObjects.add(charHarry);
 		charHarry.setVisible(false);
 
-		charHerm = new Graphic(450, 545, 100, 100, "images/ZcharHerm.jpg");
+		charHerm = new Graphic(700,260,400,400, "images/ZcharHerm.png");
 		viewObjects.add(charHerm);
 		charHerm.setVisible(false);
 
-		charRon = new Graphic(450, 545, 100, 100, "images/charRon.png");
+		charRon = new Graphic(700,260,400,400, "images/charRon1.png");
 		viewObjects.add(charRon);
 		charRon.setVisible(false);
 
