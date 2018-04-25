@@ -17,8 +17,5 @@ public interface JiHPSupport {
 	
 	void numButtonAction(int num);
 	
-	Button[] getGridButtons();
-	
-	TextArea[] getTxtAreas();
 	
 }

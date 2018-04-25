@@ -18,7 +18,7 @@ public class GuiLoadingVickie extends GUIApplication{
 	public static GuiLoadingVickie loading;
 	public static JiMenu menu;
 	//public static Scene1 scene1;
-	public static VickieHPFrontEnd magicSquares;
+	//public static VickieHPFrontEnd magicSquares;
 	public static ConnectFourAreej c4;
 	
 	public static Storyline cline;
@@ -49,7 +49,7 @@ public class GuiLoadingVickie extends GUIApplication{
 
 		menu = new JiMenu(getWidth(), getHeight());
 		//scene1 = new Scene1(getWidth(), getHeight());
-		magicSquares = new VickieHPFrontEnd(getWidth(), getHeight());
+		//magicSquares = new VickieHPFrontEnd(getWidth(), getHeight());
 		c4 = new ConnectFourAreej(getWidth(), getHeight());
 		
 		cline = new Storyline(getWidth(),getHeight());
