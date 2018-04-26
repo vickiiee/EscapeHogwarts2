@@ -33,6 +33,9 @@ public class CatchingGameJi extends FullFunctionScreen{
 		
 	}
 	
+	public void chooseStart() {
+		
+	}
 	
 
 	@Override
