@@ -2,25 +2,13 @@ package hPCatchingGame;
 
 import java.awt.Graphics2D;
 
-import guiTeacher.components.MovingComponent;
+import guiTeacher.components.ClickableGraphic;
 
-public class Potion extends MovingComponent{
+public class Potion extends ClickableGraphic{
 
-	public Potion(int x, int y, int w, int h) {
-		super(x, y, w, h);
+	public Potion(int x, int y, String imageLocation) {
+		super(x, y, imageLocation);
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void drawImage(Graphics2D g) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void checkBehaviors() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

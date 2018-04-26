@@ -39,6 +39,8 @@ public class CatchingGameJi extends FullFunctionScreen{
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0,0,getWidth(), getHeight(), "images/background4.jpg");
 		viewObjects.add(background);
+		
+		
 	}
 
 	
