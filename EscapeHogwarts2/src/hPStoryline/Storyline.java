@@ -15,9 +15,19 @@ import hPConnect4Areej.ConnectFourAreej;
 public class Storyline extends FullFunctionScreen {
 
 	private Graphic background;
-	private Graphic nick;
 	private Button load;
 	private Button quit;
+	
+	private Graphic nick;
+	private Graphic harry;
+	private Graphic hermione;
+	private Graphic ron;
+	private Graphic dialogue;
+	private TextArea dial;	
+	private TextArea charName;
+	private String[] charNames = {"Harry: ", "Ron: ", "Hermione: "};
+	private Graphic[] charImages = {harry, ron, hermione};
+	
 	
 	public Storyline(int width, int height) {
 		super(width, height);
@@ -50,26 +60,48 @@ public class Storyline extends FullFunctionScreen {
 		}); 
 		viewObjects.add(quit);
 		
-		nick = new Graphic(40, 700, 100, 100, "images/sirnick.jpg");
+		charName = new TextArea(530, 545, 200, 75, "");
+		viewObjects.add(charName);
+		
+		harry = new Graphic(50, 680, 100, 100, "images/charHarry.jpg");
+		viewObjects.add(harry);
+		harry.setVisible(false);
+
+		hermione = new Graphic(50, 680, 100, 100, "images/charHerm.jpg");
+		viewObjects.add(hermione);
+		hermione.setVisible(false);
+
+		ron = new Graphic(50, 680, 100, 100, "images/charRon.png");
+		viewObjects.add(ron);
+		ron.setVisible(false);		
+		
+		nick = new Graphic(50, 680, 100, 100, "images/sirnick.jpg");
 		viewObjects.add(nick);
+		
+		dialogue = new Graphic(80,80,1200,700, "images/textbox.png");
+		viewObjects.add(dialogue);
+		
+		dial = new TextArea(530, 650, 300, 100, "");
+		viewObjects.add(dial);
+
 		
 		/*
 		"It is oddly quiet at this hour.", "Everyone must happen to be asleep.", "Harry, which way do we go now?",
 		"You see that room upstairs?", "We just need to enter the right pattern to enter."};
- */
+		 */
 
-/*
-String[] n3 = {"Oh no, the power's on!", "If we enter the next door we might trigger the alarm.",
-		"Let's make sure no one knows we're here."};
-storyLine3 = n3;
+		/*
+			String[] n3 = {"Oh no, the power's on!", "If we enter the next door we might trigger the alarm.",
+			"Let's make sure no one knows we're here."};
+			storyLine3 = n3;
 
-String[] n4 = {"...", "If we go past this hallway, we might just make it to the hidden closet where my cloak is.",
-		"Everyone rarely comes here so-", "Har-", "Now now, what are you doing at this hour?",
-		"Hey! W-We were just taking a walk.", "Harry wasn't feeling well so we thought we'd accompany him.",
-		"Well off you go, I have matters to attend to.",
-		"Be back to your rooms right this moment. I don't want to see more trouble going around."};
-storyLine4 = n4;
- */
+			String[] n4 = {"...", "If we go past this hallway, we might just make it to the hidden closet where my cloak is.",
+			"Everyone rarely comes here so-", "Har-", "Now now, what are you doing at this hour?",
+			"Hey! W-We were just taking a walk.", "Harry wasn't feeling well so we thought we'd accompany him.",
+			"Well off you go, I have matters to attend to.",
+			"Be back to your rooms right this moment. I don't want to see more trouble going around."};
+			storyLine4 = n4;
+		 */
 		
 	
 	}
