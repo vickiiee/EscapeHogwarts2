@@ -39,9 +39,6 @@ public interface VickieHPSupport {
 	void createInitiateNum();
 	//create first num
 	
-	void cheatCode();
-	//cheatCode
-	
 	 int getInitiateNum();
 	 //fixed initiateNum
 	
@@ -54,12 +51,6 @@ public interface VickieHPSupport {
 	 void resetMultiples(int num);
 	 //check if number is more than 1
 	 
-	 boolean isNumeric(String str);
-	 //checks if character is num
-
-	 void placeNumbers(String nums);
-	 
-	int[][] getBoxes();
 
 	int getiRow();
 
@@ -76,5 +67,6 @@ public interface VickieHPSupport {
 	
 	void setArr(int [][] arr);
 	
+	int[][] getBoxes();
 }
 //

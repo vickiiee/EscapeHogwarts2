@@ -106,40 +106,6 @@ public class JiHPBackEnd implements VickieHPSupport {
 		return (int) (Math.random() * max);
 	}
 
-	public void placeNumbers(String nums) {
-		String SRow;
-		String SCol;
-		String SNum;
-		int len = nums.length();
-		if (len > 5 || len < 5) {
-			// frontend.error();
-		} else {
-			SRow = nums.substring(0, 1);
-			SCol = nums.substring(2, 3);
-			SNum = nums.substring(4, 5);
-
-			if (isNumeric(SCol) && isNumeric(SRow) && isNumeric(SNum)) {
-				iRow = Integer.parseInt(SRow);
-				iCol = Integer.parseInt(SCol);
-				iNum = Integer.parseInt(SNum);
-
-				// frontend.doNotOverride();
-
-				if (iNum < 10 && iNum > 0 && iRow < 3 && iRow >= 0 && iCol < 3 && iCol >= 0) {
-					resetMultiples(iNum);
-					magicSquares[iRow][iCol] = iNum;
-					// frontend.displayTheGrid();
-					// frontend.complete();
-				} else {
-					// frontend.error();
-				}
-
-			} else {
-				// frontend.error();
-			}
-		}
-
-	}
 
 	public int getiRow() {
 		return iRow;
@@ -163,15 +129,6 @@ public class JiHPBackEnd implements VickieHPSupport {
 
 	public int getColNum() {
 		return iStartingCol;
-	}
-
-	public boolean isNumeric(String str) { // check for number
-		try {
-			Double.parseDouble(str);
-		} catch (NumberFormatException nfe) {
-			return false;
-		}
-		return true;
 	}
 
 	public void resetMultiples(int num) {
@@ -231,18 +188,11 @@ public class JiHPBackEnd implements VickieHPSupport {
 		return true;
 	}
 
-	public void cheatCode() { // cheat
-		magicSquares = ANSWER;
-		// frontend.displayTheGrid();
-		// frontend.endGame();
-	}
-
-	public int[][] getBoxes() {
-		return magicSquares;
-	}
-	
 	public void setArr(int [][] arr) {
 		magicSquares = arr;
 	}
 
+	public int [][] getBoxes(){
+		return magicSquares;
+	}
 }
