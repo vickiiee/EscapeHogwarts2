@@ -53,7 +53,7 @@ public class Scene1 extends FullFunctionScreen {
 		setVisible(true);
 		((TextLabel) charName).setSize(50);
 		dialogueTxt.setSize(40);
-		dialogueTxt.setTextColor(Color.WHITE);
+		dialogueTxt.setForeground(Color.WHITE);
 		magicSquares.setForeground(Color.LIGHT_GRAY);
 	}
 
