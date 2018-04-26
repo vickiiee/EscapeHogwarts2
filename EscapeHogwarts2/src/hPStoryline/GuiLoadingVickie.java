@@ -5,7 +5,7 @@ import java.io.File;
 
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
-import hPCatchingGame.CatchingGameJi;
+import hPCatchingGameJi.CatchingGameJi;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 

@@ -1,4 +1,4 @@
-package hPCatchingGame;
+package hPCatchingGameJi;
 
 import java.util.List;
 

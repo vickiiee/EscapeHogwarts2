@@ -1,4 +1,4 @@
-package hPCatchingGame;
+package hPCatchingGameJi;
 
 import java.awt.Graphics2D;
 
