@@ -13,12 +13,9 @@ public interface JiHPSupport {
 	
 	Color newColorWithAlpha(Color original, int alpha);
 	
-	void changeButtonColor(int num);
+	void changeButtonColor(int num, int initial);
 	
 	void numButtonAction(int num);
 	
-	Button[] getGridButtons();
-	
-	TextArea[] getTxtAreas();
 	
 }
