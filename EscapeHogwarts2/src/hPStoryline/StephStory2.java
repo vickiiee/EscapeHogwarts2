@@ -18,13 +18,15 @@ public class StephStory2 extends FullFunctionScreen {
 
 	private Graphic background;
 	private Graphic chatbox;
+	private Graphic hermione;
+	private Graphic ron;
+	private Graphic harry;
 	private Graphic bg1;
 	private Graphic bg2;
 	private Graphic bg3;
 	private Graphic bg4;
-	private Graphic hermione;
-	private Graphic ron;
-	private Graphic harry;
+	private Graphic bg5;
+	private Graphic bg10;
 	
 	private boolean endS1;
 	private boolean endS2;
@@ -40,8 +42,9 @@ public class StephStory2 extends FullFunctionScreen {
 	
 	private Visible continueBtn;
 	
-	private int clicks;
 	private int seconds;
+	private int count1;
+	private int count2;
 	private int s1;
 	private int s2;
 	
@@ -50,11 +53,10 @@ public class StephStory2 extends FullFunctionScreen {
 	private String[] matchName = {"Hermione", "Ron", "Harry", "Mcgonagall"};
 	
 	private Graphic[] imagesList = {hermione, ron, harry};
-	private Graphic[] bg = {bg1, bg2, bg3, bg4};
+	private Graphic[] bg = {bg1, bg2, bg3, bg4, bg5, bg10};
 	
 	public StephStory2(int width, int height) {
 		super(width, height);
-		clicks = 0;
 		name.setSize(40);
 		dialogue.setSize(35);
 		dialogue.setForeground(Color.WHITE);
@@ -63,9 +65,11 @@ public class StephStory2 extends FullFunctionScreen {
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		startSeq = true;
-		s1 = -1;
 		endS1 = false;
 		endS2 = false;
+		s1 = -1;
+		count1 = 0;
+		count2 = 0;
 		
 		String[] n = {"Where are you going Harry? Class is the other way.","Lets just leave him, "
 				+ "Mcgonagall will kill us if we're late.","...","Potter! Weasley! Granger!"
@@ -94,6 +98,14 @@ public class StephStory2 extends FullFunctionScreen {
 		viewObjects.add(bg4);
 		bg4.setVisible(false);
 		
+		bg5 = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg5.jpg");
+		viewObjects.add(bg5);
+		bg5.setVisible(false);
+		
+		bg10 = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg10.jpg");
+		viewObjects.add(bg10);
+		bg10.setVisible(false);
+		
 		chatbox = new Graphic(80,80,1200,700, "simg/textbox.png");
 		viewObjects.add(chatbox);
 		
@@ -117,7 +129,7 @@ public class StephStory2 extends FullFunctionScreen {
 		viewObjects.add(ron);
 		ron.setVisible(false);
 		
-		harry = new Graphic(700,260,400,400,"simg/harry.png");
+		harry = new Graphic(700,260,400,400,"simg/harry.jpg");
 		viewObjects.add(harry);
 		harry.setVisible(false);
 		
@@ -160,6 +172,10 @@ public class StephStory2 extends FullFunctionScreen {
 			}
 	}
 	
+	public void userChoice() {
+		
+	}
+	
 	public String displayPhrase(String txt) {
 		dialogue.setText("");
 		for(int i = 0; i < txt.length(); i++) {
@@ -198,6 +214,7 @@ public class StephStory2 extends FullFunctionScreen {
 				name.setText(cName);
 			}
 		}
+		name.update();
 	}
 
 	public void switchCharImage(Graphic charImage) {
@@ -240,17 +257,32 @@ public class StephStory2 extends FullFunctionScreen {
 
 					if (s1 > -1 && s1 < storyLine1.length) {
 						String n = storyLine1[s1];
-						if(s1 != 4 && s1!=5) {
-							switchCharName("Harry: ");
-							switchCharImage(harry);
+						if(s1 == 2) {
+							switchCharName("Harry");
+							//switchCharImage(harry);
 						}else {
-							if(s1 == 4) {
-								switchCharName("Ron: ");
-								switchCharImage(ron);
+							if(s1 == 1) {
+								switchCharName("Ron");
+								
 							} else {
-								if(s1 == 5) {
-									switchCharName("Hermione: ");
-									switchCharImage(hermione);
+								if(s1 == 0) {
+									switchCharName("Hermione");
+									//switchCharImage(hermione);
+								} else {
+									if(s1 == 3 || s1 == 5) {
+										switchCharName("Mcgonagall");
+										switchBkgrnd(bg4);
+									} else {
+										if(s1 == 4) {
+											switchCharName("Hermione");
+											switchBkgrnd(bg1);
+										} else {
+											if(s1 == 6) {
+												switchCharName("Mcgonagall");
+												switchBkgrnd(bg10);
+											}
+										}
+									}
 								}
 							}
 						}
