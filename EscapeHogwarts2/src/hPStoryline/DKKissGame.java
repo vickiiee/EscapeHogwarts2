@@ -2,6 +2,7 @@ package hPStoryline;
 
 import java.util.List;
 
+import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
@@ -36,6 +37,14 @@ public class DKKissGame extends FullFunctionScreen{
 		
 		cardOne = new ClickableGraphic(50, 75, 150, 300, "kimg/cardBack.png");
 		viewObjects.add(cardOne);
+		cardOne.setAction(new Action() {
+			
+			@Override
+			public void act() {
+				cardOne.loadImages("kimg/cardZero.jpg", cardOne.getX(), cardOne.getY());
+				
+			}
+		});
 		
 		cardTwo = new ClickableGraphic(230, 75, 150, 300, "kimg/cardBack.png");
 		viewObjects.add(cardTwo);
@@ -71,6 +80,7 @@ public class DKKissGame extends FullFunctionScreen{
 		viewObjects.add(cardTwelve);
 	
 	}
+	
 	
 	
 }
