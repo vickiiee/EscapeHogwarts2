@@ -11,6 +11,7 @@ import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPCatchingGame.CatchingGameJi;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 
@@ -34,6 +35,7 @@ public class Scene1 extends FullFunctionScreen {
 	private Button magicSquares;
 	private Button connectFour;
 	private Button connectLine;
+	private Button cGame;
 	private Button continueBtn;
 	//private Button skipBtn;
 	
@@ -272,6 +274,15 @@ public class Scene1 extends FullFunctionScreen {
 			}
 		});
 		viewObjects.add(connectLine);
+		
+		cGame = new Button(100, 350, 200, 75, "Catching", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new CatchingGameJi(getWidth(), getHeight()));
+			}
+		});
+		viewObjects.add(cGame);
 
 		dialogue = new Graphic(80,80,1200,700, "images/textbox.png");
 		viewObjects.add(dialogue);
