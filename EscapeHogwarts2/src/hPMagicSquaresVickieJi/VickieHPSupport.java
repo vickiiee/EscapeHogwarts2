@@ -73,5 +73,8 @@ public interface VickieHPSupport {
 	//thinking to define these two methods
 	//boolean isFixedRowCol();
 	//booean isFixedNum();
+	
+	void setArr(int [][] arr);
+	
 }
 //

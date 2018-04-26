@@ -175,8 +175,10 @@ public class JiHPBackEnd implements VickieHPSupport {
 	}
 
 	public void resetMultiples(int num) {
+		//System.out.print("resetMultipleMETHOODSS");
 		for (int row = 0; row < 3; row++) {
 			for (int col = 0; col < 3; col++) {
+				//System.out.println(row+","+col+":"+magicSquares[row][col]);
 				int same = magicSquares[row][col];
 
 				if (num == same) {
@@ -237,6 +239,10 @@ public class JiHPBackEnd implements VickieHPSupport {
 
 	public int[][] getBoxes() {
 		return magicSquares;
+	}
+	
+	public void setArr(int [][] arr) {
+		magicSquares = arr;
 	}
 
 }
