@@ -14,8 +14,8 @@ public class JiHPBackEnd implements VickieHPSupport {
 	private final static int[][] ANSWER = { { 2, 7, 6 }, { 9, 5, 1 }, { 4, 3, 8 } };
 
 	private int iStartingNum;
-	private int iStartingRow;
-	private int iStartingCol;
+	private int iStartingRow =1;
+	private int iStartingCol =1;
 
 	private int iRow; // Integer Row #
 	private int iCol; // Integer Col #
