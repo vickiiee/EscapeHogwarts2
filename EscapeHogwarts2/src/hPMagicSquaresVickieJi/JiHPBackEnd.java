@@ -14,8 +14,8 @@ public class JiHPBackEnd implements VickieHPSupport {
 	private final static int[][] ANSWER = { { 2, 7, 6 }, { 9, 5, 1 }, { 4, 3, 8 } };
 
 	private int iStartingNum;
-	private int iStartingRow;
-	private int iStartingCol;
+	private int iStartingRow =1;
+	private int iStartingCol =1;
 
 	private int iRow; // Integer Row #
 	private int iCol; // Integer Col #
@@ -61,11 +61,14 @@ public class JiHPBackEnd implements VickieHPSupport {
 			}
 		}
 
+		//iStartingRow = 1;
+		//iStartingCol = 1;
+		
 		magicSquares[iStartingRow][iStartingCol] = iStartingNum;
 		
 	
 	//VICKIE
-		int place = 0;
+		/*int place = 0;
 
 			for(int x = 0; x<3; x++) {
 				for(int y = 0; y < 3; y++) {
@@ -78,7 +81,7 @@ public class JiHPBackEnd implements VickieHPSupport {
 						t[place].setText(iStartingNum+"");
 					}
 				}
-			}
+			}*/
 		}
 	
 
@@ -103,40 +106,6 @@ public class JiHPBackEnd implements VickieHPSupport {
 		return (int) (Math.random() * max);
 	}
 
-	public void placeNumbers(String nums) {
-		String SRow;
-		String SCol;
-		String SNum;
-		int len = nums.length();
-		if (len > 5 || len < 5) {
-			// frontend.error();
-		} else {
-			SRow = nums.substring(0, 1);
-			SCol = nums.substring(2, 3);
-			SNum = nums.substring(4, 5);
-
-			if (isNumeric(SCol) && isNumeric(SRow) && isNumeric(SNum)) {
-				iRow = Integer.parseInt(SRow);
-				iCol = Integer.parseInt(SCol);
-				iNum = Integer.parseInt(SNum);
-
-				// frontend.doNotOverride();
-
-				if (iNum < 10 && iNum > 0 && iRow < 3 && iRow >= 0 && iCol < 3 && iCol >= 0) {
-					resetMultiples(iNum);
-					magicSquares[iRow][iCol] = iNum;
-					// frontend.displayTheGrid();
-					// frontend.complete();
-				} else {
-					// frontend.error();
-				}
-
-			} else {
-				// frontend.error();
-			}
-		}
-
-	}
 
 	public int getiRow() {
 		return iRow;
@@ -162,18 +131,11 @@ public class JiHPBackEnd implements VickieHPSupport {
 		return iStartingCol;
 	}
 
-	public boolean isNumeric(String str) { // check for number
-		try {
-			Double.parseDouble(str);
-		} catch (NumberFormatException nfe) {
-			return false;
-		}
-		return true;
-	}
-
 	public void resetMultiples(int num) {
+		//System.out.print("resetMultipleMETHOODSS");
 		for (int row = 0; row < 3; row++) {
 			for (int col = 0; col < 3; col++) {
+				//System.out.println(row+","+col+":"+magicSquares[row][col]);
 				int same = magicSquares[row][col];
 
 				if (num == same) {
@@ -226,14 +188,11 @@ public class JiHPBackEnd implements VickieHPSupport {
 		return true;
 	}
 
-	public void cheatCode() { // cheat
-		magicSquares = ANSWER;
-		// frontend.displayTheGrid();
-		// frontend.endGame();
+	public void setArr(int [][] arr) {
+		magicSquares = arr;
 	}
 
-	public int[][] getBoxes() {
+	public int [][] getBoxes(){
 		return magicSquares;
 	}
-
 }
