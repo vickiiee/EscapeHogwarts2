@@ -90,5 +90,5 @@ public class CatchingGameJi extends FullFunctionScreen{
 		viewObjects.add(gameStatus);
 	}
 
-	
+	//
 }
