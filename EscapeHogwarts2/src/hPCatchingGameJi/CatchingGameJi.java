@@ -50,7 +50,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 	}
 	
 	public void checkPotionCaught() {
-		if(potion.getHeight() == 760) {
+		if(potion.getHeight() == 770) {
 			if(this.potion != null) {
 				lives--;
 				checkLivesLeft();
