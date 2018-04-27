@@ -2,6 +2,7 @@ package hPCatchingGameJi;
 
 import java.awt.Graphics2D;
 
+import guiTeacher.components.Action;
 import guiTeacher.components.ClickableGraphic;
 
 public class Potion extends ClickableGraphic{
