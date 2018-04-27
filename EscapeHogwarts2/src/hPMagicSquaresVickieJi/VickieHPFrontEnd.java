@@ -71,10 +71,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		counter = new TextArea(50, 50, 700, 700, "" + count); // testing purposes
 		viewObjects.add(counter);
 
-		/*
-		 * Graphic textb = new Graphic(50, 50, 500, 800, "images/textbox2.png");
-		 * viewObjects.add(textb);
-		 */
+		
+		 Graphic textb = new Graphic(50, 50, 500, 100, "images/textbox2.png");
+		 viewObjects.add(textb);
+		 
 		createKeyPadButtons();
 		createGridButtons();
 		createTxtArea();
@@ -86,13 +86,13 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		// create buttons
 		for (int i = 0; i < numberButtons.length; i++) {
 			if (i == 0 || i < 3) {
-				numberButtons[i] = new Button(50 + 110 * i, 300, 100, 100, i + 1 + "", trans, null);
+				numberButtons[i] = new Button(50 + 110 * i, 250, 100, 100, i + 1 + "", trans, null);
 				viewObjects.add(numberButtons[i]);
 			} else if (i == 3 || i < 6) {
-				numberButtons[i] = new Button(50 + 110 * (i - 3), 410, 100, 100, i + 1 + "", trans, null);
+				numberButtons[i] = new Button(50 + 110 * (i - 3), 360, 100, 100, i + 1 + "", trans, null);
 				viewObjects.add(numberButtons[i]);
 			} else if (i == 6 || i < 9) {
-				numberButtons[i] = new Button(50 + 110 * (i - 6), 520, 100, 100, i + 1 + "", trans, null);
+				numberButtons[i] = new Button(50 + 110 * (i - 6), 470, 100, 100, i + 1 + "", trans, null);
 				viewObjects.add(numberButtons[i]);
 			}
 		}
@@ -496,6 +496,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			}
 		}
 		
+		
+	}
+	
+	public void hints() {
 		
 	}
 
