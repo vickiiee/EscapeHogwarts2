@@ -14,6 +14,8 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPCatchingGameJi.CatchingGameJi;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
+import hpKevStoryLine.DKTitle;
+import hpKevStoryLine.StephStory;
 
 public class Scene1 extends FullFunctionScreen {
 
@@ -39,6 +41,9 @@ public class Scene1 extends FullFunctionScreen {
 	private Button continueBtn;
 	//private Button skipBtn;
 	
+	private Button lightsOut;
+	private Button dKiss;
+	
 	private TextArea charName;
 	private TextArea dialogueTxt;
 
@@ -57,6 +62,8 @@ public class Scene1 extends FullFunctionScreen {
 		dialogueTxt.setSize(40);
 		dialogueTxt.setForeground(Color.WHITE);
 		magicSquares.setForeground(Color.LIGHT_GRAY);
+		lightsOut.setForeground(Color.WHITE);
+		dKiss.setForeground(Color.WHITE);
 	}
 
 	public String displayPhrase(String txt) {
@@ -283,6 +290,24 @@ public class Scene1 extends FullFunctionScreen {
 			}
 		});
 		viewObjects.add(cGame);
+		
+		lightsOut = new Button(500, 350, 300, 75, "Side Story", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new StephStory(getWidth(), getHeight()));
+			}
+		});
+		viewObjects.add(lightsOut);
+		
+		dKiss = new Button(500, 450, 500, 100, "The Dementor's Kiss", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new DKTitle(getWidth(), getHeight()));
+			}
+		});
+		viewObjects.add(dKiss);
 
 		dialogue = new Graphic(80,80,1200,700, "images/textbox.png");
 		viewObjects.add(dialogue);
