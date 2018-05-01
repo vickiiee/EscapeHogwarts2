@@ -43,11 +43,11 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 	public void initAllObjects(List<Visible> viewObjects) {
 		backend = new JiHPBackEnd(this);
-		
+
 		numClicked = "0";
-		
+
 		trans = newColorWithAlpha(Color.white, 70);
-		
+
 		numberButtons = new Button[9];
 		gB = new MagicSquareGridButtons[9];
 		txtAreas = new TextArea[9];
@@ -71,6 +71,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		counter = new TextArea(50, 50, 700, 700, "" + count); // testing purposes
 		viewObjects.add(counter);
 
+		
+		 Graphic textb = new Graphic(50, 50, 500, 100, "images/textbox2.png");
+		 viewObjects.add(textb);
+		 
 		createKeyPadButtons();
 		createGridButtons();
 		createTxtArea();
@@ -78,21 +82,21 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	}
 
 	public void createKeyPadButtons() {
-		System.out.println("createKeyPadButtons()");
+		//System.out.println("createKeyPadButtons()");
 		// create buttons
 		for (int i = 0; i < numberButtons.length; i++) {
 			if (i == 0 || i < 3) {
-				numberButtons[i] = new Button(50 + 110 * i, 300, 100, 100, i + 1 + "", trans, null);
+				numberButtons[i] = new Button(50 + 110 * i, 250, 100, 100, i + 1 + "", trans, null);
 				viewObjects.add(numberButtons[i]);
 			} else if (i == 3 || i < 6) {
-				numberButtons[i] = new Button(50 + 110 * (i - 3), 410, 100, 100, i + 1 + "", trans, null);
+				numberButtons[i] = new Button(50 + 110 * (i - 3), 360, 100, 100, i + 1 + "", trans, null);
 				viewObjects.add(numberButtons[i]);
 			} else if (i == 6 || i < 9) {
-				numberButtons[i] = new Button(50 + 110 * (i - 6), 520, 100, 100, i + 1 + "", trans, null);
+				numberButtons[i] = new Button(50 + 110 * (i - 6), 470, 100, 100, i + 1 + "", trans, null);
 				viewObjects.add(numberButtons[i]);
 			}
 		}
-	
+
 		numberButtons[0].setAction(new Action() {
 			public void act() {
 				numButtonAction(0);
@@ -141,24 +145,24 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	}
 
 	public void numButtonAction(int num) {
-		System.out.println("numButtonAction(int num)");
+		//System.out.println("numButtonAction(int num)");
 		numClicked = numberButtons[num].getText();
 		count++;
 		counter.setText("" + count);
-	
+
 		changeButtonColor(num, initNumBackEnd);
-	
+
 		numberButtons[num].setVisible(false);
-	
+
 		numberButtons[num].setBackground(Color.white);
-	
+
 		numberButtons[num].setVisible(true);
 		error.setVisible(false);
 	}
 
 	public void changeButtonColor(int num, int initial) {
-		System.out.println("changenumberButton()");
-		System.out.println("Initial num from method = " + initial);
+		//System.out.println("changenumberButton()");
+		//System.out.println("Initial num from method = " + initial);
 		for (int i = 0; i < 9; i++) {
 			if (i != initial - 1) {
 				numberButtons[i].setVisible(false);
@@ -179,20 +183,20 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	}
 
 	public void createGridButtons() {
-		System.out.println("createGridButtons()");
+		//System.out.println("createGridButtons()");
 		c = -1;
-	
+
 		for (int i = 0; i < gB.length; i++) {
 			int r = 0;
-	
-			System.out.println("Coords:(" + r + "," + c + ")");
+
+			//System.out.println("Coords:(" + r + "," + c + ")");
 			if (i == 0 || i < 3) {
 				c = c + 1;
 				gB[i] = new MagicSquareGridButtons(500 + 202 * i, 100, 195, 195, "", trans, null, r, c);
 				viewObjects.add(gB[i]);
 				// System.out.println("Coords:(" + r + "," + c + ")");
-				System.out.println(gB[i].getCoord());
-				System.out.println("Gi = " + i);
+				//System.out.println(gB[i].getCoord());
+				//System.out.println("Gi = " + i);
 				if (i == 2) {
 					c = -1;
 				}
@@ -202,8 +206,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				gB[i] = new MagicSquareGridButtons(500 + 202 * (i - 3), 302, 195, 195, "", trans, null, r, c);
 				viewObjects.add(gB[i]);
 				// System.out.println("Coords:(" + r + "," + c);
-				System.out.println(gB[i].getCoord());
-				System.out.println("Gi = " + i);
+				//System.out.println(gB[i].getCoord());
+				//System.out.println("Gi = " + i);
 				if (i == 5) {
 					c = -1;
 				}
@@ -213,72 +217,86 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				gB[i] = new MagicSquareGridButtons(500 + 202 * (i - 6), 505, 195, 195, "", trans, null, r, c);
 				viewObjects.add(gB[i]);
 				// System.out.println("Coords:(" + r + "," + c);
-				System.out.println(gB[i].getCoord());
-				System.out.println("Gi = " + i);
-	
+				//System.out.println(gB[i].getCoord());
+				//System.out.println("Gi = " + i);
+
 			}
 		}
-	
+
 		gB[0].setAction(new Action() { // (0,0)
 			public void act() {
 				updateGrid(0);
-				// setValues(0,0);
-	
+				backend.resetMultiples(Integer.parseInt(numClicked));
+				setValues(0, 0);
+
 			}
 		});
 		gB[1].setAction(new Action() { // (0,1)
 			public void act() {
 				updateGrid(1);
-				// setValues(0,1);
+				backend.resetMultiples(Integer.parseInt(numClicked));
+				setValues(0, 1);
 			}
 		});
 		gB[2].setAction(new Action() { // (0,2)
 			public void act() {
 				updateGrid(2);
-				// setValues(0,2);
+				backend.resetMultiples(Integer.parseInt(numClicked));
+				setValues(0, 2);
 			}
 		});
 		gB[3].setAction(new Action() { // (1,0)
 			public void act() {
 				updateGrid(3);
-				// setValues(1,0);
+				backend.resetMultiples(Integer.parseInt(numClicked));
+				setValues(1, 0);
 			}
 		});
 		gB[4].setAction(new Action() { // (1,1)
 			public void act() {
 				updateGrid(4);
-				// setValues(1,1);
+				backend.resetMultiples(Integer.parseInt(numClicked));
+				setValues(1, 1);
+				
 			}
 		});
 		gB[5].setAction(new Action() { // (1,2)
 			public void act() {
 				updateGrid(5);
-				// setValues(1,2);
+				backend.resetMultiples(Integer.parseInt(numClicked));
+				setValues(1, 2);
+				
 			}
 		});
 		gB[6].setAction(new Action() { // (2,0)
 			public void act() {
 				updateGrid(6);
-				// setValues(2,0);
+				backend.resetMultiples(Integer.parseInt(numClicked));
+				setValues(2, 0);
+				
 			}
 		});
 		gB[7].setAction(new Action() { // (2,1)
 			public void act() {
 				updateGrid(7);
-				// setValues(2,1);
+				backend.resetMultiples(Integer.parseInt(numClicked));
+				setValues(2, 1);
+				
 			}
 		});
 		gB[8].setAction(new Action() { // (2,2)
 			public void act() {
 				updateGrid(8);
-				// setValues(2,2);
+				backend.resetMultiples(Integer.parseInt(numClicked));
+				setValues(2, 2);
+				
 			}
 		});
-	
+
 	}
 
 	public void updateGrid(int num) {
-		System.out.println("updateGrid()");
+		//System.out.println("updateGrid()");
 		if (numClicked.equals("0")) {
 			error.setVisible(true);
 		} else {
@@ -289,7 +307,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				if (numClicked.equals(n)) {
 					// font();
 					txtAreas[i].setText("?");
-	
+
 					if (i == 0 || i < 3) {
 						txtAreas[i].move(580 + 203 * i, 150, 100);
 						viewObjects.add(txtAreas[i]);
@@ -301,11 +319,11 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 						viewObjects.add(txtAreas[i]);
 					}
 				}
-	
+
 				txtAreas[num].update();
 				// font();
 			}
-	
+
 			if (num == 0 || num < 3) {
 				txtAreas[num].move(560 + (203 * num), 105, 100);
 			} else if (num == 3 || num < 6) {
@@ -313,15 +331,15 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			} else if (num == 6 || num < 9) {
 				txtAreas[num].move(560 + 203 * (num - 6), 511, 100);
 			}
-	
+
 			txtAreas[num].setText(numClicked);
 			font();
 		}
-	
+
 	}
 
 	public void createTxtArea() {
-		System.out.println("createTxtArea()");
+		//System.out.println("createTxtArea()");
 		for (int i = 0; i < txtAreas.length; i++) {
 			if (i == 0 || i < 3) {
 				txtAreas[i] = new TextArea(580 + 203 * i, 150, 195, 195, "?");
@@ -337,25 +355,26 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	}
 
 	public void setUpGrid() {
-		System.out.println("setUpGrid()");
-		//Get number from backend
+		//System.out.println("setUpGrid()");
+		// Get number from backend
 		backend.chooseStartingPoint();
-		//stores number from backend
+		// stores number from backend
 		initNumBackEnd = backend.getInitiateNum();
-		System.out.println("Initial num from backend = " + initNumBackEnd);
-		//stores initial coordinate from backend
+		//System.out.println("Initial num from backend = " + initNumBackEnd);
+		// stores initial coordinate from backend
 		int r = backend.getRowNum();
 		int c = backend.getColNum();
 		String p = r + "," + c;
-	
-		//compares initial coordinate with every button coordinate
+
+		// compares initial coordinate with every button coordinate
 		for (int i = 0; i < gB.length; i++) {
-			System.out.println("String p = gB[i].getCoord();" + p);
+			//System.out.println("String p = gB[i].getCoord();" + p);
 			String h = gB[i].getCoord();
-			System.out.println("String h = gB[i].getCoord();" + h);
-			//if coordinates are a match, set num to the middle of button and make action null
+			//System.out.println("String h = gB[i].getCoord();" + h);
+			// if coordinates are a match, set num to the middle of button and make action
+			// null
 			if (p.equals(h)) {
-				System.out.println("THE SAME COORDINATES!!()");
+				//System.out.println("THE SAME COORDINATES!!()");
 				gB[i].setAction(null);
 				txtAreas[i].setText("" + initNumBackEnd);
 				txtAreas[i].setForeground(Color.red); // maroon color
@@ -369,8 +388,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				font();
 			}
 		}
-	
-		//disable number keypad buttons too
+
+		// disable number keypad buttons too
 		for (int i = 0; i < numberButtons.length; i++) {
 			int o = Integer.parseInt(numberButtons[i].getText());
 			if (o == initNumBackEnd) {
@@ -380,83 +399,108 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			}
 		}
 	}
-	
+
 	public void font() {
-		System.out.println("font()");
+		//System.out.println("font()");
 		try {
 			File fontFile = new File("images/HARRYP.ttf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-	
+
 			Font baseFont = font.deriveFont(150f);
 			Font b = font.deriveFont(70f);
-	
+
 			for (int i = 0; i < txtAreas.length; i++) {
-	
+
 				String q = txtAreas[i].getText();
 				if (q.equals("?")) {
 					txtAreas[i].setFont(b);
 				} else {
 					txtAreas[i].setFont(baseFont);
 				}
-	
+
 			}
-	
+
 		} catch (Exception e) {
-	
+
 			e.printStackTrace();
-	
+
 		}
 	}
 
-	
-
-	/*public void font(int num) {
-		try {
-			File fontFile = new File("images/HARRYP.ttf");
-			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-
-			Font baseFont = font.deriveFont(150f); // default
-			Font b = font.deriveFont(70f);
-
-			if(start == false) {
-				start = true;
-				
-			}
-			txtAreas[num].setFont(baseFont);
-			for (int i = 0; i < txtAreas.length; i++) {
-				if (i != num) {
-					String q = txtAreas[i].getText();
-					if (q.equals("?")) {
-						txtAreas[i].setFont(b);
-
-						// txtAreas[i].move(newX, newY, durationMS);
-					} else {
-						txtAreas[i].setFont(baseFont);
-					}
-				}
-			}
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-
-		}
-	}*/
+	/*
+	 * public void font(int num) { try { File fontFile = new
+	 * File("images/HARRYP.ttf"); Font font = Font.createFont(Font.TRUETYPE_FONT,
+	 * fontFile);
+	 * 
+	 * Font baseFont = font.deriveFont(150f); // default Font b =
+	 * font.deriveFont(70f);
+	 * 
+	 * if(start == false) { start = true;
+	 * 
+	 * } txtAreas[num].setFont(baseFont); for (int i = 0; i < txtAreas.length; i++)
+	 * { if (i != num) { String q = txtAreas[i].getText(); if (q.equals("?")) {
+	 * txtAreas[i].setFont(b);
+	 * 
+	 * // txtAreas[i].move(newX, newY, durationMS); } else {
+	 * txtAreas[i].setFont(baseFont); } } }
+	 * 
+	 * } catch (Exception e) {
+	 * 
+	 * e.printStackTrace();
+	 * 
+	 * } }
+	 */
 
 	public Color newColorWithAlpha(Color original, int alpha) {
-		System.out.println("newColorAlpha()");
+		//System.out.println("newColorAlpha()");
 		return new Color(original.getRed(), original.getGreen(), original.getBlue(), alpha);
 	}
 
 	public void setValues(int row, int col) {
-		System.out.println("setValues()");
+		//System.out.print("------------------------------------------------------------------------------------------\n");
+		//System.out.println("setValues()");
 		magicSquares = backend.getBoxes();
 
 		magicSquares[row][col] = Integer.parseInt(numClicked);
-		//make method so backend can get new updated magicsquares
-		//check by printing it out.
-		System.out.println("SET THE FING VALUES IN 2D ARRAY!! ");
+		// make method so backend can get new updated magicsquares
+		// check by printing it out.
+		//System.out.println("SET THE FING VALUES IN 2D ARRAY!! ");
+		
+		for( int r = 0; r <3; r++) {
+			for(int c = 0; c<3; c++) {
+				System.out.println(r+","+c+":"+magicSquares[r][c]);
+			}
+			
+		}
+		//System.out.print("------------------------------------------------------------------------------------------\n");
+		backend.setArr(magicSquares);
+		check();
+	}
+	
+	public void check() {
+		int count = 0;
+		boolean x;
+		for (int row = 0; row < 3; row++) {
+			for (int col = 0; col < 3; col++) {
+				if(magicSquares[row][col]!=0) {
+					count++;
+				}
+			}
+		}
+		if(count == 9) {
+			x =backend.checkTotal();
+			if(x) {
+				System.out.println("WINNNERNENRNENRNERNNENR!!!");
+			}else {
+				System.out.println("WRONGNGNGNGNGNGNGNGNGNGNGN!!");
+			}
+		}
+		
+		
+	}
+	
+	public void hints() {
+		
 	}
 
-	
 }
