@@ -3,7 +3,6 @@ package hPCatchingGameJi;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
@@ -25,6 +24,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 	public CatchingGameJi(int width, int height) {
 		super(width, height);
 		livesTxt.setForeground(Color.white);
+		livesTxt.setText("Lives Left: " + lives);
 		gameStatus.setForeground(Color.white);
 		generatePotions(1000);
 	}
@@ -47,12 +47,18 @@ public class CatchingGameJi extends FullFunctionScreen{
 		viewObjects.add(potion);
 		potionsList.add(potion);
 		potion.move(xPos, 770, time);
+		checkPotionCaught();
 	}
+	
+	//action on potion
+	//if clicked
+	//set potion null: remove from arraylist & remove it from screen
 	
 	public void checkPotionCaught() {
 		if(this.potion.getHeight() == 770) {
 			if(this.potion != null) {
 				lives--;
+				livesTxt.setText("Lives Left: " + lives);
 				checkLivesLeft();
 			}
 		}
