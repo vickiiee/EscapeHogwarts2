@@ -9,13 +9,13 @@ import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 
-public class Scene1 extends FullFunctionScreen{
+public class SideMenu extends FullFunctionScreen{
 
 	private Graphic background;
 	private Button lightsOut;
 	private Button dKiss;
 
-	public Scene1(int width, int height) {
+	public SideMenu(int width, int height) {
 		super(width, height);
 		setVisible(true);
 		lightsOut.setForeground(Color.WHITE);

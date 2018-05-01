@@ -6,9 +6,9 @@ import java.io.File;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
 
-public class GuiLoadingVickie extends GUIApplication{
+public class stephGUILoadingVickie extends GUIApplication{
 
-	public GuiLoadingVickie(int width, int height) {
+	public stephGUILoadingVickie(int width, int height) {
 		super(width, height);
 		setVisible(true);
 	}
