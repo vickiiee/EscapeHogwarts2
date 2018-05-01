@@ -8,6 +8,9 @@ import guiTeacher.components.StyledComponent;
 import hPCatchingGameJi.CatchingGameJi;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
+import hpKevStoryLine.DKTitle;
+import hpKevStoryLine.StephStory;
+import hpKevStoryLine.StephStory2;
 
 public class GuiLoadingVickie extends GUIApplication{
 
@@ -19,14 +22,20 @@ public class GuiLoadingVickie extends GUIApplication{
 	public static GuiLoadingVickie loading;
 	public static JiMenu menu;
 	//public static Scene1 scene1;
-	//public static VickieHPFrontEnd magicSquares;
+	// public static VickieHPFrontEnd magicSquares;
 	public static ConnectFourAreej c4;
-	public static CatchingGameJi cgame;
+
 	public static Storyline cline;
-	
+
+	public static CatchingGameJi cgame;
+
+	public static StephStory story;
+	public static StephStory2 story2;
+	public static DKTitle kStory;
+
 	public static void main(String[] args) {
 		loading = new GuiLoadingVickie(1200, 800);
-		
+
 		 Thread runner = new Thread(loading);
 		 runner.start();
 	}
@@ -54,6 +63,9 @@ public class GuiLoadingVickie extends GUIApplication{
 		c4 = new ConnectFourAreej(getWidth(), getHeight());
 		
 		cline = new Storyline(getWidth(),getHeight());
+		story = new StephStory(getWidth(), getHeight());
+		story2 = new StephStory2(getWidth(), getHeight());
+		kStory = new DKTitle(getWidth(), getHeight());
 		
 		cgame = new CatchingGameJi(getWidth(), getHeight());
 		
