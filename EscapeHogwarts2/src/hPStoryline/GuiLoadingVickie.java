@@ -5,6 +5,7 @@ import java.io.File;
 
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
+import hPCatchingGameJi.CatchingGameJi;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 
@@ -20,7 +21,7 @@ public class GuiLoadingVickie extends GUIApplication{
 	//public static Scene1 scene1;
 	//public static VickieHPFrontEnd magicSquares;
 	public static ConnectFourAreej c4;
-	
+	public static CatchingGameJi cgame;
 	public static Storyline cline;
 	
 	public static void main(String[] args) {
@@ -53,6 +54,8 @@ public class GuiLoadingVickie extends GUIApplication{
 		c4 = new ConnectFourAreej(getWidth(), getHeight());
 		
 		cline = new Storyline(getWidth(),getHeight());
+		
+		cgame = new CatchingGameJi(getWidth(), getHeight());
 		
 		setScreen(menu);
 		
