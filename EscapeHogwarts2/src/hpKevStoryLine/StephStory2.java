@@ -62,6 +62,10 @@ public class StephStory2 extends FullFunctionScreen {
 		name.setSize(40);
 		dialogue.setSize(35);
 		dialogue.setForeground(Color.WHITE);
+		choice1.setSize(30);
+		choice2.setSize(30);
+		choice1.setForeground(Color.WHITE);
+		choice2.setForeground(Color.WHITE);
 	}
 	
 	@Override
@@ -142,23 +146,23 @@ public class StephStory2 extends FullFunctionScreen {
 		dialogue = new TextArea(180,590,1000,500,"");
 		viewObjects.add(dialogue);
 		
-		choice1 = new Button(200, 600, 100, 50, "", Color.darkGray, new Action() {
+		choice1 = new Button(200, 700, 100, 50, "", Color.darkGray, new Action() {
 			
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
-				
+				dialogue.setText(choice1.getText());
+				dialogue.update();
 			}
 		});
 		viewObjects.add(choice1);
 		choice1.setVisible(false);
 		
-		choice2 = new Button(800, 600, 100, 50, "", Color.darkGray, new Action() {
+		choice2 = new Button(800, 700, 100, 50, "", Color.darkGray, new Action() {
 			
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
-				
+				dialogue.setText(choice2.getText());
+				dialogue.update();
 			}
 		});
 		viewObjects.add(choice2);
@@ -192,6 +196,9 @@ public class StephStory2 extends FullFunctionScreen {
 			choice2.setText(c2);
 			choice1.setVisible(true);
 			choice2.setVisible(true);
+		}else {
+			choice1.setVisible(false);
+			choice2.setVisible(false);
 		}
 	}
 	 
@@ -283,6 +290,7 @@ public class StephStory2 extends FullFunctionScreen {
 						String n = storyLine1[s1];
 						if(s1 == 2) {
 							switchCharName("Harry");
+							userChoice("hey!", "...");
 							//switchCharImage(harry);
 						}else {
 							if(s1 == 1) {
