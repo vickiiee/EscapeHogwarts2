@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
@@ -34,6 +36,18 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	private int[][] magicSquares;
 
 	private int initNumBackEnd; // getInitiateNum()
+	
+	private TextAreaColor bTimer;
+	private TextAreaColor tTimer;
+	
+	private int minutes;
+	private int seconds;
+
+	
+	
+	private Timer timer;
+
+	private TimerTask complete;
 
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
@@ -44,8 +58,11 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	public void initAllObjects(List<Visible> viewObjects) {
 		backend = new JiHPBackEnd(this);
 
+		minutes = 4;
+		seconds = 60;
 		numClicked = "0";
 
+		
 		trans = newColorWithAlpha(Color.white, 70);
 
 		numberButtons = new Button[9];
@@ -72,13 +89,20 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		viewObjects.add(counter);
 
 		
-		 Graphic textb = new Graphic(50, 50, 500, 100, "images/textbox2.png");
-		 viewObjects.add(textb);
+		 //Graphic textb = new Graphic(50, 50, 500, 100, "images/textbox2.png");
+		 //viewObjects.add(textb);
 		 
+		  bTimer = new TextAreaColor(50, 50, 150, 150, "Timer: ", trans, null);
+		 viewObjects.add(bTimer);
+		 
+		 tTimer = new TextAreaColor(200, 50, 150, 150, "5:00", trans, null);
+		 viewObjects.add(tTimer);
+		 startTimer();
 		createKeyPadButtons();
 		createGridButtons();
 		createTxtArea();
 		setUpGrid();
+		
 	}
 
 	public void createKeyPadButtons() {
@@ -497,6 +521,38 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		}
 		
 		
+	}
+	
+	public void startTimer() {
+		
+		timer = new Timer();
+		complete = new TimerTask() {
+			@Override
+			public void run() {
+				if(minutes == -1) {
+					timer.cancel();
+				}
+				
+				seconds--;
+				
+				//tTimer
+				
+				if(seconds<=9 && seconds >=1) {
+					bTimer.setText("Timer: "+minutes+":0"+seconds); //4:59
+					bTimer.update();
+				}else if(seconds == 0) {
+					bTimer.setText("Timer: "+minutes--+":00");
+					seconds = 60;
+				} else {
+					bTimer.setText("Timer: "+minutes+":"+seconds); //4:59
+					bTimer.update(); //tTimer
+				}
+				
+				
+				
+			}
+		};
+		timer.schedule(complete, 1000, 900);
 	}
 	
 	public void hints() {
