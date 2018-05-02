@@ -1,8 +1,13 @@
 package hPCatchingGameJi;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import guiTeacher.components.Action;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
@@ -13,12 +18,14 @@ public class CatchingGameJi extends FullFunctionScreen{
 	private Graphic background;
 	private TextArea livesTxt;
 	private TextArea gameStatus;
-	
+	private Potion potion;
+
 	private int lives = 5;
+	private int time;
+	private int potionPause;
 	private int xPos;
 	private int yPos = 0;
-	private Potion potion;
-	
+
 	ArrayList<Object> potionsList = new ArrayList<Object>();
 
 	public CatchingGameJi(int width, int height) {
@@ -26,9 +33,10 @@ public class CatchingGameJi extends FullFunctionScreen{
 		livesTxt.setForeground(Color.white);
 		livesTxt.setText("Lives Left: " + lives);
 		gameStatus.setForeground(Color.white);
-		generatePotions(1000);
+		startGame();
+		testGenPotion();
 	}
-	
+
 	public int getLives() {
 		return lives;
 	}
@@ -36,38 +44,106 @@ public class CatchingGameJi extends FullFunctionScreen{
 	public void setLives(int lives) {
 		this.lives = lives;
 	}
-	
-	public void startGame(int time) {
-		
+
+	public void startGame() {
+
+		Timer timer = new Timer();
+		TimerTask task;
+		task = new TimerTask() {
+			@Override
+			public void run() { 
+				potionPause = (int)(Math.random() * 3);
+				if (potionPause > 0) {
+					potionPause--;
+				} else {
+					generatePotion();
+					cancel();
+				}
+			}
+		};
+		timer.schedule(task, 0, 1000);
+
 	}
-	
-	public void generatePotions(int time) {
+
+	public void generatePotion() {
 		chooseStart();
-		potion = new Potion(xPos, 0, "images/bluepotion.png");
+		chooseTime();
+		potion = new Potion(xPos, 0, choosePotion());
 		viewObjects.add(potion);
 		potionsList.add(potion);
-		potion.move(xPos, 770, time);
+		potion.move(xPos, 780, time);
+		potion.setAction(new Action() {
+
+			@Override
+			public void act() {
+				potion.setVisible(false);
+				potionsList.remove(potion);
+				viewObjects.remove(potion);
+			}
+		});
 		checkPotionCaught();
+		/*
+		void mouseClicked(Object potion) {
+			potion.setVisible(false);
+			potionsList.remove(potion);
+			viewObjects.remove(potion);
+
+		}
+		*/
 	}
 	
+	
+	
+	public void testGenPotion() {
+		potion = new Potion(100, 100, choosePotion());
+		viewObjects.add(potion);
+		potion.setAction(new Action() {
+			
+			@Override
+			public void act() {
+				potion.setVisible(false);
+				viewObjects.remove(potion);
+			}
+		});
+	}
+
 	//action on potion
 	//if clicked
 	//set potion null: remove from arraylist & remove it from screen
-	
+
 	public void checkPotionCaught() {
-		if(this.potion.getHeight() == 770) {
-			if(this.potion != null) {
+		if(potion.getHeight() == 780) {
+			if(potion != null) {
 				lives--;
 				livesTxt.setText("Lives Left: " + lives);
 				checkLivesLeft();
 			}
 		}
 	}
-	
+
 	public void chooseStart() {
 		xPos = (int)(Math.random() * getWidth() - 100);
 	}
-	
+
+	public void chooseTime() {
+		time = (int)(Math.random() * 3000 + 300);
+	}
+
+	public String choosePotion() {
+		int temp = (int)(Math.random() * 3);
+		String potionName = "";
+		if(temp == 0) {
+			potionName = "images/bluepotion.png";
+		}else {
+			if(temp == 1) {
+				potionName = "images/redpotion.png";
+			}else {
+				potionName = "images/purplepotion.png";
+			}
+		}
+		return potionName;
+	}
+
 	/*
 	public void checkAllPotionCaught() {
 		if(potionsList.get(0) != null) {
@@ -76,11 +152,11 @@ public class CatchingGameJi extends FullFunctionScreen{
 			gameStatus.setText("You win");
 		}
 	}
-	*/
-	
+	 */
+
 	public void checkLivesLeft() {
 		if(getLives() <= 0) {
-			gameStatus.setText("You lose");
+			gameStatus.setText("You caught" + potionsList.size() + "potions in total!");
 		}
 	}
 
@@ -88,13 +164,11 @@ public class CatchingGameJi extends FullFunctionScreen{
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0,0,getWidth(), getHeight(), "images/background4.jpg");
 		viewObjects.add(background);
-		
+
 		livesTxt = new TextArea(100, 100, 500, 100, "Lives Left:");
 		viewObjects.add(livesTxt);
-	
+
 		gameStatus = new TextArea(300, 300, 500, 100, "");
 		viewObjects.add(gameStatus);
 	}
-
-	//
 }
