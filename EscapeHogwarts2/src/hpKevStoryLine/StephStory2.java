@@ -28,6 +28,9 @@ public class StephStory2 extends FullFunctionScreen {
 	private Graphic bg4;
 	private Graphic bg5;
 	private Graphic bg10;
+	private Graphic bg11;
+	private Graphic bg14;
+	private Graphic bg15;
 	
 	private boolean endS1;
 	private boolean endS2;
@@ -35,8 +38,6 @@ public class StephStory2 extends FullFunctionScreen {
 	
 	private TextArea name;
 	private TextArea dialogue;
-	
-	private ClickableGraphic nextB; 
 	
 	private Button choice1; 
 	private Button choice2;
@@ -51,10 +52,10 @@ public class StephStory2 extends FullFunctionScreen {
 	
 	private String[] storyLine1;
 	private String[] storyLine2;
-	private String[] matchName = {"Hermione", "Ron", "Harry", "Mcgonagall"};
+	private String[] matchName = {"Hermione", "Ron", "Harry", "McGonagall", "Snape"};
 	
 	private Graphic[] imagesList = {hermione, ron, harry};
-	private Graphic[] bg = {bg1, bg2, bg3, bg4, bg5, bg10};
+	private Graphic[] bg = {bg1, bg2, bg3, bg4, bg5, bg10, bg11, bg14, bg15};
 	
 	public StephStory2(int width, int height) {
 		super(width, height);
@@ -73,11 +74,12 @@ public class StephStory2 extends FullFunctionScreen {
 		count2 = 0;
 		
 		String[] n = {"Where are you going Harry? Class is the other way.","Lets just leave him, "
-				+ "Mcgonagall will kill us if we're late.","...","Potter! Weasley! Granger!"
-						+ " Why are you late to my class again?!",
-						"We got lost.", "Moving on, today's lesson will be about potions, "
-						+ "gather your things and follow me.", 
-						"Choose a partner and we'll begin."};
+				+ "McGonagall will kill us if we're late.","...","Potter! Weasley! Granger!"
+						+ " What are you doing in my class??",
+						"Shoot! We're supposed to be in Professor Snape's class!", "You are here to learn the"
+								+ " subtle science and exact art of potion-making.", 
+						"Sorry we're late!!", "If you weren't a bunch of dunderheads, maybe you'd be early and I wouldn't have to teach."
+						, "Now get to work!!"};
 		storyLine1 = n;
 		
 		background = new Graphic(0, 0, getWidth(), getHeight(), "simg/background.jpg");
@@ -107,20 +109,20 @@ public class StephStory2 extends FullFunctionScreen {
 		viewObjects.add(bg10);
 		bg10.setVisible(false);
 		
+		bg11 = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg11.jpg");
+		viewObjects.add(bg11);
+		bg11.setVisible(false);
+		
+		bg14 = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg14.jpg");
+		viewObjects.add(bg14);
+		bg14.setVisible(false);
+		
+		bg15 = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg15.png");
+		viewObjects.add(bg15);
+		bg15.setVisible(false);
+		
 		chatbox = new Graphic(80,80,1200,700, "simg/textbox.png");
 		viewObjects.add(chatbox);
-		
-		/* nextB = new ClickableGraphic(1100, 700, 50, 50, "simg/symbol.png");
-		nextB.setAction(new Action() {
-			
-			@Override
-			public void act() {
-				clicks++;
-				storyline();
-			}
-		});
-		viewObjects.add(nextB);
-		*/
 		
 		hermione = new Graphic(700,260,400,400,"simg/emma.png");
 		viewObjects.add(hermione);
@@ -148,6 +150,8 @@ public class StephStory2 extends FullFunctionScreen {
 				
 			}
 		});
+		viewObjects.add(choice1);
+		choice1.setVisible(false);
 		
 		choice2 = new Button(800, 600, 100, 50, "", Color.darkGray, new Action() {
 			
@@ -157,6 +161,8 @@ public class StephStory2 extends FullFunctionScreen {
 				
 			}
 		});
+		viewObjects.add(choice2);
+		choice2.setVisible(false);
 		
 		continueBtn = new Button(740, 600, 300, 100, "Continue", new Action() {
 			
@@ -173,7 +179,24 @@ public class StephStory2 extends FullFunctionScreen {
 			}
 	}
 	
-	public void userChoice() {
+	public boolean isHarry() {
+		if (name.getText().equals("Harry")){
+			return true;
+		}
+		return false;
+	}
+	
+	public void userChoice(String c1, String c2) {
+		if(isHarry()) {
+			choice1.setText(c1);
+			choice2.setText(c2);
+			choice1.setVisible(true);
+			choice2.setVisible(true);
+		}
+	}
+	 
+	//two different story line paths, (some algorithm) will decide which storyline to show next.
+	public void trackStory() {
 		
 	}
 	
@@ -264,23 +287,23 @@ public class StephStory2 extends FullFunctionScreen {
 						}else {
 							if(s1 == 1) {
 								switchCharName("Ron");
-								
+								//switchCharImage(ron);
 							} else {
 								if(s1 == 0) {
 									switchCharName("Hermione");
 									//switchCharImage(hermione);
 								} else {
-									if(s1 == 3 || s1 == 5) {
-										switchCharName("Mcgonagall");
+									if(s1 == 3) {
+										switchCharName("McGonagall");
 										switchBkgrnd(bg4);
 									} else {
-										if(s1 == 4) {
+										if(s1 == 4 || s1 == 6) {
 											switchCharName("Hermione");
-											switchBkgrnd(bg1);
+											switchBkgrnd(bg15);
 										} else {
-											if(s1 == 6) {
-												switchCharName("Mcgonagall");
-												switchBkgrnd(bg10);
+											if(s1 == 5 || s1 == 7 || s1 == 9) {
+												switchCharName("Snape");
+												switchBkgrnd(bg14);
 											}
 										}
 									}
