@@ -18,10 +18,10 @@ public class TextAreaColor extends Button {
 		return false;
 	}
 	
-	public void setCurve(int xPixels, int yPixels){
+	/*public void setCurve(int xPixels, int yPixels){
 		clear();
 		this.curveX = 0;
 		this.curveY = 0;
 		update();
-	}
+	}*/
 }

@@ -38,7 +38,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	private int initNumBackEnd; // getInitiateNum()
 	
 	private TextAreaColor bTimer;
-	private TextAreaColor tTimer;
+	private TextArea tTimer;
 	
 	private int minutes;
 	private int seconds;
@@ -92,10 +92,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		 //Graphic textb = new Graphic(50, 50, 500, 100, "images/textbox2.png");
 		 //viewObjects.add(textb);
 		 
-		  bTimer = new TextAreaColor(50, 50, 150, 150, "Timer: ", trans, null);
+		  bTimer = new TextAreaColor(50, 50, 300, 150, "Timer:        .", trans, null);
 		 viewObjects.add(bTimer);
 		 
-		 tTimer = new TextAreaColor(200, 50, 150, 150, "5:00", trans, null);
+		 tTimer = new TextArea(200, 50, 500, 500, "5:00");
 		 viewObjects.add(tTimer);
 		 startTimer();
 		createKeyPadButtons();
@@ -535,21 +535,61 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				
 				seconds--;
 				
+				changeTimerFont();
+				
 				//tTimer
 				
 				if(seconds<=9 && seconds >=1) {
-					bTimer.setText("Timer: "+minutes+":0"+seconds); //4:59
-					bTimer.update();
+					tTimer.setText(minutes+":0"+seconds); //4:59
+					tTimer.update();
 				}else if(seconds == 0) {
-					bTimer.setText("Timer: "+minutes--+":00");
+					tTimer.setText(minutes--+":00");
 					seconds = 60;
 				} else {
-					bTimer.setText("Timer: "+minutes+":"+seconds); //4:59
-					bTimer.update(); //tTimer
+					tTimer.setText(minutes+":"+seconds); //4:59
+					tTimer.update(); //tTimer
 				}
 				
+				/*
+				 * CHANGETIMERFONT:  3:0
+CHANGETIMERFONT2:  3:0
+CHANGETIMERFONT:  1:59
+CHANGETIMERFONT3:  1:59
+
+CHANGETIMERFONT3:  1:1
+CHANGETIMERFONT:  1:0
+CHANGETIMERFONT2:  1:0
+CHANGETIMERFONT:  -1:59
+CHANGETIMERFONT3:  -1:59
+
+				 */
 				
-				
+			}
+
+			public void changeTimerFont() {
+				System.out.println("CHANGETIMERFONT:  " + minutes +":" +seconds);
+				try {
+					File fontFile = new File("images/HARRYP.ttf");
+					Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+					Font baseFont = font.deriveFont(150f);
+					Font b = font.deriveFont(70f);
+
+					if((minutes ==0 && seconds == 0) || (minutes ==1 && seconds == 0) || (minutes ==2 && seconds == 0) || (minutes ==3 && seconds == 0) || (minutes ==4 && seconds == 0) ) {
+						System.out.println("CHANGETIMERFONT2:  " + minutes + ":" +seconds);
+						tTimer.setFont(baseFont);
+						//tTimer.setText(minutes--+":00");
+					}else {
+						tTimer.setFont(b);
+						System.out.println("CHANGETIMERFONT3:  " + minutes + ":" +seconds);
+					}
+					
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+
+				}
 			}
 		};
 		timer.schedule(complete, 1000, 900);
