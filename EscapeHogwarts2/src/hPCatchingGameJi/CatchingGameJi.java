@@ -1,7 +1,9 @@
 package hPCatchingGameJi;
 
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -36,7 +38,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 		livesTxt.setText("Lives Left: " + lives);
 		gameStatus.setForeground(Color.white);
 		startGame();
-		testGenPotion();
+		//testGenPotion();
 	}
 
 	public int getLives() {
@@ -48,65 +50,95 @@ public class CatchingGameJi extends FullFunctionScreen{
 	}
 
 	public void startGame() {
-
-		Timer timer = new Timer();
-		TimerTask task;
-		task = new TimerTask() {
-			@Override
-			public void run() { 
-				potionPause = (int)(Math.random() * 3);
-				if (potionPause > 0) {
-					potionPause--;
-				} else {
-					generatePotion();
-					cancel();
+		for(int i = 0; i < 20; i++) {
+			Timer timer = new Timer();
+			TimerTask task;
+			task = new TimerTask() {
+				@Override
+				public void run() { 
+					potionPause = (int)(Math.random() * 3);
+					if (potionPause > 0) {
+						potionPause--;
+					} else {
+						generatePotion();
+						cancel();
+					}
 				}
-			}
-		};
-		timer.schedule(task, 0, 1000);
+			};
+			timer.schedule(task, 0, 1000);
+		}
 
+		checkLivesLeft();
 	}
 
 	public void generatePotion() {
 		chooseStart();
 		chooseTime();
 		potion = new Potion(xPos, 0, choosePotion(), new Action() {
-			
 			/**
-			 * remove potion
+			 * option 1: click to remove potion
 			 */
 			@Override
 			public void act() {
 				potion.setVisible(false);
 				potionsList.remove(potion);
 				viewObjects.remove(potion);
-				System.out.println("??");
+				System.out.println("potion removed");
 			}
 		});
 		viewObjects.add(potion);
 		potionsList.add(potion);
 		potion.move(xPos, 780, time);
-		
+		/**
+		 * option 2: hover to remove potion
+		 */
+		if(potion.isHovered(potion.getWidth(), potion.getHeight())) {
+			potion.setVisible(false);
+			potionsList.remove(potion);
+			viewObjects.remove(potion);
+			System.out.println("potion removed");
+		}
+		/**
+		 * option 1.2 click to remove potion
+		 * mouseEntered
+		 * mouseClicked
+		 */
+		potion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				potion.setVisible(false);
+				potionsList.remove(potion);
+				viewObjects.remove(potion);
+				System.out.println("potion removed");
+			}
+		});
 		checkPotionCaught();
 	}
-		
+
 	public void testGenPotion() {
 		potion = new Potion(100, 100, choosePotion(), new Action() {
-			
+
 			@Override
 			public void act() {
 				potion.setVisible(false);
 				potionsList.remove(potion);
 				viewObjects.remove(potion);
-				System.out.println("??");
+				System.out.println("potion removed");
 			}
 		});
 		viewObjects.add(potion);
+		if(potion.isHovered(potion.getWidth(), potion.getHeight())) {
+			potion.setVisible(false);
+			potionsList.remove(potion);
+			viewObjects.remove(potion);
+			System.out.println("potion removed");
+		}
 	}
-	
+
 	public void checkPotionCaught() {
 		if(potion.getHeight() == 780) {
 			if(potion != null) {
+				potion.setVisible(false);
 				lives--;
 				livesTxt.setText("Lives Left: " + lives);
 				checkLivesLeft();
@@ -137,16 +169,6 @@ public class CatchingGameJi extends FullFunctionScreen{
 		return potionName;
 	}
 
-	/*
-	public void checkAllPotionCaught() {
-		if(potionsList.get(0) != null) {
-			gameStatus.setText("You lose");
-		}else {
-			gameStatus.setText("You win");
-		}
-	}
-	 */
-
 	public void checkLivesLeft() {
 		if(getLives() <= 0) {
 			gameStatus.setText("You caught" + potionsList.size() + "potions in total!");
@@ -163,13 +185,13 @@ public class CatchingGameJi extends FullFunctionScreen{
 
 		gameStatus = new TextArea(300, 300, 500, 100, "");
 		viewObjects.add(gameStatus);
-		
+
 		testBtn = new Button(500, 100, 200, 100, "remove", new Action() {
-			
+
 			@Override
 			public void act() {
 				viewObjects.remove(potion);
-				
+
 			}
 		});
 		viewObjects.add(testBtn);
