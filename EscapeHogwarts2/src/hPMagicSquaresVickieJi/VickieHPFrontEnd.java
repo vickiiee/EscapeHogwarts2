@@ -26,7 +26,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 	private TextArea error;
 	private TextArea counter; // testing purposes
-
+	private TextArea Test;
+	
 	private int count; // testing purposes
 
 	private Color trans;
@@ -38,16 +39,29 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	private int initNumBackEnd; // getInitiateNum()
 	
 	private TextAreaColor bTimer;
-	private TextArea tTimer;
+	private TextAreaColor tTimer;
+	
+	private TextAreaColor hint;
 	
 	private int minutes;
 	private int seconds;
 
-	
+	private int h;
 	
 	private Timer timer;
 
 	private TimerTask complete;
+
+	private TextArea Test2;
+
+	private TextArea Test1;
+	
+	private Button font1plus;
+	private Button font1sub;
+	private Button font2plus;
+	private Button font2sub;
+	private Button font3plus;
+	private Button font3sub;
 
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
@@ -88,16 +102,37 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		counter = new TextArea(50, 50, 700, 700, "" + count); // testing purposes
 		viewObjects.add(counter);
 
+		// Graphic textb = new Graphic(50, 50, 500, 100, "images/textbox2.png");
+		// viewObjects.add(textb);
+
+		/*
+		 * bTimer = new TextAreaColor(50, 50, 320, 150, "Timer:        .", trans, null);
+		 * viewObjects.add(bTimer);
+		 */
+		tTimer = new TextAreaColor(50, 50, 320, 150, "5:00", Color.gray, null);
+		viewObjects.add(tTimer);
+
+		hint =new TextAreaColor(50, 600, 320, 150, "HINTS", Color.gray, null);
+		viewObjects.add(hint);
+				
+		 Test = new TextArea(50, 50, 320, 500, "The '5' is always in the middle");
+		 Test.setForeground(Color.red);
+		viewObjects.add(Test);
 		
-		 //Graphic textb = new Graphic(50, 50, 500, 100, "images/textbox2.png");
-		 //viewObjects.add(textb);
+		
+		 Test1 = new TextArea(50, 50, 320, 500, "The numbers opposite the '5' in a column/row/ diagonal has to add up to ten");
+		 Test1.setForeground(Color.orange);
+		 viewObjects.add(Test1);
+		
+		
+		 Test2 = new TextArea(50, 50, 320, 500, "Besides the 5, odd numbers  are never adjacent to even  numbers and vice versa");
+		 Test2.setForeground(Color.yellow);
+		 viewObjects.add(Test2);
+		
 		 
-		  bTimer = new TextAreaColor(50, 50, 300, 150, "Timer:        .", trans, null);
-		 viewObjects.add(bTimer);
 		 
-		 tTimer = new TextArea(200, 50, 500, 500, "5:00");
-		 viewObjects.add(tTimer);
-		 startTimer();
+		//Test.setBaseFont(f);
+		startTimer();
 		createKeyPadButtons();
 		createGridButtons();
 		createTxtArea();
@@ -431,8 +466,9 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
 			Font baseFont = font.deriveFont(150f);
-			Font b = font.deriveFont(70f);
-
+			Font a = font.deriveFont(55f);
+			Font c = font.deriveFont(40f); //30
+			Font b = font.deriveFont(38f);
 			for (int i = 0; i < txtAreas.length; i++) {
 
 				String q = txtAreas[i].getText();
@@ -443,6 +479,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				}
 
 			}
+			Test.setFont(a);
+			Test1.setFont(b);
+			Test2.setFont(c);
+			
 
 		} catch (Exception e) {
 
@@ -529,18 +569,29 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		complete = new TimerTask() {
 			@Override
 			public void run() {
-				if(minutes == -1) {
+				if (minutes == 00 && seconds == 0) {
 					timer.cancel();
 				}
-				
+
 				seconds--;
-				
+
+				if (minutes == 4 && seconds == 0) {
+					hints(minutes);
+				}
+
+				if (minutes == 3 && seconds == 0) {
+					hints(minutes);
+				}
+
+				if (minutes == 2 && seconds == 0) {
+					hints(minutes);
+				}
 				changeTimerFont();
-				
-				//tTimer
-				
-				if(seconds<=9 && seconds >=1) {
-					tTimer.setText(minutes+":0"+seconds); //4:59
+
+				// tTimer
+
+				if (seconds <= 9 && seconds >= 1) {
+					tTimer.setText(minutes + ":0" + seconds); // 4:59
 					tTimer.update();
 				}else if(seconds == 0) {
 					tTimer.setText(minutes--+":00");
@@ -551,17 +602,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				}
 				
 				/*
-				 * CHANGETIMERFONT:  3:0
-CHANGETIMERFONT2:  3:0
-CHANGETIMERFONT:  1:59
-CHANGETIMERFONT3:  1:59
-
-CHANGETIMERFONT3:  1:1
-CHANGETIMERFONT:  1:0
-CHANGETIMERFONT2:  1:0
-CHANGETIMERFONT:  -1:59
-CHANGETIMERFONT3:  -1:59
-
+				 * Change color of text when minutes 
 				 */
 				
 			}
@@ -595,8 +636,22 @@ CHANGETIMERFONT3:  -1:59
 		timer.schedule(complete, 1000, 900);
 	}
 	
-	public void hints() {
+	public void hints(int num) {
+		//@ 4:00: the 5 is always in the midfdle
+		//@3:00: the numbers opposite the five in a column/row/diagonal has to add up to 10
+		//@2:00: Besides the 5, odd numbers are never adjacent to even numbers and vice veras
+	
+		if(num ==4) {
+			hint.setText("The '5' is always in the middle");
+		}
 		
+		if(num ==3) {
+			hint.setText("The numbers opposite the '5' in a column/row/diagonal has to add up to ten");
+		}
+		
+		if(num == 2) {
+			hint.setText("Besides the 5, odd numbers are never adjacent to even numbers and vice versa");
+		}
 	}
 
 }
