@@ -78,7 +78,7 @@ public class StephStory2 extends FullFunctionScreen {
 		count2 = 0;
 		
 		String[] n = {"Where are you going Harry? Class is the other way.","Lets just leave him, "
-				+ "McGonagall will kill us if we're late.","...","Potter! Weasley! Granger!"
+				+ "McGonagall will kill us if we're late.","","Potter! Weasley! Granger!"
 						+ " What are you doing in my class??",
 						"Shoot! We're supposed to be in Professor Snape's class!", "You are here to learn the"
 								+ " subtle science and exact art of potion-making.", 
@@ -290,16 +290,17 @@ public class StephStory2 extends FullFunctionScreen {
 						String n = storyLine1[s1];
 						if(s1 == 2) {
 							switchCharName("Harry");
+							switchCharImage(harry);
+							//pause timer until user has chosen an option then resume
 							userChoice("hey!", "...");
-							//switchCharImage(harry);
 						}else {
 							if(s1 == 1) {
 								switchCharName("Ron");
-								//switchCharImage(ron);
+								switchCharImage(ron);
 							} else {
 								if(s1 == 0) {
 									switchCharName("Hermione");
-									//switchCharImage(hermione);
+									switchCharImage(hermione);
 								} else {
 									if(s1 == 3) {
 										switchCharName("McGonagall");
