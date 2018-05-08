@@ -270,8 +270,7 @@ public class StephStory2 extends FullFunctionScreen {
 		}
 		continueBtn.setVisible(false);
 	}
-
-
+	
 	public void runStoryLine1() {
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
@@ -281,8 +280,6 @@ public class StephStory2 extends FullFunctionScreen {
 					cancel();
 				} else if (seconds > 0) {
 					seconds--;
-					//System.out.println("Seconds:" + seconds); // testing
-
 				} else if (seconds == 0) {
 					s1++;
 
@@ -291,8 +288,10 @@ public class StephStory2 extends FullFunctionScreen {
 						if(s1 == 2) {
 							switchCharName("Harry");
 							switchCharImage(harry);
+							timer.purge();
 							//pause timer until user has chosen an option then resume
 							userChoice("hey!", "...");
+							
 						}else {
 							if(s1 == 1) {
 								switchCharName("Ron");
