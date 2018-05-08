@@ -14,7 +14,8 @@ public class DKKissGame extends FullFunctionScreen{
 
 	private Graphic backgroundImg;
 	private ClickableGraphic[] cardArray;
-	
+	private int[] numList;
+	private String[] cardList;
 	
 	private int[] count;
 	
@@ -26,9 +27,22 @@ public class DKKissGame extends FullFunctionScreen{
 	
 	public void initAllObjects(List<Visible> viewObjects) {
 		cardArray = new ClickableGraphic[12];
+		numList = new int[6];
+		cardList = new String[6];
 		
 		backgroundImg = new Graphic(0, 0, getWidth(), getHeight(), "kimg/memoryReel.png");
 		viewObjects.add(backgroundImg);
+		
+		cardList[0] = "kimg/cardHarry.jpg";
+		cardList[1] = "kimg/cardHermione.jpg";
+		cardList[2] = "kimg/cardRon.jpg";
+		cardList[3] = "kimg/cardPatronus.png";
+		cardList[4] = "kimg/cardRemus.jpg";
+		cardList[5] = "kimg/cardVoldemort.png";
+		
+		for (int n = 0; n < numList.length; n++) {
+			numList[n] = 0;
+		}
 		
 		for (int i = 0; i < cardArray.length; i++) {
 			cardArray[i] = new ClickableGraphic((50 + (i%6)*180),(75 + (i/6)*350), 150, 300, "kimg/cardBack.png");
@@ -147,7 +161,18 @@ public class DKKissGame extends FullFunctionScreen{
 	}
 	
 	public void flipCard(ClickableGraphic cg) {
-		cg.loadImages("kimg/cardHarry.jpg", 150, 300);
+		int num = (int)(Math.random()*6);
+		
+		for(int i = 0; i < numList.length; i++) {
+			if(i == num && numList[i] < 2) {
+				numList[i]++;
+			}else if(numList[i] >= 2) {
+				flipCard(cg);
+			}
+		}
+		
+		cg.loadImages(cardList[num], 150, 300);
+		
 	}
 	
 }
