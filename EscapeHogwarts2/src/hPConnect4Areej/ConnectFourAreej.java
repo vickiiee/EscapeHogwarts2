@@ -21,11 +21,11 @@ public class ConnectFourAreej extends FullFunctionScreen {
 	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		background = new Graphic(0,0, getWidth(), getHeight(), "images/background2.jpg");
+		background = new Graphic(0,0, getWidth(), getHeight(), "images/party.jpg");
 		viewObjects.add(background);
 		
 		back = new Graphic(350,220, 600, 620, "images/mSCBoard.jpg");
-		viewObjects.add(back);
+		//viewObjects.add(back);
 		
 		board = new Graphic(300,200, 700, getHeight(), "images/cboard.png");
 		viewObjects.add(board);
