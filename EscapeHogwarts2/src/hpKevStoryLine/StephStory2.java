@@ -90,6 +90,9 @@ public class StephStory2 extends FullFunctionScreen  {
 						, "Now get to work!!"};
 		storyLine1 = n;
 		
+		String[] b = {"Harry who is your partner?", ""};
+		storyLine2 = b;
+		
 		background = new Graphic(0, 0, getWidth(), getHeight(), "simg/background.jpg");
 		viewObjects.add(background);
 		
@@ -347,6 +350,13 @@ public class StephStory2 extends FullFunctionScreen  {
 					seconds--;
 				}else if(seconds == 0) {
 					s2++;
+					
+					if(s2 > -1 && s2 < storyLine2.length) {
+						if(s2 == 0) {
+							switchCharName("Snape");
+							
+						}
+					}
 				}
 				
 			}
