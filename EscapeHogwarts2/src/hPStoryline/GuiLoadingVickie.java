@@ -51,7 +51,7 @@ public class GuiLoadingVickie extends GUIApplication{
 			 
 			 StyledComponent.setBaseFont(baseFont);
 
-			 } catch (Exception e) {
+			 } catch (Exception e) {//
 
 			 e.printStackTrace();
 
