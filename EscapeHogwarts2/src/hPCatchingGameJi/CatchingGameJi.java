@@ -71,7 +71,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 					b = a.getLocation();
 					mouseX = (int) b.getX();
 					mouseY = (int) b.getY();
-					System.out.println(mouseX + ", " + mouseY);
+					//System.out.println(mouseX + ", " + mouseY);
 				} else {
 					cancel();
 				}
