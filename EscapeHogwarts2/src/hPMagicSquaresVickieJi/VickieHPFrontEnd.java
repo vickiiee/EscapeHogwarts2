@@ -71,6 +71,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 	private TextAreaColor hintBox;
 
+	private int goldI;
+
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
 
@@ -121,20 +123,89 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 		hintBox = new TextAreaColor(50, 600, 320, 150, "HINTS", Color.gray, null);
 		viewObjects.add(hintBox);
+		
+		hOne = new Button(380, 635, 25, 25, "1", Color.blue,new Action() {
+			
+			@Override
+			public void act() {
+				goldI++;
+				txtAreas[goldI].setForeground(Color.yellow);
+				if (minutes  < 4) {
+					hintBox.setText("");
+					//hintBox.setText("The '5' is always in the middle");
+					hint3.setVisible(false);
+					hint2.setVisible(false);
+					hint1.setVisible(true);
+				}else {
+					hintBox.setText("Unlocked at 4:00");
+				}
+				
+			}
+			
+		});
+		hOne.setCurve(10, 20);
+		viewObjects.add(hOne);
+		
+		hTwo = new Button(380, 665, 25, 25, "2", Color.blue,new Action() {
 
-		hint1 = new TextArea(50, 50, 320, 500, "The '5' is always in the middle");
+			@Override
+			public void act() {
+				if (minutes < 3) {
+					hintBox.setText("");
+					//hintBox.setText("The numbers opposite the '5' in a column/row/ diagonal has to add up to ten");
+					hint3.setVisible(false);
+					hint1.setVisible(false);
+					hint2.setVisible(true);
+				}else {
+					hintBox.setText("Unlocked at 3:00");
+					hint1.setVisible(false);
+				}
+			}
+			
+		});
+		hTwo.setCurve(10, 20);
+		viewObjects.add(hTwo);
+		
+		hThree = new Button(380, 695, 25, 25, "3", Color.blue,new Action() {
+
+			@Override
+			public void act() {
+				if (minutes < 2) {
+					hintBox.setText("");
+					//hintBox.setText("Besides the 5, odd numbers are never adjacent to even numbers and vice versa");
+					hint2.setVisible(false);
+					hint1.setVisible(false);
+					hint3.setVisible(true);
+					
+				}else {
+					hintBox.setText("Unlocked at 2:00");
+					hint2.setVisible(false);
+					hint1.setVisible(false);
+				}
+			}
+			
+		});
+		hThree.setCurve(10,20);
+		viewObjects.add(hThree);
+
+		hint1 = new TextArea(55, 600, 320, 500, "The '5' is always    in the middle");
 		hint1.setForeground(Color.red);
 		viewObjects.add(hint1);
 
-		hint2 = new TextArea(50, 50, 320, 500,
-				"The numbers opposite the '5' in a column/row/ diagonal has to add up to ten");
+		hint2 = new TextArea(50, 600, 320, 500,
+				"The numbers opposite the 5  in a column/row/diagonal    has to add up to ten");
 		hint2.setForeground(Color.orange);
 		viewObjects.add(hint2);
 
-		hint3 = new TextArea(50, 50, 320, 500,
-				"Besides the 5, odd numbers  are never adjacent to even  numbers and vice versa");
+		hint3 = new TextArea(50, 600, 320, 500,
+				" Besides the 5, odd numbers are NEVER adjacent to even    numbers and vice versa");
 		hint3.setForeground(Color.yellow);
 		viewObjects.add(hint3);
+		
+		hint1.setVisible(false);
+		hint3.setVisible(false);
+		hint2.setVisible(false);
+		
 
 		// hOne= new Button
 
@@ -474,13 +545,17 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 			Font baseFont = font.deriveFont(150f);
 			Font a = font.deriveFont(55f);
-			Font c = font.deriveFont(40f); // 30
+			Font c = font.deriveFont(38f); // 30 /40
 			Font b = font.deriveFont(38f);
+			
+			Font question = font.deriveFont(70f);
+			
+			Font hB = font.deriveFont(25f);
 			for (int i = 0; i < txtAreas.length; i++) {
 
 				String q = txtAreas[i].getText();
 				if (q.equals("?")) {
-					txtAreas[i].setFont(b);
+					txtAreas[i].setFont(question);
 				} else {
 					txtAreas[i].setFont(baseFont);
 				}
@@ -491,6 +566,11 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			hint3.setFont(c);
 
 			hintBox.setFont(b);
+			
+			hOne.setFont(hB);
+			hTwo.setFont(hB);
+			hThree.setFont(hB);
+			
 
 		} catch (Exception e) {
 
@@ -562,30 +642,55 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		if (count == 9) {
 			x = backend.checkTotal();
 			if (x) {
+				
 				System.out.println("WINNNERNENRNENRNERNNENR!!!");
-			} else {
+				
+				//disable timer
+				timer.cancel();
+				
+				//make gold
+				 goldI = -1;
+				Timer gold = new Timer();
+				TimerTask y = new TimerTask() {
+					@Override
+					public void run() {
+						goldI++;
+						txtAreas[goldI].setForeground(Color.yellow);
+						
+						if(g ==8) {
+							gold.cancel();
+						}
+					}
+				};
+				
+				gold.schedule(y, 0, 500);
+					
+				//disable all buttons
+			}
+			else {
 				System.out.println("WRONGNGNGNGNGNGNGNGNGNGNGN!!");
 			}
 		}
-
 	}
 
+
 	public void startTimer() {
-		g = 5;
+		//g = 5;
 		timer = new Timer();
 		complete = new TimerTask() {
 			@Override
 			public void run() {
-				if (minutes == -1 && seconds == 60) {
+				if (minutes == 0 && seconds == 1) { //closeset is -1 and 60
+					System.out.println(minutes + ":" + seconds);
 					timer.cancel();
 				}
 				
-				g--;
+			//	g--;
 				seconds--;
-				hints(g);
-				if(g ==2) {
-					g = 4;
-				}
+				//hints(g);
+				//if(g ==2) {
+				//	g = 4;
+				//}
 				if (minutes == 4 && seconds == 0) {
 					hints(minutes);
 				}
@@ -656,15 +761,23 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		// veras
 
 		if (num == 4) {
-			hintBox.setText("The '5' is always in the middle");
+			hintBox.setText("");
+			hint1.setVisible(true);
 		}
 
 		if (num == 3) {
-			hintBox.setText("The numbers opposite the '5' in a column/row/diagonal has to add up to ten");
+			hintBox.setText("");
+			hint2.setVisible(true);
+			hint1.setVisible(false);
+			//hintBox.setText("The numbers opposite the '5' in a column/row/ diagonal has to add up to ten");
 		}
 
 		if (num == 2) {
-			hintBox.setText("Besides the 5, odd numbers are never adjacent to even numbers and vice versa");
+			hintBox.setText("");
+			hint3.setVisible(true);
+			hint1.setVisible(false);
+			hint2.setVisible(false);
+			//hintBox.setText("Besides the 5, odd numbers are never adjacent to even numbers and vice versa");
 		}
 		
 		
