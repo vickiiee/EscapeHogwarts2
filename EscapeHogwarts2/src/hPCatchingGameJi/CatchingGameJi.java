@@ -31,17 +31,21 @@ public class CatchingGameJi extends FullFunctionScreen{
 	private int time;
 	private int potionPause;
 	private int xPos;
-	private int yPos = 0;
+	private final int yPos = 0;
 	private int mouseX;
 	private int mouseY;
 
-	ArrayList<Potion> potionsCreated = new ArrayList<Potion>();
-	ArrayList<Potion> potionsCaught = new ArrayList<Potion>();
+	ArrayList<Potion> potionsList = new ArrayList<Potion>();
+	//ArrayList<Potion> potionsCreated = new ArrayList<Potion>();
+	//ArrayList<Potion> potionsCaught = new ArrayList<Potion>();
 	private Button testBtn;
 
 	private boolean gameRunning = true;
+	private boolean gameStarted;
 	private Point b;
 	private PointerInfo a;
+	
+	
 
 	public CatchingGameJi(int width, int height) {
 		super(width, height);
@@ -65,11 +69,11 @@ public class CatchingGameJi extends FullFunctionScreen{
 					mouseX = (int) b.getX();
 					mouseY = (int) b.getY();
 					//System.out.println(mouseX + ", " + mouseY);
-					for(int i = 0; i < potionsCreated.size(); i++) {
-						if (checkDistanceRange(potionsCreated.get(i))) {
-							potionsCreated.get(i).setVisible(false);
-							potionsCaught.add(potionsCreated.get(i));
-							viewObjects.remove(potionsCreated.get(i));
+					for(int i = 0; i < potionsList.size(); i++) {
+						if (checkDistanceRange(potionsList.get(i))) {
+							potionsList.get(i).setVisible(false);
+							potionsList.remove(i);
+							viewObjects.remove(potionsList.get(i));
 							System.out.println("potion removed");
 						}
 					}
@@ -82,9 +86,9 @@ public class CatchingGameJi extends FullFunctionScreen{
 		return b;
 	}
 
-	public boolean checkDistanceRange(Object object) {
-		if(Math.abs(mouseY-(((Component) object).getHeight() - 50)) < 10){
-			if(Math.abs(mouseX-(((Component) object).getWidth() - 50)) < 10){
+	public boolean checkDistanceRange(Potion p) {
+		if(Math.abs(mouseY-((p).getHeight() - 50)) < 10){
+			if(Math.abs(mouseX-((p).getWidth() - 50)) < 10){
 				return true;
 			}
 		}
@@ -124,7 +128,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 	public void generatePotion() {
 		chooseStart();
 		chooseTime();
-		potion = new Potion(xPos, 0, choosePotion(), new Action() {
+		potion = new Potion(xPos, yPos, choosePotion(), new Action() {
 			/**
 			 * option 1: click to remove potion
 			 */
@@ -139,7 +143,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 			}
 		});
 		viewObjects.add(potion);
-		potionsCreated.add(potion);
+		potionsList.add(potion);
 		//System.out.println(potionsList);
 		potion.move(xPos, 780, time);
 		/**
@@ -229,8 +233,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 
 	public void checkLivesLeft() {
 		if(getLives() <= 0) {
-			gameStatus.setText("You caught" + potionsCaught.size() + "potions in total out of" 
-		+ potionsCreated.size() + "!");
+			gameStatus.setText("You caught" + potionsList.size() + "potions in total!");
 			gameRunning = false;
 		}
 	}
@@ -239,6 +242,11 @@ public class CatchingGameJi extends FullFunctionScreen{
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0,0,getWidth(), getHeight(), "images/background4.jpg");
 		viewObjects.add(background);
+		
+		gameStarted = true;
+		if(gameStarted) {
+			
+		}
 
 		livesTxt = new TextArea(100, 100, 500, 100, "Lives Left:");
 		viewObjects.add(livesTxt);

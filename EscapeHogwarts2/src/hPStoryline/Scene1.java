@@ -22,8 +22,11 @@ public class Scene1 extends FullFunctionScreen {
 	private int seconds;
 	private int s1;
 	private int s2;
+	private int s3;
+	
 	private boolean endS1;
 	private boolean endS2;
+	private boolean endS3;
 	private boolean startSeq;
 	private boolean winMagicSquares = false;
 	
@@ -51,6 +54,7 @@ public class Scene1 extends FullFunctionScreen {
 
 	private String[] storyLine1;
 	private String[] storyLine2;
+	private String[] storyLine3;
 	private String[] charNames = {"Harry", "Hermione", "Ron"};
 	
 	private Graphic[] charImages = {charHarry, charHerm, charRon};
@@ -178,7 +182,44 @@ public class Scene1 extends FullFunctionScreen {
 	}
 	
 	public void runStoryLine3() {
-		
+		Timer timer = new Timer();
+		TimerTask task;
+		task = new TimerTask() {
+			@Override
+			public void run() {
+				if (endS3) {
+					cancel();
+				} else if (seconds > 0) {
+					seconds--;
+				} else if (seconds == 0) {
+					s3++;
+
+					if (s3 > -1 && s3 < storyLine3.length) {
+						if(s3 == 1) {
+							switchCharName("Ron");
+							switchCharImage(charRon);
+						}else {
+							if(s3 == 1) {
+								switchCharName("Hermione");
+								switchCharImage(charHerm);
+							}else {
+								switchCharName("Harry");
+								switchCharImage(charHarry);
+							}
+						}
+						String n3 = storyLine2[s3];
+						displayPhrase(storyLine3[s3]);
+						seconds = 1;
+					} else {
+						endS3 = true;
+						//continueBtn.setVisible(true);
+					}
+
+				}
+
+			}
+		};
+		timer.schedule(task, 0, 1000);
 	}
 
 	public void switchCharName(String cName) {
@@ -251,7 +292,8 @@ public class Scene1 extends FullFunctionScreen {
 								+ " they changed it this term.", "We better be quick before anyone suspects you're going."};
 		storyLine2 = n2;
 		
-		String[] n3 = {"My cloak!", "Thanks to you both, we can make it to Hogsmeade now!"};
+		String[] n3 = {"My cloak!", "Thanks to you both, we can make it to Hogsmeade now!", ""};
+		storyLine3 = n3;
 		
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/castle.jpg");
 		viewObjects.add(background);
