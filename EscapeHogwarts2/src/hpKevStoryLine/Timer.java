@@ -24,7 +24,6 @@ public abstract class Timer {
 		this.interval = interval;
 		this.duration = duration;
 		this.elapsedTime = 0;
-		//
 	}
 	
 	public void start() {

@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
@@ -15,7 +18,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 
-public class StephStory2 extends FullFunctionScreen {
+public class StephStory2 extends FullFunctionScreen  {
 
 	private Graphic background;
 	private Graphic chatbox;
@@ -74,6 +77,7 @@ public class StephStory2 extends FullFunctionScreen {
 		endS1 = false;
 		endS2 = false;
 		s1 = -1;
+		s2 = -1;
 		count1 = 0;
 		count2 = 0;
 		
@@ -288,9 +292,7 @@ public class StephStory2 extends FullFunctionScreen {
 						if(s1 == 2) {
 							switchCharName("Harry");
 							switchCharImage(harry);
-							timer.purge();
 							//pause timer until user has chosen an option then resume
-							userChoice("hey!", "...");
 							
 						}else {
 							if(s1 == 1) {
@@ -333,5 +335,22 @@ public class StephStory2 extends FullFunctionScreen {
 		timer.schedule(task, 0, 1000);
 	}
 	
+	public void runStoryLine2() {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+
+			@Override
+			public void run() {
+				if(endS2) {
+					cancel();
+				}else if(seconds > 0) {
+					seconds--;
+				}else if(seconds == 0) {
+					s2++;
+				}
+				
+			}
+		};
+	}
 }
 
