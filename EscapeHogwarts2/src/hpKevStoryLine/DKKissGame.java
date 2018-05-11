@@ -55,6 +55,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[0]);
+				checkPair(cardArray);
 				
 			}
 		});
@@ -167,11 +168,22 @@ public class DKKissGame extends FullFunctionScreen{
 			if(i == num && numList[i] < 2) {
 				numList[i]++;
 			}else if(numList[i] >= 2) {
-				flipCard(cg);
+				try {
+					flipCard(cg);	
+				} catch (Exception e) {
+
+					 e.printStackTrace();
+
+					 }
+				
 			}
 		}
 		
 		cg.loadImages(cardList[num], 150, 300);
+		
+	}
+	
+	public void checkPair(ClickableGraphic[] cga) {
 		
 	}
 	
