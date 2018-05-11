@@ -6,9 +6,12 @@ import guiTeacher.components.Action;
 import guiTeacher.components.ClickableGraphic;
 
 public class Potion extends ClickableGraphic{
+	
+	private int index;
 
-	public Potion(int x, int y, String imageLocation, Action a) {
+	public Potion(int x, int y, String imageLocation, int index, Action a) {
 		super(x, y, imageLocation);
+		this.index = index;
 		setAction(a);
 		// TODO Auto-generated constructor stub
 	}
@@ -16,6 +19,14 @@ public class Potion extends ClickableGraphic{
 	public void addMouseListener(Object mouseAdapter) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public int getIndex() {
+		return index;
+	}
+	
+	public void setIndex(int idx) {
+		index = idx;
 	}
 
 }

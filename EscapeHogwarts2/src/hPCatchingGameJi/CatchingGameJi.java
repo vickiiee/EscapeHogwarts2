@@ -128,7 +128,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 	public void generatePotion() {
 		chooseStart();
 		chooseTime();
-		potion = new Potion(xPos, yPos, choosePotion(), new Action() {
+		potion = new Potion(xPos, xPos, choosePotion(), potionsList.size(), new Action() {
 			/**
 			 * option 1: click to remove potion
 			 */
@@ -139,13 +139,16 @@ public class CatchingGameJi extends FullFunctionScreen{
 				potionsList.remove(potion);
 				viewObjects.remove(potion);
 				System.out.println("potion removed");
-				 */
+				*/
+				
+				potionsList.get(potion.getIndex()).setVisible(false);
+				
 			}
 		});
 		viewObjects.add(potion);
 		potionsList.add(potion);
 		//System.out.println(potionsList);
-		potion.move(xPos, 780, time);
+		//potion.move(xPos, 780, time);
 		/**
 		 * option 2: hover to remove potion
 		 */
