@@ -16,6 +16,7 @@ public class DKKissGame extends FullFunctionScreen{
 	private ClickableGraphic[] cardArray;
 	private int[] numList;
 	private String[] cardList;
+	private Boolean[] flipList;
 	
 	private int[] count;
 	
@@ -29,9 +30,14 @@ public class DKKissGame extends FullFunctionScreen{
 		cardArray = new ClickableGraphic[12];
 		numList = new int[6];
 		cardList = new String[6];
+		flipList = new Boolean[12];
 		
 		backgroundImg = new Graphic(0, 0, getWidth(), getHeight(), "kimg/memoryReel.png");
 		viewObjects.add(backgroundImg);
+		
+		for (int j = 0; j < flipList.length; j++) {
+			flipList[j] = false;
+		}
 		
 		cardList[0] = "kimg/cardHarry.jpg";
 		cardList[1] = "kimg/cardHermione.jpg";
@@ -55,7 +61,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[0]);
-				checkPair(cardArray);
+				checkPair(flipList);
 				
 			}
 		});
@@ -166,25 +172,40 @@ public class DKKissGame extends FullFunctionScreen{
 		
 		for(int i = 0; i < numList.length; i++) {
 			if(i == num && numList[i] < 2) {
+				flipList[i] = true;
 				numList[i]++;
-			}else if(numList[i] >= 2) {
-				try {
-					flipCard(cg);	
-				} catch (Exception e) {
-
-					 e.printStackTrace();
-
-					 }
-				
+				cg.loadImages(cardList[i], 150, 300);
+				checkPair(flipList);
 			}
 		}
 		
-		cg.loadImages(cardList[num], 150, 300);
-		
 	}
 	
-	public void checkPair(ClickableGraphic[] cga) {
+	public void checkPair(Boolean[] fList) {
+		for (int i = 0; i < fList.length; i++) {
+			if (fList[i] == true) {
+				for(int n = (i+1); n < fList.length; n++) {
+					if(fList[i] == fList[n]) {
+						if(compareValues(cardList[i], cardList[n]) == false) {
+							fList[i] = false;
+							fList[n] = false;
+							
+							numList[i]--;
+							numList[n]--;
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	public boolean compareValues(String card1, String card2) {
+		if (card1.equals(card2) != true){
+			return false;
+		}
 		
+		return true;
 	}
 	
 }
