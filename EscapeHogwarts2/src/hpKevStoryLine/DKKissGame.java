@@ -71,6 +71,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[1]);
+				checkPair(flipList);
 				
 			}
 		});
@@ -80,6 +81,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[2]);
+				checkPair(flipList);
 			
 			}
 		});
@@ -89,6 +91,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[3]);
+				checkPair(flipList);
 		
 			}
 		});
@@ -98,6 +101,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[4]);
+				checkPair(flipList);
 		
 			}
 		});
@@ -107,6 +111,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[5]);
+				checkPair(flipList);
 		
 			}
 		});
@@ -116,6 +121,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[6]);
+				checkPair(flipList);
 		
 			}
 		});
@@ -125,6 +131,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[7]);
+				checkPair(flipList);
 		
 			}
 		});
@@ -134,6 +141,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[8]);
+				checkPair(flipList);
 		
 			}
 		});
@@ -143,6 +151,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[9]);
+				checkPair(flipList);
 		
 			}
 		});
@@ -152,6 +161,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[10]);
+				checkPair(flipList);
 		
 			}
 		});
@@ -161,6 +171,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[11]);
+				checkPair(flipList);
 		
 			}
 		});
