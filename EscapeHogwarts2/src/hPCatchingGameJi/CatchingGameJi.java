@@ -87,8 +87,8 @@ public class CatchingGameJi extends FullFunctionScreen{
 	}
 
 	public boolean checkDistanceRange(Potion p) {
-		if(Math.abs(mouseY-((p).getHeight() - 50)) < 10){
-			if(Math.abs(mouseX-((p).getWidth() - 50)) < 10){
+		if(Math.abs(mouseY-((p).getY() - 50)) < 10){
+			if(Math.abs(mouseX-((p).getX() - 50)) < 10){
 				return true;
 			}
 		}
@@ -201,7 +201,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 	}
 	*/
 	public void checkPotionCaught() {
-		if(potion.getHeight() == 780) {
+		if(potion.getY() >= 780) {
 			if(potion != null) {
 				potion.setVisible(false);
 				setLives(lives--);
