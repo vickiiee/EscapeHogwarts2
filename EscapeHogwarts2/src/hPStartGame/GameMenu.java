@@ -10,6 +10,7 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPCatchingGameJi.CatchingGameJi;
 import hPCatchingGameJi.Storyline;
 import hPConnect4Areej.ConnectFourAreej;
+import hPMagicSquaresVickieJi.Instruction;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 import hpKevStoryLine.DKTitle;
 import hpKevStoryLine.StephStory;
@@ -40,7 +41,7 @@ public class GameMenu extends FullFunctionScreen{
 
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new Instruction(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(magicSquares);
