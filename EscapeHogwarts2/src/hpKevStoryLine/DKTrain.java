@@ -10,7 +10,7 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
-import hPStoryline.GuiLoadingVickie;
+import hPStartGame.GuiLoadingVickie;
 
 public class DKTrain extends FullFunctionScreen {
 

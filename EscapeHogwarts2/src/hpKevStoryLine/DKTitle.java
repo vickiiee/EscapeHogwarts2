@@ -9,7 +9,7 @@ import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
-import hPStoryline.GuiLoadingVickie;
+import hPStartGame.GuiLoadingVickie;
 
 public class DKTitle extends FullFunctionScreen {
 	
