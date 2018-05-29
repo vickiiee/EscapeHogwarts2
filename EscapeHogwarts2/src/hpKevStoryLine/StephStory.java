@@ -11,8 +11,8 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPCatchingGameJi.Scene1;
 import hPStartGame.GuiLoadingVickie;
-import hPStartGame.Scene1;
 
 public class StephStory extends FullFunctionScreen {
 

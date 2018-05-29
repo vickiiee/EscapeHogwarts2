@@ -1,4 +1,4 @@
-package hPStartGame;
+package hPCatchingGameJi;
 
 import java.awt.Color;
 import java.util.List;
@@ -11,6 +11,7 @@ import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPConnect4Areej.ConnectFourAreej;
+import hPStartGame.GuiLoadingVickie;
 
 public class Storyline extends FullFunctionScreen {
 

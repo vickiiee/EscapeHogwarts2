@@ -10,6 +10,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPCatchingGameJi.Scene1;
 
 public class JiMenu extends FullFunctionScreen{
 
