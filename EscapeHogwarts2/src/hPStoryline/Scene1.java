@@ -14,21 +14,28 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPCatchingGameJi.CatchingGameJi;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
+import hpKevStoryLine.DKTitle;
+import hpKevStoryLine.StephStory;
 
 public class Scene1 extends FullFunctionScreen {
 
 	private int seconds;
 	private int s1;
 	private int s2;
+	private int s3;
+	
 	private boolean endS1;
 	private boolean endS2;
+	private boolean endS3;
 	private boolean startSeq;
+	private boolean winMagicSquares = false;
 	
 	private Graphic background;
 	private Graphic charHerm;
 	private Graphic charRon;
 	private Graphic background1;
 	private Graphic background2;
+	private Graphic hogsmeade;
 	private Graphic dialogue;
 	private Graphic charHarry;
 	
@@ -39,15 +46,19 @@ public class Scene1 extends FullFunctionScreen {
 	private Button continueBtn;
 	//private Button skipBtn;
 	
+	private Button lightsOut;
+	private Button dKiss;
+	
 	private TextArea charName;
 	private TextArea dialogueTxt;
 
 	private String[] storyLine1;
 	private String[] storyLine2;
+	private String[] storyLine3;
 	private String[] charNames = {"Harry", "Hermione", "Ron"};
 	
 	private Graphic[] charImages = {charHarry, charHerm, charRon};
-	private Graphic[] bkgrnds = {background1, background2};
+	private Graphic[] bkgrnds = {background1, background2, hogsmeade};
 
 	public Scene1(int width, int height) {
 		super(width, height);
@@ -57,6 +68,8 @@ public class Scene1 extends FullFunctionScreen {
 		dialogueTxt.setSize(40);
 		dialogueTxt.setForeground(Color.WHITE);
 		magicSquares.setForeground(Color.LIGHT_GRAY);
+		lightsOut.setForeground(Color.WHITE);
+		dKiss.setForeground(Color.WHITE);
 	}
 
 	public String displayPhrase(String txt) {
@@ -167,6 +180,47 @@ public class Scene1 extends FullFunctionScreen {
 		};
 		timer.schedule(task, 0, 1000);
 	}
+	
+	public void runStoryLine3() {
+		Timer timer = new Timer();
+		TimerTask task;
+		task = new TimerTask() {
+			@Override
+			public void run() {
+				if (endS3) {
+					cancel();
+				} else if (seconds > 0) {
+					seconds--;
+				} else if (seconds == 0) {
+					s3++;
+
+					if (s3 > -1 && s3 < storyLine3.length) {
+						if(s3 == 1) {
+							switchCharName("Ron");
+							switchCharImage(charRon);
+						}else {
+							if(s3 == 1) {
+								switchCharName("Hermione");
+								switchCharImage(charHerm);
+							}else {
+								switchCharName("Harry");
+								switchCharImage(charHarry);
+							}
+						}
+						String n3 = storyLine2[s3];
+						displayPhrase(storyLine3[s3]);
+						seconds = 1;
+					} else {
+						endS3 = true;
+						//continueBtn.setVisible(true);
+					}
+
+				}
+
+			}
+		};
+		timer.schedule(task, 0, 1000);
+	}
 
 	public void switchCharName(String cName) {
 		for(int i = 0; i < charNames.length; i++) {
@@ -206,8 +260,11 @@ public class Scene1 extends FullFunctionScreen {
 		if(endS1 && !endS2) {
 			runStoryLine2();
 			switchBkgrnd(background2);
-		}else {
+		}else if(endS1 && endS2 && !winMagicSquares){
 			GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+		}else {
+			runStoryLine3();
+			switchBkgrnd(hogsmeade);
 		}
 		continueBtn.setVisible(false);
 	}
@@ -235,7 +292,8 @@ public class Scene1 extends FullFunctionScreen {
 								+ " they changed it this term.", "We better be quick before anyone suspects you're going."};
 		storyLine2 = n2;
 		
-		//String[] n3 = {"There it is!", "My cloak!", "I can make it to Hogsmeade now!"};
+		String[] n3 = {"My cloak!", "Thanks to you both, we can make it to Hogsmeade now!", ""};
+		storyLine3 = n3;
 		
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/castle.jpg");
 		viewObjects.add(background);
@@ -247,6 +305,10 @@ public class Scene1 extends FullFunctionScreen {
 		background2 = new Graphic(0, 0, getWidth(), getHeight(), "images/castle2.png");
 		viewObjects.add(background2);
 		background2.setVisible(false);
+		
+		hogsmeade = new Graphic(0, 0, getWidth(), getHeight(), "images/hogsmeade.png");
+		viewObjects.add(hogsmeade);
+		hogsmeade.setVisible(false);
 
 		magicSquares = new Button(100, 150, 300, 75, "Magic Squares", new Action() {
 
@@ -283,6 +345,24 @@ public class Scene1 extends FullFunctionScreen {
 			}
 		});
 		viewObjects.add(cGame);
+		
+		lightsOut = new Button(500, 350, 300, 75, "Side Story", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new StephStory(getWidth(), getHeight()));
+			}
+		});
+		viewObjects.add(lightsOut);
+		
+		dKiss = new Button(500, 450, 500, 100, "The Dementor's Kiss", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new DKTitle(getWidth(), getHeight()));
+			}
+		});
+		viewObjects.add(dKiss);
 
 		dialogue = new Graphic(80,80,1200,700, "images/textbox.png");
 		viewObjects.add(dialogue);

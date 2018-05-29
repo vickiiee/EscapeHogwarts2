@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
@@ -15,7 +18,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 
-public class StephStory2 extends FullFunctionScreen {
+public class StephStory2 extends FullFunctionScreen  {
 
 	private Graphic background;
 	private Graphic chatbox;
@@ -28,6 +31,9 @@ public class StephStory2 extends FullFunctionScreen {
 	private Graphic bg4;
 	private Graphic bg5;
 	private Graphic bg10;
+	private Graphic bg11;
+	private Graphic bg14;
+	private Graphic bg15;
 	
 	private boolean endS1;
 	private boolean endS2;
@@ -35,8 +41,6 @@ public class StephStory2 extends FullFunctionScreen {
 	
 	private TextArea name;
 	private TextArea dialogue;
-	
-	private ClickableGraphic nextB; 
 	
 	private Button choice1; 
 	private Button choice2;
@@ -51,16 +55,20 @@ public class StephStory2 extends FullFunctionScreen {
 	
 	private String[] storyLine1;
 	private String[] storyLine2;
-	private String[] matchName = {"Hermione", "Ron", "Harry", "Mcgonagall"};
+	private String[] matchName = {"Hermione", "Ron", "Harry", "McGonagall", "Snape"};
 	
 	private Graphic[] imagesList = {hermione, ron, harry};
-	private Graphic[] bg = {bg1, bg2, bg3, bg4, bg5, bg10};
+	private Graphic[] bg = {bg1, bg2, bg3, bg4, bg5, bg10, bg11, bg14, bg15};
 	
 	public StephStory2(int width, int height) {
 		super(width, height);
 		name.setSize(40);
 		dialogue.setSize(35);
 		dialogue.setForeground(Color.WHITE);
+		choice1.setSize(30);
+		choice2.setSize(30);
+		choice1.setForeground(Color.WHITE);
+		choice2.setForeground(Color.WHITE);
 	}
 	
 	@Override
@@ -69,16 +77,21 @@ public class StephStory2 extends FullFunctionScreen {
 		endS1 = false;
 		endS2 = false;
 		s1 = -1;
+		s2 = -1;
 		count1 = 0;
 		count2 = 0;
 		
 		String[] n = {"Where are you going Harry? Class is the other way.","Lets just leave him, "
-				+ "Mcgonagall will kill us if we're late.","...","Potter! Weasley! Granger!"
-						+ " Why are you late to my class again?!",
-						"We got lost.", "Moving on, today's lesson will be about potions, "
-						+ "gather your things and follow me.", 
-						"Choose a partner and we'll begin."};
+				+ "McGonagall will kill us if we're late.","","Potter! Weasley! Granger!"
+						+ " What are you doing in my class??",
+						"Shoot! We're supposed to be in Professor Snape's class!", "You are here to learn the"
+								+ " subtle science and exact art of potion-making.", 
+						"Sorry we're late!!", "If you weren't a bunch of dunderheads, maybe you'd be early and I wouldn't have to teach."
+						, "Now get to work!!"};
 		storyLine1 = n;
+		
+		String[] b = {"Harry who is your partner?", ""};
+		storyLine2 = b;
 		
 		background = new Graphic(0, 0, getWidth(), getHeight(), "simg/background.jpg");
 		viewObjects.add(background);
@@ -107,20 +120,20 @@ public class StephStory2 extends FullFunctionScreen {
 		viewObjects.add(bg10);
 		bg10.setVisible(false);
 		
+		bg11 = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg11.jpg");
+		viewObjects.add(bg11);
+		bg11.setVisible(false);
+		
+		bg14 = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg14.jpg");
+		viewObjects.add(bg14);
+		bg14.setVisible(false);
+		
+		bg15 = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg15.png");
+		viewObjects.add(bg15);
+		bg15.setVisible(false);
+		
 		chatbox = new Graphic(80,80,1200,700, "simg/textbox.png");
 		viewObjects.add(chatbox);
-		
-		/* nextB = new ClickableGraphic(1100, 700, 50, 50, "simg/symbol.png");
-		nextB.setAction(new Action() {
-			
-			@Override
-			public void act() {
-				clicks++;
-				storyline();
-			}
-		});
-		viewObjects.add(nextB);
-		*/
 		
 		hermione = new Graphic(700,260,400,400,"simg/emma.png");
 		viewObjects.add(hermione);
@@ -140,23 +153,27 @@ public class StephStory2 extends FullFunctionScreen {
 		dialogue = new TextArea(180,590,1000,500,"");
 		viewObjects.add(dialogue);
 		
-		choice1 = new Button(200, 600, 100, 50, "", Color.darkGray, new Action() {
+		choice1 = new Button(200, 700, 100, 50, "", Color.darkGray, new Action() {
 			
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
-				
+				dialogue.setText(choice1.getText());
+				dialogue.update();
 			}
 		});
+		viewObjects.add(choice1);
+		choice1.setVisible(false);
 		
-		choice2 = new Button(800, 600, 100, 50, "", Color.darkGray, new Action() {
+		choice2 = new Button(800, 700, 100, 50, "", Color.darkGray, new Action() {
 			
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
-				
+				dialogue.setText(choice2.getText());
+				dialogue.update();
 			}
 		});
+		viewObjects.add(choice2);
+		choice2.setVisible(false);
 		
 		continueBtn = new Button(740, 600, 300, 100, "Continue", new Action() {
 			
@@ -173,7 +190,27 @@ public class StephStory2 extends FullFunctionScreen {
 			}
 	}
 	
-	public void userChoice() {
+	public boolean isHarry() {
+		if (name.getText().equals("Harry")){
+			return true;
+		}
+		return false;
+	}
+	
+	public void userChoice(String c1, String c2) {
+		if(isHarry()) {
+			choice1.setText(c1);
+			choice2.setText(c2);
+			choice1.setVisible(true);
+			choice2.setVisible(true);
+		}else {
+			choice1.setVisible(false);
+			choice2.setVisible(false);
+		}
+	}
+	 
+	//two different story line paths, (some algorithm) will decide which storyline to show next.
+	public void trackStory() {
 		
 	}
 	
@@ -240,8 +277,7 @@ public class StephStory2 extends FullFunctionScreen {
 		}
 		continueBtn.setVisible(false);
 	}
-
-
+	
 	public void runStoryLine1() {
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
@@ -251,8 +287,6 @@ public class StephStory2 extends FullFunctionScreen {
 					cancel();
 				} else if (seconds > 0) {
 					seconds--;
-					//System.out.println("Seconds:" + seconds); // testing
-
 				} else if (seconds == 0) {
 					s1++;
 
@@ -260,27 +294,29 @@ public class StephStory2 extends FullFunctionScreen {
 						String n = storyLine1[s1];
 						if(s1 == 2) {
 							switchCharName("Harry");
-							//switchCharImage(harry);
+							switchCharImage(harry);
+							//pause timer until user has chosen an option then resume
+							
 						}else {
 							if(s1 == 1) {
 								switchCharName("Ron");
-								
+								switchCharImage(ron);
 							} else {
 								if(s1 == 0) {
 									switchCharName("Hermione");
-									//switchCharImage(hermione);
+									switchCharImage(hermione);
 								} else {
-									if(s1 == 3 || s1 == 5) {
-										switchCharName("Mcgonagall");
+									if(s1 == 3) {
+										switchCharName("McGonagall");
 										switchBkgrnd(bg4);
 									} else {
-										if(s1 == 4) {
+										if(s1 == 4 || s1 == 6) {
 											switchCharName("Hermione");
-											switchBkgrnd(bg1);
+											switchBkgrnd(bg15);
 										} else {
-											if(s1 == 6) {
-												switchCharName("Mcgonagall");
-												switchBkgrnd(bg10);
+											if(s1 == 5 || s1 == 7 || s1 == 9) {
+												switchCharName("Snape");
+												switchBkgrnd(bg14);
 											}
 										}
 									}
@@ -302,5 +338,29 @@ public class StephStory2 extends FullFunctionScreen {
 		timer.schedule(task, 0, 1000);
 	}
 	
+	public void runStoryLine2() {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+
+			@Override
+			public void run() {
+				if(endS2) {
+					cancel();
+				}else if(seconds > 0) {
+					seconds--;
+				}else if(seconds == 0) {
+					s2++;
+					
+					if(s2 > -1 && s2 < storyLine2.length) {
+						if(s2 == 0) {
+							switchCharName("Snape");
+							
+						}
+					}
+				}
+				
+			}
+		};
+	}
 }
 
