@@ -13,18 +13,12 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 public class DKKissGame extends FullFunctionScreen{
 
 	private Graphic backgroundImg;
-	private ClickableGraphic cardOne;
-	private ClickableGraphic cardTwo;
-	private ClickableGraphic cardThree;
-	private ClickableGraphic cardFour;
-	private ClickableGraphic cardFive;
-	private ClickableGraphic cardSix;
-	private ClickableGraphic cardSeven;
-	private ClickableGraphic cardEight;
-	private ClickableGraphic cardNine;
-	private ClickableGraphic cardTen;
-	private ClickableGraphic cardEleven;
-	private ClickableGraphic cardTwelve;
+	private ClickableGraphic[] cardArray;
+	private int[] numList;
+	private String[] cardList;
+	private Boolean[] flipList;
+	
+	private int[] count;
 	
 	public DKKissGame(int width, int height) {
 		super(width, height);
@@ -33,55 +27,185 @@ public class DKKissGame extends FullFunctionScreen{
 
 	
 	public void initAllObjects(List<Visible> viewObjects) {
+		cardArray = new ClickableGraphic[12];
+		numList = new int[6];
+		cardList = new String[6];
+		flipList = new Boolean[12];
+		
 		backgroundImg = new Graphic(0, 0, getWidth(), getHeight(), "kimg/memoryReel.png");
 		viewObjects.add(backgroundImg);
 		
-		cardOne = new ClickableGraphic(50, 75, 150, 300, "kimg/cardBack.png");
-		viewObjects.add(cardOne);
-		cardOne.setAction(new Action() {
+		for (int j = 0; j < flipList.length; j++) {
+			flipList[j] = false;
+		}
+		
+		cardList[0] = "kimg/cardHarry.jpg";
+		cardList[1] = "kimg/cardHermione.jpg";
+		cardList[2] = "kimg/cardRon.jpg";
+		cardList[3] = "kimg/cardPatronus.png";
+		cardList[4] = "kimg/cardRemus.jpg";
+		cardList[5] = "kimg/cardVoldemort.png";
+		
+		for (int n = 0; n < numList.length; n++) {
+			numList[n] = 0;
+		}
+		
+		for (int i = 0; i < cardArray.length; i++) {
+			cardArray[i] = new ClickableGraphic((50 + (i%6)*180),(75 + (i/6)*350), 150, 300, "kimg/cardBack.png");
+			viewObjects.add(cardArray[i]);
+		}
+		
+		cardArray[0].setAction(new Action() {
 			
 			@Override
 			public void act() {
-				cardOne.loadImages("kimg/cardZero.jpg", cardOne.getX(), cardOne.getY());
+
+				flipCard(cardArray[0]);
+				checkPair(flipList);
 				
 			}
 		});
+		cardArray[1].setAction(new Action() {
+			
+			@Override
+			public void act() {
+
+				flipCard(cardArray[1]);
+				
+			}
+		});
+		cardArray[2].setAction(new Action() {
+	
+			@Override
+			public void act() {
+
+				flipCard(cardArray[2]);
+			
+			}
+		});
+		cardArray[3].setAction(new Action() {
+	
+			@Override
+			public void act() {
+
+				flipCard(cardArray[3]);
 		
-		cardTwo = new ClickableGraphic(230, 75, 150, 300, "kimg/cardBack.png");
-		viewObjects.add(cardTwo);
+			}
+		});
+		cardArray[4].setAction(new Action() {
+	
+			@Override
+			public void act() {
+
+				flipCard(cardArray[4]);
 		
-		cardThree = new ClickableGraphic(410, 75, 150, 300, "kimg/cardBack.png");
-		viewObjects.add(cardThree);
+			}
+		});
+		cardArray[5].setAction(new Action() {
+	
+			@Override
+			public void act() {
+
+				flipCard(cardArray[5]);
 		
-		cardFour = new ClickableGraphic(590, 75, 150, 300, "kimg/cardBack.png");
-		viewObjects.add(cardFour);
+			}
+		});
+		cardArray[6].setAction(new Action() {
+	
+			@Override
+			public void act() {
+
+				flipCard(cardArray[6]);
 		
-		cardFive = new ClickableGraphic(770, 75, 150, 300, "kimg/cardBack.png");
-		viewObjects.add(cardFive);
+			}
+		});
+		cardArray[7].setAction(new Action() {
+	
+			@Override
+			public void act() {
+
+				flipCard(cardArray[7]);
 		
-		cardSix = new ClickableGraphic(950, 75, 150, 300, "kimg/cardBack.png");
-		viewObjects.add(cardSix);
+			}
+		});
+		cardArray[8].setAction(new Action() {
+	
+			@Override
+			public void act() {
+
+				flipCard(cardArray[8]);
 		
-		cardSeven = new ClickableGraphic(50, 425, 150, 300, "kimg/cardBack.png");
-		viewObjects.add(cardSeven);
+			}
+		});
+		cardArray[9].setAction(new Action() {
+	
+			@Override
+			public void act() {
+
+				flipCard(cardArray[9]);
 		
-		cardEight = new ClickableGraphic(230, 425, 150, 300, "kimg/cardBack.png");
-		viewObjects.add(cardEight);
+			}
+		});
+		cardArray[10].setAction(new Action() {
+	
+			@Override
+			public void act() {
+
+				flipCard(cardArray[10]);
 		
-		cardNine = new ClickableGraphic(410, 425, 150, 300, "kimg/cardBack.png");
-		viewObjects.add(cardNine);
+			}
+		});
+		cardArray[11].setAction(new Action() {
+			
+			@Override
+			public void act() {
+
+				flipCard(cardArray[11]);
 		
-		cardTen = new ClickableGraphic(590, 425, 150, 300, "kimg/cardBack.png");
-		viewObjects.add(cardTen);
-		
-		cardEleven = new ClickableGraphic(770, 425, 150, 300, "kimg/cardBack.png");
-		viewObjects.add(cardEleven);
-		
-		cardTwelve = new ClickableGraphic(950, 425, 150, 300, "kimg/cardBack.png");
-		viewObjects.add(cardTwelve);
+			}
+		});
 	
 	}
 	
+	public void flipCard(ClickableGraphic cg) {
+		int num = (int)(Math.random()*6);
+		
+		for(int i = 0; i < numList.length; i++) {
+			if(i == num && numList[i] < 2) {
+				flipList[i] = true;
+				numList[i]++;
+				cg.loadImages(cardList[i], 150, 300);
+				checkPair(flipList);
+			}
+		}
+		
+	}
 	
+	public void checkPair(Boolean[] fList) {
+		for (int i = 0; i < fList.length; i++) {
+			if (fList[i] == true) {
+				for(int n = (i+1); n < fList.length; n++) {
+					if(fList[i] == fList[n]) {
+						if(compareValues(cardList[i], cardList[n]) == false) {
+							fList[i] = false;
+							fList[n] = false;
+							
+							numList[i]--;
+							numList[n]--;
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	public boolean compareValues(String card1, String card2) {
+		if (card1.equals(card2) != true){
+			return false;
+		}
+		
+		return true;
+	}
 	
 }
