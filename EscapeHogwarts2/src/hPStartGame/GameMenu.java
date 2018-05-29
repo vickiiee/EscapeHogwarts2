@@ -16,6 +16,7 @@ import hpKevStoryLine.StephStory;
 
 public class GameMenu extends FullFunctionScreen{
 
+	//
 	private Button magicSquares;
 	private Button connectFour;
 	private Button connectLine;
