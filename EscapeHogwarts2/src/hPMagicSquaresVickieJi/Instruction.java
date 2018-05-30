@@ -27,6 +27,9 @@ public class Instruction extends FullFunctionScreen{
 		back = new Graphic(0, 0, getWidth(), getHeight(), "images/MS-instruction.png");
 		viewObjects.add(back);
 		
+		Graphic trans = new Graphic(0,0, getWidth(), getHeight(), "images/black.png");
+		viewObjects.add(trans);
+		
 		skip = new Button(1000, 50, 100, 100, "Skip", Color.red, new Action() {
 
 			
