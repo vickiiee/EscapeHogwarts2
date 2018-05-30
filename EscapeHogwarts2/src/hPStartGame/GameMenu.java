@@ -91,6 +91,15 @@ public class GameMenu extends FullFunctionScreen{
 		});
 		viewObjects.add(dKiss);
 		
+Button p = new Button(500, 550, 500, 100, "Party Story", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new PartyStory(getWidth(), getHeight()));
+			}
+		});
+		viewObjects.add(p);
+		
 	}
 
 }

@@ -119,7 +119,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		 * viewObjects.add(bTimer);
 		 */
 
-		Graphic wood = new Graphic(50, 50, 320, 150, "images/wood.jpg");
+		Graphic wood = new Graphic(50, 50, 320, 150, "images/wood2.jpg");
 		viewObjects.add(wood);
 
 		tTimer = new TextAreaColor(50, 50, 320, 150, "5:00", null, null);
