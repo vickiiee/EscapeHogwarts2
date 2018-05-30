@@ -69,7 +69,7 @@ public class GuiLoadingVickie extends GUIApplication{
 		story = new StephStory(getWidth(), getHeight());
 		story2 = new StephStory2(getWidth(), getHeight());
 		kStory = new DKTitle(getWidth(), getHeight());
-		p = new PartStory(getWidth(), getHeight());
+		p = new PartyStory(getWidth(), getHeight());
 		cgame = new CatchingGameJi(getWidth(), getHeight());
 		
 		setScreen(menu);
