@@ -9,8 +9,8 @@ import hPCatchingGameJi.CatchingGameJi;
 import hPCatchingGameJi.Storyline;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
-import hPStoryline.StephGame;
 import hpKevStoryLine.DKTitle;
+import hpKevStoryLine.StephGame;
 import hpKevStoryLine.StephStory;
 import hpKevStoryLine.StephStory2;
 
@@ -33,6 +33,7 @@ public class GuiLoadingVickie extends GUIApplication{
 
 	public static StephStory story;
 	public static StephStory2 story2;
+	public static StephGame sgame;
 	public static DKTitle kStory;
 
 	public static void main(String[] args) {
@@ -67,6 +68,7 @@ public class GuiLoadingVickie extends GUIApplication{
 		cline = new Storyline(getWidth(),getHeight());
 		story = new StephStory(getWidth(), getHeight());
 		story2 = new StephStory2(getWidth(), getHeight());
+		sgame = new StephGame(getWidth(), getHeight());
 		kStory = new DKTitle(getWidth(), getHeight());
 		
 		cgame = new CatchingGameJi(getWidth(), getHeight());
