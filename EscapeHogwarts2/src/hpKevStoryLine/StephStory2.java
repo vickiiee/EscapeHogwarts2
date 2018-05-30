@@ -175,24 +175,26 @@ public class StephStory2 extends FullFunctionScreen  {
 		});
 		viewObjects.add(choice2);
 		choice2.setVisible(false);
-		
+
 		continueBtn = new Button(740, 600, 300, 100, "Continue", new Action() {
-			
+
 			@Override
 			public void act() {
 				GuiLoadingVickie.loading.setScreen(new StephGame(getWidth(), getHeight()));
 			}
-			});
-			viewObjects.add(continueBtn);
-			continueBtn.setVisible(false);
+		});
+
+		viewObjects.add(continueBtn);
 		
-			if (startSeq) {
-				runStoryLine1();
-			}
+		continueBtn.setVisible(false);
+
+		if (startSeq) {
+			runStoryLine1();
+		}
 	}
-	
+
 	public boolean isHarry() {
-		if (name.getText().equals("Harry")){
+		if (name.getText().equals("Harry")) {
 			return true;
 		}
 		return false;

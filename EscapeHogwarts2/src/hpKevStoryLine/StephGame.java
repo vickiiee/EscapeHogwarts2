@@ -17,7 +17,7 @@ public class StephGame extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		gameBg = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg7.jpg");
+		gameBg = new Graphic(0, 0, getWidth(), getHeight(), "simg/bg7.jpeg");
 		viewObjects.add(gameBg); 
 
 	}
