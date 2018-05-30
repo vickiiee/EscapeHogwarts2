@@ -1,4 +1,4 @@
-package areeshStory;
+package hPAreeshStory;
 
 import java.util.List;
 
@@ -34,6 +34,14 @@ public class PartyStory extends FullFunctionScreen{
 		
 //		dialogue = new TextArea(0,0, getWidth(), getHeight(), "images/stair.jpg");
 //			viewObjects.add(dialogue);
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	

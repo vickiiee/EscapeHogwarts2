@@ -2,12 +2,12 @@ package hPStartGame;
 
 import java.util.List;
 
-import areeshStory.PartyStory;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPAreeshStory.PartyStory;
 import hPCatchingGameJi.CatchingGameJi;
 import hPCatchingGameJi.Storyline;
 import hPConnect4Areej.ConnectFourAreej;
