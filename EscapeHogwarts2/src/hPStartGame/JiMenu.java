@@ -1,4 +1,4 @@
-package hPStoryline;
+package hPStartGame;
 
 import java.awt.Color;
 import java.util.List;
@@ -10,6 +10,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPCatchingGameJi.Scene1;
 
 public class JiMenu extends FullFunctionScreen{
 
@@ -51,7 +52,7 @@ public class JiMenu extends FullFunctionScreen{
 			
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new Scene1(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new GameMenu(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(play);

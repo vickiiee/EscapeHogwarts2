@@ -1,4 +1,4 @@
-package hPStoryline;
+package hPCatchingGameJi;
 
 import java.awt.Color;
 import java.util.List;
@@ -11,9 +11,9 @@ import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
-import hPCatchingGameJi.CatchingGameJi;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
+import hPStartGame.GuiLoadingVickie;
 import hpKevStoryLine.DKTitle;
 import hpKevStoryLine.StephStory;
 
