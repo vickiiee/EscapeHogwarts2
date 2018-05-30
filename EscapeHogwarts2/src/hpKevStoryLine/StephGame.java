@@ -49,6 +49,7 @@ public class StephGame extends FullFunctionScreen {
 		ingredients = new TextArea(100,100,100,100, "");
 		ingredients.setText("Bundimun Ooze, Streeler Shells, Dragon Liver, "
 				+ "Hemlock Essence, Tormentil tincture, Cowbane essence");
+		ingredients.update();
 		viewObjects.add(ingredients);
 		
 	}
