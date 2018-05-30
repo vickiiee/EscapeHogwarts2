@@ -12,9 +12,7 @@ public class StephGame extends FullFunctionScreen {
 	private Graphic gameBg;
 	private TextArea ingredients;
 	
-	private String[] pickList = {"Dried Nettles", "Bundimun Ooze", "Ashwinder Egg", 
-			"Spring Water", "Lacewing flies", "Minced Daisy Roots", "FairyWings", "Morning Dew",
-			"Snake Fangs", "Streeler Shells", "Dragon Liver"};
+	private String[] pickList = {};
 	
 	private String[] doxycide = {"Bundimun Ooze", "Streeler Shells", "Dragon Liver", 
 			"Hemlock Essence", "Tormentil Tincture", "CowBane Essence"};
