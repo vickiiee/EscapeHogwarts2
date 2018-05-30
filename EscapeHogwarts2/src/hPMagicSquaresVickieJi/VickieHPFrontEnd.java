@@ -118,14 +118,18 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		 * bTimer = new TextAreaColor(50, 50, 320, 150, "Timer:        .", trans, null);
 		 * viewObjects.add(bTimer);
 		 */
-		tTimer = new TextAreaColor(50, 50, 320, 150, "5:00", Color.gray, null);
+
+		Graphic wood = new Graphic(50, 50, 320, 150, "images/wood.jpg");
+		viewObjects.add(wood);
+
+		tTimer = new TextAreaColor(50, 50, 320, 150, "5:00", null, null);
 		viewObjects.add(tTimer);
 
 		hintBox = new TextAreaColor(50, 600, 320, 150, "HINTS", Color.gray, null);
 		viewObjects.add(hintBox);
-		
-		hOne = new Button(380, 635, 25, 25, "1", Color.blue,new Action() {
-			
+
+		hOne = new Button(380, 635, 25, 25, "1", Color.blue, new Action() {
+
 			@Override
 			public void act() {
 				goldI++;
