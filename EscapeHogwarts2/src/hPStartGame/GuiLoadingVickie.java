@@ -3,6 +3,7 @@ package hPStartGame;
 import java.awt.Font;
 import java.io.File;
 
+import areeshStory.PartyStory;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
 import hPCatchingGameJi.CatchingGameJi;
