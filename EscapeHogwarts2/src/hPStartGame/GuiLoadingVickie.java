@@ -29,7 +29,8 @@ public class GuiLoadingVickie extends GUIApplication{
 	public static Storyline cline;
 
 	public static CatchingGameJi cgame;
-
+	
+	public static PartyStory p;
 	public static StephStory story;
 	public static StephStory2 story2;
 	public static DKTitle kStory;
@@ -67,7 +68,7 @@ public class GuiLoadingVickie extends GUIApplication{
 		story = new StephStory(getWidth(), getHeight());
 		story2 = new StephStory2(getWidth(), getHeight());
 		kStory = new DKTitle(getWidth(), getHeight());
-		
+		p = new PartStory(getWidth(), getHeight());
 		cgame = new CatchingGameJi(getWidth(), getHeight());
 		
 		setScreen(menu);

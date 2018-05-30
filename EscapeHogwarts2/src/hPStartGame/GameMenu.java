@@ -10,6 +10,7 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPCatchingGameJi.CatchingGameJi;
 import hPCatchingGameJi.Storyline;
 import hPConnect4Areej.ConnectFourAreej;
+import hPMagicSquaresVickieJi.Instruction;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 import hpKevStoryLine.DKTitle;
 import hpKevStoryLine.StephStory;
@@ -40,7 +41,7 @@ public class GameMenu extends FullFunctionScreen{
 
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new Instruction(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(magicSquares);
@@ -89,6 +90,15 @@ public class GameMenu extends FullFunctionScreen{
 			}
 		});
 		viewObjects.add(dKiss);
+		
+Button p = new Button(500, 550, 500, 100, "Party Story", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new PartyStory(getWidth(), getHeight()));
+			}
+		});
+		viewObjects.add(p);
 		
 	}
 
