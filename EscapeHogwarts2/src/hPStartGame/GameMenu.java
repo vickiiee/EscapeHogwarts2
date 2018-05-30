@@ -2,6 +2,7 @@ package hPStartGame;
 
 import java.util.List;
 
+import areeshStory.PartyStory;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
