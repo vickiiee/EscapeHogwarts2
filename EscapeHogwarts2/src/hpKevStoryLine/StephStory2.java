@@ -180,7 +180,7 @@ public class StephStory2 extends FullFunctionScreen  {
 			
 			@Override
 			public void act() {
-				continueScenes();
+				GuiLoadingVickie.loading.setScreen(new StephGame(getWidth(), getHeight()));
 			}
 			});
 			viewObjects.add(continueBtn);
@@ -269,15 +269,6 @@ public class StephStory2 extends FullFunctionScreen  {
 		}
 	}
 			
-	private void continueScenes() {
-		if(endS1 && !endS2) {
-			GuiLoadingVickie.loading.setScreen(new StephGame(getWidth(), getHeight()));
-		}else {
-			GuiLoadingVickie.loading.setScreen(new StephStory2(getWidth(), getHeight()));
-		}
-		continueBtn.setVisible(false);
-	}
-	
 	public void runStoryLine1() {
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
@@ -335,7 +326,7 @@ public class StephStory2 extends FullFunctionScreen  {
 			}
 
 		};
-		timer.schedule(task, 0, 200);
+		timer.schedule(task, 0, 50);
 	}
 	
 	
