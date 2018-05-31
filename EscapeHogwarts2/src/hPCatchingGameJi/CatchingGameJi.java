@@ -142,7 +142,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 				*/
 				
 				potionsList.get(potion.getIndex()).setVisible(false);
-				//
+				
 			}
 		});
 		viewObjects.add(potion);
