@@ -128,7 +128,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 	public void generatePotion() {
 		chooseStart();
 		chooseTime();
-		potion = new Potion(xPos, xPos, choosePotion(), potionsList.size(), new Action() {
+		potion = new Potion(xPos, xPos, "images/spider.png", potionsList.size(), new Action() {
 			/**
 			 * option 1: click to remove potion
 			 */
