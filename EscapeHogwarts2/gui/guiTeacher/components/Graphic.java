@@ -35,6 +35,7 @@ public class Graphic implements Visible {
 	private int y;
 	private boolean visible;
 	private String address;
+	public boolean preserveRatio = true;
 
 	public Graphic(int x, int y, int w, int h, String imageLocation){	
 		this.x = x;
@@ -126,7 +127,7 @@ public class Graphic implements Visible {
 			double scaleWidth = w/(double)orig.getWidth();
 			double scaleHeight = h/(double)orig.getHeight();
 			double smallerOfTwo = (scaleWidth < scaleHeight)? scaleWidth : scaleHeight;
-			scale.scale(smallerOfTwo, smallerOfTwo);
+			scale.scale(scaleWidth, scaleHeight);
 			AffineTransformOp scaleOp = new AffineTransformOp(scale, AffineTransformOp.TYPE_BILINEAR);
 			image = scaleOp.filter(orig,new BufferedImage((int)(orig.getWidth()*smallerOfTwo), (int)(orig.getHeight()*smallerOfTwo), BufferedImage.TYPE_INT_ARGB));
 		}
@@ -179,9 +180,20 @@ public class Graphic implements Visible {
 				double smallerOfTwo = (scaleWidth < scaleHeight)? scaleWidth : scaleHeight;
 				
 //				scale.scale(w/(double)icon.getIconWidth(), h/(double)icon.getIconHeight());
-				scale.scale(smallerOfTwo, smallerOfTwo);
-				AffineTransformOp scaleOp = new AffineTransformOp(scale, AffineTransformOp.TYPE_BILINEAR);
-				image = scaleOp.filter(image,new BufferedImage((int)(image.getWidth()*smallerOfTwo), (int)(image.getHeight()*smallerOfTwo), BufferedImage.TYPE_INT_ARGB));
+				if (preserveRatio) {
+					scale.scale(smallerOfTwo, smallerOfTwo);
+					AffineTransformOp scaleOp = new AffineTransformOp(scale, AffineTransformOp.TYPE_BILINEAR);
+					image = scaleOp.filter(image,new BufferedImage((int)(image.getWidth()*smallerOfTwo), (int)(image.getHeight()*smallerOfTwo), BufferedImage.TYPE_INT_ARGB));
+				}else {
+					if(scaleWidth!=0 && scaleHeight!=0) {
+						
+						scale.scale(scaleWidth, scaleHeight);
+						AffineTransformOp scaleOp = new AffineTransformOp(scale, AffineTransformOp.TYPE_BILINEAR);
+						image = scaleOp.filter(image,new BufferedImage((int)(image.getWidth()*scaleWidth), (int)(image.getHeight()*scaleHeight), BufferedImage.TYPE_INT_ARGB));
+					
+					}
+					
+				}
 //				g.drawImage(icon.getImage(), 0, 0, w, h, 0,0,icon.getIconWidth(), icon.getIconHeight(), null);
 			}
 		}catch(Exception e){

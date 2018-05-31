@@ -73,6 +73,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 	private int goldI;
 
+	private Graphic board;
+
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
 
@@ -98,8 +100,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		Graphic background = new Graphic(0, 0, getWidth(), getHeight(), "images/background3.jpg");
 		viewObjects.add(background);
 
-		Graphic board = new Graphic(450, 50, 700, 700, "images/mSBoard.jpg");
+		board = new Graphic(450, 50, 700, 700, "images/mSBoard.jpg");
+		board.preserveRatio = false;
 		viewObjects.add(board);
+		
 
 		Graphic border = new Graphic(450, 50, 700, 700, "images/grid.png");
 		viewObjects.add(border);
@@ -664,8 +668,15 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 						goldI++;
 						txtAreas[goldI].setForeground(Color.yellow);
 						
-						if(g ==8) {
-							gold.cancel();
+						if(goldI ==8) {
+							
+						gold.cancel();
+							
+							
+							//width = 2 Math.pi/2
+							
+							changeImages();
+							//method call for resize
 						}
 					}
 				};
@@ -680,7 +691,32 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		}
 	}
 
+	public void changeImages() {
+		
+		//width = 2 Math.cosine/2 double 
+		
+		
+		Timer r = new Timer();
+		TimerTask x = new TimerTask() {
+			double rotation = 0;
+			@Override
+			public void run() {
 
+				if (rotation >= Math.PI * 2) {
+					rotation = 0;
+				}
+				rotation += Math.PI/30;
+				board.resize((int)(Math.abs(700*Math.cos(rotation))), board.getHeight());
+				board.setX(450 + (350 - board.getWidth()/2));
+				
+		
+			}
+		};
+		
+		r.schedule(x, 0, 60);
+		
+	}
+	
 	public void startTimer() {
 		//g = 5;
 		timer = new Timer();
