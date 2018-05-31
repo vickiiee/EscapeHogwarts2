@@ -9,6 +9,7 @@ import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPCatchingGameJi.CatchingGameJi;
+import hPCatchingGameJi.CatchingGameTest;
 import hPCatchingGameJi.Storyline;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.Instruction;

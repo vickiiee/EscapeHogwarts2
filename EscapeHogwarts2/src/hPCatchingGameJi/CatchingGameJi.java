@@ -148,7 +148,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 		viewObjects.add(potion);
 		potionsList.add(potion);
 		//System.out.println(potionsList);
-		//potion.move(xPos, 780, time);
+		potion.move(xPos, 780, time);
 		/**
 		 * option 2: hover to remove potion
 		 */
