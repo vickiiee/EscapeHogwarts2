@@ -31,6 +31,8 @@ public class GuiLoadingVickie extends GUIApplication{
 
 	public static CatchingGameJi cgame;
 	
+	public static GameMapDirectory directory;
+	
 	public static PartyStory p;
 	public static StephStory story;
 	public static StephStory2 story2;
@@ -71,6 +73,7 @@ public class GuiLoadingVickie extends GUIApplication{
 		kStory = new DKTitle(getWidth(), getHeight());
 		p = new PartyStory(getWidth(), getHeight());
 		cgame = new CatchingGameJi(getWidth(), getHeight());
+		directory = new GameMapDirectory(getWidth(), getHeight());
 		
 		setScreen(menu);
 		
