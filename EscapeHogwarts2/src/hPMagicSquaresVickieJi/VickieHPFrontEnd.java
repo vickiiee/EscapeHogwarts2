@@ -699,9 +699,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		Timer r = new Timer();
 		TimerTask x = new TimerTask() {
 			double rotation = 0;
+			int counter = 0;
 			@Override
 			public void run() {
-
+				counter++;
 				if (rotation >= Math.PI * 2) {
 					rotation = 0;
 				}
@@ -709,7 +710,11 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				board.resize((int)(Math.abs(700*Math.cos(rotation))), board.getHeight());
 				board.setX(450 + (350 - board.getWidth()/2));
 				
-		
+				if(counter == 10) {
+					 r.cancel();
+				}
+				
+				
 			}
 		};
 		
