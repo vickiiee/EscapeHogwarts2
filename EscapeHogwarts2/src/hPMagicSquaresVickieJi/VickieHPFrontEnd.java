@@ -9,6 +9,7 @@ import java.util.TimerTask;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
+import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
@@ -139,8 +140,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 			@Override
 			public void act() {
-				goldI++;
-				txtAreas[goldI].setForeground(Color.yellow);
+				//goldI++;
+				//txtAreas[goldI].setForeground(Color.yellow);
 				if (minutes  < 4) {
 					hintBox.setText("");
 					//hintBox.setText("The '5' is always in the middle");
@@ -157,7 +158,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		hOne.setCurve(10, 20);
 		viewObjects.add(hOne);
 		
-		hTwo = new Button(380, 665, 25, 25, "2", Color.blue,new Action() {
+		ClickableGraphic tr = new ClickableGraphic(380, 665, 25, 25, "images/MSboard.jpg");
+		viewObjects.add(tr);
+		
+		hTwo = new Button(380, 665, 30, 30, "2", Color.blue,new Action() {
 
 			@Override
 			public void act() {
@@ -174,7 +178,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			}
 			
 		});
-		hTwo.setCurve(10, 20);
+		//hTwo.setCurve(10, 20);
 		viewObjects.add(hTwo);
 		
 		hThree = new Button(380, 695, 25, 25, "3", Color.blue,new Action() {
@@ -525,7 +529,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				// System.out.println("THE SAME COORDINATES!!()");
 				gB[i].setAction(null);
 				txtAreas[i].setText("" + initNumBackEnd);
-				txtAreas[i].setForeground(Color.red); // maroon color
+				
+				Color maroon = new Color(182,47,32);
+				txtAreas[i].setForeground(maroon); // maroon color
+				
 				if (i == 0 || i < 3) {
 					txtAreas[i].move(560 + (203 * i), 105, 100);
 				} else if (i == 3 || i < 6) {

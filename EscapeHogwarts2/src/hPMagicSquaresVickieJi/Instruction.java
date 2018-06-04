@@ -16,6 +16,9 @@ public class Instruction extends FullFunctionScreen{
 	private Graphic back;
 	private VickieHPFrontEnd magicSquares;
 	private Button skip;
+
+	
+	//https://www.befunky.com/create/
 	
 	public Instruction(int width, int height) {
 		super(width, height);
@@ -27,8 +30,11 @@ public class Instruction extends FullFunctionScreen{
 		back = new Graphic(0, 0, getWidth(), getHeight(), "images/MS-instruction.png");
 		viewObjects.add(back);
 		
-		Graphic trans = new Graphic(0,0, getWidth(), getHeight(), "images/black.png");
+		//timer
+		Graphic trans = new Graphic(0,0, 500, 245, "images/transBlack.png");
+		//trans.resize(500,500);
 		viewObjects.add(trans);
+		
 		
 		skip = new Button(1000, 50, 100, 100, "Skip", Color.red, new Action() {
 
