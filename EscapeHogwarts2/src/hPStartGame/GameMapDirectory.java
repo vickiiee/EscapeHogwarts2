@@ -17,18 +17,24 @@ import hpKevStoryLine.DKTitle;
 public class GameMapDirectory extends FullFunctionScreen{
 
 	private Graphic background;
+	private TextArea sampletxt;
+	private boolean menuRunning = true;
+	
 	private Graphic pointer1;
 	private Graphic pointer2;
 	private Graphic pointer3;
-	private TextArea sampletxt;
+	private Graphic pointer4;
+	private Graphic pointer5;
+	private Graphic pointer6;
+	private Graphic pointer7;
+	
 	private Button button1;
 	private Button button2;
 	private Button button3;
-	private boolean menuRunning = true;
 	private Button button4;
-	private Graphic pointer4;
-	private Graphic pointer5;
 	private Button button5;
+	private Visible button6;
+	private Button button7;
 	
 	public GameMapDirectory(int width, int height) {
 		super(width, height);
@@ -138,6 +144,31 @@ public class GameMapDirectory extends FullFunctionScreen{
 			}
 		});
 		viewObjects.add(button5);
+		
+		//side story hogwarts
+		pointer6 = new Graphic(930, 400, 30, 40, "images/pointer.png");
+		viewObjects.add(pointer6);
+		button6 = new Button(930, 400, 30, 40, "", new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		viewObjects.add(button6);
+		
+		pointer7 = new Graphic(100, 200, 30, 40, "images/pointer.png");
+		viewObjects.add(pointer7);
+		button7 = new Button(100, 200, 30, 40, "", new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		viewObjects.add(button7);
 	}
 
 }
