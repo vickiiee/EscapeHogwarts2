@@ -34,7 +34,7 @@ public class Graphic implements Visible {
 	private int x;
 	private int y;
 	private boolean visible;
-	private String address;
+	public String address;
 	public boolean preserveRatio = true;
 
 	public Graphic(int x, int y, int w, int h, String imageLocation){	
@@ -167,8 +167,8 @@ public class Graphic implements Visible {
 				g.drawImage(icon.getImage(), 0, 0, null);
 			}else{
 				//make a full-size image
-				image = new BufferedImage(icon.getIconWidth(),icon.getIconHeight(),BufferedImage.TYPE_INT_ARGB);
-				Graphics2D g = image.createGraphics();
+				BufferedImage buffer = new BufferedImage(icon.getIconWidth(),icon.getIconHeight(),BufferedImage.TYPE_INT_ARGB);
+				Graphics2D g = buffer.createGraphics();
 				g.drawImage(icon.getImage(), 0, 0, null);
 				
 				//scale the image to size
@@ -183,13 +183,13 @@ public class Graphic implements Visible {
 				if (preserveRatio) {
 					scale.scale(smallerOfTwo, smallerOfTwo);
 					AffineTransformOp scaleOp = new AffineTransformOp(scale, AffineTransformOp.TYPE_BILINEAR);
-					image = scaleOp.filter(image,new BufferedImage((int)(image.getWidth()*smallerOfTwo), (int)(image.getHeight()*smallerOfTwo), BufferedImage.TYPE_INT_ARGB));
+					image = scaleOp.filter(buffer,new BufferedImage((int)(buffer.getWidth()*smallerOfTwo), (int)(buffer.getHeight()*smallerOfTwo), BufferedImage.TYPE_INT_ARGB));
 				}else {
 					if(scaleWidth!=0 && scaleHeight!=0) {
 						
 						scale.scale(scaleWidth, scaleHeight);
 						AffineTransformOp scaleOp = new AffineTransformOp(scale, AffineTransformOp.TYPE_BILINEAR);
-						image = scaleOp.filter(image,new BufferedImage((int)(image.getWidth()*scaleWidth), (int)(image.getHeight()*scaleHeight), BufferedImage.TYPE_INT_ARGB));
+						image = scaleOp.filter(buffer,new BufferedImage((int)(buffer.getWidth()*scaleWidth), (int)(buffer.getHeight()*scaleHeight), BufferedImage.TYPE_INT_ARGB));
 					
 					}
 					

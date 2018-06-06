@@ -707,20 +707,30 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		TimerTask x = new TimerTask() {
 			double rotation = 0;
 			int counter = 0;
-			@Override
+			
+			//float num = 1; FADE OUT
 			public void run() {
+				//num = (float) (num -.10); FADE OUT
+				//board.setAlpha(num); FADE OUT
 				counter++;
 				if (rotation >= Math.PI * 2) {
 					rotation = 0;
 				}
 				rotation += Math.PI/30;
-				board.resize((int)(Math.abs(700*Math.cos(rotation))), board.getHeight());
-				board.setX(450 + (350 - board.getWidth()/2));
+				int newWidth = (int)(Math.abs(700*Math.cos(rotation)));
 				
-				if(counter == 10) {
-					 r.cancel();
+				
+				if(newWidth < 5) {
+					newWidth = 5;
+					board.address = "images/knight.jpg"; //change image
 				}
 				
+				board.resize(newWidth, board.getHeight());
+				board.setX(450 + (350 - board.getWidth()/2));
+				
+				if(counter == 30) {
+				 r.cancel();
+				}				
 				
 			}
 		};
