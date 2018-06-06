@@ -9,6 +9,10 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPCatchingGameJi.CatchingGameJi;
+import hPConnect4Areej.ConnectFourAreej;
+import hPMagicSquaresVickieJi.VickieHPFrontEnd;
+import hpKevStoryLine.DKTitle;
 
 public class GameMapDirectory extends FullFunctionScreen{
 
@@ -21,87 +25,119 @@ public class GameMapDirectory extends FullFunctionScreen{
 	private Button button2;
 	private Button button3;
 	private boolean menuRunning = true;
+	private Button button4;
+	private Graphic pointer4;
+	private Graphic pointer5;
+	private Button button5;
 	
 	public GameMapDirectory(int width, int height) {
 		super(width, height);
+		button1.setSize(40);
+		button2.setSize(40);
+		button3.setSize(40);
+		button4.setSize(40);
 	}
 	
-	public boolean isHovered(int x, int y) {
-		return x > getX() && x < getX() + getWidth() && y > getY() && y < getY() + getHeight();
-	}
-	
+	//public boolean isHovered(int x, int y) {
+	//	return x > getX() && x < getX() + getWidth() && y > getY() && y < getY() + getHeight();
+	//}
+	/*
 	public void menuRun() {
 		while(menuRunning) {
-			if(isHovered(900, 300)) {
-				button1.setText("FOREST");
+			if(button1.isHovered(900, 300)) {
+				button1.setText("on");
 				System.out.println("working");
 			}else {
-				button1.setText("empty");
+				button1.setText("off");
 				System.out.println("N/A");
 				
 			}
 			
-			if(isHovered(750,670)) {
-				button2.setText("working");
+			if(button2.isHovered(750,670)) {
+				button2.setText("on");
 			}else {
-				button2.setText("empty");
+				button2.setText("off");
 			}
 			
-			if(isHovered(1000,100)) {
-				button3.setText("working");
+			if(button3.isHovered(1000,100)) {
+				button3.setText("on");
 			}else {
-				button3.setText("empty");
+				button3.setText("off");
 			}
+			
+			
 		}
 		
 	}
-
+	*/
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/hogwartsMap.jpg");
 		viewObjects.add(background);
 		
+		//connect four
 		pointer1 = new Graphic(900, 300, 30, 40, "images/pointer.png");
 		viewObjects.add(pointer1);
-		button1 = new Button(1000, 100, 30, 40, "a", new Action() {
-			//forest
+		button1 = new Button(870, 260, 100, 40, "Connect Four", new Action() {
+		
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
-				
+				GuiLoadingVickie.loading.setScreen(new ConnectFourAreej(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(button1);
 		
-		pointer2 = new Graphic(750, 670, 30, 40, "images/pointer.png");
+		//dkiss
+		pointer2 = new Graphic(660, 670, 30, 40, "images/pointer.png");
 		viewObjects.add(pointer2);
-		button2 = new Button(900, 290, 30, 40, "a", new Action() {
-			//hogwarts
+		button2 = new Button(630, 630, 100, 40, "The Dementor's Kiss", new Action() {
+		
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
+				GuiLoadingVickie.loading.setScreen(new DKTitle(getWidth(), getHeight()));
 				
 			}
 		});
 		viewObjects.add(button2);
 		
-		pointer3 = new Graphic(1000, 100, 30, 40, "images/pointer.png");
+		//forest spider
+		pointer3 = new Graphic(1050, 100, 30, 40, "images/pointer.png");
 		viewObjects.add(pointer3);
-		button3 = new Button(750, 670, 30, 40, "a", new Action() {
-			//train
+		button3 = new Button(1020, 60, 100, 40, "Spider", new Action() {
+		
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new CatchingGameJi(getWidth(), getHeight()));
+				
+			}
+		});
+		viewObjects.add(button3);
+		
+		//magic squares
+		pointer4 = new Graphic(800, 340, 30, 40, "images/pointer.png");
+		viewObjects.add(pointer4);
+		button4 = new Button(770, 310, 100, 40, "Magic Squares", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+				
+			}
+		});
+		viewObjects.add(button4);
+		
+		//siren's curse
+		pointer5 = new Graphic(570, 460, 30, 40, "images/pointer.png");
+		viewObjects.add(pointer5);
+		button5 = new Button(570, 460, 30, 40, "", new Action() {
+			
 			@Override
 			public void act() {
 				// TODO Auto-generated method stub
 				
 			}
 		});
-		viewObjects.add(button3);
-		
-		if(isHovered(900, 300)) {
-			button1.setText("HARRY");
-		}else {
-			button1.setText("");
-		}
+		viewObjects.add(button5);
 	}
 
 }
