@@ -141,7 +141,6 @@ public class CatchingGameJi extends FullFunctionScreen{
 			@Override
 			public void act() {
 				/*
-				potion.setVisible(false);
 				potionsList.remove(potion);
 				viewObjects.remove(potion);
 				System.out.println("potion removed");
@@ -149,6 +148,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 				//spidersList.get(spider.getIndex()).setVisible(false);
 
 				spider.setVisible(false);
+				spidersList.set(spider.getIndex(), null);
 
 			}
 		});
@@ -207,7 +207,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 	}
 	 */
 	public void checkSpiderCaught() {
-		if(spider.getY() >= 800) {
+		if(spider.getY() == 800) {
 			if(spider != null) {
 				spider.setVisible(false);
 				setLives(lives--);
