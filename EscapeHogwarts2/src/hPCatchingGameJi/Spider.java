@@ -5,11 +5,11 @@ import java.awt.event.MouseAdapter;
 import guiTeacher.components.Action;
 import guiTeacher.components.ClickableGraphic;
 
-public class Potion extends ClickableGraphic{
+public class Spider extends ClickableGraphic{
 	
 	private int index;
 
-	public Potion(int x, int y, String imageLocation, int index, Action a) {
+	public Spider(int x, int y, String imageLocation, int index, Action a) {
 		super(x, y, imageLocation);
 		this.index = index;
 		setAction(a);

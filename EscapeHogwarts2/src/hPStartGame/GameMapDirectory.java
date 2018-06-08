@@ -132,7 +132,7 @@ public class GameMapDirectory extends FullFunctionScreen{
 		});
 		viewObjects.add(button4);
 		
-		//siren's curse
+		//siren
 		pointer5 = new Graphic(570, 460, 30, 40, "images/pointer.png");
 		viewObjects.add(pointer5);
 		button5 = new Button(570, 460, 30, 40, "", new Action() {
@@ -158,6 +158,7 @@ public class GameMapDirectory extends FullFunctionScreen{
 		});
 		viewObjects.add(button6);
 		
+		//hogsmeade
 		pointer7 = new Graphic(100, 200, 30, 40, "images/pointer.png");
 		viewObjects.add(pointer7);
 		button7 = new Button(100, 200, 30, 40, "", new Action() {
