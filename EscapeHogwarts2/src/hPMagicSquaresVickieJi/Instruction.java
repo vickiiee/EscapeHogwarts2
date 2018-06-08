@@ -16,6 +16,7 @@ public class Instruction extends FullFunctionScreen{
 	private Graphic back;
 	private VickieHPFrontEnd magicSquares;
 	private Button skip;
+	private Button story;
 
 	
 	//https://www.befunky.com/create/
@@ -38,16 +39,27 @@ public class Instruction extends FullFunctionScreen{
 		
 		skip = new Button(1000, 50, 100, 100, "Skip", Color.red, new Action() {
 
-			
 			@Override
 			public void act() {
 				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
-				
+
 			}
-			
+
 		});
-		
+
 		viewObjects.add(skip);
+
+		story = new Button(500, 50, 100, 100, "Story", Color.blue, new Action() {
+
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight()));
+
+			}
+
+		});
+
+		viewObjects.add(story);
 	}
 
 }

@@ -28,7 +28,7 @@ public class JiHPBackEnd implements VickieHPSupport {
 
 	public void chooseStartingPoint() { // choose point start
 		createInitiateNum();
-		iStartingNum = 9;
+		//iStartingNum = 9;
 		if (iStartingNum != 5) {
 			if (isCornerNumber(iStartingNum)) {
 				// randomize outer starting box
