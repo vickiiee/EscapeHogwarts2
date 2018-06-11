@@ -31,7 +31,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 	private int count; // testing purposes
 
-	private Color trans;
+	public static Color trans;
 
 	private int c;
 

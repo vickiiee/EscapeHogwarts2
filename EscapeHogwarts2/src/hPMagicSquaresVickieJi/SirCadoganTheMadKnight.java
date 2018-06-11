@@ -1,11 +1,17 @@
 package hPMagicSquaresVickieJi;
 
 import java.awt.Color;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
+import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPStartGame.StoryLineGuideJi;
@@ -21,7 +27,10 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 	
 	private Color brown = new Color(48,41,35);
 	private Button oneR;
+	private TextArea charName;
 	//private boolean true;
+	private Button threeR;
+	private Button twoR;
 	
 	
 	
@@ -29,6 +38,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 	public SirCadoganTheMadKnight(int width, int height) {
 		super(width, height);
 		setBackground(brown);
+		((TextLabel) charName).setSize(50);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -74,8 +84,17 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 
 	}
 
+	
+	public Color newColorWithAlpha(Color original, int alpha) {
+		// System.out.println("newColorAlpha()");
+		return new Color(original.getRed(), original.getGreen(), original.getBlue(), alpha);
+	}
+	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		//Color trans = VickieHPFrontEnd.trans;
+		
+		Color t = newColorWithAlpha(Color.black, 60);
 		background = new Graphic(0,0, getWidth(), getHeight(), "vImages/msEntrance.jpg");
 		viewObjects.add(background);
 		
@@ -90,9 +109,36 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		dialogue = new Graphic(80,80,1200,700, "images/textbox.png");
 		viewObjects.add(dialogue);
 		
-		oneR = new Button(600, 600, 100, 100, "Teest1", brown, null);
-		oneR.setCustomActiveBorderColor(Color.red);
+		charName = new TextArea(230, 520, 200, 75, "Name");
+		viewObjects.add(charName);
+		
+		dialogueTxt = new TextArea(210, 590, 700, 500, "ooooooo"); //210,590,700,500
+		viewObjects.add(dialogueTxt);
+		
+		oneR = new Button(800, 310, 295, 75, "Teest1",t , null); //800, 510, 295, 75
+		oneR.setForeground(Color.orange);
+		System.out.println(oneR.getActiveBorderColor()+"uyifguy");
+		oneR.setHoverAction(new Action() {
+
+			@Override
+			public void act() {
+				System.out.println(oneR.getActiveBorderColor()+"uyifguy");
+			}
+			
+		});
+	//	oneR.setStaticBorderColor(Color.red);
+		//oneR.setCustomActiveBorderColor(Color.red);
 		viewObjects.add(oneR);
+		
+		twoR = new Button(800, 400, 295, 75, "Teest2",t , null); // 800,600,295,75
+		//oneR.setCustomActiveBorderColor(Color.red);
+		viewObjects.add(twoR);
+		
+		threeR = new Button(800, 490, 295, 75, "Teest3",t , null); //800,690,295,75
+		//oneR.setCustomActiveBorderColor(Color.red);
+		viewObjects.add(threeR);
+		
+		
 		
 	}
 
