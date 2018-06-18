@@ -474,6 +474,15 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			}
 		});
 
+		// disable number keypad buttons too
+				for (int i = 0; i < numberButtons.length; i++) {
+					int o = Integer.parseInt(numberButtons[i].getText());
+					if (o == initNumBackEnd) {
+						numberButtons[i].setAction(null);
+						numberButtons[i].setBackground(Color.black);
+						numberButtons[i].update();
+					}
+				}
 	}
 
 	public void updateGrid(int num) {
