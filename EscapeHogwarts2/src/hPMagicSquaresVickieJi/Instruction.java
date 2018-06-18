@@ -1,7 +1,12 @@
 package hPMagicSquaresVickieJi;
 
 import java.awt.Color;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
@@ -25,6 +30,14 @@ public class Instruction extends VickieHPFrontEnd{ //FullFunctionScreen{
 	private TextColoredLabel g;
 	
 	private Button[] numberButtons;
+	
+	private Point b;
+	private PointerInfo a;
+	
+	private boolean gameRunning = true;
+	
+	private int mouseX;
+	private int mouseY;
 
 	
 	//https://www.befunky.com/create/
@@ -71,6 +84,8 @@ public class Instruction extends VickieHPFrontEnd{ //FullFunctionScreen{
 	}*/
 	
 	public void addNecessaryButtons() {
+		getMousePosition();
+		
 		skip = new Button(1000, 50, 100, 100, "Skip", Color.red, new Action() {
 
 			@Override
@@ -107,8 +122,35 @@ public class Instruction extends VickieHPFrontEnd{ //FullFunctionScreen{
 		g = new TextColoredLabel(500, 100, 600, 300, "dfwerwerwesderwefs fgdfgsdfhd", null, Color.red);
 		viewObjects.add(g);
 		
-		TextAreaHoverButton te = new TextAreaHoverButton(0,0,500,500,"dfgsfgdfg", trans,t, tB, null) ;
+		TextAreaHoverButton te = new TextAreaHoverButton(0,0,500,500,"dfgsfgdfg", trans,g, tB, null) ;
 		viewObjects.add(te);
+	}
+	
+	public Point getMousePosition() {
+		Timer timer = new Timer();
+		TimerTask task;
+		task = new TimerTask() {
+			@Override
+			public void run() { 
+				/*if (gameRunning) {
+					a = MouseInfo.getPointerInfo();
+					b = a.getLocation();
+					mouseX = (int) b.getX();
+					mouseY = (int) b.getY();
+					System.out.println(mouseX + ", " + mouseY);
+					
+				} else {
+					cancel();
+				}*/
+				a = MouseInfo.getPointerInfo();
+				b = a.getLocation();
+				mouseX = (int) b.getX();
+				mouseY = (int) b.getY();
+				System.out.println(mouseX + ", " + mouseY);
+			}
+		};
+		timer.schedule(task, 0, 100);
+		return b;
 	}
 	
 	public void startTimer() {
