@@ -61,7 +61,7 @@ public class JiHPBackEnd implements VickieHPSupport {
 				}
 			}
 		} else {
-			createInitiateNum();
+			chooseStartingPoint();
 		}
 
 		//iStartingRow = 1;
