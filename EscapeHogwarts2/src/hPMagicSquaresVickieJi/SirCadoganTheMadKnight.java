@@ -21,7 +21,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 	
 	
 	private TextArea dialogueTxt;
-	private Graphic dialogue;
+	private Graphic dialogueG;
 	private Graphic knight;
 	private Graphic background;
 	
@@ -44,8 +44,16 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 
 	@Override
 	public String displayPhrase(String txt) {
-		// TODO Auto-generated method stub
-		return null;
+		dialogueTxt.setText("");
+		for(int i = 0; i < txt.length(); i++) {
+			append(dialogueTxt, txt.charAt(i));
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		return "";
 	}
 
 	@Override
@@ -106,8 +114,8 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		knight = new Graphic(503,83,226, 400, "vImages/try2.jpg");
 		viewObjects.add(knight);
 		
-		dialogue = new Graphic(80,80,1200,700, "images/textbox.png");
-		viewObjects.add(dialogue);
+		dialogueG = new Graphic(80,80,1200,700, "images/textbox.png");
+		viewObjects.add(dialogueG);
 		
 		charName = new TextArea(230, 520, 200, 75, "Name");
 		viewObjects.add(charName);
@@ -138,7 +146,32 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		//oneR.setCustomActiveBorderColor(Color.red);
 		viewObjects.add(threeR);
 		
-		
+		/*
+		 * StoryLine:
+		 * P: Hello There!
+		 * 		U://Dorm Password
+		 * 			P: I am Sir Cadogan the Brave Knight, though some people call me mad.
+		 * 				U: Let me in! Idc who you are!
+		 * 					P: RUDE BITCH //EXIT
+		 *				U: Where's the Fat Lady??
+		 *					P: After her ordeal with Sirius Black, I was graciously asked to replace her and - ta da!! Here we are.
+		 *						U:
+		 * 		U: Who are you??
+		 * 			P: I am Sir Cadogan the Brave Knight, though some people call me mad.
+		 * 				U: Where's the Fat Lady??
+		 * 					P: After her ordeal with Sirius Black, I was graciously asked to replace her and - ta da!! Here we are.
+		 * 				U: Dorm Password
+		 * 					P: Nuh-uh. That was the old way to get in. I'm trying something new today. Instead of telling me a password, just solve this puzzle and then I'll let you in.
+		 * 						U: You can't do that! I'm telling Dumbledore/McGonagall.
+		 * 							P: Where's your code of honor??
+		 * 								Not brave enough to try it, huh? Guess you arent Gryffindor. Get out of here. Byeeeee //EXIT
+		 * 						U: Why?
+		 * 							P:If you are Gryffindor, you'd shut up and do it.
+		 * 								U: Guess I'm not Gryffindor //EXIT
+		 * 								U: Okay, I'll do it.
+		 * 		U: //something else
+		 * 			
+		 */
 		
 	}
 
