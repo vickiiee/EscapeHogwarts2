@@ -12,6 +12,7 @@ import guiTeacher.components.Button;
 import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
+import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 
@@ -133,7 +134,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 		tTimer = new TextAreaColor(50, 50, 320, 150, "5:00", null, null);
 		viewObjects.add(tTimer);
-
+		
+		//TextColoredLabel f = new TextColoredLabel(50, 50, 320, 150, "5:00", Color.red, Color.black);
+		//viewObjects.add(f);
+		
 		Graphic hwood = new Graphic(50, 600, 320, 150, "images/mSBoard320.jpg"); 
 		viewObjects.add(hwood);
 
@@ -209,7 +213,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		hThree.setCurve(10, 20);
 		viewObjects.add(hThree);
 
-		hint1 = new TextArea(55, 600, 320, 500, "The '5' is always    in the middle");
+		hint1 = new TextArea(55, 600, 320, 500, "The '5' is always    in the middle   ");
 		hint1.setForeground(Color.red);
 		viewObjects.add(hint1);
 

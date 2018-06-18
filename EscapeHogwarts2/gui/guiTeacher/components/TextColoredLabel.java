@@ -36,7 +36,7 @@ public class TextColoredLabel extends TextLabel {
 	
 	public TextColoredLabel(int x, int y, int w, int h, String text, Color bg, Color fg) {
 		super(x, y, w, h, text);
-		this.customBg = bg;
+		//this.customBg = null;
 		this.customFg = fg;
 		align = getHeaderAlign();
 		update();
@@ -60,8 +60,8 @@ public class TextColoredLabel extends TextLabel {
 	@Override
 	public void update(Graphics2D g) {
 		applyStyles(g);
-		g.setColor(customBg);
-		g.fillRect(0, 0, getWidth(), getHeight());
+		//g.setColor(customBg);
+		//g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(customFg);
 		g.setFont(getFont());
 		if(getText() != null) {

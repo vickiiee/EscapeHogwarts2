@@ -6,7 +6,9 @@ import java.util.List;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
+import guiTeacher.components.ImageTextButton;
 import guiTeacher.components.TextArea;
+import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPConnect4Areej.ConnectFourAreej;
@@ -18,6 +20,9 @@ public class Instruction extends VickieHPFrontEnd{ //FullFunctionScreen{
 	private VickieHPFrontEnd magicSquares;
 	private Button skip;
 	private Button story;
+	
+	private TextAreaColor t;
+	private TextColoredLabel g;
 	
 	private Button[] numberButtons;
 
@@ -90,6 +95,20 @@ public class Instruction extends VickieHPFrontEnd{ //FullFunctionScreen{
 
 		viewObjects.add(story);
 		
+		t = new TextAreaColor(600, 600, 100, 100, "IT WORKDDDDDDDDD", trans, null ); //attach image behind it
+		viewObjects.add(t);
+		t.setVisible(false);
+		
+		Graphic tB = new Graphic(500,0,300,300,"images/transBlack.png");
+		viewObjects.add(tB);
+		tB.preserveRatio = false;
+		tB.resize(400, 500);
+		
+		g = new TextColoredLabel(500, 100, 600, 300, "dfwerwerwesderwefs fgdfgsdfhd", null, Color.red);
+		viewObjects.add(g);
+		
+		TextAreaHoverButton te = new TextAreaHoverButton(0,0,500,500,"dfgsfgdfg", trans,t, tB, null) ;
+		viewObjects.add(te);
 	}
 	
 	public void startTimer() {
