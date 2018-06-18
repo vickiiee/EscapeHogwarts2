@@ -125,7 +125,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		
 		oneR = new Button(800, 310, 295, 75, "Teest1",t , null); //800, 510, 295, 75
 		oneR.setForeground(Color.orange);
-		System.out.println(oneR.getActiveBorderColor()+"uyifguy");
+		//System.out.println(oneR.getActiveBorderColor()+"uyifguy");
 		oneR.setHoverAction(new Action() {
 
 			@Override
@@ -145,6 +145,8 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		threeR = new Button(800, 490, 295, 75, "Teest3",t , null); //800,690,295,75
 		//oneR.setCustomActiveBorderColor(Color.red);
 		viewObjects.add(threeR);
+		
+		//TO SET HOVER ACTION, MAKE NEW CLASS EXTENDING BUTTON CLASS AND OVERRIDE hoverACTION METHOD
 		
 		/*
 		 * StoryLine:
