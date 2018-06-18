@@ -49,7 +49,6 @@ public class TextColoredLabel extends TextLabel {
 	}
 
 
-
 	public void setAlign(int align) {
 		this.align = align;
 		update();
