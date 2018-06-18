@@ -17,26 +17,29 @@ public class TextAreaHoverButton extends Button{
 	
 	public TextAreaHoverButton(int x, int y, int w, int h, String text, Color color, TextColoredLabel t, Graphic g, Action action) {
 		super(x, y, w, h, text, color, action);
-		this.t=t;
-		this.g =g;
-		g.preserveRatio = false;
-		g.resize(t.getWidth(), t.getHeight());
-		g.setX(t.getX());
-		g.setY(t.getY());
+		this.t = t;
+		if (g != null) {
+			this.g = g;
+			g.preserveRatio = false;
+			g.resize(t.getWidth(), t.getHeight());
+			g.setX(t.getX());
+			g.setY(t.getY());
+		}
 	}
 
 	public void hoverAction(){
 		GUIApplication.mainFrame.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		System.out.println("HOVWER WERWEOFRWE");
 		
-		
-		g.setVisible(true);
+		if(g != null) {
+		g.setVisible(true);}
 		t.setVisible(true);
 		setLeft(false);
 	}
 	
 	public void unhoverAction(){
-		g.setVisible(false);
+		if(g != null) {
+		g.setVisible(false);}
 		System.out.println("UNHO(VER");
 		t.setVisible(false);
 		setLeft(true);

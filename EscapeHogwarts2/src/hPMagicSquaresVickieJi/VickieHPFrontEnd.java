@@ -579,6 +579,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				txtAreas[i].setForeground(maroon); // maroon color
 
 				if (i == 0 || i < 3) {
+					//txtAreas[i].setX(560 + (203 * i));
+					//txtAreas[i].setY(100);
 					txtAreas[i].move(560 + (203 * i), 105, 100);
 				} else if (i == 3 || i < 6) {
 					txtAreas[i].move(560 + (203 * (i - 3)), 308, 100);// y+203
