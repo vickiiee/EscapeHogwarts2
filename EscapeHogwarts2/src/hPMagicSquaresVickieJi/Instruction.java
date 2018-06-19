@@ -257,22 +257,22 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 	private Point b;
 	private PointerInfo a;
 	
-	private boolean gameRunning = true;
+
 	
 	private int mouseX;
 	private int mouseY;
-	private int[][] magicSquares;
 
 	private TextAreaHoverButton[] numberButtons; // keypad buttons
+	private TextAreaHoverButton[] gB;
 
-	private MagicSquareGridButtons[] gB; // board buttons
+	//private MagicSquareGridButtons[] gB; // board buttons
 
 	private TextArea[] txtAreas; // board txtareas
 
 	private String numClicked; // stored number
 
 	private TextArea error; // error message saying you must click on keypad first
-	private TextArea counter; // testing purposes
+
 
 	private TextArea hint1; // first hint
 	private TextArea hint3; // second hint
@@ -283,30 +283,16 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 	private Graphic background;
 	private Graphic board;
 
-	private TextAreaColor bTimer;
+
 	private TextAreaColor tTimer;
 
 	// private TextAreaColor hint;
 	private int c;
 
 	private int minutes; // timer minutes
-	private int seconds; // timer seconds
 
-	private int g;
-	private int h;
+
 	public int initNumBackEnd; // getInitiateNum()
-	private int goldI;
-	private int count; // testing purposes
-
-	private Timer timer;
-	private TimerTask complete;
-
-	private Button font1plus;
-	private Button font1sub;
-	private Button font2plus;
-	private Button font2sub;
-	private Button font3plus;
-	private Button font3sub;
 
 	private Button hOne; // first hint button
 	private Button hTwo; // second hint button
@@ -322,7 +308,6 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 	private Graphic tB;
 
 
-	private TextColoredLabel g1;
 
 
 	private TextColoredLabel keyDesc;
@@ -349,7 +334,7 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 		backend = new JiHPBackEnd(this);
 
 		minutes = 4;
-		seconds = 60;
+
 
 		numClicked = "0";
 
@@ -357,12 +342,10 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 
 		//numberButtons = new Button[9];
 
-		gB = new MagicSquareGridButtons[9];
+		//gB = new MagicSquareGridButtons[9];
 
 		txtAreas = new TextArea[9];
 
-		count = 0; // testing purposes
-		// if(count == 0)backend.chooseStartingPoint();
 
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/background3.jpg");
 		viewObjects.add(background);
@@ -673,7 +656,6 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 	public void numButtonAction(int num) {
 		// System.out.println("numButtonAction(int num)");
 		numClicked = numberButtons[num].getText();
-		count++;
 		//counter.setText("" + count);
 
 		changeButtonColor(num, initNumBackEnd);
@@ -709,6 +691,7 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 	}
 
 	public void createGridButtons() {
+		gB = new TextAreaHoverButton[9];
 		// System.out.println("createGridButtons()");
 		c = -1;
 
@@ -718,7 +701,7 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 			// System.out.println("Coords:(" + r + "," + c + ")");
 			if (i == 0 || i < 3) {
 				c = c + 1;
-				gB[i] = new MagicSquareGridButtons(500 + 202 * i, 100, 195, 195, "", trans, null, r, c);
+				gB[i] = new TextAreaHoverButton(500 + 202 * i, 100, 195, 195, "", trans,keyDesc, tB, null);
 				viewObjects.add(gB[i]);
 				// System.out.println("Coords:(" + r + "," + c + ")");
 				// System.out.println(gB[i].getCoord());
@@ -729,7 +712,7 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 			} else if (i == 3 || i < 6) {
 				r = 1;
 				c = c + 1;
-				gB[i] = new MagicSquareGridButtons(500 + 202 * (i - 3), 302, 195, 195, "", trans, null, r, c);
+				gB[i] = new TextAreaHoverButton(500 + 202 * (i - 3), 302, 195, 195, "",trans,keyDesc, tB, null);
 				viewObjects.add(gB[i]);
 				// System.out.println("Coords:(" + r + "," + c);
 				// System.out.println(gB[i].getCoord());
@@ -740,7 +723,7 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 			} else if (i == 6 || i < 9) {
 				r = 2;
 				c = c + 1;
-				gB[i] = new MagicSquareGridButtons(500 + 202 * (i - 6), 505, 195, 195, "", trans, null, r, c);
+				gB[i] = new TextAreaHoverButton(500 + 202 * (i - 6), 505, 195, 195, "", trans,keyDesc, tB, null);
 				viewObjects.add(gB[i]);
 				// System.out.println("Coords:(" + r + "," + c);
 				// System.out.println(gB[i].getCoord());
@@ -911,21 +894,22 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 		String p = r + "," + c;
 
 		// compares initial coordinate with every button coordinate
-		for (int i = 0; i < gB.length; i++) {
+		//for (int i = 0; i < gB.length; i++) {
 			// System.out.println("String p = gB[i].getCoord();" + p);
-			String h = gB[i].getCoord();
+			//String h = gB[5].getCoord();
 			// System.out.println("String h = gB[i].getCoord();" + h);
 			// if coordinates are a match, set num to the middle of button and make action
 			// null
-			if (p.equals(h)) {
+			//if (p.equals(h)) {
 				// System.out.println("THE SAME COORDINATES!!()");
-				gB[i].setAction(null);
-				txtAreas[i].setText("" + initNumBackEnd);
+				gB[5].setAction(null);
+				gB[5].setTextLabel(blackedOut);
+				txtAreas[5].setText("" + initNumBackEnd);
 
 				Color maroon = new Color(182, 47, 32);
-				txtAreas[i].setForeground(maroon); // maroon color
-
-				if (i == 0 || i < 3) {
+				txtAreas[5].setForeground(maroon); // maroon color
+				txtAreas[5].move(560 + (203 * (5 - 3)), 308, 100);
+				/*if (i == 0 || i < 3) {
 					//txtAreas[i].setX(560 + (203 * i));
 					//txtAreas[i].setY(100);
 					txtAreas[i].move(560 + (203 * i), 105, 100);
@@ -933,10 +917,10 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 					txtAreas[i].move(560 + (203 * (i - 3)), 308, 100);// y+203
 				} else if (i == 6 || i < 9) {
 					txtAreas[i].move(560 + 203 * (i - 6), 511, 100);
-				}
+				}*/
 				font();
-			}
-		}
+			//}
+		//}
 		
 		// disable number keypad buttons too
 		for (int i = 0; i < numberButtons.length; i++) {
@@ -991,29 +975,7 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 		}
 	}
 
-	/*
-	 * public void font(int num) { try { File fontFile = new
-	 * File("images/HARRYP.ttf"); Font font = Font.createFont(Font.TRUETYPE_FONT,
-	 * fontFile);
-	 * 
-	 * Font baseFont = font.deriveFont(150f); // default Font b =
-	 * font.deriveFont(70f);
-	 * 
-	 * if(start == false) { start = true;
-	 * 
-	 * } txtAreas[num].setFont(baseFont); for (int i = 0; i < txtAreas.length; i++)
-	 * { if (i != num) { String q = txtAreas[i].getText(); if (q.equals("?")) {
-	 * txtAreas[i].setFont(b);
-	 * 
-	 * // txtAreas[i].move(newX, newY, durationMS); } else {
-	 * txtAreas[i].setFont(baseFont); } } }
-	 * 
-	 * } catch (Exception e) {
-	 * 
-	 * e.printStackTrace();
-	 * 
-	 * } }
-	 */
+	
 
 	public Color newColorWithAlpha(Color original, int alpha) {
 		// System.out.println("newColorAlpha()");
@@ -1021,226 +983,23 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 	}
 
 	public void setValues(int row, int col) {
-		// System.out.print("------------------------------------------------------------------------------------------\n");
-		// System.out.println("setValues()");
-		magicSquares = backend.getBoxes();
-
-		magicSquares[row][col] = Integer.parseInt(numClicked);
-		// make method so backend can get new updated magicsquares
-		// check by printing it out.
-		// System.out.println("SET THE FING VALUES IN 2D ARRAY!! ");
-
-		for (int r = 0; r < 3; r++) {
-			for (int c = 0; c < 3; c++) {
-				System.out.println(r + "," + c + ":" + magicSquares[r][c]);
-			}
-
-		}
-		// System.out.print("------------------------------------------------------------------------------------------\n");
-		backend.setArr(magicSquares);
-		check();
+		
 	}
 
 	public void check() {
-		int count = 0;
-		boolean x;
-		for (int row = 0; row < 3; row++) {
-			for (int col = 0; col < 3; col++) {
-				if (magicSquares[row][col] != 0) {
-					count++;
-				}
-			}
-		}
-		if (count == 9) {
-			x = backend.checkTotal();
-			if (x) {
-
-				System.out.println("WINNNERNENRNENRNERNNENR!!!");
-
-				// disable timer
-				timer.cancel();
-
-				// make gold
-				goldI = -1;
-				Timer gold = new Timer();
-				TimerTask y = new TimerTask() {
-					@Override
-					public void run() {
-						goldI++;
-						txtAreas[goldI].setForeground(Color.yellow);
-
-						if (goldI == 8) {
-
-							gold.cancel();
-
-							// width = 2 Math.pi/2
-
-							changeImages();
-							// method call for resize
-						}
-					}
-				};
-
-				gold.schedule(y, 0, 500);
-
-				// disable all buttons
-			} else {
-				System.out.println("WRONGNGNGNGNGNGNGNGNGNGNGN!!");
-			}
-		}
+		
 	}
 
 	public void changeImages() {
 
-		// width = 2 Math.cosine/2 double
-
-		Timer r = new Timer();
-		TimerTask x = new TimerTask() {
-			double rotation = 0;
-			int counter = 0;
-
-			// float num = 1; FADE OUT
-			public void run() {
-				// num = (float) (num -.10); FADE OUT
-				// board.setAlpha(num); FADE OUT
-				counter++;
-				if (rotation >= Math.PI * 2) {
-					rotation = 0;
-				}
-				rotation += Math.PI / 30;
-				int newWidth = (int) (Math.abs(700 * Math.cos(rotation)));
-
-				if (newWidth < 5) {
-					newWidth = 5;
-					board.address = "images/knight.jpg"; // change image
-				}
-
-				board.resize(newWidth, board.getHeight());
-				board.setX(450 + (350 - board.getWidth() / 2));
-
-				if (counter == 30) {
-					r.cancel();
-				}
-
-			}
-		};
-
-		r.schedule(x, 0, 60);
-
 	}
 
 	public void startTimer() {
-		// g = 5;
-		timer = new Timer();
-		complete = new TimerTask() {
-			@Override
-			public void run() {
-				if (minutes == 0 && seconds == 1) { // closeset is -1 and 60
-					//System.out.println(minutes + ":" + seconds);
-					timer.cancel();
-				}
-
-				// g--;
-				seconds--;
-				// hints(g);
-				// if(g ==2) {
-				// g = 4;
-				// }
-				if (minutes == 4 && seconds == 0) {
-					hints(minutes);
-				}
-
-				if (minutes == 3 && seconds == 0) {
-					hints(minutes);
-				}
-
-				if (minutes == 2 && seconds == 0) {
-					hints(minutes);
-				}
-				changeTimerFont();
-
-				// tTimer
-
-				if (seconds <= 9 && seconds >= 1) {
-					tTimer.setText(minutes + ":0" + seconds); // 4:59
-					tTimer.update();
-				} else if (seconds == 0) {
-					tTimer.setText(minutes-- + ":00");
-					seconds = 60;
-				} else {
-					tTimer.setText(minutes + ":" + seconds); // 4:59
-					tTimer.update(); // tTimer
-				}
-
-				/*
-				 * Change color of text when minutes
-				 */
-
-			}
-
-			public void changeTimerFont() {
-				//System.out.println("CHANGETIMERFONT:  " + minutes + ":" + seconds);
-				try {
-					File fontFile = new File("images/HARRYP.ttf");
-					Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-
-					Font baseFont = font.deriveFont(150f);
-					Font b = font.deriveFont(70f);
-
-					if ((minutes == 0 && seconds == 0) || (minutes == 1 && seconds == 0)
-							|| (minutes == 2 && seconds == 0) || (minutes == 3 && seconds == 0)
-							|| (minutes == 4 && seconds == 0)) {
-						//System.out.println("CHANGETIMERFONT2:  " + minutes + ":" + seconds);
-						tTimer.setFont(baseFont);
-						tTimer.setForeground(Color.red);
-						// tTimer.setText(minutes--+":00");
-					} else {
-						tTimer.setFont(b);
-						tTimer.setForeground(Color.black);
-						//System.out.println("CHANGETIMERFONT3:  " + minutes + ":" + seconds);
-					}
-
-				} catch (Exception e) {
-
-					e.printStackTrace();
-
-				}
-			}
-		};
-		timer.schedule(complete, 1000, 500);
+		
 	}
 
 	public void hints(int num) {
-		// @ 4:00: the 5 is always in the midfdle
-		// @3:00: the numbers opposite the five in a column/row/diagonal has to add up
-		// to 10
-		// @2:00: Besides the 5, odd numbers are never adjacent to even numbers and vice
-		// veras
-
-		if (num == 4) {
-			hintBox.setText("");
-			hint1.setVisible(true);
-		}
-
-		if (num == 3) {
-			hintBox.setText("");
-			hint2.setVisible(true);
-			hint1.setVisible(false);
-			// hintBox.setText("The numbers opposite the '5' in a column/row/ diagonal has
-			// to add up to ten");
-		}
-
-		if (num == 2) {
-			hintBox.setText("");
-			hint3.setVisible(true);
-			hint1.setVisible(false);
-			hint2.setVisible(false);
-			// hintBox.setText("Besides the 5, odd numbers are never adjacent to even
-			// numbers and vice versa");
-		}
-
 	}
-
 }
 
 
