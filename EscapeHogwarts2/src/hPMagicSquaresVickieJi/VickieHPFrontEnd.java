@@ -33,10 +33,15 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	private TextArea error; // error message saying you must click on keypad first
 	private TextArea counter; // testing purposes
 
-	private TextArea hint1; // first hint
-	private TextArea hint3; // second hint
-	private TextArea hint2; // third hint
+	private TextColoredLabel hint1; // first hint
+	private TextColoredLabel hint3; // second hint
+	private TextColoredLabel hint2; // third hint
 
+	
+//	private TextArea hint1; // first hint
+	//private TextArea hint3; // second hint
+	//private TextArea hint2; // third hint
+	
 	public Color trans; // transparent white-ish color on keypad buttons
 
 	private Graphic background;
@@ -76,6 +81,14 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	private Graphic border;
 
 	private Graphic wood;
+
+	//private FontColoredTextLabel cd;
+
+	private Font a;
+
+	private Font b;
+
+	private Font l;
 
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
@@ -212,8 +225,71 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		});
 		hThree.setCurve(10, 20);
 		viewObjects.add(hThree);
+		
+		
+		try {
+			File fontFile = new File("images/HARRYP.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
-		hint1 = new TextArea(55, 600, 320, 500, "The '5' is always    in the middle   ");
+			Font baseFont = font.deriveFont(150f);
+			 a = font.deriveFont(55f);
+			
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		
+		
+		// cd = new FontColoredTextLabel(55, 600, 320, 500, "The '5' is always in the middle", null, Color.red, a);
+		//hint1.setForeground(Color.red);
+		// cd.setVisible(false);
+		 //cd.setFont(a);
+		 //cd.update();
+		//viewObjects.add(cd);
+
+		/*Button j = new Button(600, 695, 25, 25, "R", Color.blue, new Action() {
+			private boolean v;
+			@Override
+			public void act() {
+				if(v) {
+					v=!v;
+					cd.setText("UPDADASDSDS");
+				cd.setVisible(false);}
+				else {
+					v=!v;
+					cd.setText("sdfgasdfgadfg");
+					cd.setVisible(true);
+					
+				}
+			}
+
+		});
+		viewObjects.add(j);*/
+		
+		
+		
+		//The '5' is always    in the middle   
+		hint1 = new TextColoredLabel(50, 600, 320, 500, "The '5' is always in the middle", null, Color.red);
+		//hint1.setForeground(Color.red);
+		viewObjects.add(hint1);
+
+		//he numbers opposite the 5  in a column/row/diagonal    has to add up to ten
+		hint2 = new TextColoredLabel(50, 600, 320, 500,
+				"The numbers opposite the 5 in a column/row/diagonal has to add up to ten", null, Color.blue);
+		//hint2.setForeground(Color.orange);
+		viewObjects.add(hint2);
+		
+		
+		// Besides the 5, odd numbers are NEVER adjacent to even    numbers and vice versa
+		hint3 = new TextColoredLabel(50, 600, 320, 500, //Corner numbers are either ALL odd, or All even 
+				"Corner numbers are either ALL odd, or All even", null, Color.GREEN);
+		//hint3.setForeground(Color.yellow);
+		viewObjects.add(hint3);
+		
+		
+		/*hint1 = new TextArea(55, 600, 320, 500, "The '5' is always    in the middle   ");
 		hint1.setForeground(Color.red);
 		viewObjects.add(hint1);
 
@@ -226,10 +302,9 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				" Besides the 5, odd numbers are NEVER adjacent to even    numbers and vice versa");
 		hint3.setForeground(Color.yellow);
 		viewObjects.add(hint3);
-
 		hint1.setVisible(false);
 		hint3.setVisible(false);
-		hint2.setVisible(false);
+		hint2.setVisible(false);*/
 		
 		Button test = new Button(0,0,50,50,"tesr", new Action() {
 
@@ -609,9 +684,9 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
 			Font baseFont = font.deriveFont(150f);
-			Font a = font.deriveFont(55f);
-			Font c = font.deriveFont(38f); // 30 /40
-			Font b = font.deriveFont(38f);
+			 a = font.deriveFont(55f);
+			 l = font.deriveFont(38f); // 30 /40
+			 b = font.deriveFont(38f);
 
 			Font question = font.deriveFont(70f);
 
@@ -626,9 +701,14 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				}
 
 			}
+			//cd.setFont(a);
+			//cd.setVisible(true);
+			
+	
+			
 			hint1.setFont(a);
 			hint2.setFont(b);
-			hint3.setFont(c);
+			hint3.setFont(l);
 
 			hintBox.setFont(b);
 

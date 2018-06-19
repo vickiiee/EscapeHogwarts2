@@ -56,6 +56,7 @@ public class TextColoredLabel extends TextLabel {
 
 	@Override
 	public void update(Graphics2D g) {
+		clear();
 		applyStyles(g);
 		if (customBg != null) {
 			g.setColor(customBg);

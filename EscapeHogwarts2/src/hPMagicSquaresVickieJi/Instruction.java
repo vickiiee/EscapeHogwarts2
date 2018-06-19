@@ -1,6 +1,7 @@
 package hPMagicSquaresVickieJi;
 
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPStartGame.GuiLoadingVickie;
 
 /*import java.awt.Color;
 import java.awt.MouseInfo;
@@ -135,32 +136,6 @@ public class Instruction extends VickieHPFrontEnd{ //FullFunctionScreen{
 		viewObjects.add(timer);
 	}
 	
-	public Point getMousePosition() {
-		Timer timer = new Timer();
-		TimerTask task;
-		task = new TimerTask() {
-			@Override
-			public void run() { 
-				/*if (gameRunning) {
-					a = MouseInfo.getPointerInfo();
-					b = a.getLocation();
-					mouseX = (int) b.getX();
-					mouseY = (int) b.getY();
-					System.out.println(mouseX + ", " + mouseY);
-					
-				} else {
-					cancel();
-				}*/
-				/*a = MouseInfo.getPointerInfo();
-				b = a.getLocation();
-				mouseX = (int) b.getX();
-				mouseY = (int) b.getY();
-				System.out.println(mouseX + ", " + mouseY);
-			}
-		};
-		timer.schedule(task, 0, 100);
-		return b;
-	}
 	
 	public void startTimer() {
 		//make button over timer graphic so hover action can work
@@ -255,6 +230,9 @@ public class Instruction extends VickieHPFrontEnd{ //FullFunctionScreen{
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.io.File;
 import java.util.List;
 import java.util.Timer;
@@ -275,9 +253,17 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 
 	private VickieHPSupport backend;
 
+	
+	private Point b;
+	private PointerInfo a;
+	
+	private boolean gameRunning = true;
+	
+	private int mouseX;
+	private int mouseY;
 	private int[][] magicSquares;
 
-	private Button[] numberButtons; // keypad buttons
+	private TextAreaHoverButton[] numberButtons; // keypad buttons
 
 	private MagicSquareGridButtons[] gB; // board buttons
 
@@ -332,6 +318,27 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 
 	private Graphic wood;
 
+
+	private Graphic tB;
+
+
+	private TextColoredLabel g1;
+
+
+	private TextColoredLabel keyDesc;
+
+
+	private TextColoredLabel blackedOut;
+
+
+	private Visible skip;
+
+
+	private Visible story;
+
+
+	private TextAreaColor t;
+
 	public Instruction(int width, int height) {
 		super(width, height);
 
@@ -348,7 +355,7 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 
 		trans = newColorWithAlpha(Color.white, 70);
 
-		numberButtons = new Button[9];
+		//numberButtons = new Button[9];
 
 		gB = new MagicSquareGridButtons[9];
 
@@ -496,10 +503,24 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 			
 		});
 		viewObjects.add(test);
+		
+		
+		tB = new Graphic(500,0,300,300,"images/transBlack.png");
+		viewObjects.add(tB);
+		tB.preserveRatio = false;
+		tB.resize(400, 500);
+		
+		keyDesc = new TextColoredLabel(500, 100, 600, 300, "White KeyPad Buttons", null, Color.red);
+		viewObjects.add(keyDesc);
+		
+		blackedOut = new TextColoredLabel(500, 100, 600, 300, "BLACK KeyPad Buttons", null, Color.red);
+		viewObjects.add(blackedOut);
 
 		// hOne= new Button
 
 		// Test.setBaseFont(f);
+		getMousePosition();
+		
 		startTimer();
 		createKeyPadButtons();
 		// keyPadButtonsAction();
@@ -511,29 +532,100 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 	}
 
 	public void addNecessaryButtons() {
-		// nothing, this is for the instruction screen
+		skip = new Button(1000, 50, 100, 100, "Skip", Color.red, new Action() {
 
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+
+			}
+
+		});
+
+		viewObjects.add(skip);
+
+		story = new Button(500, 50, 100, 100, "Story", Color.blue, new Action() {
+
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight()));
+
+			}
+
+		});
+
+		viewObjects.add(story);
+		
+		t = new TextAreaColor(600, 600, 100, 100, "IT WORKDDDDDDDDD", trans, null ); //attach image behind it
+		viewObjects.add(t);
+		t.setVisible(false);
+		
+		 tB = new Graphic(500,0,300,300,"images/transBlack.png");
+		viewObjects.add(tB);
+		tB.preserveRatio = false;
+		tB.resize(400, 500);
+		
+		//g = new TextColoredLabel(500, 100, 600, 300, "dfwerwerwesderwefs fgdfgsdfhd", null, Color.red);
+		//viewObjects.add(g);
+		
+		//TextAreaHoverButton te = new TextAreaHoverButton(200,200,500,500,"dfgsfgdfg", trans,g, tB, null) ;
+		//viewObjects.add(te);
+		
+		TextColoredLabel tim = new TextColoredLabel(700, 500, 300, 300, "The Timer. You have five minutes to complete the puzzle.", null, Color.red);
+		viewObjects.add(tim);
+		
+		TextAreaHoverButton timer = new TextAreaHoverButton(50, 50, 320, 150,"", null ,tim, tB, null) ;
+		viewObjects.add(timer);
 	}
 
+	public Point getMousePosition() {
+		Timer timer = new Timer();
+		TimerTask task;
+		task = new TimerTask() {
+			@Override
+			public void run() { 
+				/*if (gameRunning) {
+					a = MouseInfo.getPointerInfo();
+					b = a.getLocation();
+					mouseX = (int) b.getX();
+					mouseY = (int) b.getY();
+					System.out.println(mouseX + ", " + mouseY);
+					
+				} else {
+					cancel();
+				}*/
+				a = MouseInfo.getPointerInfo();
+				b = a.getLocation();
+				mouseX = (int) b.getX();
+				mouseY = (int) b.getY();
+				System.out.println(mouseX + ", " + mouseY);
+			}
+		};
+		timer.schedule(task, 0, 100);
+		return b;
+	}
+	
 	public void createKeyPadButtons() {
-		// System.out.println("createKeyPadButtons()");
-		// create buttons
+		numberButtons = new TextAreaHoverButton[9];
 		for (int i = 0; i < numberButtons.length; i++) {
 			if (i == 0 || i < 3) {
-				numberButtons[i] = new Button(50 + 110 * i, 250, 100, 100, i + 1 + "", trans, null);
+				numberButtons[i] = new TextAreaHoverButton(50 + 110 * i, 250, 100, 100, i + 1 + "", trans,keyDesc, tB, null);
 				viewObjects.add(numberButtons[i]);
 			} else if (i == 3 || i < 6) {
-				numberButtons[i] = new Button(50 + 110 * (i - 3), 360, 100, 100, i + 1 + "", trans, null);
+				numberButtons[i] = new TextAreaHoverButton(50 + 110 * (i - 3), 360, 100, 100, i + 1 + "", trans,keyDesc, tB, null);
 				viewObjects.add(numberButtons[i]);
 			} else if (i == 6 || i < 9) {
-				numberButtons[i] = new Button(50 + 110 * (i - 6), 470, 100, 100, i + 1 + "", trans, null);
+				numberButtons[i] = new TextAreaHoverButton(50 + 110 * (i - 6), 470, 100, 100, i + 1 + "", trans, keyDesc, tB,null);
 				viewObjects.add(numberButtons[i]);
 			}
 		}
+		
 
 		numberButtons[0].setAction(new Action() {
 			public void act() {
-				numButtonAction(0);
+				System.out.println("this shit works");
+				TextArea t = new TextArea(0,0,500,500,"UIHUIHIIU");
+				viewObjects.add(t);
 			}
 		});
 		numberButtons[1].setAction(new Action() {
@@ -850,6 +942,7 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 		for (int i = 0; i < numberButtons.length; i++) {
 			int o = Integer.parseInt(numberButtons[i].getText());
 			if (o == initNumBackEnd) {
+				numberButtons[i].setTextLabel(blackedOut);
 				numberButtons[i].setAction(null);
 				numberButtons[i].setBackground(Color.black);
 				numberButtons[i].update();

@@ -45,4 +45,8 @@ public class TextAreaHoverButton extends Button{
 		setLeft(true);
 		GUIApplication.mainFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
+	
+	public void setTextLabel(TextColoredLabel x) {
+		t = x;
+	}
 }
