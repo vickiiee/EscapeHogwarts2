@@ -115,4 +115,29 @@ public class TextAreaHoverButton extends Button {
 		z = b;
 		f= a;
 	}
+	
+	public void setGraphic(Graphic v) {
+		this.g=v;
+		
+		if (t != null && z == null && f == null) {
+			g.preserveRatio = false;
+			g.resize(t.getWidth(), t.getHeight());
+			g.setX(t.getX());
+			g.setY(t.getY());
+
+		}
+		if (t != null && z != null && f == null) {
+			g.preserveRatio = false;
+			g.resize(t.getWidth(), t.getHeight() + z.getHeight());
+			g.setX(t.getX());
+			g.setY(t.getY());
+		}
+		if (t != null && z != null && f != null) {
+			g.preserveRatio = false;
+			g.resize(t.getWidth(), t.getHeight() + z.getHeight() + f.getHeight());
+			g.setX(t.getX());
+			g.setY(t.getY());
+
+		}
+	}
 }
