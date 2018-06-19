@@ -90,6 +90,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 	private Font l;
 
+	private Visible hOneBoard;
+
+	private Graphic h1Border;
+
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
 
@@ -157,12 +161,14 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		hintBox = new TextAreaColor(50, 600, 320, 150, "HINTS", null, null);
 		viewObjects.add(hintBox);
 
-		hOne = new Button(380, 635, 25, 25, "1", Color.blue, new Action() {
+		//
+		hOneBoard = new Graphic(380, 620, 30, 30, "images/MSboard.jpg");
+		viewObjects.add(hOneBoard);
+
+		hOne = new Button(380, 620, 30, 30, "1", null, new Action() {
 
 			@Override
 			public void act() {
-				// goldI++;
-				// txtAreas[goldI].setForeground(Color.yellow);
 				if (minutes < 4) {
 					hintBox.setText("");
 					// hintBox.setText("The '5' is always in the middle");
@@ -174,15 +180,18 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				}
 
 			}
-
 		});
-		hOne.setCurve(10, 20);
+		hOne.setCurve(0, 0);
 		viewObjects.add(hOne);
+		
+		 h1Border = new Graphic(380, 620, 30, 30, "images/grid.png");
+		viewObjects.add(h1Border);
+		//
 
-		ClickableGraphic tr = new ClickableGraphic(380, 665, 25, 25, "images/MSboard.jpg");
-		viewObjects.add(tr);
+		Graphic hTwoBoard = new Graphic(380, 660, 30, 30, "images/MSboard.jpg");
+		viewObjects.add(hTwoBoard);
 
-		hTwo = new Button(380, 665, 30, 30, "2", Color.blue, new Action() {
+		hTwo = new Button(380, 660, 30, 30, "2", null, new Action() {
 
 			@Override
 			public void act() {
@@ -197,13 +206,20 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 					hintBox.setText("Unlocked at 3:00");
 					hint1.setVisible(false);
 				}
+			
 			}
 
 		});
-		// hTwo.setCurve(10, 20);
+		 hTwo.setCurve(0, 0); //10,20
 		viewObjects.add(hTwo);
+		
+		Graphic h2Border = new Graphic(380, 660, 30, 30, "images/grid.png");
+		viewObjects.add(h2Border);
+		//
 
-		hThree = new Button(380, 695, 25, 25, "3", Color.blue, new Action() {
+		Graphic hThreeBoard = new Graphic(380, 700, 30, 30, "images/MSboard.jpg");
+		viewObjects.add(hThreeBoard);
+		hThree = new Button(380, 700, 30, 30, "3",null, new Action() {
 
 			@Override
 			public void act() {
@@ -223,8 +239,11 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			}
 
 		});
-		hThree.setCurve(10, 20);
+		hThree.setCurve(0, 0);
 		viewObjects.add(hThree);
+
+		Graphic h3Border = new Graphic(380, 700, 30, 30, "images/grid.png");
+		viewObjects.add(h3Border);
 		
 		
 		try {

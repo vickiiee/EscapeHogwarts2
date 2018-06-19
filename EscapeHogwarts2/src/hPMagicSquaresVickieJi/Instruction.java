@@ -280,9 +280,9 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 
 	public int initNumBackEnd; // getInitiateNum()
 
-	private Button hOne; // first hint button
-	private Button hTwo; // second hint button
-	private Button hThree; // third hint button
+	private TextAreaHoverButton hOne; // first hint button
+	private TextAreaHoverButton hTwo; // second hint button
+	private TextAreaHoverButton hThree; // third hint button
 
 	
 	private TextAreaColor hintBox;
@@ -308,6 +308,30 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 
 	private TextAreaColor t;
 
+
+	private Graphic timerBoard;
+
+
+	private Graphic tBorder;
+
+
+	private Graphic hBoard;
+
+
+	private Graphic hBorder;
+
+
+	private Graphic hOneBoard;
+
+
+	private Graphic hintB;
+
+
+	private TextColoredLabel hint;
+
+
+	private TextColoredLabel hint1;
+
 	public Instruction(int width, int height) {
 		super(width, height);
 
@@ -318,12 +342,8 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		backend = new JiHPBackEnd(this);
 
 		numClicked = "0";
-
+		
 		trans = newColorWithAlpha(Color.white, 70);
-
-		//numberButtons = new Button[9];
-
-		//gB = new MagicSquareGridButtons[9];
 
 		txtAreas = new TextArea[9];
 
@@ -335,80 +355,81 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		board.preserveRatio = false;
 		viewObjects.add(board);
 		
-		wood = new Graphic(50, 50, 320, 150, "images/mSBoard320.jpg");
-		viewObjects.add(wood);
-
 		border = new Graphic(450, 50, 700, 700, "images/grid.png");
 		viewObjects.add(border);
-
+		//
 		error = new TextArea(50, 50, 200, 200, "ERROR: \n Please choose a # button");
 		viewObjects.add(error);
 		error.setVisible(false);
-
-		//counter = new TextArea(50, 50, 700, 700, "" + count); // testing purposes
-		//viewObjects.add(counter);
-
-		// Graphic textb = new Graphic(50, 50, 500, 100, "images/textbox2.png");
-		// viewObjects.add(textb);
-
-		/*
-		 * bTimer = new TextAreaColor(50, 50, 320, 150, "Timer:        .", trans, null);
-		 * viewObjects.add(bTimer);
-		 */
-
+		//
+		timerBoard = new Graphic(50, 50, 320, 150, "images/mSBoard320.jpg");
+		viewObjects.add(timerBoard);
 		
+		tBorder = new Graphic(50, 50, 320, 150, "images/grid.png");
+		tBorder.preserveRatio=false;
+		tBorder.resize(320, 150);
+		viewObjects.add(tBorder);
 
 		tTimer = new TextAreaColor(50, 50, 320, 150, "5:00", null, null);
 		viewObjects.add(tTimer);
+		//
+		hBoard = new Graphic(50, 600, 320, 150, "images/mSBoard320.jpg"); 
+		viewObjects.add(hBoard);
 		
-		//TextColoredLabel f = new TextColoredLabel(50, 50, 320, 150, "5:00", Color.red, Color.black);
-		//viewObjects.add(f);
-		
-		Graphic hwood = new Graphic(50, 600, 320, 150, "images/mSBoard320.jpg"); 
-		viewObjects.add(hwood);
+		hBorder = new Graphic(50, 600, 320, 150, "images/grid.png");
+		hBorder.preserveRatio=false;
+		hBorder.resize(320, 150);
+		viewObjects.add(hBorder);
 
 		hintBox = new TextAreaColor(50, 600, 320, 150, "HINTS", null, null);
 		viewObjects.add(hintBox);
+		//
+		createGridButtons();
+		
+		
+		hintB = new Graphic(500,0,300,300,"images/transBlack.png");
+		viewObjects.add(hintB);
+		
+		hOneBoard = new Graphic(380, 620, 30, 30, "images/MSboard.jpg");
+		viewObjects.add(hOneBoard);
 
-		hOne = new Button(380, 635, 25, 25, "1", Color.blue, new Action() {
+		 hint = new TextColoredLabel(450, 50, 700, 100, "Hint Buttons", null, Color.red);
+		viewObjects.add(hint);
+		
+		 hint1 = new TextColoredLabel(450, 150, 700, 200, "Navigate through hints", null, Color.red);
+		viewObjects.add(hint1);
+		
+		
+		Graphic h1Border = new Graphic(380, 620, 30, 30, "images/grid.png");
+		viewObjects.add(h1Border);
 
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				
-			}
-
-			
-
-		});
-		hOne.setCurve(10, 20);
+		hOne = new TextAreaHoverButton(380, 620, 30, 30, "1", null, hint, hint1,hintB, null);
+		hOne.setCurve(0, 0);
 		viewObjects.add(hOne);
 
-		ClickableGraphic tr = new ClickableGraphic(380, 665, 25, 25, "images/MSboard.jpg");
-		viewObjects.add(tr);
+		//
+		Graphic hTwoBoard = new Graphic(380, 660, 30, 30, "images/MSboard.jpg");
+		viewObjects.add(hTwoBoard);
 
-		hTwo = new Button(380, 665, 30, 30, "2", Color.blue, new Action() {
-
-			@Override
-			public void act() {
-				
-			}
-
-		});
-		// hTwo.setCurve(10, 20);
+		hTwo = new TextAreaHoverButton(380, 660, 30, 30, "2", null, hint, null, null);
+		hTwo.setCurve(0, 0); // 10,20
 		viewObjects.add(hTwo);
 
-		hThree = new Button(380, 695, 25, 25, "3", Color.blue, new Action() {
-
-			@Override
-			public void act() {
-				
-			}
-
-		});
-		hThree.setCurve(10, 20);
+		Graphic h2Border = new Graphic(380, 660, 30, 30, "images/grid.png");
+		viewObjects.add(h2Border);
+		//
+		
+		
+		Graphic hThreeBoard = new Graphic(380, 700, 30, 30, "images/MSboard.jpg");
+		viewObjects.add(hThreeBoard);
+		
+		hThree = new TextAreaHoverButton(380, 700, 30, 30, "3",null, hint, null,null);
+		hThree.setCurve(0, 0);
 		viewObjects.add(hThree);
 
+		Graphic h3Border = new Graphic(380, 700, 30, 30, "images/grid.png");
+		viewObjects.add(h3Border);
+		//
 		
 		
 		Button test = new Button(0,0,50,50,"tesr", new Action() {
@@ -442,7 +463,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		startTimer();
 		createKeyPadButtons();
 		// keyPadButtonsAction();
-		createGridButtons();
+		
 		createTxtArea();
 		setUpGrid();
 		
@@ -497,11 +518,15 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		//TextAreaHoverButton te = new TextAreaHoverButton(200,200,500,500,"dfgsfgdfg", trans,g, tB, null) ;
 		//viewObjects.add(te);
 		
-		TextColoredLabel tim = new TextColoredLabel(700, 500, 300, 300, "The Timer. You have five minutes to complete the puzzle.", null, Color.red);
-		viewObjects.add(tim);
+		TextColoredLabel tim = new TextColoredLabel(500, 100, 600, 100, "The Timer", null, Color.red);////525, 333, 600, 100,
+		viewObjects.add(tim);//. You have five minutes to complete the puzzle.
 		
-		TextAreaHoverButton timer = new TextAreaHoverButton(50, 50, 320, 150,"", null ,tim, tB, null) ;
+		TextColoredLabel tim1 = new TextColoredLabel(500, 200, 600, 200, "You have five minutes to complete the puzzle", null, Color.red);
+		viewObjects.add(tim1);//. You have five minutes to complete the puzzle.
+		
+		TextAreaHoverButton timer = new TextAreaHoverButton(50, 50, 320, 150,"", null ,tim, tim1,tB, null) ;
 		viewObjects.add(timer);
+
 	}
 
 	public Point getMousePosition() {
@@ -634,6 +659,10 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 	}
 
 	public void createGridButtons() {
+		
+		TextColoredLabel gridN = new TextColoredLabel(50, 50, 600, 300, "G KeyPad Buttons", null, Color.red);
+		viewObjects.add(gridN);
+		
 		gB = new TextAreaHoverButton[9];
 		// System.out.println("createGridButtons()");
 		c = -1;
@@ -644,7 +673,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 			// System.out.println("Coords:(" + r + "," + c + ")");
 			if (i == 0 || i < 3) {
 				c = c + 1;
-				gB[i] = new TextAreaHoverButton(500 + 202 * i, 100, 195, 195, "", trans,keyDesc, tB, null);
+				gB[i] = new TextAreaHoverButton(500 + 202 * i, 100, 195, 195, "", trans,gridN, tB, null);
 				viewObjects.add(gB[i]);
 				// System.out.println("Coords:(" + r + "," + c + ")");
 				// System.out.println(gB[i].getCoord());
@@ -655,7 +684,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 			} else if (i == 3 || i < 6) {
 				r = 1;
 				c = c + 1;
-				gB[i] = new TextAreaHoverButton(500 + 202 * (i - 3), 302, 195, 195, "",trans,keyDesc, tB, null);
+				gB[i] = new TextAreaHoverButton(500 + 202 * (i - 3), 302, 195, 195, "",trans,gridN, tB, null);
 				viewObjects.add(gB[i]);
 				// System.out.println("Coords:(" + r + "," + c);
 				// System.out.println(gB[i].getCoord());
@@ -666,7 +695,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 			} else if (i == 6 || i < 9) {
 				r = 2;
 				c = c + 1;
-				gB[i] = new TextAreaHoverButton(500 + 202 * (i - 6), 505, 195, 195, "", trans,keyDesc, tB, null);
+				gB[i] = new TextAreaHoverButton(500 + 202 * (i - 6), 505, 195, 195, "", trans,gridN, tB, null);
 				viewObjects.add(gB[i]);
 				// System.out.println("Coords:(" + r + "," + c);
 				// System.out.println(gB[i].getCoord());
@@ -836,6 +865,9 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		}
 		String p = r + "," + c;
 
+		TextColoredLabel gridB = new TextColoredLabel(50, 50, 600, 300, "G BLACK KeyPad Buttons", null, Color.red);
+		viewObjects.add(gridB);
+		
 		// compares initial coordinate with every button coordinate
 		//for (int i = 0; i < gB.length; i++) {
 			// System.out.println("String p = gB[i].getCoord();" + p);
@@ -846,7 +878,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 			//if (p.equals(h)) {
 				// System.out.println("THE SAME COORDINATES!!()");
 				gB[5].setAction(null);
-				gB[5].setTextLabel(blackedOut);
+				gB[5].setTextLabel(gridB, null,null);
 				txtAreas[5].setText("" + initNumBackEnd);
 
 				Color maroon = new Color(182, 47, 32);
@@ -869,7 +901,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		for (int i = 0; i < numberButtons.length; i++) {
 			int o = Integer.parseInt(numberButtons[i].getText());
 			if (o == initNumBackEnd) {
-				numberButtons[i].setTextLabel(blackedOut);
+				numberButtons[i].setTextLabel(blackedOut, null, null);
 				numberButtons[i].setAction(null);
 				numberButtons[i].setBackground(Color.black);
 				numberButtons[i].update();
@@ -891,6 +923,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 			Font question = font.deriveFont(70f);
 
 			Font hB = font.deriveFont(25f);
+			
 			for (int i = 0; i < txtAreas.length; i++) {
 
 				String q = txtAreas[i].getText();
