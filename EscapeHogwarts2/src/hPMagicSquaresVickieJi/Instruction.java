@@ -245,9 +245,9 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
-import guiTeacher.userInterfaces.FullFunctionScreen;
 
-public class Instruction extends FullFunctionScreen implements JiHPSupport {
+
+public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implements JiHPSupport {
 
 	
 
@@ -257,15 +257,11 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 	private Point b;
 	private PointerInfo a;
 	
-
-	
 	private int mouseX;
 	private int mouseY;
 
 	private TextAreaHoverButton[] numberButtons; // keypad buttons
 	private TextAreaHoverButton[] gB;
-
-	//private MagicSquareGridButtons[] gB; // board buttons
 
 	private TextArea[] txtAreas; // board txtareas
 
@@ -273,24 +269,14 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 
 	private TextArea error; // error message saying you must click on keypad first
 
-
-	private TextArea hint1; // first hint
-	private TextArea hint3; // second hint
-	private TextArea hint2; // third hint
-
 	public Color trans; // transparent white-ish color on keypad buttons
 
 	private Graphic background;
 	private Graphic board;
 
-
 	private TextAreaColor tTimer;
 
-	// private TextAreaColor hint;
 	private int c;
-
-	private int minutes; // timer minutes
-
 
 	public int initNumBackEnd; // getInitiateNum()
 
@@ -298,6 +284,7 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 	private Button hTwo; // second hint button
 	private Button hThree; // third hint button
 
+	
 	private TextAreaColor hintBox;
 
 	private Graphic border;
@@ -307,19 +294,16 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 
 	private Graphic tB;
 
-
-
-
 	private TextColoredLabel keyDesc;
 
 
 	private TextColoredLabel blackedOut;
 
 
-	private Visible skip;
+	private Button skip;
 
 
-	private Visible story;
+	private Button story;
 
 
 	private TextAreaColor t;
@@ -332,9 +316,6 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 
 	public void initAllObjects(List<Visible> viewObjects) {
 		backend = new JiHPBackEnd(this);
-
-		minutes = 4;
-
 
 		numClicked = "0";
 
@@ -393,19 +374,11 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 
 			@Override
 			public void act() {
-				// goldI++;
-				// txtAreas[goldI].setForeground(Color.yellow);
-				if (minutes < 4) {
-					hintBox.setText("");
-					// hintBox.setText("The '5' is always in the middle");
-					hint3.setVisible(false);
-					hint2.setVisible(false);
-					hint1.setVisible(true);
-				} else {
-					hintBox.setText("Unlocked at 4:00");
-				}
-
+				// TODO Auto-generated method stub
+				
 			}
+
+			
 
 		});
 		hOne.setCurve(10, 20);
@@ -418,17 +391,7 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 
 			@Override
 			public void act() {
-				if (minutes < 3) {
-					hintBox.setText("");
-					// hintBox.setText("The numbers opposite the '5' in a column/row/ diagonal has
-					// to add up to ten");
-					hint3.setVisible(false);
-					hint1.setVisible(false);
-					hint2.setVisible(true);
-				} else {
-					hintBox.setText("Unlocked at 3:00");
-					hint1.setVisible(false);
-				}
+				
 			}
 
 		});
@@ -439,42 +402,14 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 
 			@Override
 			public void act() {
-				if (minutes < 2) {
-					hintBox.setText("");
-					// hintBox.setText("Besides the 5, odd numbers are never adjacent to even
-					// numbers and vice versa");
-					hint2.setVisible(false);
-					hint1.setVisible(false);
-					hint3.setVisible(true);
-
-				} else {
-					hintBox.setText("Unlocked at 2:00");
-					hint2.setVisible(false);
-					hint1.setVisible(false);
-				}
+				
 			}
 
 		});
 		hThree.setCurve(10, 20);
 		viewObjects.add(hThree);
 
-		hint1 = new TextArea(55, 600, 320, 500, "The '5' is always    in the middle   ");
-		hint1.setForeground(Color.red);
-		viewObjects.add(hint1);
-
-		hint2 = new TextArea(50, 600, 320, 500,
-				"The numbers opposite the 5  in a column/row/diagonal    has to add up to ten");
-		hint2.setForeground(Color.orange);
-		viewObjects.add(hint2);
-
-		hint3 = new TextArea(50, 600, 320, 500,
-				" Besides the 5, odd numbers are NEVER adjacent to even    numbers and vice versa");
-		hint3.setForeground(Color.yellow);
-		viewObjects.add(hint3);
-
-		hint1.setVisible(false);
-		hint3.setVisible(false);
-		hint2.setVisible(false);
+		
 		
 		Button test = new Button(0,0,50,50,"tesr", new Action() {
 
@@ -515,7 +450,14 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 	}
 
 	public void addNecessaryButtons() {
-		skip = new Button(1000, 50, 100, 100, "Skip", Color.red, new Action() {
+		
+		
+		Graphic skipp = new Graphic(1000, 25, 700, 700, "images/mSBoard.jpg");
+		skipp.preserveRatio = false;
+		skipp.resize(150, 60);
+		viewObjects.add(skipp);
+		
+		skip = new Button(1000, 25, 150, 60, "Skip", new Action() {
 
 			@Override
 			public void act() {
@@ -524,8 +466,9 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 			}
 
 		});
-
+		
 		viewObjects.add(skip);
+		
 
 		story = new Button(500, 50, 100, 100, "Story", Color.blue, new Action() {
 
@@ -958,16 +901,15 @@ public class Instruction extends FullFunctionScreen implements JiHPSupport {
 				}
 
 			}
-			hint1.setFont(a);
-			hint2.setFont(b);
-			hint3.setFont(c);
-
-			hintBox.setFont(b);
+			
+			
+			
+			hintBox.setFont(b);//b
 
 			hOne.setFont(hB);
 			hTwo.setFont(hB);
 			hThree.setFont(hB);
-
+			skip.setFont(b);
 		} catch (Exception e) {
 
 			e.printStackTrace();
