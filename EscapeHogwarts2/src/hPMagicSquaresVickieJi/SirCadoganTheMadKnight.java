@@ -60,6 +60,8 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 	private TextColoredLabel b1;
 	private TextColoredLabel b2;
 	
+	private Color brownish= new Color(192,118,47);
+	
 	
 	//private TextAreaColor b1;
 	//private TextAreaColor b2;
@@ -234,7 +236,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		viewObjects.add(charName);
 		
 		dialogueTxt = new TextArea(210, 590, 800, 500, "ooooooo"); //210,590,700,500
-		dialogueTxt.setForeground(Color.orange);
+		dialogueTxt.setForeground(brownish);//Color.orange
 		viewObjects.add(dialogueTxt);
 		
 		/*oneR = new Button(800, 310, 295, 75, "",t , new Action() {
@@ -383,9 +385,9 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 						r1.setVisible(false);
 						r2.setVisible(false);
 							b1.setText("Where's the Fat Lady??");
-							b2.setY(440);
+							
+							b2.setY(460);
 							b2.setFont(bF);
-							//b2.setSize(38);
 							b2.setText("Nice to meet you. Is the password 'Flibbertigibbet' today?"); //3 lines
 							runStoryLine1();
 				}else if (b1.getText().equals("Where's the Fat Lady??")) {
@@ -394,7 +396,12 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 						b2.setVisible(false);
 						r1.setVisible(false);
 						r2.setVisible(false);
+							b1.setY(350);
+							b1.setFont(mF);
 							b1.setText("Let me in. Flibbertigibbet");
+							
+							b2.setY(460);
+							b2.setFont(bF);
 							b2.setText("Nice to meet you. Is the password 'Flibbertigibbet' today?");
 							runStoryLine1();
 				}else if (b1.getText().equals("Let me in. Flibbertigibbet")) {
@@ -403,7 +410,12 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 						b2.setVisible(false);
 						r1.setVisible(false);
 						r2.setVisible(false);
+							b1.setY(330);
+							b1.setFont(bF);
 							b1.setText("You can't do that! I'm telling Professor McGonagall.");
+							
+							b2.setY(480);
+							b2.setFont(mF);
 							b2.setText("Why?");
 					runStoryLine1();
 				}else if (b1.getText().equals("You can't do that! I'm telling Professor McGonagall.")) {
@@ -412,7 +424,14 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 						b2.setVisible(false);
 						r1.setVisible(false);
 						r2.setVisible(false);
-							b1.setText("I'll just come back later");
+							b1.setY(350);
+							b1.setFont(mF);
+							b1.setText("");//I'll just come back later
+							r1.setEnabled(false);
+							r1.setBackground(null);
+							
+							b2.setY(480);
+							b2.setFont(mF);
 							b2.setText("Fine, I'll do it");
 					runStoryLine1();
 				}
@@ -445,7 +464,12 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 					b2.setVisible(false);
 					r1.setVisible(false);
 					r2.setVisible(false);
+							b1.setY(350);
+							b1.setFont(mF);
 							b1.setText("Let me in. Flibbertigibbet");
+							
+							b2.setY(460);
+							b2.setFont(bF);
 							b2.setText("Nice to meet you. Is the password 'Flibbertigibbet' today?");
 						runStoryLine1();
 				}else
@@ -456,7 +480,12 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 					b2.setVisible(false);
 					r1.setVisible(false);
 					r2.setVisible(false);
+							b1.setY(330);
+							b1.setFont(bF);
 							b1.setText("You can't do that! I'm telling Professor McGonagall.");
+							
+							b2.setY(480);
+							b2.setFont(mF);
 							b2.setText("Why?");
 						runStoryLine1();
 				}else
@@ -467,7 +496,14 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 					b2.setVisible(false);
 					r1.setVisible(false);
 					r2.setVisible(false);
-							b1.setText("I'll just come back later");
+							b1.setY(350);
+							b1.setFont(mF);
+							b1.setText("");//I'll just come back later
+							r1.setEnabled(false);
+							r1.setBackground(null);
+							
+							b2.setY(480);
+							b2.setFont(mF);
 							b2.setText("Fine, I'll do it");
 						runStoryLine1();
 				}else
@@ -481,7 +517,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		//oneR.setCustomActiveBorderColor(Color.red);
 		viewObjects.add(r2);
 		
-		b1 = new TextColoredLabel(800, 310, 320, 125, "Who are you??", null, Color.orange);
+		b1 = new TextColoredLabel(800, 310, 320, 125, "Who are you??", null, Color.red);
 		b1.setY(350);
 		b1.setVisible(false);
 		viewObjects.add(b1);
