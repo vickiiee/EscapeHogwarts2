@@ -15,9 +15,12 @@ import guiTeacher.components.TextArea;
 import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPStartGame.GuiLoadingVickie;
 
 public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport {
 
+	//private SirCadoganTheMadKnight story;
+	
 	private VickieHPSupport backend;
 
 	private int[][] magicSquares;
@@ -94,6 +97,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 	private Graphic h1Border;
 
+	private Graphic hBorder;
+
+	private Graphic tBorder;
+
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
 
@@ -101,6 +108,9 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
+		//story = new SirCadoganTheMadKnight(getWidth(), getHeight());
+		//story.first(false);
+		
 		backend = new JiHPBackEnd(this);
 
 		minutes = 4;
@@ -147,7 +157,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		 * viewObjects.add(bTimer);
 		 */
 
-		
+		tBorder = new Graphic(50, 50, 320, 150, "images/grid.png");
+		tBorder.preserveRatio=false;
+		tBorder.resize(320, 150);
+		viewObjects.add(tBorder);
 
 		tTimer = new TextAreaColor(50, 50, 320, 150, "5:00", null, null);
 		viewObjects.add(tTimer);
@@ -164,6 +177,12 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		//
 		hOneBoard = new Graphic(380, 620, 30, 30, "images/MSboard.jpg");
 		viewObjects.add(hOneBoard);
+		
+		hBorder = new Graphic(50, 600, 320, 150, "images/grid.png");
+		hBorder.preserveRatio=false;
+		hBorder.resize(320, 150);
+		viewObjects.add(hBorder);
+		
 
 		hOne = new Button(380, 620, 30, 30, "1", null, new Action() {
 
@@ -290,20 +309,25 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		
 		
 		//The '5' is always    in the middle   
-		hint1 = new TextColoredLabel(50, 600, 320, 500, "The '5' is always in the middle", null, Color.red);
+		hint1 = new TextColoredLabel(65, 600, 300, 500, "The '5' is always in the middle", null, Color.red);
 		//hint1.setForeground(Color.red);
+		hint1.setY(615);
+		hint1.setVisible(false);
 		viewObjects.add(hint1);
 
 		//he numbers opposite the 5  in a column/row/diagonal    has to add up to ten
-		hint2 = new TextColoredLabel(50, 600, 320, 500,
-				"The numbers opposite the 5 in a column/row/diagonal has to add up to ten", null, Color.blue);
+		hint2 = new TextColoredLabel(75, 610, 275, 500,
+				"The numbers opposite the 5 in a column/row/diagonal has to add up to ten", null, Color.red);
 		//hint2.setForeground(Color.orange);
+		hint2.setVisible(false);
 		viewObjects.add(hint2);
 		
 		
 		// Besides the 5, odd numbers are NEVER adjacent to even    numbers and vice versa
-		hint3 = new TextColoredLabel(50, 600, 320, 500, //Corner numbers are either ALL odd, or All even 
-				"Corner numbers are either ALL odd, or All even", null, Color.GREEN);
+		hint3 = new TextColoredLabel(65, 600, 300, 500, //Corner numbers are either ALL odd, or All even 
+				"Corner numbers are either ALL odd, or All even", null, Color.red);
+		hint3.setY(620);
+		hint3.setVisible(false);
 		//hint3.setForeground(Color.yellow);
 		viewObjects.add(hint3);
 		
@@ -703,9 +727,9 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
 			Font baseFont = font.deriveFont(150f);
-			 a = font.deriveFont(55f);
-			 l = font.deriveFont(38f); // 30 /40
-			 b = font.deriveFont(38f);
+			 a = font.deriveFont(50f);
+			 l = font.deriveFont(35f); // 30 /40
+			 b = font.deriveFont(33f);
 
 			Font question = font.deriveFont(70f);
 
@@ -863,7 +887,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 				if (newWidth < 5) {
 					newWidth = 5;
-					board.address = "images/knight.jpg"; // change image
+					board.address = "images/birdies.jpg"; // change image
 				}
 
 				board.resize(newWidth, board.getHeight());
@@ -871,6 +895,12 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 				if (counter == 30) {
 					r.cancel();
+					
+					//story.first(false);
+					//story.win(true);
+					GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight()));
+					
+					
 				}
 
 			}
@@ -889,6 +919,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				if (minutes == 0 && seconds == 1) { // closeset is -1 and 60
 					//System.out.println(minutes + ":" + seconds);
 					timer.cancel();
+					
+					//story.first(false);
+					//story.win(false);
+					GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight()));
 				}
 
 				// g--;

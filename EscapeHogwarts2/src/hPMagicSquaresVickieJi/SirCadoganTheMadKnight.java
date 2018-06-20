@@ -21,7 +21,7 @@ import hPConnect4Areej.ConnectFourAreej;
 import hPStartGame.GuiLoadingVickie;
 import hPStartGame.StoryLineGuideJi;
 
-public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryLineGuideJi {
+public class SirCadoganTheMadKnight extends FullFunctionScreen {
 	// flip to game
 	
 	
@@ -66,14 +66,26 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 	//private TextAreaColor b1;
 	//private TextAreaColor b2;
 	
-	private boolean one;
+	private boolean begin;
 	private Font smallF;
 	private Font mF;
 	private Font bF;
 	
+	private boolean win;
+	
 	//https://alvinalexander.com/blog/post/jfc-swing/use-animated-gif-image-in-jfc-swing-application
 	public SirCadoganTheMadKnight(int width, int height) {
 		super(width, height);
+		System.out.print("1:");
+		System.out.print(begin);
+		System.out.print("2:");
+		System.out.print(win);
+		
+		System.out.print("--------------------");
+		System.out.print("3:");
+		//System.out.print(d);
+		System.out.print("4:");
+		//System.out.print(x);
 		setBackground(brown);
 		((TextLabel) charName).setSize(50);
 		dialogueTxt.setSize(40);
@@ -82,10 +94,16 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		b2.setSize(40);
 		
 		r1.setSize(40);
+		//begin = d;
+		//win = x;
+		System.out.print("5:");
+		System.out.print(begin);
+		System.out.print("6:");
+		System.out.print(win);
+	
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public String displayPhrase(String txt) {
 
 		int x = 0;
@@ -128,12 +146,6 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 			words[wLen] = d;
 		}
 	}
-
-	@Override
-	public void append(TextArea word, char letter) {
-		word.setText(word.getText() + letter);
-
-	}
 	
 	public void append(TextArea phrase, String word) {
 		phrase.setText(phrase.getText() + word);
@@ -161,31 +173,6 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		
 
 	}
-
-	@Override
-	public void switchCharName(String cName) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void switchCharImage(Graphic charImage) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void switchBkgrnd(Graphic bkgrnd) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void continueScenes() {
-		// TODO Auto-generated method stub
-
-	}
-
 	
 	public Color newColorWithAlpha(Color original, int alpha) {
 		// System.out.println("newColorAlpha()");
@@ -194,28 +181,10 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		s1 = 0;
+		//begin =true;
+		//s1 = 0;
+		//begin =false;
 		
-		kRes = "Hello There!";
-		
-		String[] n = { "Ron..!! Hermione..!", "Wake up, we ought to go now!",
-				"We don't got much time now, we must leave before anyone sees us!", "...",
-				"Harry, are you still sure about this?", "What if you get caught?",
-				"This might be our only chance to go to Hogsmeade together! Besides, once I get my invisibility cloak "
-						+ "I'll be fine.",
-						"Can you imagine all the things we'll do there?!",
-		"We especially have to go to Honeydukes, the sweets are top priority!" };
-		storyLine1 = n;
-		
-		String[] x = { "Hello There!", "I am Sir Cadogan, the Brave Knight and the guardian of Gryffindor Tower!"};
-		madK = x;
-		
-		String[] k = { "Who are you?", "I am Sir Cadogan, the Brave Knight and the guardian of Gryffindor Tower!"};
-		response1 = k;
-		
-		String[] a = { "Where's the Fat Lady?", "I am Sir Cadogan, the Brave Knight and the guardian of Gryffindor Tower!"};
-		response2 = a;
-		//Color trans = VickieHPFrontEnd.trans;
 		
 		Color t = newColorWithAlpha(Color.black, 60);
 		background = new Graphic(0,0, getWidth(), getHeight(), "vImages/msEntrance.jpg");
@@ -439,6 +408,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 			}
 		}); // 800, 510, 295, 75
 		//r1.setForeground(Color.orange);
+		r1.setVisible(false);
 		viewObjects.add(r1);
 		
 		r2 = new Button(800, 440, 320, 125, "",t , new Action() {
@@ -515,6 +485,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 			
 		}); // 800,600,295,75
 		//oneR.setCustomActiveBorderColor(Color.red);
+		r2.setVisible(false);
 		viewObjects.add(r2);
 		
 		b1 = new TextColoredLabel(800, 310, 320, 125, "Who are you??", null, Color.red);
@@ -550,18 +521,37 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 			e.printStackTrace();
 
 		}
+		System.out.print("7");
+		System.out.print(begin);
+		begin =true;
 		
-		startSeq =true;
-		if (startSeq) {
-			runStoryLine1();
+		if (begin ==true) {
+		
+			kRes = "Hello There!";
+			startSeq =true;
+			if (startSeq) {
+				runStoryLine1();
+			}
+			// runStoryLine1();
+		}else {
+			if(win==true) {
+				
+				System.out.print("in: Great job! Now I know you are really a GryffindorEh. It's not really secure. Just about anybody can beat it and they dont have to be Gryffindor..... i'll take that into consideration. Wait, you are Gryffindor right?	ys / suree/You may enter");
+				//w
+			}else {
+				System.out.print("WIN ++FALSESESES");
+				//...Are you really a gryffindor? Hermione was able to finish it in under a minute
+						//I'm not Hermione
+				//Obviously not. Want to try again?
+						//y/n
+			}
 		}
-		//runStoryLine1();
-		
-		
+
 	}
 
 	/*
 	 * P:Well, well, u did it!
 	 */
+	
 	
 }
