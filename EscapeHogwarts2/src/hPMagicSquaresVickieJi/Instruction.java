@@ -155,6 +155,8 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 
 	private Button next;
 
+	private Graphic n;
+
 	public Instruction(int width, int height) {
 		super(width, height);
 
@@ -315,7 +317,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		
 		//txt.setVisible(false);
 		
-		dialogueTxt = new TextColoredLabel(50, 75, 375, 775, "", null, Color.BLUE);
+		dialogueTxt = new TextColoredLabel(50, 175, 375, 775, "", null, Color.BLUE);
 		viewObjects.add(dialogueTxt);
 		
 		
@@ -335,13 +337,19 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		viewObjects.add(t);
 		t.setVisible(false);
 		
-		next = new Button(1000, 700, 150, 60, "Next", Color.black, new Action() {//1000, 25, 150, 60
+		 n = new Graphic(1000, 700, 700, 700, "images/mSBoard.jpg");
+		n.preserveRatio = false;
+		n.resize(150, 60);
+		viewObjects.add(n);
+		
+		next = new Button(1000, 700, 150, 60, "Next", new Action() {//1000, 25, 150, 60
 			
 			public void act() {
 				
 				System.out.print("Clickedededed");
 				if(sequence ==0) {
 					next.setVisible(false);
+					n.setVisible(false);
 					
 					txt.setVisible(false);
 					txt.resize(750, 700);
@@ -368,6 +376,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 					txt.setVisible(false);
 					f.setVisible(false);
 					t.setVisible(false);
+					n.setVisible(false);
 					//dialogueTxt.setVisible(false);
 					
 					txt.setX(25);
@@ -386,6 +395,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 				}
 				
 				if(sequence ==2) {
+					n.setVisible(false);
 					next.setVisible(false);
 					txt.setVisible(false);
 					f.setVisible(false);
@@ -400,7 +410,27 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 			}
 			
 		});
-		next.setForeground(Color.white);
+		
+		try {
+			File fontFile = new File("images/HARRYP.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+			Font baseFont = font.deriveFont(150f);
+			Font a = font.deriveFont(55f);
+			Font c = font.deriveFont(38f); // 30 /40
+			Font b = font.deriveFont(38f);
+
+			Font question = font.deriveFont(70f);
+
+			Font hB = font.deriveFont(25f);
+			
+			next.setFont(b);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		//next.setForeground(Color.white);
 		//next.setEnabled(false);
 		next.setVisible(false);
 		viewObjects.add(next);
@@ -458,6 +488,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 				System.out.print("asdfghjkl");
 				//next.setEnabled(true);
 				next.setVisible(true);
+				n.setVisible(true);
 			}
 		}
 		
@@ -724,7 +755,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		
 		viewObjects.add(skipp);
 		
-		skip = new Button(1000, 25, 150, 60, "Skip", new Action() {
+		skip = new Button(1000, 25, 150, 60, "Game", new Action() {
 
 			@Override
 			public void act() {
