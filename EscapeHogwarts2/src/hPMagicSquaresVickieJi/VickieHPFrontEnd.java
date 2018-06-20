@@ -140,6 +140,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		viewObjects.add(wood);
 
 		border = new Graphic(450, 50, 700, 700, "images/grid.png");
+		border.preserveRatio = false;
 		viewObjects.add(border);
 
 		error = new TextArea(50, 50, 200, 200, "ERROR: \n Please choose a # button");
@@ -849,7 +850,11 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 							gold.cancel();
 
 							// width = 2 Math.pi/2
-
+								
+							for (int i = 0; i < gB.length; i++) {
+								gB[i].setVisible(false);
+								txtAreas[i].setVisible(false);
+							}
 							changeImages();
 							// method call for resize
 						}
@@ -874,10 +879,14 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			double rotation = 0;
 			int counter = 0;
 
-			// float num = 1; FADE OUT
+			 //float num = 1;// FADE OUT
 			public void run() {
-				// num = (float) (num -.10); FADE OUT
-				// board.setAlpha(num); FADE OUT
+				// num = (float) (num -.10);// FADE OUT
+				 //board.setAlpha(num); //FADE OUT
+
+				//if (num >= 0) {
+					
+				//}
 				counter++;
 				if (rotation >= Math.PI * 2) {
 					rotation = 0;
@@ -887,18 +896,27 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 				if (newWidth < 5) {
 					newWidth = 5;
-					board.address = "images/birdies.jpg"; // change image
+					board.address = "vImages/gryf.jpg"; // change image
+					//board.address = "images/birdies.jpg"; 
+					//border.address = null;
 				}
 
 				board.resize(newWidth, board.getHeight());
+				border.resize(newWidth, board.getHeight());
 				board.setX(450 + (350 - board.getWidth() / 2));
+				border.setX(450 + (350 - board.getWidth() / 2));
 
 				if (counter == 30) {
 					r.cancel();
-					
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					//story.first(false);
 					//story.win(true);
-					GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight()));
+					//GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight()));
 					
 					
 				}
