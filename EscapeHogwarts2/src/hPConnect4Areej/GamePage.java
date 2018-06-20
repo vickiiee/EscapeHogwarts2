@@ -12,7 +12,7 @@ import javax.swing.*;
 
 
 public class GamePage {
-	private static JFrame frame;
+	private static JFrame game;
 	private static Puzzle puzzle;
 	
 //	private  Timer timer;
@@ -24,22 +24,22 @@ public class GamePage {
 	
 	
 	public static void main(String [] args) {
-		frame = new JFrame();
-		frame.setSize(1000, 900);
+		game = new JFrame();
+		game.setSize(1000, 900);
 		
-		frame.setBackground(Color.darkGray);
+		game.setBackground(Color.darkGray);
 		
 		puzzle = new Puzzle(new ImageIcon(GamePage.class.getResource("Imagess.jpg")).getImage());
 		
-		frame.setLayout(new BorderLayout());
-		frame.add(puzzle,BorderLayout.CENTER);
+		game.setLayout(new BorderLayout());
+		game.add(puzzle,BorderLayout.CENTER);
 		
-		frame.setLocationRelativeTo(null);
+		game.setLocationRelativeTo(null);
 		
-		frame.setResizable(false);
-		frame.setVisible(true);
+		game.setResizable(false);
+		game.setVisible(true);
 		
-		frame.addMouseListener(new MouseAdapter() {
+		game.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				if (!puzzle.started) puzzle.start();
 				else if (puzzle.mixing) puzzle.mixing = false;
