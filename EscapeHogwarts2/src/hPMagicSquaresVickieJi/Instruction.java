@@ -347,6 +347,12 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 
 	private Graphic gG1;
 
+
+	private TextAreaHoverButton timer;
+
+
+	private TextAreaHoverButton hin;
+
 	public Instruction(int width, int height) {
 		super(width, height);
 
@@ -354,6 +360,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
+		
 		backend = new JiHPBackEnd(this);
 
 		numClicked = "0";
@@ -471,7 +478,10 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		// hOne= new Button
 
 		// Test.setBaseFont(f);
-		getMousePosition();
+		
+		
+		
+		//getMousePosition();
 		
 		startTimer();
 		
@@ -482,6 +492,21 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		setUpGrid();
 		
 		addNecessaryButtons();
+		hoverStatus(true);
+	}
+
+	public void hoverStatus(boolean b) {
+		timer.setEnabled(b);
+		hin.setEnabled(b);
+		for (int i = 0; i < numberButtons.length; i++) {
+			numberButtons[i].setEnabled(b);
+		}
+		for (int i = 0; i < gB.length; i++) {
+			gB[i].setEnabled(b);
+		}
+		hOne.setEnabled(b);
+		hTwo.setEnabled(b);
+		hThree.setEnabled(b);
 	}
 
 	public void addNecessaryButtons() {
@@ -565,7 +590,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		TextColoredLabel tim1 = new TextColoredLabel(500, 200, 600, 200, "You have five minutes to complete the puzzle", null, Color.blue);
 		viewObjects.add(tim1);//. You have five minutes to complete the puzzle.
 		
-		TextAreaHoverButton timer = new TextAreaHoverButton(50, 50, 320, 150,"", null ,tim, tim1,tB, null) ;
+		 timer = new TextAreaHoverButton(50, 50, 320, 150,"", null ,tim, tim1,tB, null) ;
 		viewObjects.add(timer);
 		
 		TextColoredLabel hi = new TextColoredLabel(500, 100, 600, 100, "Hint Box", null, Color.red);////525, 333, 600, 100,
@@ -574,7 +599,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		TextColoredLabel hi1 = new TextColoredLabel(500, 200, 600, 200, "Hints will appear here as timer counts down", null, Color.blue);
 		viewObjects.add(hi1);//. You have five minutes to complete the puzzle.
 		
-		TextAreaHoverButton hin = new TextAreaHoverButton(50, 600, 320, 150,"", null ,hi, hi1,tB, null) ;
+		 hin = new TextAreaHoverButton(50, 600, 320, 150,"", null ,hi, hi1,tB, null) ;
 		viewObjects.add(hin);
 
 		//
