@@ -15,13 +15,13 @@ public class GamePage {
 	private static JFrame game;
 	private static Puzzle puzzle;
 	
-//	private  Timer timer;
-//	private TimerTask fin;
-//	private TextField clock;
+/*	private  Timer timer;
+	private TimerTask fin;
+	private TextField clock;
 	
-//	private int min;
-//	private int sec;
-	
+	private int min;
+	private int sec;
+	*/
 	
 	public static void main(String [] args) {
 		game = new JFrame();
@@ -29,7 +29,7 @@ public class GamePage {
 		
 		game.setBackground(Color.darkGray);
 		
-		puzzle = new Puzzle(new ImageIcon(GamePage.class.getResource("Imagess.jpg")).getImage());
+		puzzle = new Puzzle(new ImageIcon(GamePage.class.getResource("party.jpg")).getImage());
 		
 		game.setLayout(new BorderLayout());
 		game.add(puzzle,BorderLayout.CENTER);

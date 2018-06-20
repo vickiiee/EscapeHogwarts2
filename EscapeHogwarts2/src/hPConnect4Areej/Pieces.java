@@ -43,16 +43,17 @@ public class Pieces {
 
 	public void paint(Graphics g) {
 		
-		int x;
+		//int x;
 		
 		if (!isEmpty) {
-			if((pieceNum <=2) && ((pieceNum <= 5))) {
+		/*	if((pieceNum <=2) && ((pieceNum <= 5))) {
 					 x = (pieceNum-3);
 				}
 			x = (pieceNum-6);
-				 
-			//int x = ((pieceNum <= 2)? pieceNum:
-				//(pieceNum <= 5)? (pieceNum-3):(pieceNum-6));
+			*/	 
+			int x = ((pieceNum <= 2)? pieceNum:
+			(pieceNum <= 5)? (pieceNum-3):(pieceNum-6));
+			
 			int y = (int) Math.ceil((pieceNum/3));
 			g.drawImage(gameInstance.img, pos.x*segmentSize, pos.y*segmentSize, (pos.x+1)*segmentSize, (pos.y+1)*segmentSize, x*segmentSize, y*segmentSize, (x+1)*segmentSize, (y+1)*segmentSize, null);
 			g.setColor(new Color(0,0,0));

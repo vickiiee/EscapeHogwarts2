@@ -38,26 +38,26 @@ public class Puzzle extends JPanel {
 		public void run() {
 			mixing = true;
 			while (mixing) {
-				ArrayList<Integer> possibleMovements = new ArrayList<Integer>();
+				ArrayList<Integer> possibleMoves = new ArrayList<Integer>();
 				for (Pieces p : segments) {
 					if (p.getPosition().x == segments[8].getPosition().x+1 && p.getPosition().y == segments[8].getPosition().y) {
-						possibleMovements.add(p.getPieceNum());
+						possibleMoves.add(p.getPieceNum());
 					}
 					if (p.getPosition().x == segments[8].getPosition().x-1 && p.getPosition().y == segments[8].getPosition().y) {
-						possibleMovements.add(p.getPieceNum());
+						possibleMoves.add(p.getPieceNum());
 					}
 					if (p.getPosition().x == segments[8].getPosition().x && p.getPosition().y == segments[8].getPosition().y-1) {
-						possibleMovements.add(p.getPieceNum());
+						possibleMoves.add(p.getPieceNum());
 					}
 					if (p.getPosition().x == segments[8].getPosition().x && p.getPosition().y == segments[8].getPosition().y+1) {
-						possibleMovements.add(p.getPieceNum());
+						possibleMoves.add(p.getPieceNum());
 					}
 				}
 				
-				int moves = (int) ((Math.random()*possibleMovements.size()));
+				int moves = (int) ((Math.random()*possibleMoves.size()));
 				try {
-					Point tmp = segments[possibleMovements.get(moves)].getPosition();
-					segments[possibleMovements.get(moves)].setPosition(segments[8].getPosition());
+					Point tmp = segments[possibleMoves.get(moves)].getPosition();
+					segments[possibleMoves.get(moves)].setPosition(segments[8].getPosition());
 					segments[8].setPosition(tmp);
 				} catch (Exception e) {}
 				repaint();
