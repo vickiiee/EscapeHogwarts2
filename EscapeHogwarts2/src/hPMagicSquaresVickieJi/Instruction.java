@@ -2,232 +2,6 @@ package hPMagicSquaresVickieJi;
 
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPStartGame.GuiLoadingVickie;
-
-/*import java.awt.Color;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.PointerInfo;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import guiTeacher.components.Action;
-import guiTeacher.components.Button;
-import guiTeacher.components.Graphic;
-import guiTeacher.components.ImageTextButton;
-import guiTeacher.components.TextArea;
-import guiTeacher.components.TextColoredLabel;
-import guiTeacher.interfaces.Visible;
-import guiTeacher.userInterfaces.FullFunctionScreen;
-import hPConnect4Areej.ConnectFourAreej;
-import hPStartGame.GuiLoadingVickie;
-
-public class Instruction extends VickieHPFrontEnd{ //FullFunctionScreen{
-
-	private Graphic back;
-	private VickieHPFrontEnd magicSquares;
-	private Button skip;
-	private Button story;
-	
-	private TextAreaColor t;
-	private TextColoredLabel g;
-	
-	private TextAreaHoverButton[] numberButtons;
-	
-	private Point b;
-	private PointerInfo a;
-	
-	private boolean gameRunning = true;
-	
-	private int mouseX;
-	private int mouseY;
-	private Graphic tB;
-
-	
-	//https://www.befunky.com/create/
-	
-	public Instruction(int width, int height) {
-		super(width, height);
-		// TODO Auto-generated constructor stub
-	}
-
-	
-	/*public void initAllObjects(List<Visible> viewObjects) {
-		back = new Graphic(0, 0, getWidth(), getHeight(), "images/MS-instruction.png");
-		//viewObjects.add(back);
-		
-		//timer
-		Graphic trans = new Graphic(0,0, 500, 245, "images/transBlack.png");
-		//trans.resize(500,500);
-		//viewObjects.add(trans);
-		
-		
-		skip = new Button(1000, 50, 100, 100, "Skip", Color.red, new Action() {
-
-			@Override
-			public void act() {
-				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
-
-			}
-
-		});
-
-		viewObjects.add(skip);
-
-		story = new Button(500, 50, 100, 100, "Story", Color.blue, new Action() {
-
-			@Override
-			public void act() {
-				GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight()));
-
-			}
-
-		});
-
-		viewObjects.add(story);
-	}*/
-	
-	/*public void addNecessaryButtons() {
-		getMousePosition();
-		
-		skip = new Button(1000, 50, 100, 100, "Skip", Color.red, new Action() {
-
-			@Override
-			public void act() {
-				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
-
-			}
-
-		});
-
-		viewObjects.add(skip);
-
-		story = new Button(500, 50, 100, 100, "Story", Color.blue, new Action() {
-
-			@Override
-			public void act() {
-				GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight()));
-
-			}
-
-		});
-
-		viewObjects.add(story);
-		
-		t = new TextAreaColor(600, 600, 100, 100, "IT WORKDDDDDDDDD", trans, null ); //attach image behind it
-		viewObjects.add(t);
-		t.setVisible(false);
-		
-		 tB = new Graphic(500,0,300,300,"images/transBlack.png");
-		viewObjects.add(tB);
-		tB.preserveRatio = false;
-		tB.resize(400, 500);
-		
-		g = new TextColoredLabel(500, 100, 600, 300, "dfwerwerwesderwefs fgdfgsdfhd", null, Color.red);
-		viewObjects.add(g);
-		
-		TextAreaHoverButton te = new TextAreaHoverButton(200,200,500,500,"dfgsfgdfg", trans,g, tB, null) ;
-		viewObjects.add(te);
-		
-		TextColoredLabel tim = new TextColoredLabel(700, 500, 300, 300, "The Timer. You have five minutes to complete the puzzle.", null, Color.red);
-		viewObjects.add(tim);
-		
-		TextAreaHoverButton timer = new TextAreaHoverButton(50, 50, 320, 150,"", null ,tim, tB, null) ;
-		viewObjects.add(timer);
-	}
-	
-	
-	public void startTimer() {
-		//make button over timer graphic so hover action can work
-	}*/
-	
-	/*public void createKeyPadButtons() {
-		numberButtons = new TextAreaHoverButton[9];
-		for (int i = 0; i < numberButtons.length; i++) {
-			if (i == 0 || i < 3) {
-				numberButtons[i] = new TextAreaHoverButton(50 + 110 * i, 250, 100, 100, i + 1 + "", trans,g, tB, null);
-				viewObjects.add(numberButtons[i]);
-			} else if (i == 3 || i < 6) {
-				numberButtons[i] = new TextAreaHoverButton(50 + 110 * (i - 3), 360, 100, 100, i + 1 + "", trans,g, tB, null);
-				viewObjects.add(numberButtons[i]);
-			} else if (i == 6 || i < 9) {
-				numberButtons[i] = new TextAreaHoverButton(50 + 110 * (i - 6), 470, 100, 100, i + 1 + "", trans, g, tB,null);
-				viewObjects.add(numberButtons[i]);
-			}
-		}
-		
-
-		numberButtons[0].setAction(new Action() {
-			public void act() {
-				System.out.println("this shit works");
-				TextArea t = new TextArea(0,0,500,500,"UIHUIHIIU");
-				viewObjects.add(t);
-			}
-		});
-		numberButtons[1].setAction(new Action() {
-			public void act() {
-				numButtonAction(1);
-			}
-		});
-		numberButtons[2].setAction(new Action() {
-			public void act() {
-				numButtonAction(2);
-			}
-		});
-		numberButtons[3].setAction(new Action() {
-			public void act() {
-				numButtonAction(3);
-			}
-		});
-		numberButtons[4].setAction(new Action() {
-			public void act() {
-				numButtonAction(4);
-			}
-		});
-		numberButtons[5].setAction(new Action() {
-			public void act() {
-				numButtonAction(5);
-			}
-		});
-		numberButtons[6].setAction(new Action() {
-			public void act() {
-				numButtonAction(6);
-			}
-		});
-		numberButtons[7].setAction(new Action() {
-			public void act() {
-				numButtonAction(7);
-			}
-		});
-		numberButtons[8].setAction(new Action() {
-			public void act() {
-				numButtonAction(8);
-			}
-		});
-		
-		for (int i = 0; i < numberButtons.length; i++) {
-			int o = Integer.parseInt(numberButtons[i].getText());
-			if (o == initNumBackEnd) {
-				numberButtons[i].setAction(null);
-				numberButtons[i].setBackground(Color.black);
-				numberButtons[i].update();
-			}
-		}
-	}
-
-	/*public void getGeneratedNum() {
-		// System.out.println("setUpGrid()");
-				// Get number from backend
-				backend.chooseStartingPoint();
-				// stores number from backend
-				initNumBackEnd = backend.getInitiateNum();
-				if(initNumBackEnd == 5) {
-					getGeneratedNum();
-				}
-				 System.out.println("Initial num from backend = " +backend.getInitiateNum()+ initNumBackEnd);
-				// stores initial coordinate from backend
-	}}*/
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.MouseInfo;
@@ -254,7 +28,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 
 	private VickieHPSupport backend;
 
-	
+	private int sequence;
 	private Point b;
 	private PointerInfo a;
 	
@@ -378,6 +152,9 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 
 	private TimerTask task1;
 
+
+	private Button next;
+
 	public Instruction(int width, int height) {
 		super(width, height);
 
@@ -385,7 +162,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		
+		sequence =0;
 		backend = new JiHPBackEnd(this);
 
 		numClicked = "0";
@@ -528,17 +305,106 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 	public void startObjective() {
 		
 		
-		Graphic txt = new Graphic(25,25,370,775,"images/transBlack.png");
+		
+		Graphic txt = new Graphic(25,25,370,700,"images/transBlack.png");
 		txt.preserveRatio = false;
-		txt.resize(370, 775);
+		txt.resize(400, 700);
 		txt.setX(25);
-		txt.setY(25);
+		txt.setY(50);
 		viewObjects.add(txt);
 		
 		//txt.setVisible(false);
 		
-		dialogueTxt = new TextColoredLabel(25, 25, 370, 775, "", null, Color.BLUE);
+		dialogueTxt = new TextColoredLabel(50, 75, 375, 775, "", null, Color.BLUE);
 		viewObjects.add(dialogueTxt);
+		
+		
+		Graphic f = new Graphic(25,25,370,700,"images/transBlack.png");//50, 50, 320, 150, 
+		f.preserveRatio = false;
+		f.resize(375, 170);
+		f.setX(25);
+		f.setY(50);
+		viewObjects.add(f);
+		f.setVisible(false);
+		
+		Graphic t = new Graphic(25,25,370,700,"images/transBlack.png");
+		t.preserveRatio = false;
+		t.resize(375, 150);
+		t.setX(25);
+		t.setY(600);
+		viewObjects.add(t);
+		t.setVisible(false);
+		
+		next = new Button(1000, 700, 150, 60, "Next", Color.black, new Action() {//1000, 25, 150, 60
+			
+			public void act() {
+				
+				System.out.print("Clickedededed");
+				if(sequence ==0) {
+					next.setVisible(false);
+					
+					txt.setVisible(false);
+					txt.resize(750, 700);
+					txt.setX(400);
+					txt.setY(50);
+					
+					dialogueTxt.setVisible(false);
+					dialogueTxt.setX(500 );//100, 584, 195//+ 202
+					dialogueTxt.setY(300);
+					dialogueTxt.setDimensions(584, 400);
+					kRes = "Use the keypads to choose a number, then click on a grid piece to place it there";
+					
+					
+					txt.setVisible(true);
+					f.setVisible(true);
+					t.setVisible(true);
+					dialogueTxt.setVisible(true);
+					runStoryLine1();
+					
+				}
+				
+				if(sequence ==1) {
+					next.setVisible(false);
+					txt.setVisible(false);
+					f.setVisible(false);
+					t.setVisible(false);
+					//dialogueTxt.setVisible(false);
+					
+					txt.setX(25);
+					txt.setY(50);
+					txt.resize(1125, 700);
+					
+					//dialogueTxt.setVisible(false);
+					dialogueTxt.setX(270 );//100, 584, 195//+ 202
+					dialogueTxt.setY(270);
+					dialogueTxt.setDimensions(584, 400);
+					dialogueTxt.setVisible(true);
+					txt.setVisible(true);
+					kRes = "Hover over certain components for additional information";
+					runStoryLine1();
+					
+				}
+				
+				if(sequence ==2) {
+					next.setVisible(false);
+					txt.setVisible(false);
+					f.setVisible(false);
+					t.setVisible(false);
+					dialogueTxt.setVisible(false);
+					
+					hoverStatus(true);
+				}
+				
+				sequence ++;
+				
+			}
+			
+		});
+		next.setForeground(Color.white);
+		//next.setEnabled(false);
+		next.setVisible(false);
+		viewObjects.add(next);
+		
 		
 		kRes = "Fill in the 3x3 grid so that the total in every row, column, diagonal equals to 15";
 		
@@ -561,7 +427,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 			}
 
 		};
-		timerA.schedule(task, 0, 2000);
+		timerA.schedule(task, 0, 5000);
 	
 
 }
@@ -583,9 +449,15 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		for (int i = 0; i < words.length; i++) {
 			append(dialogueTxt, words[i]);
 			try {
-				Thread.sleep(100);
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+			}
+			
+			if(i ==wLen) {
+				System.out.print("asdfghjkl");
+				//next.setEnabled(true);
+				next.setVisible(true);
 			}
 		}
 		
@@ -612,7 +484,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		
 		if(word.equals("row, ")) {
 			changeButtonColor(word);
-			System.out.println("triggerereerer");
+			//System.out.println("triggerereerer");
 			try {
 				Thread.sleep(2250);
 			} catch (InterruptedException e) {
@@ -624,7 +496,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		}else if(word.equals("column, ")) {
 			
 			changeButtonColor(word);
-			System.out.println("triggerereerer");
+			//System.out.println("triggerereerer");
 			try {
 				Thread.sleep(2250);
 			} catch (InterruptedException e) {
@@ -657,7 +529,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 					//System.out.println(s1);
 						//displayPhrase(kRes);
 				if (word.equals("row, ")) {
-					System.out.print("eraaaaaaaaaaaaaaaaaaaaaaaa");
+					//System.out.print("eraaaaaaaaaaaaaaaaaaaaaaaa");
 					if (row < 3) {
 						gB[row].setBackground(Color.red);
 						gB[row].update();
@@ -680,6 +552,39 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 						timerB.cancel();
 					}
 					
+					/*if (row ==0) {
+						gB[0].setBackground(Color.red);
+						gB[0].update();
+						gB[1].setBackground(Color.red);
+						gB[1].update();
+						gB[2].setBackground(Color.red);
+						gB[2].update();
+						row++;
+					} else if (row ==1) {
+						gB[3].setBackground(Color.green);
+						gB[3].update();
+						gB[4].setBackground(Color.green);
+						gB[4].update();
+						gB[5].setBackground(Color.green);
+						gB[5].update();
+						row++;
+					} else if (row ==2) {
+						gB[6].setBackground(Color.blue);
+						gB[6].update();
+						gB[7].setBackground(Color.blue);
+						gB[7].update();
+						gB[8].setBackground(Color.blue);
+						gB[8].update();
+						row++;
+					} else {
+						for (int i = 0; i < gB.length; i++) {
+							gB[i].setBackground(null);
+							gB[i].update();
+							gB[i].setBackground(e);
+							gB[i].update();
+						}
+						timerB.cancel();
+					}*/
 				}else if(word.equals("column, ")) {
 					
 					
