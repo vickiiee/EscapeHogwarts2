@@ -244,6 +244,7 @@ import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.components.TextColoredLabel;
+import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 
 
@@ -353,6 +354,30 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 
 	private TextAreaHoverButton hin;
 
+
+	private String[] words;
+
+
+	private int wLen;
+
+
+	private TextColoredLabel dialogueTxt;
+
+
+	private Timer timerA;
+
+
+	private TimerTask task;
+
+
+	private String kRes;
+
+
+	private Timer timerB;
+
+
+	private TimerTask task1;
+
 	public Instruction(int width, int height) {
 		super(width, height);
 
@@ -428,7 +453,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		Graphic h1Border = new Graphic(380, 620, 30, 30, "images/grid.png");
 		viewObjects.add(h1Border);
 
-		hOne = new TextAreaHoverButton(380, 620, 30, 30, "1", null, hint, hint1,hintB, null);
+		hOne = new TextAreaHoverButton(380, 620, 30, 30, "1", null, hint, hint1,hintB, null, false);
 		hOne.setCurve(0, 0);
 		viewObjects.add(hOne);
 
@@ -436,7 +461,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		Graphic hTwoBoard = new Graphic(380, 660, 30, 30, "images/MSboard.jpg");
 		viewObjects.add(hTwoBoard);
 
-		hTwo = new TextAreaHoverButton(380, 660, 30, 30, "2", null, hint, hint1,hintB, null);
+		hTwo = new TextAreaHoverButton(380, 660, 30, 30, "2", null, hint, hint1,hintB, null, false);
 		hTwo.setCurve(0, 0); // 10,20
 		viewObjects.add(hTwo);
 
@@ -448,7 +473,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		Graphic hThreeBoard = new Graphic(380, 700, 30, 30, "images/MSboard.jpg");
 		viewObjects.add(hThreeBoard);
 		
-		hThree = new TextAreaHoverButton(380, 700, 30, 30, "3",null, hint, hint1,hintB,null);
+		hThree = new TextAreaHoverButton(380, 700, 30, 30, "3",null, hint, hint1,hintB,null, false);
 		hThree.setCurve(0, 0);
 		viewObjects.add(hThree);
 
@@ -495,21 +520,285 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		setUpGrid();
 		
 		addNecessaryButtons();
-		hoverStatus(true);
+		
+		startObjective();
+		//hoverStatus(false);
+	}
+
+	public void startObjective() {
+		
+		
+		Graphic txt = new Graphic(25,25,370,775,"images/transBlack.png");
+		txt.preserveRatio = false;
+		txt.resize(370, 775);
+		txt.setX(25);
+		txt.setY(25);
+		viewObjects.add(txt);
+		
+		//txt.setVisible(false);
+		
+		dialogueTxt = new TextColoredLabel(25, 25, 370, 775, "", null, Color.BLUE);
+		viewObjects.add(dialogueTxt);
+		
+		kRes = "Fill in the 3x3 grid so that the total in every row, column, diagonal equals to 15";
+		
+		runStoryLine1();
+	}
+	
+	public void runStoryLine1() {
+		
+		 timerA = new Timer();
+		 task = new TimerTask() {
+		
+			
+			public void run() {
+					//System.out.println("Running");
+					//System.out.println(s1);
+						//displayPhrase(kRes);
+						displayPhrase(kRes);//storyLine1[s1]
+						timerA.cancel();
+						
+			}
+
+		};
+		timerA.schedule(task, 0, 2000);
+	
+
+}
+	
+	public String displayPhrase(String txt) {
+
+		int x = 0;
+		for (int i = 0; i < txt.length(); i++) {
+			if (txt.substring(i, i + 1).equals(" ")) {
+				x++;
+			}
+		}
+
+		words = new String[x + 1];
+		wLen = 0;
+		findWords(txt);
+
+		dialogueTxt.setText("");
+		for (int i = 0; i < words.length; i++) {
+			append(dialogueTxt, words[i]);
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return "";
+	}
+
+	public void findWords(String d) {
+		int f = d.indexOf(" ");
+		if (f != -1) {
+			words[wLen] = d.substring(0, f + 1);
+			System.out.println(d.substring(0, f+1));
+			wLen++;
+			d=d.substring(f+1);
+			findWords(d);
+		}else {
+			words[wLen] = d;
+		}
+	}
+	
+	public void append(TextColoredLabel phrase, String word) {
+		System.out.print(word);
+		phrase.setText(phrase.getText() + word);
+		
+		if(word.equals("row, ")) {
+			changeButtonColor(word);
+			System.out.println("triggerereerer");
+			try {
+				Thread.sleep(2250);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}else if(word.equals("column, ")) {
+			
+			changeButtonColor(word);
+			System.out.println("triggerereerer");
+			try {
+				Thread.sleep(2250);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if(word.equals("diagonal ")) {
+			changeButtonColor(word);
+			System.out.println("triggerereerer");
+			try {
+				Thread.sleep(1250);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	public void changeButtonColor(String word) {
+		timerB = new Timer();
+		 task1 = new TimerTask() {
+		
+			 int row = 0;
+			 boolean r = true;
+			public void run() {
+				Color e = newColorWithAlpha(Color.white, 110);
+					//System.out.println("Running");
+					//System.out.println(s1);
+						//displayPhrase(kRes);
+				if (word.equals("row, ")) {
+					System.out.print("eraaaaaaaaaaaaaaaaaaaaaaaa");
+					if (row < 3) {
+						gB[row].setBackground(Color.red);
+						gB[row].update();
+						row++;
+					} else if (row < 6) {
+						gB[row].setBackground(Color.green);
+						gB[row].update();
+						row++;
+					} else if (row < 9) {
+						gB[row].setBackground(Color.blue);
+						gB[row].update();
+						row++;
+					} else {
+						for (int i = 0; i < gB.length; i++) {
+							gB[i].setBackground(null);
+							gB[i].update();
+							gB[i].setBackground(e);
+							gB[i].update();
+						}
+						timerB.cancel();
+					}
+					
+				}else if(word.equals("column, ")) {
+					
+					
+						System.out.print("eraaaaaaaaaaaaaaaaaaaaaaaa");
+						if (row == 0 || row == 3 || row ==6) {
+							gB[row].setBackground(Color.red);
+							gB[row].update();
+							
+							if(row == 0) {
+								row =3;
+							}else if (row ==3) {
+								row =6;
+							}else if(row ==6) {
+								row =1;
+							}
+							
+						} else if (row ==1 || row == 4|| row ==7) {
+							gB[row].setBackground(Color.green);
+							gB[row].update();
+							
+							if(row == 1) {
+								row =4;
+							}else if (row ==4) {
+								row =7;
+							}else if(row ==7) {
+								row =2;
+							}
+							
+							
+							
+						} else if (row ==2||row == 5|| row ==8) {
+							gB[row].setBackground(Color.blue);
+							gB[row].update();
+							
+							if(row == 2) {
+								row =5;
+							}else if (row ==5) {
+								row =8;
+							}else if(row ==8) {
+								row =9;
+							}
+							
+							
+						} else {
+							for (int i = 0; i < gB.length; i++) {
+								gB[i].setBackground(null);
+								gB[i].update();
+								gB[i].setBackground(e);
+								gB[i].update();
+							}
+							timerB.cancel();
+						}
+					
+				}else if(word.equals("diagonal ")) {
+					
+					System.out.print("eraaaaaaaaaaaaaaaaaaaaaaaa");
+					if (row == 0 || row == 4 && r ==true || row ==8) {
+						gB[row].setBackground(Color.red);
+						gB[row].update();
+						
+						if(row == 0) {
+							row =4;
+						}else if (row ==4) {
+							row =8;
+							r =false;
+						}else if(row ==8) {
+							row =2;
+						}
+						
+					} else if (row ==2 || row == 4 && r ==false|| row ==6) {
+						
+						if(row ==4) {
+							gB[row].setBackground(Color.magenta);
+						gB[row].update();
+						}else {
+							gB[row].setBackground(Color.blue);
+							gB[row].update();
+						}
+						
+						
+						if(row == 2) {
+							row =4;
+						}else if (row ==4) {
+							row =6;
+						}else if(row ==6) {
+							row =9;
+						}
+						
+						
+					} else {
+						for (int i = 0; i < gB.length; i++) {
+							gB[i].setBackground(null);
+							gB[i].update();
+							gB[i].setBackground(e);
+							gB[i].update();
+						}
+						timerB.cancel();
+					}
+					
+				}
+						
+			}
+
+		};
+		timerB.schedule(task1, 0, 250);
 	}
 
 	public void hoverStatus(boolean b) {
-		timer.setEnabled(b);
-		hin.setEnabled(b);
+		timer.toggleA(b);
+		hin.toggleA(b);
 		for (int i = 0; i < numberButtons.length; i++) {
-			numberButtons[i].setEnabled(b);
+			numberButtons[i].toggleA(b);
 		}
 		for (int i = 0; i < gB.length; i++) {
-			gB[i].setEnabled(b);
+			gB[i].toggleA(b);
 		}
-		hOne.setEnabled(b);
-		hTwo.setEnabled(b);
-		hThree.setEnabled(b);
+		hOne.toggleA(b);
+		hTwo.toggleA(b);
+		hThree.toggleA(b);
 	}
 
 	public void addNecessaryButtons() {
@@ -596,7 +885,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		viewObjects.add(tim1);//. You have five minutes to complete the puzzle.
 		tim1.setVisible(false);
 		
-		 timer = new TextAreaHoverButton(50, 50, 320, 150,"", null ,tim, tim1,tB, null) ;
+		 timer = new TextAreaHoverButton(50, 50, 320, 150,"", null ,tim, tim1,tB, null, false) ;
 		viewObjects.add(timer);
 		
 		TextColoredLabel hi = new TextColoredLabel(500, 100, 600, 100, "Hint Box", null, Color.red);////525, 333, 600, 100,
@@ -607,7 +896,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		viewObjects.add(hi1);//. You have five minutes to complete the puzzle.
 		hi1.setVisible(false);
 		
-		 hin = new TextAreaHoverButton(50, 600, 320, 150,"", null ,hi, hi1,tB, null) ;
+		 hin = new TextAreaHoverButton(50, 600, 320, 150,"", null ,hi, hi1,tB, null, false) ;
 		viewObjects.add(hin);
 
 		//
@@ -713,13 +1002,13 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 
 		for (int i = 0; i < numberButtons.length; i++) {
 			if (i == 0 || i < 3) {
-				numberButtons[i] = new TextAreaHoverButton(50 + 110 * i, 250, 100, 100, i + 1 + "", trans,keyDesc, keyDesc1,keyDesc2,kP, null);
+				numberButtons[i] = new TextAreaHoverButton(50 + 110 * i, 250, 100, 100, i + 1 + "", trans,keyDesc, keyDesc1,keyDesc2,kP, null, false);
 				viewObjects.add(numberButtons[i]);
 			} else if (i == 3 || i < 6) {
-				numberButtons[i] = new TextAreaHoverButton(50 + 110 * (i - 3), 360, 100, 100, i + 1 + "", trans,keyDesc,keyDesc1,keyDesc2, kP, null);
+				numberButtons[i] = new TextAreaHoverButton(50 + 110 * (i - 3), 360, 100, 100, i + 1 + "", trans,keyDesc,keyDesc1,keyDesc2, kP, null, false);
 				viewObjects.add(numberButtons[i]);
 			} else if (i == 6 || i < 9) {
-				numberButtons[i] = new TextAreaHoverButton(50 + 110 * (i - 6), 470, 100, 100, i + 1 + "", trans, keyDesc,keyDesc1,keyDesc2, kP,null);
+				numberButtons[i] = new TextAreaHoverButton(50 + 110 * (i - 6), 470, 100, 100, i + 1 + "", trans, keyDesc,keyDesc1,keyDesc2, kP,null, false);
 				viewObjects.add(numberButtons[i]);
 			}
 		}
@@ -826,7 +1115,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 			// System.out.println("Coords:(" + r + "," + c + ")");
 			if (i == 0 || i < 3) {
 				c = c + 1;
-				gB[i] = new TextAreaHoverButton(500 + 202 * i, 100, 195, 195, "", trans,null, tB, null);
+				gB[i] = new TextAreaHoverButton(500 + 202 * i, 100, 195, 195, "", trans,null, tB, null, false);
 				viewObjects.add(gB[i]);
 				// System.out.println("Coords:(" + r + "," + c + ")");
 				// System.out.println(gB[i].getCoord());
@@ -836,7 +1125,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 				}
 			} else if (i == 3 || i < 6) {
 				
-				gB[i] = new TextAreaHoverButton(500 + 202 * (i - 3), 302, 195, 195, "",trans,null, tB, null);
+				gB[i] = new TextAreaHoverButton(500 + 202 * (i - 3), 302, 195, 195, "",trans,null, tB, null, false);
 				viewObjects.add(gB[i]);
 				// System.out.println("Coords:(" + r + "," + c);
 				// System.out.println(gB[i].getCoord());
@@ -846,7 +1135,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 				}
 			} else if (i == 6 || i < 9) {
 				
-				gB[i] = new TextAreaHoverButton(500 + 202 * (i - 6), 505, 195, 195, "", trans,null, tB, null);
+				gB[i] = new TextAreaHoverButton(500 + 202 * (i - 6), 505, 195, 195, "", trans,null, tB, null, false);
 				viewObjects.add(gB[i]);
 				// System.out.println("Coords:(" + r + "," + c);
 				// System.out.println(gB[i].getCoord());

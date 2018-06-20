@@ -115,7 +115,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 
 		words = new String[x + 1];
 		wLen = 0;
-		yut(txt);
+		findWords(txt);
 
 		dialogueTxt.setText("");
 		for (int i = 0; i < words.length; i++) {
@@ -134,14 +134,14 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 		return "";
 	}
 
-	public void yut(String d) {
+	public void findWords(String d) {
 		int f = d.indexOf(" ");
 		if (f != -1) {
 			words[wLen] = d.substring(0, f + 1);
 			System.out.println(d.substring(0, f+1));
 			wLen++;
 			d=d.substring(f+1);
-			yut(d);
+			findWords(d);
 		}else {
 			words[wLen] = d;
 		}

@@ -16,11 +16,13 @@ public class TextAreaHoverButton extends Button {
 	private TextColoredLabel z;
 	private TextColoredLabel f;
 	private Graphic g;
+	private boolean hoverA;
 
 	public TextAreaHoverButton(int x, int y, int w, int h, String text, Color color, TextColoredLabel t, Graphic g,
-			Action action) {
+			Action action, boolean hoverA) {
 		super(x, y, w, h, text, color, action);
 		this.t = t;
+		this.hoverA = hoverA;
 		if (g != null) {
 			this.g = g;
 			g.preserveRatio = false;
@@ -31,10 +33,11 @@ public class TextAreaHoverButton extends Button {
 	}
 
 	public TextAreaHoverButton(int x, int y, int w, int h, String text, Color color, TextColoredLabel t,
-			TextColoredLabel z, Graphic g, Action action) {
+			TextColoredLabel z, Graphic g, Action action, boolean hoverA) {
 		super(x, y, w, h, text, color, action);
 		this.t = t;
 		this.z = z;
+		this.hoverA = hoverA;
 		if (g != null) {
 			this.g = g;
 			g.preserveRatio = false;
@@ -45,11 +48,12 @@ public class TextAreaHoverButton extends Button {
 	}
 
 	public TextAreaHoverButton(int x, int y, int w, int h, String text, Color color, TextColoredLabel t,
-			TextColoredLabel z, TextColoredLabel f, Graphic g, Action action) {
+			TextColoredLabel z, TextColoredLabel f, Graphic g, Action action,boolean hoverA) {
 		super(x, y, w, h, text, color, action);
 		this.t = t;
 		this.z = z;
 		this.f = f;
+		this.hoverA = hoverA;
 		if (g != null) {
 			this.g = g;
 			g.preserveRatio = false;
@@ -62,34 +66,35 @@ public class TextAreaHoverButton extends Button {
 	public void hoverAction() {
 		GUIApplication.mainFrame.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		setLeft(false);
-		System.out.println("HOVWER WERWEOFRWE");
+		//System.out.println("HOVWER WERWEOFRWE");
 
-		if (g != null) {
-			g.setVisible(true);
+		if (hoverA) {
+			if (g != null) {
+				g.setVisible(true);
+			}
+
+			if (t != null && z == null && f == null) {
+				t.setVisible(true);
+
+			}
+			if (t != null && z != null && f == null) {
+				t.setVisible(true);
+				z.setVisible(true);
+			}
+			if (t != null && z != null && f != null) {
+				t.setVisible(true);
+				z.setVisible(true);
+				f.setVisible(true);
+
+			}
 		}
-
-		if (t != null && z == null && f == null) {
-			t.setVisible(true);
-
-		}
-		if (t != null && z != null && f == null) {
-			t.setVisible(true);
-			z.setVisible(true);
-		}
-		if (t != null && z != null && f != null) {
-			t.setVisible(true);
-			z.setVisible(true);
-			f.setVisible(true);
-
-		}
-
 	}
 
 	public void unhoverAction() {
 		if (g != null) {
 			g.setVisible(false);
 		}
-		System.out.println("UNHO(VER");
+		//System.out.println("UNHO(VER");
 
 		if (t != null && z == null && f == null) {
 			t.setVisible(false);
@@ -141,5 +146,7 @@ public class TextAreaHoverButton extends Button {
 		}
 	}
 	
-	
+	public void toggleA(boolean w) {
+		this.hoverA=w;
+	}
 }
