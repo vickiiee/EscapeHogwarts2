@@ -1,8 +1,10 @@
 package hPMagicSquaresVickieJi;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.io.File;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -63,6 +65,9 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 	//private TextAreaColor b2;
 	
 	private boolean one;
+	private Font smallF;
+	private Font mF;
+	private Font bF;
 	
 	//https://alvinalexander.com/blog/post/jfc-swing/use-animated-gif-image-in-jfc-swing-application
 	public SirCadoganTheMadKnight(int width, int height) {
@@ -228,7 +233,8 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		charName = new TextArea(230, 520, 200, 75, "Cadogan");
 		viewObjects.add(charName);
 		
-		dialogueTxt = new TextArea(210, 590, 700, 500, "ooooooo"); //210,590,700,500
+		dialogueTxt = new TextArea(210, 590, 800, 500, "ooooooo"); //210,590,700,500
+		dialogueTxt.setForeground(Color.orange);
 		viewObjects.add(dialogueTxt);
 		
 		/*oneR = new Button(800, 310, 295, 75, "",t , new Action() {
@@ -262,7 +268,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		//oneR.setCustomActiveBorderColor(Color.red);
 		viewObjects.add(twoR);
 		*/
-		
+		/*
 		threeR = new Button(800, 490, 295, 75, "Teest3",t , new Action() {
 
 			@Override
@@ -283,7 +289,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 			
 		}); //800,690,295,75
 		//oneR.setCustomActiveBorderColor(Color.red);
-		viewObjects.add(threeR);
+		viewObjects.add(threeR);*/
 		
 		//TO SET HOVER ACTION, MAKE NEW CLASS EXTENDING BUTTON CLASS AND OVERRIDE hoverACTION METHOD
 		
@@ -377,10 +383,13 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 						r1.setVisible(false);
 						r2.setVisible(false);
 							b1.setText("Where's the Fat Lady??");
-							b2.setText("Nice to meet you. Is the password 'Flibbertigibbet' today?");
+							b2.setY(440);
+							b2.setFont(bF);
+							//b2.setSize(38);
+							b2.setText("Nice to meet you. Is the password 'Flibbertigibbet' today?"); //3 lines
 							runStoryLine1();
 				}else if (b1.getText().equals("Where's the Fat Lady??")) {
-					kRes = "After her ordeal with Sirius Black, I bravely volunteered to replace her and - ta da!! Here we are.";
+					kRes = "After her ordeal with Sirius Black, I bravely volunteered to take her place and - voila!! Here we are.";
 						b1.setVisible(false);
 						b2.setVisible(false);
 						r1.setVisible(false);
@@ -420,7 +429,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 				
 				System.out.print("click");
 				if (b2.getText().equals("Where's the Fat Lady??")) {
-					kRes = "After her ordeal with Sirius Black, I bravely volunteered to take her place and - ta da!! Here we are.";
+					kRes = "After her ordeal with Sirius Black, I bravely volunteered to take her place and - voila!! Here we are.";
 					b1.setVisible(false);
 					b2.setVisible(false);
 					r1.setVisible(false);
@@ -472,10 +481,12 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		//oneR.setCustomActiveBorderColor(Color.red);
 		viewObjects.add(r2);
 		
-		b1 = new TextColoredLabel(800, 310, 320, 125, "Who are you??", Color.black, Color.orange);
+		b1 = new TextColoredLabel(800, 310, 320, 125, "Who are you??", null, Color.orange);
+		b1.setY(350);
 		b1.setVisible(false);
 		viewObjects.add(b1);
 		b2 = new TextColoredLabel(800, 440, 320, 125, "Where's the Fat Lady??", null, Color.orange);
+		b2.setY(480);
 		b2.setVisible(false);
 		viewObjects.add(b2);
 		
@@ -487,6 +498,22 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen implements StoryL
 		b2.setForeground(Color.orange);
 		b2.setVisible(false);
 		viewObjects.add(b2);*/
+		
+		try {
+			File fontFile = new File("images/HARRYP.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+			Font baseFont = font.deriveFont(150f);
+			//Font a = font.deriveFont(55f);
+			Font c = font.deriveFont(38f); // 30 /40
+			mF = font.deriveFont(38f);
+			bF = font.deriveFont(33f);
+			smallF = font.deriveFont(25f);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
 		
 		startSeq =true;
 		if (startSeq) {

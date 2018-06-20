@@ -411,15 +411,18 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		
 		hintB = new Graphic(500,0,300,300,"images/transBlack.png");
 		viewObjects.add(hintB);
+		hintB.setVisible(false);
 		
 		hOneBoard = new Graphic(380, 620, 30, 30, "images/MSboard.jpg");
 		viewObjects.add(hOneBoard);
 
 		 hint = new TextColoredLabel(450, 50, 700, 100, "Hint Buttons", null, Color.red);
 		viewObjects.add(hint);
+		hint.setVisible(false);
 		
 		 hint1 = new TextColoredLabel(450, 150, 700, 200, "Navigate through hints", null, Color.blue);
 		viewObjects.add(hint1);
+		hint1.setVisible(false);
 		
 		
 		Graphic h1Border = new Graphic(380, 620, 30, 30, "images/grid.png");
@@ -515,6 +518,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		viewObjects.add(tB);
 		tB.preserveRatio = false;
 		tB.resize(400, 500);
+		tB.setVisible(false);
 		
 		Graphic skipp = new Graphic(1000, 25, 700, 700, "images/mSBoard.jpg");
 		skipp.preserveRatio = false;
@@ -586,18 +590,22 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		
 		TextColoredLabel tim = new TextColoredLabel(500, 100, 600, 100, "The Timer", null, Color.red);////525, 333, 600, 100,
 		viewObjects.add(tim);//. You have five minutes to complete the puzzle.
+		tim.setVisible(false);
 		
 		TextColoredLabel tim1 = new TextColoredLabel(500, 200, 600, 200, "You have five minutes to complete the puzzle", null, Color.blue);
 		viewObjects.add(tim1);//. You have five minutes to complete the puzzle.
+		tim1.setVisible(false);
 		
 		 timer = new TextAreaHoverButton(50, 50, 320, 150,"", null ,tim, tim1,tB, null) ;
 		viewObjects.add(timer);
 		
 		TextColoredLabel hi = new TextColoredLabel(500, 100, 600, 100, "Hint Box", null, Color.red);////525, 333, 600, 100,
 		viewObjects.add(hi);//. You have five minutes to complete the puzzle.
+		hi.setVisible(false);
 		
 		TextColoredLabel hi1 = new TextColoredLabel(500, 200, 600, 200, "Hints will appear here as timer counts down", null, Color.blue);
 		viewObjects.add(hi1);//. You have five minutes to complete the puzzle.
+		hi1.setVisible(false);
 		
 		 hin = new TextAreaHoverButton(50, 600, 320, 150,"", null ,hi, hi1,tB, null) ;
 		viewObjects.add(hin);
@@ -605,26 +613,32 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		//
 		gG = new Graphic(500,0,300,300,"images/transBlack.png");
 		viewObjects.add(gG);
-		
+		gG.setVisible(false);
 		
 		gG1 = new Graphic(500,0,300,300,"images/transBlack.png");
 		viewObjects.add(gG1);
+		gG1.setVisible(false);
 		
 		
 		TextColoredLabel gT = new TextColoredLabel(25, 125, 410, 100, "Grid Piece", null, Color.red);////525, 333, 600, 100,
 		viewObjects.add(gT);//. You have five minutes to complete the puzzle.
+		gT.setVisible(false);
 		
 		TextColoredLabel gT1 = new TextColoredLabel(25, 225, 410, 400, "First select a number, then click on this piece to put it there", null, Color.blue);
 		viewObjects.add(gT1);//. You have five minutes to complete the puzzle.
+		gT1.setVisible(false);
 		
 		TextColoredLabel dG = new TextColoredLabel(25, 125, 410, 100, "Given Number", null, Color.red);////525, 333, 600, 100,
 		viewObjects.add(dG);//. You have five minutes to complete the puzzle.
+		dG.setVisible(false);
 		
 		TextColoredLabel dG1 = new TextColoredLabel(25, 225, 410, 200, "Fixed number and cannot be changed", null, Color.blue);
 		viewObjects.add(dG1);//. You have five minutes to complete the puzzle.
+		dG1.setVisible(false);
 		
 		TextColoredLabel dG2 = new TextColoredLabel(25, 425, 410, 400, "** Does not mean "+initNumBackEnd+" will always be in this position", null, Color.blue);
 		viewObjects.add(dG2);
+		dG2.setVisible(false);
 		//GRID BUTTONS:
 		for (int i = 0; i < gB.length; i++) {
 		
@@ -677,19 +691,25 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		viewObjects.add(kP);
 		kP.preserveRatio = false;
 		kP.resize(400, 500);
+		kP.setVisible(false);
 		
 		keyDesc = new TextColoredLabel(500, 100, 600, 100, "White KeyPad Button", null, Color.red);
 		viewObjects.add(keyDesc);
+		keyDesc.setVisible(false);
 		keyDesc1 = new TextColoredLabel(500, 200, 600, 300, "Choose a number, then click on one of the grid pieces to put your selection there", null, Color.blue);
 		viewObjects.add(keyDesc1);
+		keyDesc1.setVisible(false);
 		keyDesc2 = new TextColoredLabel(500, 500, 600, 100, "Your selection will be highlighted", null, Color.blue);
 		viewObjects.add(keyDesc2);
+		keyDesc2.setVisible(false);
 
 		blackedOut = new TextColoredLabel(500, 100, 600, 100, "Black KeyPad Button", null, Color.red);
 		blackedOut1 = new TextColoredLabel(500, 200, 600, 300, "This number is given to you on the grid, so this button cannot be selected", null, Color.blue);
 		//This number is given to you on the grid, so this button cannot be selected
 		viewObjects.add(blackedOut1);
 		viewObjects.add(blackedOut);
+		blackedOut.setVisible(false);
+		blackedOut1.setVisible(false);
 
 		for (int i = 0; i < numberButtons.length; i++) {
 			if (i == 0 || i < 3) {
