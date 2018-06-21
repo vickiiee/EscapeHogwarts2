@@ -11,6 +11,7 @@ import hPCatchingGameJi.CatchingGameJi;
 import hPCatchingGameJi.CatchingStoryJi;
 import hPCatchingGameJi.Storyline;
 import hPConnect4Areej.ConnectFourAreej;
+import hPMagicSquaresVickieJi.Instruction;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 import hpKevStoryLine.DKTitle;
 import hpKevStoryLine.StephStory;
@@ -25,6 +26,7 @@ public class GameMenu extends FullFunctionScreen{
 	private Button lightsOut;
 	private Button dKiss;
 	private Graphic background;
+	private Visible directory;
 
 	public GameMenu(int width, int height) {
 		super(width, height);
@@ -37,11 +39,20 @@ public class GameMenu extends FullFunctionScreen{
 		viewObjects.add(background);
 
 		
+		directory = new Button(100, 550, 200, 75, "Directory", new Action() {
+						
+						@Override
+						public void act() {
+							GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
+						}
+					});
+					viewObjects.add(directory);
+		
 		magicSquares = new Button(100, 150, 300, 75, "Magic Squares", new Action() {
 
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new Instruction(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(magicSquares);

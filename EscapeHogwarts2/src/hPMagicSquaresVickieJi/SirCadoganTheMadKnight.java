@@ -18,6 +18,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPConnect4Areej.ConnectFourAreej;
+import hPStartGame.GameMenu;
 import hPStartGame.GuiLoadingVickie;
 import hPStartGame.StoryLineGuideJi;
 
@@ -114,8 +115,10 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 				
 				System.out.print("in: Great job! Now I know you are really a GryffindorEh. It's not really secure. Just about anybody can beat it and they dont have to be Gryffindor..... i'll take that into consideration. Wait, you are Gryffindor right?	ys / suree/You may enter");
 				//w
+				winner();
 			}else {
 				System.out.print("WIN ++FALSESESES");
+				loser();
 				//...Are you really a gryffindor? Hermione was able to finish it in under a minute
 						//I'm not Hermione
 				//Obviously not. Want to try again?
@@ -425,6 +428,26 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 							b2.setFont(mF);
 							b2.setText("Fine, I'll do it");
 					runStoryLine1();
+					
+				}else if (b1.getText().equals("I'm not Hermione")) {
+					kRes = "Well, Obviously not. Do you want to try again?";
+					b1.setVisible(false);
+					b2.setVisible(false);
+					r1.setVisible(false);
+					r2.setVisible(false);
+						b1.setY(350);
+						b1.setFont(mF);
+						b1.setText("Yes");//I'll just come back later
+						//r1.setEnabled(false);
+						//r1.setBackground(null);
+						
+						b2.setY(480);
+						b2.setFont(mF);
+						b2.setText("Nope");
+				runStoryLine1();
+			}else if (b1.getText().equals("Yes")) {
+				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+				
 				}
 				
 			}
@@ -502,6 +525,10 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 				
 				if (b2.getText().equals("Fine, I'll do it")) {
 					GuiLoadingVickie.loading.setScreen(new Instruction(getWidth(), getHeight()));
+				}else if(b2.getText().equals("Let me do it again")) {
+					GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+				}else if(b2.getText().equals("Nope")) {
+					GuiLoadingVickie.loading.setScreen(new GameMenu(getWidth(), getHeight()));
 				}
 			}
 			
@@ -574,6 +601,25 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 	/*
 	 * P:Well, well, u did it!
 	 */
+	public void winner() {
+		kRes = "Great job! Now I know you are really a Gryffindor!";
+		
+		b1.setText("It's not really secure");
+		b2.setText("Let me do it again.");
+		
+		runStoryLine1();
+	}
 	
+	public void loser() {
+		//...Are you really a gryffindor? Hermione was able to finish it in under a minute
+		//I'm not Hermione
+//Obviously not. Want to try again?
+		//y/n
+		kRes = "Are you really a Gryffindor? Hermione was able to finish it in under a minute.";
+		b1.setText("I'm not Hermione");
+		b2.setText("Let me do it again");
+		
+		runStoryLine1();
+	}
 	
 }
