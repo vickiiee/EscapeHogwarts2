@@ -18,6 +18,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPConnect4Areej.ConnectFourAreej;
+import hPStartGame.GameMapDirectory;
 import hPStartGame.GameMenu;
 import hPStartGame.GuiLoadingVickie;
 import hPStartGame.StoryLineGuideJi;
@@ -38,7 +39,6 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 	private Button threeR;
 	private Button twoR;
 	
-	private String[] storyLine1;
 	private boolean startSeq;
 	
 	private String[] words;
@@ -211,7 +211,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			GuiLoadingVickie.loading.setScreen(new GameMenu(getWidth(), getHeight()));
+			GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
 		}
 		
 		return "";
@@ -613,7 +613,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 				}else if(b2.getText().equals("Let me do it again")) {
 					GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
 				}else if(b2.getText().equals("Nope")) {
-					GuiLoadingVickie.loading.setScreen(new GameMenu(getWidth(), getHeight()));
+					GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
 				}else
 					
 					if (b2.getText().equals("Just about anybody can beat it and they dont have to be a Gryffindor")) {
@@ -778,7 +778,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 		//I'm not Hermione
 //Obviously not. Want to try again?
 		//y/n
-		kRes = "Are you really a Gryffindor? Hermione was able to finish it in under a minute.";
+		kRes = "Couldn't complete it, huh? Are you really a Gryffindor? Hermione was able to finish it in under a minute.";
 		b1.setText("I'm not Hermione");
 		b2.setText("Let me do it again");
 

@@ -138,11 +138,11 @@ public class GameMapDirectory extends FullFunctionScreen{
 		
 		
 		//areej
-		TextColoredLabel ar = new TextColoredLabel(170, 100, 400, 100, "Party Puzzle", null, Color.blue);
+		TextColoredLabel ar = new TextColoredLabel(170, 100, 400, 100, "Party Puzzle", null, Color.green);
 		ar.setVisible(false);
 		viewObjects.add(ar);
 		
-		TextColoredLabel ar1 = new TextColoredLabel(170, 200, 400, 100, "Scrambled Picture", null, Color.blue);
+		TextColoredLabel ar1 = new TextColoredLabel(170, 200, 400, 100, "Scrambled Picture", null, Color.green);
 		ar1.setVisible(false);
 		ar1.setFont(b);
 		viewObjects.add(ar1);
@@ -165,10 +165,10 @@ public class GameMapDirectory extends FullFunctionScreen{
 		t2.resize(400, 450);
 		t2.setVisible(false);
 		*/
-		TextColoredLabel ke = new TextColoredLabel(170, 100, 500, 100, "The Dementor's Kiss", null, Color.blue);
+		TextColoredLabel ke = new TextColoredLabel(170, 100, 500, 100, "The Dementor's Kiss", null, Color.green);
 		ke.setVisible(false);
 		viewObjects.add(ke);
-		TextColoredLabel ke1 = new TextColoredLabel(170, 200, 500, 100, "Save Harry!", null, Color.blue);
+		TextColoredLabel ke1 = new TextColoredLabel(170, 200, 500, 100, "Save Harry!", null, Color.green);
 		ke1.setVisible(false);
 		ke1.setFont(b);
 		viewObjects.add(ke1);
@@ -191,11 +191,11 @@ public class GameMapDirectory extends FullFunctionScreen{
 		t3.resize(400, 450);
 		t3.setVisible(false);*/
 		
-		TextColoredLabel ji = new TextColoredLabel(170, 100, 400, 100, "Spiders!!", null, Color.blue);
+		TextColoredLabel ji = new TextColoredLabel(170, 100, 400, 100, "Spiders!!", null, Color.green);
 		viewObjects.add(ji);
 		ji.setVisible(false);
 		
-		TextColoredLabel ji1 = new TextColoredLabel(170, 200, 400, 100, "Catch some spiders!", null, Color.blue);
+		TextColoredLabel ji1 = new TextColoredLabel(170, 200, 400, 100, "Catch some spiders!", null, Color.green);
 		ji1.setFont(b);
 		ji1.setVisible(false);
 		viewObjects.add(ji1);
@@ -218,11 +218,11 @@ public class GameMapDirectory extends FullFunctionScreen{
 		t4.resize(400, 450);
 		t4.setVisible(false);*/
 		
-		TextColoredLabel vi = new TextColoredLabel(170, 100, 450, 100, "Gryffindor Guardian", null, Color.blue);
+		TextColoredLabel vi = new TextColoredLabel(170, 100, 450, 100, "Gryffindor Guardian", null, Color.green);
 		viewObjects.add(vi);
 		vi.setVisible(false);
 		
-		TextColoredLabel vi1 = new TextColoredLabel(170, 200, 450, 100, "Magic Square game", null, Color.blue);
+		TextColoredLabel vi1 = new TextColoredLabel(170, 200, 450, 100, "Magic Square game", null, Color.green);
 		vi1.setVisible(false);
 		vi1.setFont(b);
 		viewObjects.add(vi1);
