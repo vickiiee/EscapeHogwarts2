@@ -255,10 +255,6 @@ public class CatchingGameJi extends FullFunctionScreen{
 		}
 	}
 
-	public void gameOver() {
-		System.out.print("You ran out of lives.");
-	}
-	
 	public void Timer() {
 		Timer timer = new Timer();
 		TimerTask task;
@@ -270,13 +266,21 @@ public class CatchingGameJi extends FullFunctionScreen{
 					timeLeft--;
 				} else {
 					cancel();
-					GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
+					gameOver();
+					
+					//GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
 				}
 			}
 		};
 		timer.schedule(task, 0, 1000);
 	}
 
+	public void gameOver() {
+		if(timeLeft <= 0) {
+			System.out.println("????????");
+		}
+	}
+	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0,0,getWidth(), getHeight(), "images/background4.jpg");
@@ -285,7 +289,6 @@ public class CatchingGameJi extends FullFunctionScreen{
 		gameStarted = true;
 		if(gameStarted) {
 			Timer();
-			gameStarted = false;
 		}
 
 		livesTxt = new TextArea(100, 100, 500, 100, "Lives Left:");

@@ -133,6 +133,7 @@ public class GameMapDirectory extends FullFunctionScreen{
 		});
 		viewObjects.add(button4);
 		
+		/*
 		//siren
 		pointer5 = new Graphic(570, 460, 30, 40, "images/pointer.png");
 		viewObjects.add(pointer5);
@@ -145,8 +146,10 @@ public class GameMapDirectory extends FullFunctionScreen{
 			}
 		});
 		viewObjects.add(button5);
+		*/
 		
 		//side story hogwarts
+		/*
 		pointer6 = new Graphic(930, 400, 30, 40, "images/pointer.png");
 		viewObjects.add(pointer6);
 		button6 = new Button(930, 400, 30, 40, "", new Action() {
@@ -158,7 +161,9 @@ public class GameMapDirectory extends FullFunctionScreen{
 			}
 		});
 		viewObjects.add(button6);
+		*/
 		
+		/*
 		//hogsmeade
 		pointer7 = new Graphic(100, 200, 30, 40, "images/pointer.png");
 		viewObjects.add(pointer7);
@@ -171,6 +176,7 @@ public class GameMapDirectory extends FullFunctionScreen{
 			}
 		});
 		viewObjects.add(button7);
+		*/
 	}
 
 }
