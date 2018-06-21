@@ -4,6 +4,8 @@ package hpKevStoryLine;
  * There is an issue regarding the disabling of certain ClickableGraphics and the matching of said ClickableGraphics have not been implemented
  * due to a confusion of arrays
  * 
+ * You may have to click a card several times to flip it over due to not calculating previously flipped cards into the random int generator
+ * 
  * Two cards will always be unable to flip over
  * 
  * Click the top right corner of the screen to continue on
@@ -52,7 +54,7 @@ public class DKKissGame extends FullFunctionScreen{
 			
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new DKTemplate(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new DKWinGame(getWidth(), getHeight()));
 				
 			}
 		});
