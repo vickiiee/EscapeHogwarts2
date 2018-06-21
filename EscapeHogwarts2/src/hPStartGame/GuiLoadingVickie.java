@@ -7,7 +7,7 @@ import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
 import hPAreeshStory.PartyStory;
 import hPCatchingGameJi.CatchingGameJi;
-import hPCatchingGameJi.CatchingGameTest;
+import hPCatchingGameJi.CatchingStoryJi;
 import hPCatchingGameJi.Storyline;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
@@ -31,12 +31,8 @@ public class GuiLoadingVickie extends GUIApplication{
 	public static Storyline cline;
 
 	public static CatchingGameJi cgame;
-	
-	public static CatchingGameTest ccgame;
-	
-	public static GameMapDirectory directory;
-	
-	public static PartyStory p;
+	public static CatchingStoryJi cgamestory;
+
 	public static StephStory story;
 	public static StephStory2 story2;
 	public static DKTitle kStory;
@@ -68,16 +64,15 @@ public class GuiLoadingVickie extends GUIApplication{
 		menu = new JiMenu(getWidth(), getHeight());
 		//scene1 = new Scene1(getWidth(), getHeight());
 		//magicSquares = new VickieHPFrontEnd(getWidth(), getHeight());
-		c4 = new ConnectFourAreej(getWidth(), getHeight());
+		//c4 = new ConnectFourAreej(getWidth(), getHeight());
 		
-		cline = new Storyline(getWidth(),getHeight());
-		story = new StephStory(getWidth(), getHeight());
-		story2 = new StephStory2(getWidth(), getHeight());
-		kStory = new DKTitle(getWidth(), getHeight());
-		p = new PartyStory(getWidth(), getHeight());
-		cgame = new CatchingGameJi(getWidth(), getHeight());
-		ccgame = new CatchingGameTest(getWidth(), getHeight());
-		directory = new GameMapDirectory(getWidth(), getHeight());
+		//cline = new Storyline(getWidth(),getHeight());
+		//story = new StephStory(getWidth(), getHeight());
+		//story2 = new StephStory2(getWidth(), getHeight());
+		//kStory = new DKTitle(getWidth(), getHeight());
+		
+		//cgame = new CatchingGameJi(getWidth(), getHeight());
+		//cgamestory = new CatchingStoryJi(getWidth(), getHeight());
 		
 		setScreen(menu);
 		

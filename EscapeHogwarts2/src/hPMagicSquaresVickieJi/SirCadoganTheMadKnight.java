@@ -74,7 +74,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 	private boolean win;
 	
 	//https://alvinalexander.com/blog/post/jfc-swing/use-animated-gif-image-in-jfc-swing-application
-	public SirCadoganTheMadKnight(int width, int height) {
+	public SirCadoganTheMadKnight(int width, int height, boolean first, boolean win) {
 		super(width, height);
 		System.out.print("1:");
 		System.out.print(begin);
@@ -94,12 +94,34 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 		b2.setSize(40);
 		
 		r1.setSize(40);
-		//begin = d;
-		//win = x;
+		begin = first;
+		this.win = win;
 		System.out.print("5:");
 		System.out.print(begin);
 		System.out.print("6:");
 		System.out.print(win);
+		
+		if (begin ==true) {
+			
+			kRes = "Hello There!";
+			startSeq =true;
+			if (startSeq) {
+				runStoryLine1();
+			}
+			// runStoryLine1();
+		}else {
+			if(win==true) {
+				
+				System.out.print("in: Great job! Now I know you are really a GryffindorEh. It's not really secure. Just about anybody can beat it and they dont have to be Gryffindor..... i'll take that into consideration. Wait, you are Gryffindor right?	ys / suree/You may enter");
+				//w
+			}else {
+				System.out.print("WIN ++FALSESESES");
+				//...Are you really a gryffindor? Hermione was able to finish it in under a minute
+						//I'm not Hermione
+				//Obviously not. Want to try again?
+						//y/n
+			}
+		}
 	
 		// TODO Auto-generated constructor stub
 	}
@@ -523,9 +545,9 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 		}
 		System.out.print("7");
 		System.out.print(begin);
-		begin =true;
+		//begin =true;
 		
-		if (begin ==true) {
+	/*	if (begin ==true) {
 		
 			kRes = "Hello There!";
 			startSeq =true;
@@ -545,7 +567,7 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 				//Obviously not. Want to try again?
 						//y/n
 			}
-		}
+		}*/
 
 	}
 

@@ -9,10 +9,9 @@ import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPAreeshStory.PartyStory;
 import hPCatchingGameJi.CatchingGameJi;
-import hPCatchingGameJi.CatchingGameTest;
+import hPCatchingGameJi.CatchingStoryJi;
 import hPCatchingGameJi.Storyline;
 import hPConnect4Areej.ConnectFourAreej;
-import hPMagicSquaresVickieJi.Instruction;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 import hpKevStoryLine.DKTitle;
 import hpKevStoryLine.StephStory;
@@ -27,7 +26,6 @@ public class GameMenu extends FullFunctionScreen{
 	private Button lightsOut;
 	private Button dKiss;
 	private Graphic background;
-	private Button directory;
 
 	public GameMenu(int width, int height) {
 		super(width, height);
@@ -38,21 +36,13 @@ public class GameMenu extends FullFunctionScreen{
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/castle.jpg");
 		viewObjects.add(background);
-		
-		directory = new Button(100, 550, 200, 75, "Directory", new Action() {
-			
-			@Override
-			public void act() {
-				GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
-			}
-		});
-		viewObjects.add(directory);
+
 		
 		magicSquares = new Button(100, 150, 300, 75, "Magic Squares", new Action() {
 
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new Instruction(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(magicSquares);
@@ -79,7 +69,7 @@ public class GameMenu extends FullFunctionScreen{
 			
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new CatchingGameJi(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new CatchingStoryJi(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(cGame);
@@ -101,15 +91,6 @@ public class GameMenu extends FullFunctionScreen{
 			}
 		});
 		viewObjects.add(dKiss);
-		
-Button p = new Button(500, 550, 500, 100, "Party Story", new Action() {
-			
-			@Override
-			public void act() {
-				GuiLoadingVickie.loading.setScreen(new PartyStory(getWidth(), getHeight()));
-			}
-		});
-		viewObjects.add(p);
 		
 	}
 
