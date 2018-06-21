@@ -47,7 +47,7 @@ public class GameMapDirectory extends FullFunctionScreen{
 	private TextAreaHoverButton button8;
 	private Graphic pointer9;
 	private Font b;
-	private Visible button9;
+	private TextAreaHoverButton button9;
 	private Graphic pointer10;
 	private TextAreaHoverButton button10;
 	private Graphic pointer11;
@@ -114,6 +114,21 @@ public class GameMapDirectory extends FullFunctionScreen{
 		//connect four
 		pointer1 = new Graphic(900, 300, 30, 40, "images/bPointer.png");
 		viewObjects.add(pointer1);
+		pointer2 = new Graphic(660, 670, 30, 40, "images/bPointer.png");
+		viewObjects.add(pointer2);
+		pointer3 = new Graphic(1050, 100, 30, 40, "images/bPointer.png");
+		viewObjects.add(pointer3);
+		pointer4 = new Graphic(800, 340, 30, 40, "images/bPointer.png");
+		viewObjects.add(pointer4);
+		
+		pointer8 = new Graphic(500, 415, 30, 40, "images/pPointer.png");
+		viewObjects.add(pointer8);
+		pointer9 = new Graphic(310, 75, 30, 40, "images/pPointer.png");
+		viewObjects.add(pointer9);
+		pointer10 = new Graphic(855, 60, 30, 40, "images/pPointer.png");
+		viewObjects.add(pointer10);
+		pointer11 = new Graphic(213, 200, 30, 40, "images/pPointer.png");
+		viewObjects.add(pointer11);
 		
 		Graphic t1 = new Graphic(500,0,300,300,"images/transBlack.png");
 		viewObjects.add(t1);
@@ -121,10 +136,16 @@ public class GameMapDirectory extends FullFunctionScreen{
 		t1.resize(400, 450);
 		t1.setVisible(false);
 		
-		TextColoredLabel ar = new TextColoredLabel(170, 100, 400, 200, "Party Puzzle", null, Color.blue);
+		
+		//areej
+		TextColoredLabel ar = new TextColoredLabel(170, 100, 400, 100, "Party Puzzle", null, Color.blue);
 		viewObjects.add(ar);
 		
-		button1 = new TextAreaHoverButton(900, 300, 30, 40, "", null, ar, t1, new Action() {
+		TextColoredLabel ar1 = new TextColoredLabel(170, 200, 400, 100, "Scrambled Picture", null, Color.blue);
+		ar1.setFont(b);
+		viewObjects.add(ar1);
+		
+		button1 = new TextAreaHoverButton(900, 300, 30, 40, "", null, ar, ar1,t1, new Action() {
 		
 			private String[] args;
 
@@ -136,19 +157,20 @@ public class GameMapDirectory extends FullFunctionScreen{
 		viewObjects.add(button1);
 		
 		//dkiss
-		
-		Graphic t2 = new Graphic(500,0,300,300,"images/transBlack.png");
+		/*Graphic t2 = new Graphic(500,0,300,300,"images/transBlack.png");
 		viewObjects.add(t2);
 		t2.preserveRatio = false;
 		t2.resize(400, 450);
 		t2.setVisible(false);
-		
-		TextColoredLabel ke = new TextColoredLabel(170, 100, 500, 200, "The Dementor's Kiss", null, Color.blue);
+		*/
+		TextColoredLabel ke = new TextColoredLabel(170, 100, 500, 100, "The Dementor's Kiss", null, Color.blue);
 		viewObjects.add(ke);
-		pointer2 = new Graphic(660, 670, 30, 40, "images/bPointer.png");
-		viewObjects.add(pointer2);
+		TextColoredLabel ke1 = new TextColoredLabel(170, 200, 500, 100, "Save Harry!", null, Color.blue);
+		ke1.setFont(b);
+		viewObjects.add(ke1);
 		
-		button2 = new TextAreaHoverButton(660, 670, 30, 40, "", null, ke, t2, new Action() {
+		
+		button2 = new TextAreaHoverButton(660, 670, 30, 40, "", null, ke,ke1, t1, new Action() {
 		
 			@Override
 			public void act() {
@@ -159,19 +181,20 @@ public class GameMapDirectory extends FullFunctionScreen{
 		viewObjects.add(button2);
 		
 		//forest spider
-		pointer3 = new Graphic(1050, 100, 30, 40, "images/bPointer.png");
-		viewObjects.add(pointer3);
-		
-		Graphic t3 = new Graphic(500,0,300,300,"images/transBlack.png");
+		/*Graphic t3 = new Graphic(500,0,300,300,"images/transBlack.png");
 		viewObjects.add(t3);
 		t3.preserveRatio = false;
 		t3.resize(400, 450);
-		t3.setVisible(false);
+		t3.setVisible(false);*/
 		
-		TextColoredLabel ji = new TextColoredLabel(170, 100, 400, 200, "Spiders!!", null, Color.blue);
+		TextColoredLabel ji = new TextColoredLabel(170, 100, 400, 100, "Spiders!!", null, Color.blue);
 		viewObjects.add(ji);
 		
-		button3 =new TextAreaHoverButton(1050, 100, 30, 40, "", null, ji, t3, new Action() {
+		TextColoredLabel ji1 = new TextColoredLabel(170, 200, 400, 100, "Catch some spiders!", null, Color.blue);
+		ji1.setFont(b);
+		viewObjects.add(ji1);
+		
+		button3 =new TextAreaHoverButton(1050, 100, 30, 40, "", null, ji,ji1, t1, new Action() {
 		
 			@Override
 			public void act() {
@@ -182,19 +205,21 @@ public class GameMapDirectory extends FullFunctionScreen{
 		viewObjects.add(button3);
 		
 		//magic squares
-		pointer4 = new Graphic(800, 340, 30, 40, "images/bPointer.png");
-		viewObjects.add(pointer4);
 		
-		Graphic t4 = new Graphic(500,0,300,300,"images/transBlack.png");
+		/*Graphic t4 = new Graphic(500,0,300,300,"images/transBlack.png");
 		viewObjects.add(t4);
 		t4.preserveRatio = false;
 		t4.resize(400, 450);
-		t4.setVisible(false);
+		t4.setVisible(false);*/
 		
-		TextColoredLabel vi = new TextColoredLabel(170, 100, 450, 200, "Gryffindor Guardian", null, Color.blue);
+		TextColoredLabel vi = new TextColoredLabel(170, 100, 450, 100, "Gryffindor Guardian", null, Color.blue);
 		viewObjects.add(vi);
 		
-		button4 = new TextAreaHoverButton(800, 340, 30, 40, "", null, vi, t4, new Action() {
+		TextColoredLabel vi1 = new TextColoredLabel(170, 200, 450, 100, "Magic Square game", null, Color.blue);
+		vi1.setFont(b);
+		viewObjects.add(vi1);
+		
+		button4 = new TextAreaHoverButton(800, 340, 30, 40, "", null, vi,vi1, t1, new Action() {
 			
 			@Override
 			public void act() {
@@ -250,35 +275,36 @@ public class GameMapDirectory extends FullFunctionScreen{
 		*/
 		
 		//500,415
-		pointer8 = new Graphic(500, 415, 30, 40, "images/pPointer.png");
-		viewObjects.add(pointer8);
 		
-		Graphic t5 = new Graphic(500,0,300,300,"images/transBlack.png");
+		
+		Graphic t5 = new Graphic(500,0,300,300,"images/mer.jpg");
 		viewObjects.add(t5);
-		t5.preserveRatio = false;
-		t5.resize(400, 450);
+		//t5.preserveRatio = false;
+		//t5.resize(400, 450);
 		t5.setVisible(false);
+		
+		
 		
 		TextColoredLabel bL = new TextColoredLabel(170, 100, 600, 100, "Black Lake", null, Color.magenta);
 		viewObjects.add(bL);
 		
-		TextColoredLabel bL1 = new TextColoredLabel(170, 200, 600, 200, "A large body of water that is home to many creatures", null, Color.magenta);
+		TextColoredLabel bL1 = new TextColoredLabel(170, 200, 600, 100, "A large body of water that is home to many creatures", null, Color.magenta);
 		bL1.setFont(b);
 		viewObjects.add(bL1);
 		
 		
-		button8 = new TextAreaHoverButton(500, 415, 30, 40, "", null, bL, bL1, t5, null, true);
+		button8 = new TextAreaHoverButton(500, 415, 30, 40, "", null, bL, bL1, t1, null, true);
+		button8.additionalImage(t5);
 		viewObjects.add(button8);
 		
 		//310 75
-		pointer9 = new Graphic(310, 75, 30, 40, "images/pPointer.png");
-		viewObjects.add(pointer9);
 		
-		Graphic t6 = new Graphic(500,0,300,300,"images/transBlack.png");
-		viewObjects.add(t6);
-		t6.preserveRatio = false;
-		t6.resize(400, 450);
-		t6.setVisible(false);
+		
+		Graphic beer = new Graphic(500,45,300,648,"images/beer.jpg");
+		viewObjects.add(beer);
+		//beer.preserveRatio = false;
+		//beer.resize(400, 450);
+		beer.setVisible(false);
 		
 		TextColoredLabel hV = new TextColoredLabel(445, 225, 600, 100, "Hogsmeade Village", null, Color.magenta);
 		viewObjects.add(hV);
@@ -289,11 +315,10 @@ public class GameMapDirectory extends FullFunctionScreen{
 		
 		
 		button9 = new TextAreaHoverButton(310, 75, 30, 40, "", null, hV, hV1, t1, null, true);
+		button9.additionalImage(beer);
 		viewObjects.add(button9);
 		
-		//855,60
-		pointer10 = new Graphic(855, 60, 30, 40, "images/pPointer.png");
-		viewObjects.add(pointer10);
+		
 		
 		Graphic t7 = new Graphic(500,0,300,417,"images/ForbiddenForest.png");
 		viewObjects.add(t7);
@@ -314,10 +339,13 @@ public class GameMapDirectory extends FullFunctionScreen{
 		viewObjects.add(button10);
 		
 		//
-		pointer11 = new Graphic(213, 200, 30, 40, "images/pPointer.png");
-		viewObjects.add(pointer11);
 		
 		
+		Graphic t6 = new Graphic(500,0,300,300,"images/Shriek.png");
+		viewObjects.add(t6);
+		//t6.preserveRatio = false;
+		//t6.resize(400, 450);
+		t6.setVisible(false);
 		
 		TextColoredLabel sS = new TextColoredLabel(445, 225, 700, 100, "The Shrieking Shack", null, Color.magenta);
 		viewObjects.add(sS);
@@ -328,7 +356,7 @@ public class GameMapDirectory extends FullFunctionScreen{
 		
 		
 		button11 = new TextAreaHoverButton(213	, 200, 30, 40, "", null, sS, sS1, t1, null, true);
-		button11.additionalImage(t7);
+		button11.additionalImage(t6);
 		viewObjects.add(button11);
 	}
 
