@@ -6,6 +6,7 @@ import java.io.File;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
 import hPCatchingGameJi.CatchingGameJi;
+import hPCatchingGameJi.CatchingStoryJi;
 import hPCatchingGameJi.Storyline;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
@@ -29,6 +30,7 @@ public class GuiLoadingVickie extends GUIApplication{
 	public static Storyline cline;
 
 	public static CatchingGameJi cgame;
+	public static CatchingStoryJi cgamestory;
 
 	public static StephStory story;
 	public static StephStory2 story2;
@@ -61,14 +63,15 @@ public class GuiLoadingVickie extends GUIApplication{
 		menu = new JiMenu(getWidth(), getHeight());
 		//scene1 = new Scene1(getWidth(), getHeight());
 		//magicSquares = new VickieHPFrontEnd(getWidth(), getHeight());
-		c4 = new ConnectFourAreej(getWidth(), getHeight());
+		//c4 = new ConnectFourAreej(getWidth(), getHeight());
 		
-		cline = new Storyline(getWidth(),getHeight());
-		story = new StephStory(getWidth(), getHeight());
-		story2 = new StephStory2(getWidth(), getHeight());
-		kStory = new DKTitle(getWidth(), getHeight());
+		//cline = new Storyline(getWidth(),getHeight());
+		//story = new StephStory(getWidth(), getHeight());
+		//story2 = new StephStory2(getWidth(), getHeight());
+		//kStory = new DKTitle(getWidth(), getHeight());
 		
-		cgame = new CatchingGameJi(getWidth(), getHeight());
+		//cgame = new CatchingGameJi(getWidth(), getHeight());
+		//cgamestory = new CatchingStoryJi(getWidth(), getHeight());
 		
 		setScreen(menu);
 		

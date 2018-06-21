@@ -13,7 +13,9 @@ public class PotionTest extends ClickableGraphic{
 	}
 	
 	public void checkIfCollected() {
-		
+		//if(CatchingGameTest.getGameStatus()) {
+			
+		//}
 	}
 
 }

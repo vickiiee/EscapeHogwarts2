@@ -1,5 +1,16 @@
 package hpKevStoryLine;
 
+/*
+ * There is an issue regarding the disabling of certain ClickableGraphics and the matching of said ClickableGraphics have not been implemented
+ * due to a confusion of arrays
+ * 
+ * You may have to click a card several times to flip it over due to not calculating previously flipped cards into the random int generator
+ * 
+ * Two cards will always be unable to flip over
+ * 
+ * Click the top right corner of the screen to continue on
+ * 
+ */
 
 import java.util.List;
 
@@ -9,6 +20,7 @@ import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPStartGame.GuiLoadingVickie;
 
 public class DKKissGame extends FullFunctionScreen{
 
@@ -20,9 +32,12 @@ public class DKKissGame extends FullFunctionScreen{
 	
 	private int[] count;
 	
+	private Button next;
+	
 	public DKKissGame(int width, int height) {
 		super(width, height);
 		
+		next.setSize(40);
 	}
 
 	
@@ -34,6 +49,16 @@ public class DKKissGame extends FullFunctionScreen{
 		
 		backgroundImg = new Graphic(0, 0, getWidth(), getHeight(), "kimg/memoryReel.png");
 		viewObjects.add(backgroundImg);
+		
+		next = new Button(1100, 10, 100, 100, "Pass", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new DKWinGame(getWidth(), getHeight()));
+				
+			}
+		});
+		viewObjects.add(next);
 		
 		for (int j = 0; j < flipList.length; j++) {
 			flipList[j] = false;
@@ -61,7 +86,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[0]);
-				checkPair(flipList);
+				
 				
 			}
 		});
@@ -72,6 +97,7 @@ public class DKKissGame extends FullFunctionScreen{
 
 				flipCard(cardArray[1]);
 				
+				
 			}
 		});
 		cardArray[2].setAction(new Action() {
@@ -80,6 +106,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[2]);
+				
 			
 			}
 		});
@@ -89,6 +116,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[3]);
+				
 		
 			}
 		});
@@ -98,6 +126,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[4]);
+				
 		
 			}
 		});
@@ -107,6 +136,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[5]);
+				
 		
 			}
 		});
@@ -116,6 +146,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[6]);
+				
 		
 			}
 		});
@@ -125,6 +156,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[7]);
+				
 		
 			}
 		});
@@ -134,6 +166,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[8]);
+				
 		
 			}
 		});
@@ -143,6 +176,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[9]);
+				
 		
 			}
 		});
@@ -152,6 +186,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[10]);
+				
 		
 			}
 		});
@@ -161,6 +196,7 @@ public class DKKissGame extends FullFunctionScreen{
 			public void act() {
 
 				flipCard(cardArray[11]);
+				
 		
 			}
 		});
@@ -168,18 +204,34 @@ public class DKKissGame extends FullFunctionScreen{
 	}
 	
 	public void flipCard(ClickableGraphic cg) {
-		int num = (int)(Math.random()*6);
+		int num = (int)(Math.random()*13);
+		int temp = num;
+		
+		if(num == 12 ) {
+			temp = num - 6;
+		}else if(num > 6) {
+			temp = num - 5;
+		}
 		
 		for(int i = 0; i < numList.length; i++) {
-			if(i == num && numList[i] < 2) {
+			
+			if(i == temp && numList[i] < 2) {
 				flipList[i] = true;
 				numList[i]++;
 				cg.loadImages(cardList[i], 150, 300);
 				checkPair(flipList);
+					
+			}
+			
+			
+			if(flipList[num] == true) {
+				cardArray[num].setAction(null);
 			}
 		}
 		
+		
 	}
+	
 	
 	public void checkPair(Boolean[] fList) {
 		for (int i = 0; i < fList.length; i++) {
@@ -198,8 +250,9 @@ public class DKKissGame extends FullFunctionScreen{
 			}
 		}
 	}
+	
 
-
+	
 	public boolean compareValues(String card1, String card2) {
 		if (card1.equals(card2) != true){
 			return false;
@@ -207,5 +260,6 @@ public class DKKissGame extends FullFunctionScreen{
 		
 		return true;
 	}
+	
 	
 }

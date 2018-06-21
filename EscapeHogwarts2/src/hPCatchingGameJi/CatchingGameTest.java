@@ -22,7 +22,7 @@ public class CatchingGameTest extends FullFunctionScreen{
 	private int time;
 	private int timePause;
 	private int potionsCollected;
-	private boolean gameRunning = false;
+	private boolean gameRunning = true;
 	
 	ArrayList<PotionTest> potionsList = new ArrayList<PotionTest>();
 	private PotionTest potion;
@@ -47,6 +47,10 @@ public class CatchingGameTest extends FullFunctionScreen{
 			}
 		};
 		timer.schedule(task, 0, generateNumber(1, 5));
+	}
+	
+	public boolean getGameStatus() {
+		return gameRunning;
 	}
 	
 	public boolean checkPotionCollected() {

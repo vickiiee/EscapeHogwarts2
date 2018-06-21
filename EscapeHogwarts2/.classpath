@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gui"/>
 	<classpathentry kind="src" path="images"/>
+	<classpathentry kind="src" path="vImages"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

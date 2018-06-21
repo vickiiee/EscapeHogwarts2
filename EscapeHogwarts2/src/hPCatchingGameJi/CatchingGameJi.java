@@ -19,41 +19,46 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPStartGame.GameMapDirectory;
+import hPStartGame.GuiLoadingVickie;
 
 public class CatchingGameJi extends FullFunctionScreen{
 
 	private Graphic background;
 	private TextArea livesTxt;
 	private TextArea gameStatus;
-	private Potion potion;
+	private Spider spider;
 
 	private int lives = 5;
 	private int time;
-	private int potionPause;
+	private int genPause;
 	private int xPos;
 	private final int yPos = 0;
 	private int mouseX;
 	private int mouseY;
+	private int timeLeft;
 
-	ArrayList<Potion> potionsList = new ArrayList<Potion>();
-	//ArrayList<Potion> potionsCreated = new ArrayList<Potion>();
-	//ArrayList<Potion> potionsCaught = new ArrayList<Potion>();
+	ArrayList<Spider> spidersList = new ArrayList<Spider>();
 	private Button testBtn;
 
 	private boolean gameRunning = true;
 	private boolean gameStarted;
 	private Point b;
 	private PointerInfo a;
-	
-	
+	private TextArea timeLeftTxt;
+
+	//count||hover
 
 	public CatchingGameJi(int width, int height) {
 		super(width, height);
 		livesTxt.setForeground(Color.white);
 		livesTxt.setText("Lives Left: " + lives);
 		gameStatus.setForeground(Color.white);
+		timeLeftTxt.setForeground(Color.white);
 		startGame();
-		getMousePosition();
+		timeLeft = 12;
+		Timer();
+		//getMousePosition();
 		//testGenPotion();
 	}
 
@@ -69,11 +74,11 @@ public class CatchingGameJi extends FullFunctionScreen{
 					mouseX = (int) b.getX();
 					mouseY = (int) b.getY();
 					//System.out.println(mouseX + ", " + mouseY);
-					for(int i = 0; i < potionsList.size(); i++) {
-						if (checkDistanceRange(potionsList.get(i))) {
-							potionsList.get(i).setVisible(false);
-							potionsList.remove(i);
-							viewObjects.remove(potionsList.get(i));
+					for(int i = 0; i < spidersList.size(); i++) {
+						if (checkDistanceRange(spidersList.get(i))) {
+							spidersList.get(i).setVisible(false);
+							spidersList.remove(i);
+							viewObjects.remove(spidersList.get(i));
 							System.out.println("potion removed");
 						}
 					}
@@ -86,9 +91,9 @@ public class CatchingGameJi extends FullFunctionScreen{
 		return b;
 	}
 
-	public boolean checkDistanceRange(Potion p) {
-		if(Math.abs(mouseY-((p).getHeight() - 50)) < 10){
-			if(Math.abs(mouseX-((p).getWidth() - 50)) < 10){
+	public boolean checkDistanceRange(Spider p) {
+		if(Math.abs(mouseY-((p).getY() - 50)) < 10){
+			if(Math.abs(mouseX-((p).getX() - 50)) < 10){
 				return true;
 			}
 		}
@@ -104,51 +109,59 @@ public class CatchingGameJi extends FullFunctionScreen{
 	}
 
 	public void startGame() {
-		for(int i = 0; i < 10; i++) {
+		//while(gameRunning) {
+		for(int i = 0; i < 30; i++) {
 			Timer timer = new Timer();
 			TimerTask task;
 			task = new TimerTask() {
 				@Override
 				public void run() { 
-					potionPause = (int)(Math.random() * 3);
-					if (potionPause > 0) {
-						potionPause--;
+					genPause = (int)(Math.random() * 9);
+					//if(gameRunning) {
+					if (genPause > 0) {
+						genPause--;
 					} else {
-						generatePotion();
+						generateSpider();
+						//checkLivesLeft();
 						cancel();
 					}
+					//}else {
+					//checkLivesLeft();
+					//cancel();
+					//}
 				}
 			};
 			timer.schedule(task, 0, 1000);
 		}
 
-		checkLivesLeft();
+		//checkLivesLeft();
+		//}
 	}
 
-	public void generatePotion() {
+	public void generateSpider() {
 		chooseStart();
 		chooseTime();
-		potion = new Potion(xPos, xPos, choosePotion(), potionsList.size(), new Action() {
+		spider = new Spider(xPos, yPos, "images/spider.png", spidersList.size(), new Action() {
 			/**
 			 * option 1: click to remove potion
 			 */
 			@Override
 			public void act() {
 				/*
-				potion.setVisible(false);
 				potionsList.remove(potion);
 				viewObjects.remove(potion);
 				System.out.println("potion removed");
-				*/
-				
-				potionsList.get(potion.getIndex()).setVisible(false);
-				//
+				 */
+				//spidersList.get(spider.getIndex()).setVisible(false);
+
+				spider.setVisible(false);
+				spidersList.set(spider.getIndex(), null);
+
 			}
 		});
-		viewObjects.add(potion);
-		potionsList.add(potion);
-		//System.out.println(potionsList);
-		//potion.move(xPos, 780, time);
+		viewObjects.add(spider);
+		spidersList.add(spider);
+		spider.move(xPos, 800, time);
 		/**
 		 * option 2: hover to remove potion
 		 */
@@ -199,11 +212,11 @@ public class CatchingGameJi extends FullFunctionScreen{
 			System.out.println("potion removed");
 		}
 	}
-	*/
-	public void checkPotionCaught() {
-		if(potion.getHeight() == 780) {
-			if(potion != null) {
-				potion.setVisible(false);
+	 */
+	public void checkSpiderCaught() {
+		if(spider.getY() == 800) {
+			if(spider != null) {
+				spider.setVisible(false);
 				setLives(lives--);
 				livesTxt.setText("Lives Left: " + lives);
 				checkLivesLeft();
@@ -212,13 +225,13 @@ public class CatchingGameJi extends FullFunctionScreen{
 	}
 
 	public void chooseStart() {
-		xPos = (int)(Math.random() * getWidth() - 100);
+		xPos = (int)(Math.random() * getWidth() - 680) + 630;
 	}
 
 	public void chooseTime() {
-		time = (int)(Math.random() * 3000 + 300);
+		time = (int)(Math.random() * 3000 + 1000);
 	}
-
+	/*
 	public String choosePotion() {
 		int temp = (int)(Math.random() * 3);
 		String potionName = "";
@@ -233,22 +246,51 @@ public class CatchingGameJi extends FullFunctionScreen{
 		}
 		return potionName;
 	}
-
+	 */
 	public void checkLivesLeft() {
 		if(getLives() <= 0) {
-			gameStatus.setText("You caught" + potionsList.size() + "potions in total!");
 			gameRunning = false;
+			gameStatus.setText("You caught" + spidersList.size() + "spiders in total!");
+			System.out.println(gameStatus);
+			gameOver();
 		}
 	}
 
+	public void Timer() {
+		Timer timer = new Timer();
+		TimerTask task;
+		task = new TimerTask() {
+			@Override
+			public void run() { 
+				if (timeLeft > 0) {
+					timeLeftTxt.setText("Time Left: " + timeLeft);
+					timeLeft--;
+				} else {
+					cancel();
+					gameOver();
+					
+					//GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
+				}
+			}
+		};
+		timer.schedule(task, 0, 1000);
+	}
+
+	public void gameOver() {
+		if(timeLeft <= 0) {
+			GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
+			System.out.println("over");
+		}
+	}
+	//
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0,0,getWidth(), getHeight(), "images/background4.jpg");
 		viewObjects.add(background);
-		
+
 		gameStarted = true;
 		if(gameStarted) {
-			
+			//Timer();
 		}
 
 		livesTxt = new TextArea(100, 100, 500, 100, "Lives Left:");
@@ -257,14 +299,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 		gameStatus = new TextArea(300, 300, 500, 100, "");
 		viewObjects.add(gameStatus);
 
-		testBtn = new Button(500, 100, 200, 100, "remove", new Action() {
-
-			@Override
-			public void act() {
-				viewObjects.remove(potion);
-
-			}
-		});
-		viewObjects.add(testBtn);
+		timeLeftTxt = new TextArea(500, 100, 500, 500, "Time Left:" + timeLeft);
+		viewObjects.add(timeLeftTxt);
 	}
 }

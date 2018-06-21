@@ -49,25 +49,26 @@ public class TextColoredLabel extends TextLabel {
 	}
 
 
-
 	public void setAlign(int align) {
 		this.align = align;
 		update();
 	}
 
-
-
 	@Override
 	public void update(Graphics2D g) {
+		clear();
 		applyStyles(g);
-		g.setColor(customBg);
-		g.fillRect(0, 0, getWidth(), getHeight());
+		if (customBg != null) {
+			g.setColor(customBg);
+			g.fillRect(0, 0, getWidth(), getHeight());
+		}
+
 		g.setColor(customFg);
 		g.setFont(getFont());
-		if(getText() != null) {
-			
+		if (getText() != null) {
+
 			Utilities.drawText(g, getText(), 0, getWidth(), getHeight(), getAlign());
-		
+
 		}
 	}
 
