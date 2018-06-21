@@ -36,7 +36,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 	private final int yPos = 0;
 	private int mouseX;
 	private int mouseY;
-	private int timeLeft = 12;
+	private int timeLeft;
 
 	ArrayList<Spider> spidersList = new ArrayList<Spider>();
 	private Button testBtn;
@@ -55,8 +55,9 @@ public class CatchingGameJi extends FullFunctionScreen{
 		livesTxt.setText("Lives Left: " + lives);
 		gameStatus.setForeground(Color.white);
 		timeLeftTxt.setForeground(Color.white);
-		//startGame();
-		//Timer();
+		startGame();
+		timeLeft = 12;
+		Timer();
 		//getMousePosition();
 		//testGenPotion();
 	}
@@ -277,7 +278,8 @@ public class CatchingGameJi extends FullFunctionScreen{
 
 	public void gameOver() {
 		if(timeLeft <= 0) {
-			System.out.println("????????");
+			GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
+			System.out.println("over");
 		}
 	}
 	
@@ -288,7 +290,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 
 		gameStarted = true;
 		if(gameStarted) {
-			Timer();
+			//Timer();
 		}
 
 		livesTxt = new TextArea(100, 100, 500, 100, "Lives Left:");
