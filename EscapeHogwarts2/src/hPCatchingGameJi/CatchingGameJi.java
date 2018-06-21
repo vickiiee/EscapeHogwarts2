@@ -282,7 +282,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 			System.out.println("over");
 		}
 	}
-	
+	//
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0,0,getWidth(), getHeight(), "images/background4.jpg");
