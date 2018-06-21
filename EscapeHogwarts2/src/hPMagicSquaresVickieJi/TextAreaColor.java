@@ -13,6 +13,8 @@ public class TextAreaColor extends Button {
 
 	public TextAreaColor(int x, int y, int w, int h, String text, Color color, Action action) {
 		super(x, y, w, h, text, color, action);
+		update();
+		
 		// TODO Auto-generated constructor stub
 	}
 

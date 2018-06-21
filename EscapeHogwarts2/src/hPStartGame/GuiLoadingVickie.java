@@ -7,6 +7,7 @@ import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
 import hPAreeshStory.PartyStory;
 import hPCatchingGameJi.CatchingGameJi;
+import hPCatchingGameJi.CatchingGameTest;
 import hPCatchingGameJi.Storyline;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
@@ -30,6 +31,10 @@ public class GuiLoadingVickie extends GUIApplication{
 	public static Storyline cline;
 
 	public static CatchingGameJi cgame;
+	
+	public static CatchingGameTest ccgame;
+	
+	public static GameMapDirectory directory;
 	
 	public static PartyStory p;
 	public static StephStory story;
@@ -71,6 +76,8 @@ public class GuiLoadingVickie extends GUIApplication{
 		kStory = new DKTitle(getWidth(), getHeight());
 		p = new PartyStory(getWidth(), getHeight());
 		cgame = new CatchingGameJi(getWidth(), getHeight());
+		ccgame = new CatchingGameTest(getWidth(), getHeight());
+		directory = new GameMapDirectory(getWidth(), getHeight());
 		
 		setScreen(menu);
 		

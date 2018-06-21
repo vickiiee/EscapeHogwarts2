@@ -13,6 +13,7 @@ import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
+import hPStartGame.GameMapDirectory;
 import hPStartGame.GuiLoadingVickie;
 import hpKevStoryLine.DKTitle;
 import hpKevStoryLine.StephStory;
@@ -59,6 +60,7 @@ public class Scene1 extends FullFunctionScreen {
 	
 	private Graphic[] charImages = {charHarry, charHerm, charRon};
 	private Graphic[] bkgrnds = {background1, background2, hogsmeade};
+	private Button gameDirectory;
 
 	public Scene1(int width, int height) {
 		super(width, height);
@@ -341,10 +343,18 @@ public class Scene1 extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new CatchingGameJi(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new CatchingStoryJi(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(cGame);
+		
+		gameDirectory = new Button(100, 550, 200, 75, "Directory", new Action() {
+			
+			@Override
+			public void act() {
+				GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
+			}
+		});
 		
 		lightsOut = new Button(500, 350, 300, 75, "Side Story", new Action() {
 			

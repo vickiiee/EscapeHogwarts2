@@ -9,54 +9,64 @@ import java.util.TimerTask;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
+import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
+import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPStartGame.GuiLoadingVickie;
 
 public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport {
 
+	//private SirCadoganTheMadKnight story;
+	
 	private VickieHPSupport backend;
-
-	private Button[] numberButtons;
-	private MagicSquareGridButtons[] gB;
-	private TextArea[] txtAreas;
-
-	private String numClicked;
-
-	private TextArea error;
-	private TextArea counter; // testing purposes
-	private TextArea hint1;
-
-	private int count; // testing purposes
-
-	private Color trans;
-
-	private int c;
 
 	private int[][] magicSquares;
 
-	private int initNumBackEnd; // getInitiateNum()
+	private Button[] numberButtons; // keypad buttons
+
+	private MagicSquareGridButtons[] gB; // board buttons
+
+	private TextArea[] txtAreas; // board txtareas
+
+	private String numClicked; // stored number
+
+	private TextArea error; // error message saying you must click on keypad first
+	private TextArea counter; // testing purposes
+
+	private TextColoredLabel hint1; // first hint
+	private TextColoredLabel hint3; // second hint
+	private TextColoredLabel hint2; // third hint
+
+	
+//	private TextArea hint1; // first hint
+	//private TextArea hint3; // second hint
+	//private TextArea hint2; // third hint
+	
+	public Color trans; // transparent white-ish color on keypad buttons
+
+	private Graphic background;
+	private Graphic board;
 
 	private TextAreaColor bTimer;
 	private TextAreaColor tTimer;
 
 	// private TextAreaColor hint;
+	private int c;
 
-	private int minutes;
-	private int seconds;
-	
+	private int minutes; // timer minutes
+	private int seconds; // timer seconds
+
 	private int g;
-
 	private int h;
+	public int initNumBackEnd; // getInitiateNum()
+	private int goldI;
+	private int count; // testing purposes
 
 	private Timer timer;
-
 	private TimerTask complete;
-
-	private TextArea hint3;
-
-	private TextArea hint2;
 
 	private Button font1plus;
 	private Button font1sub;
@@ -65,13 +75,31 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	private Button font3plus;
 	private Button font3sub;
 
-	private Button hOne;
-	private Button hTwo;
-	private Button hThree;
+	private Button hOne; // first hint button
+	private Button hTwo; // second hint button
+	private Button hThree; // third hint button
 
 	private TextAreaColor hintBox;
 
-	private int goldI;
+	private Graphic border;
+
+	private Graphic wood;
+
+	//private FontColoredTextLabel cd;
+
+	private Font a;
+
+	private Font b;
+
+	private Font l;
+
+	private Visible hOneBoard;
+
+	private Graphic h1Border;
+
+	private Graphic hBorder;
+
+	private Graphic tBorder;
 
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
@@ -80,36 +108,47 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
+		//story = new SirCadoganTheMadKnight(getWidth(), getHeight());
+		//story.first(false);
+		
 		backend = new JiHPBackEnd(this);
 
 		minutes = 4;
 		seconds = 60;
+
 		numClicked = "0";
 
 		trans = newColorWithAlpha(Color.white, 70);
 
 		numberButtons = new Button[9];
+
 		gB = new MagicSquareGridButtons[9];
+
 		txtAreas = new TextArea[9];
 
 		count = 0; // testing purposes
 		// if(count == 0)backend.chooseStartingPoint();
 
-		Graphic background = new Graphic(0, 0, getWidth(), getHeight(), "images/background3.jpg");
+		background = new Graphic(0, 0, getWidth(), getHeight(), "images/background3.jpg");
 		viewObjects.add(background);
 
-		Graphic board = new Graphic(450, 50, 700, 700, "images/mSBoard.jpg");
+		board = new Graphic(450, 50, 700, 700, "images/mSBoard.jpg");
+		board.preserveRatio = false;
 		viewObjects.add(board);
+		
+		wood = new Graphic(50, 50, 320, 150, "images/mSBoard320.jpg");
+		viewObjects.add(wood);
 
-		Graphic border = new Graphic(450, 50, 700, 700, "images/grid.png");
+		border = new Graphic(450, 50, 700, 700, "images/grid.png");
+		border.preserveRatio = false;
 		viewObjects.add(border);
 
 		error = new TextArea(50, 50, 200, 200, "ERROR: \n Please choose a # button");
 		viewObjects.add(error);
 		error.setVisible(false);
 
-		counter = new TextArea(50, 50, 700, 700, "" + count); // testing purposes
-		viewObjects.add(counter);
+		//counter = new TextArea(50, 50, 700, 700, "" + count); // testing purposes
+		//viewObjects.add(counter);
 
 		// Graphic textb = new Graphic(50, 50, 500, 100, "images/textbox2.png");
 		// viewObjects.add(textb);
@@ -119,80 +158,182 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		 * viewObjects.add(bTimer);
 		 */
 
-		Graphic wood = new Graphic(50, 50, 320, 150, "images/wood2.jpg");
-		viewObjects.add(wood);
+		tBorder = new Graphic(50, 50, 320, 150, "images/grid.png");
+		tBorder.preserveRatio=false;
+		tBorder.resize(320, 150);
+		viewObjects.add(tBorder);
 
 		tTimer = new TextAreaColor(50, 50, 320, 150, "5:00", null, null);
 		viewObjects.add(tTimer);
+		
+		//TextColoredLabel f = new TextColoredLabel(50, 50, 320, 150, "5:00", Color.red, Color.black);
+		//viewObjects.add(f);
+		
+		Graphic hwood = new Graphic(50, 600, 320, 150, "images/mSBoard320.jpg"); 
+		viewObjects.add(hwood);
 
-		hintBox = new TextAreaColor(50, 600, 320, 150, "HINTS", Color.gray, null);
+		hintBox = new TextAreaColor(50, 600, 320, 150, "HINTS", null, null);
 		viewObjects.add(hintBox);
 
-		hOne = new Button(380, 635, 25, 25, "1", Color.blue, new Action() {
+		//
+		hOneBoard = new Graphic(380, 620, 30, 30, "images/MSboard.jpg");
+		viewObjects.add(hOneBoard);
+		
+		hBorder = new Graphic(50, 600, 320, 150, "images/grid.png");
+		hBorder.preserveRatio=false;
+		hBorder.resize(320, 150);
+		viewObjects.add(hBorder);
+		
+
+		hOne = new Button(380, 620, 30, 30, "1", null, new Action() {
 
 			@Override
 			public void act() {
-				goldI++;
-				txtAreas[goldI].setForeground(Color.yellow);
-				if (minutes  < 4) {
+				if (minutes < 4) {
 					hintBox.setText("");
-					//hintBox.setText("The '5' is always in the middle");
+					// hintBox.setText("The '5' is always in the middle");
 					hint3.setVisible(false);
 					hint2.setVisible(false);
 					hint1.setVisible(true);
-				}else {
+				} else {
 					hintBox.setText("Unlocked at 4:00");
 				}
-				
+
 			}
-			
 		});
-		hOne.setCurve(10, 20);
+		hOne.setCurve(0, 0);
 		viewObjects.add(hOne);
 		
-		hTwo = new Button(380, 665, 25, 25, "2", Color.blue,new Action() {
+		 h1Border = new Graphic(380, 620, 30, 30, "images/grid.png");
+		viewObjects.add(h1Border);
+		//
+
+		Graphic hTwoBoard = new Graphic(380, 660, 30, 30, "images/MSboard.jpg");
+		viewObjects.add(hTwoBoard);
+
+		hTwo = new Button(380, 660, 30, 30, "2", null, new Action() {
 
 			@Override
 			public void act() {
 				if (minutes < 3) {
 					hintBox.setText("");
-					//hintBox.setText("The numbers opposite the '5' in a column/row/ diagonal has to add up to ten");
+					// hintBox.setText("The numbers opposite the '5' in a column/row/ diagonal has
+					// to add up to ten");
 					hint3.setVisible(false);
 					hint1.setVisible(false);
 					hint2.setVisible(true);
-				}else {
+				} else {
 					hintBox.setText("Unlocked at 3:00");
 					hint1.setVisible(false);
 				}
-			}
 			
+			}
+
 		});
-		hTwo.setCurve(10, 20);
+		 hTwo.setCurve(0, 0); //10,20
 		viewObjects.add(hTwo);
 		
-		hThree = new Button(380, 695, 25, 25, "3", Color.blue,new Action() {
+		Graphic h2Border = new Graphic(380, 660, 30, 30, "images/grid.png");
+		viewObjects.add(h2Border);
+		//
+
+		Graphic hThreeBoard = new Graphic(380, 700, 30, 30, "images/MSboard.jpg");
+		viewObjects.add(hThreeBoard);
+		hThree = new Button(380, 700, 30, 30, "3",null, new Action() {
 
 			@Override
 			public void act() {
 				if (minutes < 2) {
 					hintBox.setText("");
-					//hintBox.setText("Besides the 5, odd numbers are never adjacent to even numbers and vice versa");
+					// hintBox.setText("Besides the 5, odd numbers are never adjacent to even
+					// numbers and vice versa");
 					hint2.setVisible(false);
 					hint1.setVisible(false);
 					hint3.setVisible(true);
-					
-				}else {
+
+				} else {
 					hintBox.setText("Unlocked at 2:00");
 					hint2.setVisible(false);
 					hint1.setVisible(false);
 				}
 			}
-			
+
 		});
-		hThree.setCurve(10,20);
+		hThree.setCurve(0, 0);
 		viewObjects.add(hThree);
 
-		hint1 = new TextArea(55, 600, 320, 500, "The '5' is always    in the middle");
+		Graphic h3Border = new Graphic(380, 700, 30, 30, "images/grid.png");
+		viewObjects.add(h3Border);
+		
+		
+		try {
+			File fontFile = new File("images/HARRYP.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+			Font baseFont = font.deriveFont(150f);
+			 a = font.deriveFont(55f);
+			
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		
+		
+		// cd = new FontColoredTextLabel(55, 600, 320, 500, "The '5' is always in the middle", null, Color.red, a);
+		//hint1.setForeground(Color.red);
+		// cd.setVisible(false);
+		 //cd.setFont(a);
+		 //cd.update();
+		//viewObjects.add(cd);
+
+		/*Button j = new Button(600, 695, 25, 25, "R", Color.blue, new Action() {
+			private boolean v;
+			@Override
+			public void act() {
+				if(v) {
+					v=!v;
+					cd.setText("UPDADASDSDS");
+				cd.setVisible(false);}
+				else {
+					v=!v;
+					cd.setText("sdfgasdfgadfg");
+					cd.setVisible(true);
+					
+				}
+			}
+
+		});
+		viewObjects.add(j);*/
+		
+		
+		
+		//The '5' is always    in the middle   
+		hint1 = new TextColoredLabel(65, 600, 300, 500, "The '5' is always in the middle", null, Color.red);
+		//hint1.setForeground(Color.red);
+		hint1.setY(615);
+		hint1.setVisible(false);
+		viewObjects.add(hint1);
+
+		//he numbers opposite the 5  in a column/row/diagonal    has to add up to ten
+		hint2 = new TextColoredLabel(75, 610, 275, 500,
+				"The numbers opposite the 5 in a column/row/diagonal has to add up to ten", null, Color.red);
+		//hint2.setForeground(Color.orange);
+		hint2.setVisible(false);
+		viewObjects.add(hint2);
+		
+		
+		// Besides the 5, odd numbers are NEVER adjacent to even    numbers and vice versa
+		hint3 = new TextColoredLabel(65, 600, 300, 500, //Corner numbers are either ALL odd, or All even 
+				"Corner numbers are either ALL odd, or All even", null, Color.red);
+		hint3.setY(620);
+		hint3.setVisible(false);
+		//hint3.setForeground(Color.yellow);
+		viewObjects.add(hint3);
+		
+		
+		/*hint1 = new TextArea(55, 600, 320, 500, "The '5' is always    in the middle   ");
 		hint1.setForeground(Color.red);
 		viewObjects.add(hint1);
 
@@ -205,20 +346,36 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				" Besides the 5, odd numbers are NEVER adjacent to even    numbers and vice versa");
 		hint3.setForeground(Color.yellow);
 		viewObjects.add(hint3);
-		
 		hint1.setVisible(false);
 		hint3.setVisible(false);
-		hint2.setVisible(false);
+		hint2.setVisible(false);*/
 		
+		Button test = new Button(0,0,50,50,"tesr", new Action() {
+
+			@Override
+			public void act() {
+				setUpGrid();
+				
+			}
+			
+		});
+		viewObjects.add(test);
 
 		// hOne= new Button
 
 		// Test.setBaseFont(f);
 		startTimer();
 		createKeyPadButtons();
+		// keyPadButtonsAction();
 		createGridButtons();
 		createTxtArea();
 		setUpGrid();
+		
+		addNecessaryButtons();
+	}
+
+	public void addNecessaryButtons() {
+		// nothing, this is for the instruction screen
 
 	}
 
@@ -289,7 +446,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		// System.out.println("numButtonAction(int num)");
 		numClicked = numberButtons[num].getText();
 		count++;
-		counter.setText("" + count);
+		//counter.setText("" + count);
 
 		changeButtonColor(num, initNumBackEnd);
 
@@ -445,13 +602,21 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				// font();
 				// String nC = numClicked + "";
 				String n = txtAreas[i].getText();
+				
+			
 				if (numClicked.equals(n)) {
 					// font();
 					txtAreas[i].setText("?");
 
 					if (i == 0 || i < 3) {
+						//while(txtAreas[i].getX() != 580 + 203 * i || txtAreas[i].getY() != 150) {
 						txtAreas[i].move(580 + 203 * i, 150, 100);
-						viewObjects.add(txtAreas[i]);
+						//System.out.print("loop");
+					//	}
+						System.out.print(txtAreas[i].getX());
+						System.out.print(txtAreas[i].getY());
+						//txtAreas[i].setVisible(true);
+						//viewObjects.add(txtAreas[i]);
 					} else if (i == 3 || i < 6) {
 						txtAreas[i].move(580 + 203 * (i - 3), 350, 100);// y+203
 						viewObjects.add(txtAreas[i]);
@@ -463,7 +628,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 				txtAreas[num].update();
 				// font();
-			}
+		}
 
 			if (num == 0 || num < 3) {
 				txtAreas[num].move(560 + (203 * num), 105, 100);
@@ -501,10 +666,20 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		backend.chooseStartingPoint();
 		// stores number from backend
 		initNumBackEnd = backend.getInitiateNum();
-		// System.out.println("Initial num from backend = " + initNumBackEnd);
+		if(initNumBackEnd == 5) {
+			backend.chooseStartingPoint();
+			initNumBackEnd = backend.getInitiateNum();
+		}
+		 System.out.println("Initial num from backend = " +backend.getInitiateNum()+ initNumBackEnd);
 		// stores initial coordinate from backend
 		int r = backend.getRowNum();
 		int c = backend.getColNum();
+		if(r ==1 && c==1) {
+			backend.chooseStartingPoint();
+			initNumBackEnd = backend.getInitiateNum();
+			 r = backend.getRowNum();
+			 c = backend.getColNum();
+		}
 		String p = r + "," + c;
 
 		// compares initial coordinate with every button coordinate
@@ -518,8 +693,13 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				// System.out.println("THE SAME COORDINATES!!()");
 				gB[i].setAction(null);
 				txtAreas[i].setText("" + initNumBackEnd);
-				txtAreas[i].setForeground(Color.red); // maroon color
+
+				Color maroon = new Color(182, 47, 32);
+				txtAreas[i].setForeground(maroon); // maroon color
+
 				if (i == 0 || i < 3) {
+					//txtAreas[i].setX(560 + (203 * i));
+					//txtAreas[i].setY(100);
 					txtAreas[i].move(560 + (203 * i), 105, 100);
 				} else if (i == 3 || i < 6) {
 					txtAreas[i].move(560 + (203 * (i - 3)), 308, 100);// y+203
@@ -529,7 +709,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				font();
 			}
 		}
-
+		
 		// disable number keypad buttons too
 		for (int i = 0; i < numberButtons.length; i++) {
 			int o = Integer.parseInt(numberButtons[i].getText());
@@ -548,12 +728,12 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
 			Font baseFont = font.deriveFont(150f);
-			Font a = font.deriveFont(55f);
-			Font c = font.deriveFont(38f); // 30 /40
-			Font b = font.deriveFont(38f);
-			
+			 a = font.deriveFont(50f);
+			 l = font.deriveFont(35f); // 30 /40
+			 b = font.deriveFont(33f);
+
 			Font question = font.deriveFont(70f);
-			
+
 			Font hB = font.deriveFont(25f);
 			for (int i = 0; i < txtAreas.length; i++) {
 
@@ -565,16 +745,20 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				}
 
 			}
+			//cd.setFont(a);
+			//cd.setVisible(true);
+			
+	
+			
 			hint1.setFont(a);
 			hint2.setFont(b);
-			hint3.setFont(c);
+			hint3.setFont(l);
 
 			hintBox.setFont(b);
-			
+
 			hOne.setFont(hB);
 			hTwo.setFont(hB);
 			hThree.setFont(hB);
-			
 
 		} catch (Exception e) {
 
@@ -646,55 +830,125 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		if (count == 9) {
 			x = backend.checkTotal();
 			if (x) {
-				
+
 				System.out.println("WINNNERNENRNENRNERNNENR!!!");
-				
-				//disable timer
+
+				// disable timer
 				timer.cancel();
-				
-				//make gold
-				 goldI = -1;
+
+				// make gold
+				goldI = -1;
 				Timer gold = new Timer();
 				TimerTask y = new TimerTask() {
 					@Override
 					public void run() {
 						goldI++;
 						txtAreas[goldI].setForeground(Color.yellow);
-						
-						if(g ==8) {
+
+						if (goldI == 8) {
+
 							gold.cancel();
+
+							// width = 2 Math.pi/2
+								
+							for (int i = 0; i < gB.length; i++) {
+								gB[i].setVisible(false);
+								txtAreas[i].setVisible(false);
+							}
+							changeImages();
+							// method call for resize
 						}
 					}
 				};
-				
+
 				gold.schedule(y, 0, 500);
-					
-				//disable all buttons
-			}
-			else {
+
+				// disable all buttons
+			} else {
 				System.out.println("WRONGNGNGNGNGNGNGNGNGNGNGN!!");
 			}
 		}
 	}
 
+	public void changeImages() {
+
+		// width = 2 Math.cosine/2 double
+
+		Timer r = new Timer();
+		TimerTask x = new TimerTask() {
+			double rotation = 0;
+			int counter = 0;
+
+			 //float num = 1;// FADE OUT
+			public void run() {
+				// num = (float) (num -.10);// FADE OUT
+				 //board.setAlpha(num); //FADE OUT
+
+				//if (num >= 0) {
+					
+				//}
+				counter++;
+				if (rotation >= Math.PI * 2) {
+					rotation = 0;
+				}
+				rotation += Math.PI / 30;
+				int newWidth = (int) (Math.abs(700 * Math.cos(rotation)));
+
+				if (newWidth < 5) {
+					newWidth = 5;
+					board.address = "vImages/gryf.jpg"; // change image
+					//board.address = "images/birdies.jpg"; 
+					//border.address = null;
+				}
+
+				board.resize(newWidth, board.getHeight());
+				border.resize(newWidth, board.getHeight());
+				board.setX(450 + (350 - board.getWidth() / 2));
+				border.setX(450 + (350 - board.getWidth() / 2));
+
+				if (counter == 30) {
+					r.cancel();
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					//story.first(false);
+					//story.win(true);
+					//GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight()));
+					
+					
+				}
+
+			}
+		};
+
+		r.schedule(x, 0, 60);
+
+	}
 
 	public void startTimer() {
-		//g = 5;
+		// g = 5;
 		timer = new Timer();
 		complete = new TimerTask() {
 			@Override
 			public void run() {
-				if (minutes == 0 && seconds == 1) { //closeset is -1 and 60
-					System.out.println(minutes + ":" + seconds);
+				if (minutes == 0 && seconds == 1) { // closeset is -1 and 60
+					//System.out.println(minutes + ":" + seconds);
 					timer.cancel();
+					
+					//story.first(false);
+					//story.win(false);
+					GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight()));
 				}
-				
-			//	g--;
+
+				// g--;
 				seconds--;
-				//hints(g);
-				//if(g ==2) {
-				//	g = 4;
-				//}
+				// hints(g);
+				// if(g ==2) {
+				// g = 4;
+				// }
 				if (minutes == 4 && seconds == 0) {
 					hints(minutes);
 				}
@@ -728,7 +982,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			}
 
 			public void changeTimerFont() {
-				System.out.println("CHANGETIMERFONT:  " + minutes + ":" + seconds);
+				//System.out.println("CHANGETIMERFONT:  " + minutes + ":" + seconds);
 				try {
 					File fontFile = new File("images/HARRYP.ttf");
 					Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -739,12 +993,14 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 					if ((minutes == 0 && seconds == 0) || (minutes == 1 && seconds == 0)
 							|| (minutes == 2 && seconds == 0) || (minutes == 3 && seconds == 0)
 							|| (minutes == 4 && seconds == 0)) {
-						System.out.println("CHANGETIMERFONT2:  " + minutes + ":" + seconds);
+						//System.out.println("CHANGETIMERFONT2:  " + minutes + ":" + seconds);
 						tTimer.setFont(baseFont);
+						tTimer.setForeground(Color.red);
 						// tTimer.setText(minutes--+":00");
 					} else {
 						tTimer.setFont(b);
-						System.out.println("CHANGETIMERFONT3:  " + minutes + ":" + seconds);
+						tTimer.setForeground(Color.black);
+						//System.out.println("CHANGETIMERFONT3:  " + minutes + ":" + seconds);
 					}
 
 				} catch (Exception e) {
@@ -773,7 +1029,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			hintBox.setText("");
 			hint2.setVisible(true);
 			hint1.setVisible(false);
-			//hintBox.setText("The numbers opposite the '5' in a column/row/ diagonal has to add up to ten");
+			// hintBox.setText("The numbers opposite the '5' in a column/row/ diagonal has
+			// to add up to ten");
 		}
 
 		if (num == 2) {
@@ -781,10 +1038,10 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 			hint3.setVisible(true);
 			hint1.setVisible(false);
 			hint2.setVisible(false);
-			//hintBox.setText("Besides the 5, odd numbers are never adjacent to even numbers and vice versa");
+			// hintBox.setText("Besides the 5, odd numbers are never adjacent to even
+			// numbers and vice versa");
 		}
-		
-		
+
 	}
 
 }

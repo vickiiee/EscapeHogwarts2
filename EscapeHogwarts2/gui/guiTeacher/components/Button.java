@@ -18,7 +18,7 @@
  *******************************************************************************/
 package guiTeacher.components;
 
-import java.awt.BasicStroke;
+import java.awt.BasicStroke; 
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FontMetrics;
