@@ -3,9 +3,11 @@ package hPStartGame;
 import java.awt.Font;
 import java.io.File;
 
+import areeshStory.PartyStory;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
 import hPCatchingGameJi.CatchingGameJi;
+import hPCatchingGameJi.CatchingGameTest;
 import hPCatchingGameJi.Storyline;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
@@ -29,7 +31,12 @@ public class GuiLoadingVickie extends GUIApplication{
 	public static Storyline cline;
 
 	public static CatchingGameJi cgame;
-
+	
+	public static CatchingGameTest ccgame;
+	
+	public static GameMapDirectory directory;
+	
+	public static PartyStory p;
 	public static StephStory story;
 	public static StephStory2 story2;
 	public static DKTitle kStory;
@@ -67,8 +74,10 @@ public class GuiLoadingVickie extends GUIApplication{
 		story = new StephStory(getWidth(), getHeight());
 		story2 = new StephStory2(getWidth(), getHeight());
 		kStory = new DKTitle(getWidth(), getHeight());
-		
+		p = new PartyStory(getWidth(), getHeight());
 		cgame = new CatchingGameJi(getWidth(), getHeight());
+		ccgame = new CatchingGameTest(getWidth(), getHeight());
+		directory = new GameMapDirectory(getWidth(), getHeight());
 		
 		setScreen(menu);
 		

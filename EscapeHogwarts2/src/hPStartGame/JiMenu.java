@@ -2,7 +2,6 @@ package hPStartGame;
 
 import java.awt.Color;
 import java.util.List;
-
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
@@ -45,7 +44,7 @@ public class JiMenu extends FullFunctionScreen{
 		hogwarts = new Graphic(100, 520, 500, 500, "images/hogwarts.png");
 		viewObjects.add(hogwarts);
 		
-		description = new TextArea(650, 330, 700, 400, "and The Escape Of Hogwarts");
+		description = new TextArea(650, 330, 700, 400, "and The Adventures at Hogwarts");
 		viewObjects.add(description);
 
 		play = new Button(550, 450, 100, 100, "Play", new Action() {
