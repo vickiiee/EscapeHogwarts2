@@ -790,7 +790,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight(), false, false));
+				GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight(), false, true));
 
 			}
 
