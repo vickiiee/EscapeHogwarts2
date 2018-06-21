@@ -258,7 +258,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 	public void gameOver() {
 		System.out.print("You ran out of lives.");
 	}
-	//
+	
 	public void Timer() {
 		Timer timer = new Timer();
 		TimerTask task;
