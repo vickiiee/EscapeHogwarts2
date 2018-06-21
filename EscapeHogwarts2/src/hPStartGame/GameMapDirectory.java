@@ -1,5 +1,8 @@
 package hPStartGame;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.io.File;
 import java.util.List;
 
 import guiTeacher.components.Action;
@@ -7,11 +10,14 @@ import guiTeacher.components.Button;
 import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
+import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPCatchingGameJi.CatchingGameJi;
 import hPCatchingGameJi.CatchingStoryJi;
 import hPConnect4Areej.ConnectFourAreej;
+import hPConnect4Areej.GamePage;
+import hPMagicSquaresVickieJi.TextAreaHoverButton;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 import hpKevStoryLine.DKTitle;
 
@@ -36,6 +42,15 @@ public class GameMapDirectory extends FullFunctionScreen{
 	private Button button5;
 	private Visible button6;
 	private Button button7;
+	private Graphic pointer8;
+	private TextAreaHoverButton button8;
+	private Graphic pointer9;
+	private Font b;
+	private Visible button9;
+	private Graphic pointer10;
+	private TextAreaHoverButton button10;
+	private Graphic pointer11;
+	private TextAreaHoverButton button11;
 	
 	public GameMapDirectory(int width, int height) {
 		super(width, height);
@@ -79,58 +94,113 @@ public class GameMapDirectory extends FullFunctionScreen{
 	*/
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		try {
+			File fontFile = new File("images/HARRYP.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+			Font baseFont = font.deriveFont(150f);
+			 b = font.deriveFont(50f);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+	
 		background = new Graphic(0, 0, getWidth(), getHeight(), "images/hogwartsMap.jpg");
 		viewObjects.add(background);
 		
 		//connect four
-		pointer1 = new Graphic(900, 300, 30, 40, "images/pointer.png");
+		pointer1 = new Graphic(900, 300, 30, 40, "images/bPointer.png");
 		viewObjects.add(pointer1);
-		button1 = new Button(870, 260, 100, 40, "Connect Four", new Action() {
 		
+		Graphic t1 = new Graphic(500,0,300,300,"images/transBlack.png");
+		viewObjects.add(t1);
+		t1.preserveRatio = false;
+		t1.resize(400, 450);
+		t1.setVisible(false);
+		
+		TextColoredLabel ar = new TextColoredLabel(170, 100, 400, 200, "Party Puzzle", null, Color.blue);
+		viewObjects.add(ar);
+		
+		button1 = new TextAreaHoverButton(900, 300, 30, 40, "", null, ar, t1, new Action() {
+		
+			private String[] args;
+
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new ConnectFourAreej(getWidth(), getHeight()));
+				GamePage.main(args);
 			}
-		});
+		}, true);
 		viewObjects.add(button1);
 		
 		//dkiss
-		pointer2 = new Graphic(660, 670, 30, 40, "images/pointer.png");
+		
+		Graphic t2 = new Graphic(500,0,300,300,"images/transBlack.png");
+		viewObjects.add(t2);
+		t2.preserveRatio = false;
+		t2.resize(400, 450);
+		t2.setVisible(false);
+		
+		TextColoredLabel ke = new TextColoredLabel(170, 100, 500, 200, "The Dementor's Kiss", null, Color.blue);
+		viewObjects.add(ke);
+		pointer2 = new Graphic(660, 670, 30, 40, "images/bPointer.png");
 		viewObjects.add(pointer2);
-		button2 = new Button(630, 630, 100, 40, "The Dementor's Kiss", new Action() {
+		
+		button2 = new TextAreaHoverButton(660, 670, 30, 40, "", null, ke, t2, new Action() {
 		
 			@Override
 			public void act() {
 				GuiLoadingVickie.loading.setScreen(new DKTitle(getWidth(), getHeight()));
 				
 			}
-		});
+		}, true);
 		viewObjects.add(button2);
 		
 		//forest spider
-		pointer3 = new Graphic(1050, 100, 30, 40, "images/pointer.png");
+		pointer3 = new Graphic(1050, 100, 30, 40, "images/bPointer.png");
 		viewObjects.add(pointer3);
-		button3 = new Button(1020, 60, 100, 40, "Spider", new Action() {
+		
+		Graphic t3 = new Graphic(500,0,300,300,"images/transBlack.png");
+		viewObjects.add(t3);
+		t3.preserveRatio = false;
+		t3.resize(400, 450);
+		t3.setVisible(false);
+		
+		TextColoredLabel ji = new TextColoredLabel(170, 100, 400, 200, "Spiders!!", null, Color.blue);
+		viewObjects.add(ji);
+		
+		button3 =new TextAreaHoverButton(1050, 100, 30, 40, "", null, ji, t3, new Action() {
 		
 			@Override
 			public void act() {
 				GuiLoadingVickie.loading.setScreen(new CatchingStoryJi(getWidth(), getHeight()));
 				
 			}
-		});
+		}, true);
 		viewObjects.add(button3);
 		
 		//magic squares
-		pointer4 = new Graphic(800, 340, 30, 40, "images/pointer.png");
+		pointer4 = new Graphic(800, 340, 30, 40, "images/bPointer.png");
 		viewObjects.add(pointer4);
-		button4 = new Button(770, 310, 100, 40, "Magic Squares", new Action() {
+		
+		Graphic t4 = new Graphic(500,0,300,300,"images/transBlack.png");
+		viewObjects.add(t4);
+		t4.preserveRatio = false;
+		t4.resize(400, 450);
+		t4.setVisible(false);
+		
+		TextColoredLabel vi = new TextColoredLabel(170, 100, 450, 200, "Gryffindor Guardian", null, Color.blue);
+		viewObjects.add(vi);
+		
+		button4 = new TextAreaHoverButton(800, 340, 30, 40, "", null, vi, t4, new Action() {
 			
 			@Override
 			public void act() {
 				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
 				
 			}
-		});
+		}, true);
 		viewObjects.add(button4);
 		
 		/*
@@ -177,6 +247,86 @@ public class GameMapDirectory extends FullFunctionScreen{
 		});
 		viewObjects.add(button7);
 		*/
+		
+		//500,415
+		pointer8 = new Graphic(500, 415, 30, 40, "images/pPointer.png");
+		viewObjects.add(pointer8);
+		
+		Graphic t5 = new Graphic(500,0,300,300,"images/transBlack.png");
+		viewObjects.add(t5);
+		t5.preserveRatio = false;
+		t5.resize(400, 450);
+		t5.setVisible(false);
+		
+		TextColoredLabel bL = new TextColoredLabel(170, 100, 600, 100, "Black Lake", null, Color.magenta);
+		viewObjects.add(bL);
+		
+		TextColoredLabel bL1 = new TextColoredLabel(170, 200, 600, 200, "A large body of water that is home to many creatures", null, Color.magenta);
+		bL1.setFont(b);
+		viewObjects.add(bL1);
+		
+		
+		button8 = new TextAreaHoverButton(500, 415, 30, 40, "", null, bL, bL1, t5, null, true);
+		viewObjects.add(button8);
+		
+		//310 75
+		pointer9 = new Graphic(310, 75, 30, 40, "images/pPointer.png");
+		viewObjects.add(pointer9);
+		
+		Graphic t6 = new Graphic(500,0,300,300,"images/transBlack.png");
+		viewObjects.add(t6);
+		t6.preserveRatio = false;
+		t6.resize(400, 450);
+		t6.setVisible(false);
+		
+		TextColoredLabel hV = new TextColoredLabel(445, 225, 600, 100, "Hogsmeade Village", null, Color.magenta);
+		viewObjects.add(hV);
+		
+		TextColoredLabel hV1 = new TextColoredLabel(445, 325, 600, 200, "The only all-wizarding village in Britain where great snacks can be bought", null, Color.magenta);
+		hV1.setFont(b);
+		viewObjects.add(hV1);
+		
+		
+		button9 = new TextAreaHoverButton(310, 75, 30, 40, "", null, hV, hV1, t1, null, true);
+		viewObjects.add(button9);
+		
+		//855,60
+		pointer10 = new Graphic(855, 60, 30, 40, "images/pPointer.png");
+		viewObjects.add(pointer10);
+		
+		Graphic t7 = new Graphic(500,0,300,300,"images/transBlack.png");
+		viewObjects.add(t7);
+		t7.preserveRatio = false;
+		t7.resize(400, 450);
+		t7.setVisible(false);
+		
+		TextColoredLabel fF = new TextColoredLabel(445, 225, 700, 100, "The Forbidden Forest", null, Color.magenta);
+		viewObjects.add(fF);
+		
+		TextColoredLabel fF1 = new TextColoredLabel(445, 325, 700, 200, "A very old place that holds many secrets and houses many creatures, some dark and Dangerous, others friendly", null, Color.magenta);
+		fF1.setFont(b);
+		viewObjects.add(fF1);
+		
+		
+		button10 = new TextAreaHoverButton(855	, 60, 30, 40, "", null, fF, fF1, t1, null, true);
+		viewObjects.add(button10);
+		
+		//
+		pointer11 = new Graphic(213, 200, 30, 40, "images/pPointer.png");
+		viewObjects.add(pointer11);
+		
+		
+		
+		TextColoredLabel sS = new TextColoredLabel(445, 225, 700, 100, "The Shrieking Shack", null, Color.magenta);
+		viewObjects.add(sS);
+		
+		TextColoredLabel sS1 = new TextColoredLabel(445, 325, 700, 200, "An abandoned house rumored to be haunted", null, Color.magenta);
+		sS1.setFont(b);
+		viewObjects.add(sS1);
+		
+		
+		button11 = new TextAreaHoverButton(213	, 200, 30, 40, "", null, sS, sS1, t1, null, true);
+		viewObjects.add(button11);
 	}
 
 }
