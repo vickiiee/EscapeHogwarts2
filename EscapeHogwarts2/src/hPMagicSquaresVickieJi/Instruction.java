@@ -291,21 +291,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		viewObjects.add(h3Border);
 		//
 		
-		
-		
-		Button test = new Button(0,0,50,50,"tesr", new Action() {
 
-			@Override
-			public void act() {
-				setUpGrid();
-				
-			}
-			
-		});
-		viewObjects.add(test);
-		
-		
-		
 		
 		//keyDesc = new TextColoredLabel(500, 100, 600, 300, "White KeyPad Buttons", null, Color.red);
 		//viewObjects.add(keyDesc);
