@@ -55,8 +55,8 @@ public class CatchingGameJi extends FullFunctionScreen{
 		livesTxt.setText("Lives Left: " + lives);
 		gameStatus.setForeground(Color.white);
 		timeLeftTxt.setForeground(Color.white);
-		startGame();
-		Timer();
+		//startGame();
+		//Timer();
 		//getMousePosition();
 		//testGenPotion();
 	}
@@ -284,7 +284,8 @@ public class CatchingGameJi extends FullFunctionScreen{
 
 		gameStarted = true;
 		if(gameStarted) {
-
+			Timer();
+			gameStarted = false;
 		}
 
 		livesTxt = new TextArea(100, 100, 500, 100, "Lives Left:");
