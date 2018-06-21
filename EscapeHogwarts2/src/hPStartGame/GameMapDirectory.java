@@ -10,6 +10,7 @@ import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPCatchingGameJi.CatchingGameJi;
+import hPCatchingGameJi.CatchingStoryJi;
 import hPConnect4Areej.ConnectFourAreej;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 import hpKevStoryLine.DKTitle;
@@ -113,7 +114,7 @@ public class GameMapDirectory extends FullFunctionScreen{
 		
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new CatchingGameJi(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new CatchingStoryJi(getWidth(), getHeight()));
 				
 			}
 		});

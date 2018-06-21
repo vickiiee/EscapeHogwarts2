@@ -916,7 +916,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 					}
 					//story.first(false);
 					//story.win(true);
-					//GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight()));
+					GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight(), false, true));
 					
 					
 				}
@@ -940,7 +940,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 					
 					//story.first(false);
 					//story.win(false);
-					GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight()));
+					GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight(), false, false));
 				}
 
 				// g--;
