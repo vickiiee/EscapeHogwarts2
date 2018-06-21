@@ -11,6 +11,7 @@ import hPCatchingGameJi.CatchingGameJi;
 import hPCatchingGameJi.CatchingStoryJi;
 import hPCatchingGameJi.Storyline;
 import hPConnect4Areej.ConnectFourAreej;
+import hPConnect4Areej.GamePage;
 import hPMagicSquaresVickieJi.Instruction;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 import hpKevStoryLine.DKTitle;
@@ -27,6 +28,8 @@ public class GameMenu extends FullFunctionScreen{
 	private Button dKiss;
 	private Graphic background;
 	private Visible directory;
+	
+
 
 	public GameMenu(int width, int height) {
 		super(width, height);
@@ -102,6 +105,16 @@ public class GameMenu extends FullFunctionScreen{
 		});
 		viewObjects.add(dKiss);
 		
+		Button p = new Button(500, 550, 500, 100, "Scrambled Image", new Action() {
+					
+						private String[] args;
+
+						@Override
+						public void act() {
+							GamePage.main(args);
+						}
+					});
+					viewObjects.add(p);
 	}
 
 }
