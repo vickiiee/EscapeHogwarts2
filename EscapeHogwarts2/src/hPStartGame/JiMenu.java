@@ -30,6 +30,8 @@ public class JiMenu extends FullFunctionScreen {
 	private TimerTask task;
 
 	private String phrase;
+	private Timer pTim;
+	private TimerTask pTask;
 
 	public JiMenu(int width, int height) {
 		super(width, height);
@@ -67,6 +69,8 @@ public class JiMenu extends FullFunctionScreen {
 
 			@Override
 			public void act() {
+				timer.cancel();
+				pTim.cancel();
 				GuiLoadingVickie.loading.setScreen(new GameMenu(getWidth(), getHeight()));
 			}
 		});
@@ -170,8 +174,8 @@ public class JiMenu extends FullFunctionScreen {
 	}
 
 	public void playAction() {
-		Timer r = new Timer();
-		TimerTask x = new TimerTask() {
+		pTim = new Timer();
+		pTask = new TimerTask() {
 
 			float num = 0.0f;// FADE OUT
 
@@ -185,7 +189,7 @@ public class JiMenu extends FullFunctionScreen {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					r.cancel();
+					pTim.cancel();
 				} else {
 					System.out.print("2:" + num + "\n");
 					num = (float) (num + .10f);// FADE OUT
@@ -194,6 +198,6 @@ public class JiMenu extends FullFunctionScreen {
 
 			}
 		};
-		r.schedule(x, 0, 100);
+		pTim.schedule(pTask, 0, 100);
 	}
 }

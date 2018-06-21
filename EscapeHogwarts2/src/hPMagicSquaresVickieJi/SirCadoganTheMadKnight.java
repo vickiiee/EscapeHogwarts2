@@ -73,6 +73,8 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 	private Font bF;
 	
 	private boolean win;
+	private Button skip;
+	private Graphic skipp;
 	
 	//https://alvinalexander.com/blog/post/jfc-swing/use-animated-gif-image-in-jfc-swing-application
 	public SirCadoganTheMadKnight(int width, int height, boolean first, boolean win) {
@@ -112,11 +114,16 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 			// runStoryLine1();
 		}else {
 			if(win==true) {
-				
+				skipp.setVisible(false);
+				skip.setVisible(false);
+				skip.setAction(null);
 				System.out.print("in: Great job! Now I know you are really a GryffindorEh. It's not really secure. Just about anybody can beat it and they dont have to be Gryffindor..... i'll take that into consideration. Wait, you are Gryffindor right?	ys / suree/You may enter");
 				//w
 				winner();
 			}else {
+				skipp.setVisible(false);
+				skip.setVisible(false);
+				skip.setAction(null);
 				System.out.print("WIN ++FALSESESES");
 				loser();
 				//...Are you really a gryffindor? Hermione was able to finish it in under a minute
@@ -709,7 +716,47 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 						//y/n
 			}
 		}*/
+		
+		 skipp = new Graphic(1000, 25, 700, 700, "images/mSBoard.jpg");
+		skipp.preserveRatio = false;
+		skipp.resize(150, 60);
+		
+		
+		
+		
+		
+		viewObjects.add(skipp);
 
+		skip = new Button(1000, 25, 150, 60, "Instructions", new Action() {
+
+			@Override
+			public void act() {
+				timer.cancel();
+				GuiLoadingVickie.loading.setScreen(new Instruction(getWidth(), getHeight()));
+
+			}
+
+		});
+		try {
+			File fontFile = new File("images/HARRYP.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+			Font baseFont = font.deriveFont(150f);
+			Font a = font.deriveFont(55f);
+			Font c = font.deriveFont(38f); // 30 /40
+			Font b = font.deriveFont(38f);
+
+			Font question = font.deriveFont(70f);
+
+			Font hB = font.deriveFont(25f);
+			
+			skip.setFont(b);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		viewObjects.add(skip);
 	}
 
 	/*

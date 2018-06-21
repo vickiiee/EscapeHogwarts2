@@ -210,9 +210,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		border = new Graphic(450, 50, 700, 700, "images/grid.png");
 		viewObjects.add(border);
 		//
-		error = new TextArea(50, 50, 200, 200, "ERROR: \n Please choose a # button");
-		viewObjects.add(error);
-		error.setVisible(false);
+		
 		//
 		timerBoard = new Graphic(50, 50, 320, 150, "images/mSBoard320.jpg");
 		viewObjects.add(timerBoard);
@@ -438,9 +436,7 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 			Font c = font.deriveFont(38f); // 30 /40
 			Font b = font.deriveFont(38f);
 
-			Font question = font.deriveFont(70f);
-
-			Font hB = font.deriveFont(25f);
+			
 			
 			next.setFont(b);
 		} catch (Exception e) {
@@ -777,6 +773,8 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 
 			@Override
 			public void act() {
+				timerA.cancel();
+				timerB.cancel();
 				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
 
 			}
@@ -804,11 +802,11 @@ public class Instruction extends VickieHPFrontEnd{//FullFunctionScreen implement
 		viewObjects.add(skip);
 		
 
-		story = new Button(500, 50, 100, 100, "Story", Color.blue, new Action() {
+		/*story = new Button(500, 50, 100, 100, "Story", Color.blue, new Action() {
 
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight(), false, true));
+				GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight(), false, false));
 
 			}
 
