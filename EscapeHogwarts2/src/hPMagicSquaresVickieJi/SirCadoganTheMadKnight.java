@@ -151,13 +151,27 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 				e.printStackTrace();
 			}
 		}
-		r1.setVisible(true);
-		r2.setVisible(true);
-		b1.setVisible(true);
-		b2.setVisible(true);
+		
+		if(txt =="Wait ... .. ..... No, no, you might be right ... The puzzle might not be secure. It's back to passwords then." || kRes == "Thank you for the feedback. You've done a great honor for the Gryffindors."
+				|| kRes =="Now, I'm not entirely sure if you're a Gryffindor. If you are, you'll get the new password from your fellow Gryffindors. Bye now!") {
+		r1.setVisible(false);
+		r2.setVisible(false);
+		b1.setVisible(false);
+		b2.setVisible(false);
+		}else
+		{
+			r1.setVisible(true);
+			r2.setVisible(true);
+			b1.setVisible(true);
+			b2.setVisible(true);
+		}
 		
 		if(kRes == "Wait ... .. ..... No, no, you might be right ... The puzzle might not be secure. It's back to passwords then.") {
 			kRes = "Thank you for the feedback. You've done a great honor for the Gryffindors.";
+			r1.setVisible(false);
+			r2.setVisible(false);
+			b1.setVisible(false);
+			b2.setVisible(false);
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
@@ -166,16 +180,13 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 			runStoryLine1();
 		}else
 		
-		if(kRes == "Wait ... .. ..... No, no, you might be right ... The puzzle might not be secure. It's back to passwords then.") {
-			kRes = "Thank you for the feedback. You've done a great honor for the Gryffindors.";
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			runStoryLine1();
-		}else if(kRes == "Thank you for the feedback. You've done a great honor for the Gryffindors.") {
+		if(kRes == "Thank you for the feedback. You've done a great honor for the Gryffindors.") {
 			kRes ="Now, I'm not entirely sure if you're a Gryffindor. If you are, you'll get the new password from your fellow Gryffindors. Bye now!";
+			r1.setVisible(false);
+			r2.setVisible(false);
+			b1.setVisible(false);
+			b2.setVisible(false);
+			
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
@@ -183,6 +194,11 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 			}
 			runStoryLine1();
 		}else if(kRes =="Now, I'm not entirely sure if you're a Gryffindor. If you are, you'll get the new password from your fellow Gryffindors. Bye now!") {
+			r1.setVisible(false);
+			r2.setVisible(false);
+			b1.setVisible(false);
+			b2.setVisible(false);
+			
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
@@ -501,17 +517,13 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 				runStoryLine1();
 			}else if (b1.getText().equals("Sure")) {
 				kRes = "Wait ... .. ..... No, no, you might be right ... The puzzle might not be secure. It's back to passwords then.";
-				runStoryLine1();
-				/*kRes = "Wait ... .. ..... No, no, you might be right ... The puzzle might not be secure. It's back to passwords then.";
 				b1.setVisible(false);
 				b2.setVisible(false);
 				r1.setVisible(false);
 				r2.setVisible(false);
 				
 				runStoryLine1();
-				
-				end();
-				*/
+
 		}
 				
 			}
@@ -620,38 +632,17 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 					}
 				if (b2.getText().equals("Yes")) {
 					kRes = "Wait ... .. ..... No, no, you might be right ... The puzzle might not be secure. It's back to passwords then.";
-					runStoryLine1();
-					/*
-					try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 					
-					kRes = "Thank you for the feedback. You've done a great honor for the Gryffindors.";
-					runStoryLine1();
-					//Now, I'm not entirely sure if you're a Gryffindor. If you are, you'll get the new password from your fellow Gryffindors.
-				
-					try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					kRes ="Now, I'm not entirely sure if you're a Gryffindor. If you are, you'll get the new password from your fellow Gryffindors. Bye now!";
+					b1.setVisible(false);
+					b2.setVisible(false);
+					r1.setVisible(false);
+					r2.setVisible(false);
+					b1.setVisible(false);
+					b2.setVisible(false);
+					r1.setVisible(false);
+					r2.setVisible(false);
 					runStoryLine1();
 					
-					try {
-						Thread.sleep(5000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					GuiLoadingVickie.loading.setScreen(new GameMenu(getWidth(), getHeight()));
-					*/
 				}
 			}
 			
@@ -747,35 +738,5 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 		runStoryLine1();
 	}
 
-	public void end() {
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
 	
-	kRes = "Thank you for the feedback. You've done a great honor for the Gryffindors.";
-	runStoryLine1();
-	//Now, I'm not entirely sure if you're a Gryffindor. If you are, you'll get the new password from your fellow Gryffindors.
-
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	kRes ="Now, I'm not entirely sure if you're a Gryffindor. If you are, you'll get the new password from your fellow Gryffindors. Bye now!";
-	runStoryLine1();
-	
-	try {
-		Thread.sleep(5000);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	GuiLoadingVickie.loading.setScreen(new GameMenu(getWidth(), getHeight()));
-	}
 }
