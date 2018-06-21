@@ -139,9 +139,11 @@ public class GameMapDirectory extends FullFunctionScreen{
 		
 		//areej
 		TextColoredLabel ar = new TextColoredLabel(170, 100, 400, 100, "Party Puzzle", null, Color.blue);
+		ar.setVisible(false);
 		viewObjects.add(ar);
 		
 		TextColoredLabel ar1 = new TextColoredLabel(170, 200, 400, 100, "Scrambled Picture", null, Color.blue);
+		ar1.setVisible(false);
 		ar1.setFont(b);
 		viewObjects.add(ar1);
 		
@@ -164,8 +166,10 @@ public class GameMapDirectory extends FullFunctionScreen{
 		t2.setVisible(false);
 		*/
 		TextColoredLabel ke = new TextColoredLabel(170, 100, 500, 100, "The Dementor's Kiss", null, Color.blue);
+		ke.setVisible(false);
 		viewObjects.add(ke);
 		TextColoredLabel ke1 = new TextColoredLabel(170, 200, 500, 100, "Save Harry!", null, Color.blue);
+		ke1.setVisible(false);
 		ke1.setFont(b);
 		viewObjects.add(ke1);
 		
@@ -189,9 +193,11 @@ public class GameMapDirectory extends FullFunctionScreen{
 		
 		TextColoredLabel ji = new TextColoredLabel(170, 100, 400, 100, "Spiders!!", null, Color.blue);
 		viewObjects.add(ji);
+		ji.setVisible(false);
 		
 		TextColoredLabel ji1 = new TextColoredLabel(170, 200, 400, 100, "Catch some spiders!", null, Color.blue);
 		ji1.setFont(b);
+		ji1.setVisible(false);
 		viewObjects.add(ji1);
 		
 		button3 =new TextAreaHoverButton(1050, 100, 30, 40, "", null, ji,ji1, t1, new Action() {
@@ -214,8 +220,10 @@ public class GameMapDirectory extends FullFunctionScreen{
 		
 		TextColoredLabel vi = new TextColoredLabel(170, 100, 450, 100, "Gryffindor Guardian", null, Color.blue);
 		viewObjects.add(vi);
+		vi.setVisible(false);
 		
 		TextColoredLabel vi1 = new TextColoredLabel(170, 200, 450, 100, "Magic Square game", null, Color.blue);
+		vi1.setVisible(false);
 		vi1.setFont(b);
 		viewObjects.add(vi1);
 		
@@ -286,9 +294,11 @@ public class GameMapDirectory extends FullFunctionScreen{
 		
 		
 		TextColoredLabel bL = new TextColoredLabel(170, 100, 600, 100, "Black Lake", null, Color.magenta);
+		bL.setVisible(false);
 		viewObjects.add(bL);
 		
-		TextColoredLabel bL1 = new TextColoredLabel(170, 200, 600, 100, "A large body of water that is home to many creatures", null, Color.magenta);
+		TextColoredLabel bL1 = new TextColoredLabel(170, 200, 600, 150, "A large body of water that is home to many creatures", null, Color.magenta);
+		bL1.setVisible(false);
 		bL1.setFont(b);
 		viewObjects.add(bL1);
 		
@@ -307,9 +317,11 @@ public class GameMapDirectory extends FullFunctionScreen{
 		beer.setVisible(false);
 		
 		TextColoredLabel hV = new TextColoredLabel(445, 225, 600, 100, "Hogsmeade Village", null, Color.magenta);
+		hV.setVisible(false);
 		viewObjects.add(hV);
 		
-		TextColoredLabel hV1 = new TextColoredLabel(445, 325, 600, 200, "The only all-wizarding village in Britain where great snacks can be bought", null, Color.magenta);
+		TextColoredLabel hV1 = new TextColoredLabel(445, 325, 600, 150, "The only all-wizarding village in Britain where great snacks can be bought", null, Color.magenta);
+		hV1.setVisible(false);
 		hV1.setFont(b);
 		viewObjects.add(hV1);
 		
@@ -327,9 +339,11 @@ public class GameMapDirectory extends FullFunctionScreen{
 		t7.setVisible(false);
 		
 		TextColoredLabel fF = new TextColoredLabel(445, 225, 700, 100, "The Forbidden Forest", null, Color.magenta);
+		fF.setVisible(false);
 		viewObjects.add(fF);
 		
 		TextColoredLabel fF1 = new TextColoredLabel(445, 325, 700, 200, "A very old place that holds many secrets and houses many creatures, some dark and Dangerous, others friendly", null, Color.magenta);
+		fF1.setVisible(false);
 		fF1.setFont(b);
 		viewObjects.add(fF1);
 		
@@ -348,9 +362,11 @@ public class GameMapDirectory extends FullFunctionScreen{
 		t6.setVisible(false);
 		
 		TextColoredLabel sS = new TextColoredLabel(445, 225, 700, 100, "The Shrieking Shack", null, Color.magenta);
+		sS.setVisible(false);
 		viewObjects.add(sS);
 		
 		TextColoredLabel sS1 = new TextColoredLabel(445, 325, 700, 100, "An abandoned house rumored to be haunted", null, Color.magenta);
+		sS1.setVisible(false);
 		sS1.setFont(b);
 		viewObjects.add(sS1);
 		

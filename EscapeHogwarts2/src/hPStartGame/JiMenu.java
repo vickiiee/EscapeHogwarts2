@@ -71,7 +71,7 @@ public class JiMenu extends FullFunctionScreen {
 			public void act() {
 				timer.cancel();
 				pTim.cancel();
-				GuiLoadingVickie.loading.setScreen(new GameMenu(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
 			}
 		});
 		play.setAlpha(0);
