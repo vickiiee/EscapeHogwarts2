@@ -1,4 +1,4 @@
-package areeshStory;
+package hPAreeshStory;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class PartyStory extends FullFunctionScreen{
 		background = new Graphic(0,0, getWidth(), getHeight(), "images/stair.jpg");
 		viewObjects.add(background);
 		
-		nick = new Graphic(0,0, getWidth(), getHeight(), "images/sirnick.jpg");
+		nick = new Graphic(40,750, 100, 100, "images/sirnick.jpg");
 		viewObjects.add(nick);
 		
 		textbox = new Graphic(0,0, getWidth(), getHeight(), "images/textbox.png");
@@ -34,8 +34,13 @@ public class PartyStory extends FullFunctionScreen{
 		
 //		dialogue = new TextArea(0,0, getWidth(), getHeight(), "images/stair.jpg");
 //			viewObjects.add(dialogue);
+		/* String[] d1 = {"Good Evening Harry, Hermione, Ron","Good Evening Sir Nick, how are you?"}
+		 * String[] d2 = {}
+		 * String[] d3 = {}
+		 */
+		
+
+		
 	}
 	
-	
-
 }
