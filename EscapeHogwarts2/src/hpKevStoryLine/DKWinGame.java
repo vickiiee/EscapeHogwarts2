@@ -11,6 +11,8 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPMagicSquaresVickieJi.VickieHPFrontEnd;
+import hPStartGame.GameMapDirectory;
 import hPStartGame.GuiLoadingVickie;
 
 public class DKWinGame extends FullFunctionScreen {
@@ -29,8 +31,8 @@ public class DKWinGame extends FullFunctionScreen {
 	private Graphic hermione;
 	
 	private String[] nameList = {"Harry", "Ron", "Hermione"};
-	private String[] dialogList = {"What in the world was that?", "We've seen ghosts before; that definitely isn't one.", "What is one doing so close to Hogwarts?"};
-	private String[] ansList = {"This ghost is different", "I was merely testing you", ""};
+	private String[] dialogList = {"What in the world was that?", "We've seen ghosts before; that definitely isn't one.", "A dementor? Aren't they the guards of Azkaban? The ones     who drain people of their happiness?", "That can't be. Ghosts must possess features of their past lives. That creature had no such feature.", "Isn't that what they are? One of our textbooks clearly mentions     the prison of Azkaban and its guards.", "What was one of them doing out here?"};
+	private String[] ansList = {"This ghost is different", "I'll see myself out of here", "Well, he was a very boring person", "His features may have been hidden", "They are indeed such foul creatures", "No, you must be mistaken", "I was simply testing you", "Your knowledge is commendable", "He is on a vacation", "To hunt down Harry"};
 	
 	public DKWinGame(int width, int height) {
 		super(width, height);
@@ -38,8 +40,8 @@ public class DKWinGame extends FullFunctionScreen {
 		name.setSize(40);
 		dialog.setSize(50);
 		dialog.setForeground(Color.WHITE);
-		buttonOne.setSize(40);
-		buttonTwo.setSize(40);
+		buttonOne.setSize(28);
+		buttonTwo.setSize(28);
 	}
 	
 	public void initAllObjects(List<Visible> viewObjects) {
@@ -47,15 +49,15 @@ public class DKWinGame extends FullFunctionScreen {
 		backImg = new Graphic(0, 0, getWidth(), getHeight(), "kimg/carriage.jpg");
 		viewObjects.add(backImg);
 		
-		harry = new Graphic(700,260,400,400, "images/charHarry1.png");
+		harry = new Graphic(700,260,400,400, "simg/charHarry1.png");
 		viewObjects.add(harry);
 		harry.setVisible(false);
 		
-		ron = new Graphic(700,260,400,400, "images/charRon1.png");
+		ron = new Graphic(700,260,400,400, "simg/ron.png");
 		viewObjects.add(ron);
 		ron.setVisible(true);
 		
-		hermione = new Graphic(700,260,400,400, "images/charHerm1.png");
+		hermione = new Graphic(700,260,400,400, "simg/emma.png");
 		viewObjects.add(hermione);
 		hermione.setVisible(false);
 		
@@ -79,21 +81,21 @@ public class DKWinGame extends FullFunctionScreen {
 					name.setText(nameList[2]);
 					buttonOne.setText(ansList[0]);
 					buttonTwo.setText(ansList[1]);
+				}else if(dialog.getText().equals(dialogList[1])) {
+					dialog.setText(dialogList[3]);
+					name.setText(nameList[0]);
+					buttonOne.setText(ansList[2]);
+					buttonTwo.setText(ansList[3]);
+				}else if(dialog.getText().equals(dialogList[4])) {
+					dialog.setText(dialogList[5]);
+					name.setText(nameList[1]);
+					buttonOne.setText(ansList[8]);
+					buttonTwo.setText(ansList[9]);
+				}else {
+					GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
 				}
 				
-				if(name.getText().equals(nameList[0])) {
-					harry.setVisible(true);
-					ron.setVisible(false);
-					hermione.setVisible(false);
-				}else if(name.getText().equals(nameList[1])){
-					harry.setVisible(false);
-					ron.setVisible(true);
-					hermione.setVisible(false);
-				}else {
-					harry.setVisible(false);
-					ron.setVisible(false);
-					hermione.setVisible(true);
-				}
+				checkPerson();
 			}
 		});
 		
@@ -105,12 +107,40 @@ public class DKWinGame extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
+				if(dialog.getText().equals(dialogList[0])) {
+					dialog.setText(dialogList[2]);
+					name.setText(nameList[2]);
+					buttonOne.setText(ansList[4]);
+					buttonTwo.setText(ansList[5]);
+				}else if(dialog.getText().equals(dialogList[2])) {
+					dialog.setText(dialogList[4]);
+					name.setText(nameList[0]);
+					buttonOne.setText(ansList[6]);
+					buttonTwo.setText(ansList[7]);
+				}else {
+					GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
+				}
 				
-				
+				checkPerson();
 			}
 		});
 		
 		viewObjects.add(buttonTwo);
 	}
 
+	private void checkPerson() {
+		if(name.getText().equals(nameList[0])) {
+			harry.setVisible(true);
+			ron.setVisible(false);
+			hermione.setVisible(false);
+		}else if(name.getText().equals(nameList[1])){
+			harry.setVisible(false);
+			ron.setVisible(true);
+			hermione.setVisible(false);
+		}else {
+			harry.setVisible(false);
+			ron.setVisible(false);
+			hermione.setVisible(true);
+		}
+	}
 }
