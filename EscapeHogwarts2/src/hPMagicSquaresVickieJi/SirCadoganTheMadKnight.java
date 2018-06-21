@@ -18,6 +18,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import hPConnect4Areej.ConnectFourAreej;
+import hPStartGame.GameMenu;
 import hPStartGame.GuiLoadingVickie;
 import hPStartGame.StoryLineGuideJi;
 
@@ -72,6 +73,8 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 	private Font bF;
 	
 	private boolean win;
+	private Button skip;
+	private Graphic skipp;
 	
 	//https://alvinalexander.com/blog/post/jfc-swing/use-animated-gif-image-in-jfc-swing-application
 	public SirCadoganTheMadKnight(int width, int height, boolean first, boolean win) {
@@ -111,11 +114,18 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 			// runStoryLine1();
 		}else {
 			if(win==true) {
-				
+				skipp.setVisible(false);
+				skip.setVisible(false);
+				skip.setAction(null);
 				System.out.print("in: Great job! Now I know you are really a GryffindorEh. It's not really secure. Just about anybody can beat it and they dont have to be Gryffindor..... i'll take that into consideration. Wait, you are Gryffindor right?	ys / suree/You may enter");
 				//w
+				winner();
 			}else {
+				skipp.setVisible(false);
+				skip.setVisible(false);
+				skip.setAction(null);
 				System.out.print("WIN ++FALSESESES");
+				loser();
 				//...Are you really a gryffindor? Hermione was able to finish it in under a minute
 						//I'm not Hermione
 				//Obviously not. Want to try again?
@@ -148,10 +158,61 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 				e.printStackTrace();
 			}
 		}
-		r1.setVisible(true);
-		r2.setVisible(true);
-		b1.setVisible(true);
-		b2.setVisible(true);
+		
+		if(txt =="Wait ... .. ..... No, no, you might be right ... The puzzle might not be secure. It's back to passwords then." || kRes == "Thank you for the feedback. You've done a great honor for the Gryffindors."
+				|| kRes =="Now, I'm not entirely sure if you're a Gryffindor. If you are, you'll get the new password from your fellow Gryffindors. Bye now!") {
+		r1.setVisible(false);
+		r2.setVisible(false);
+		b1.setVisible(false);
+		b2.setVisible(false);
+		}else
+		{
+			r1.setVisible(true);
+			r2.setVisible(true);
+			b1.setVisible(true);
+			b2.setVisible(true);
+		}
+		
+		if(kRes == "Wait ... .. ..... No, no, you might be right ... The puzzle might not be secure. It's back to passwords then.") {
+			kRes = "Thank you for the feedback. You've done a great honor for the Gryffindors.";
+			r1.setVisible(false);
+			r2.setVisible(false);
+			b1.setVisible(false);
+			b2.setVisible(false);
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			runStoryLine1();
+		}else
+		
+		if(kRes == "Thank you for the feedback. You've done a great honor for the Gryffindors.") {
+			kRes ="Now, I'm not entirely sure if you're a Gryffindor. If you are, you'll get the new password from your fellow Gryffindors. Bye now!";
+			r1.setVisible(false);
+			r2.setVisible(false);
+			b1.setVisible(false);
+			b2.setVisible(false);
+			
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			runStoryLine1();
+		}else if(kRes =="Now, I'm not entirely sure if you're a Gryffindor. If you are, you'll get the new password from your fellow Gryffindors. Bye now!") {
+			r1.setVisible(false);
+			r2.setVisible(false);
+			b1.setVisible(false);
+			b2.setVisible(false);
+			
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			GuiLoadingVickie.loading.setScreen(new GameMenu(getWidth(), getHeight()));
+		}
 		
 		return "";
 	}
@@ -425,9 +486,56 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 							b2.setFont(mF);
 							b2.setText("Fine, I'll do it");
 					runStoryLine1();
-				}
+					
+				}else if (b1.getText().equals("I'm not Hermione")) {
+					kRes = "Well, Obviously not. Do you want to try again?";
+					b1.setVisible(false);
+					b2.setVisible(false);
+					r1.setVisible(false);
+					r2.setVisible(false);
+						b1.setY(350);
+						b1.setFont(mF);
+						b1.setText("Yes");//I'll just come back later
+						//r1.setEnabled(false);
+						//r1.setBackground(null);
+						
+						b2.setY(480);
+						b2.setFont(mF);
+						b2.setText("Nope");
+				runStoryLine1();
+			}else if (b1.getText().equals("Yes")) {
+				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+				
+				}else if (b1.getText().equals("It's not really secure")) {
+					kRes = "I'll take that into consideration. Wait, you are a Gryffindor right?";
+					b1.setVisible(false);
+					b2.setVisible(false);
+					r1.setVisible(false);
+					r2.setVisible(false);
+						b1.setY(350);
+						b1.setFont(mF);
+						b1.setText("Sure");//I'll just come back later
+						//r1.setEnabled(false);
+						//r1.setBackground(null);
+						
+						b2.setY(480);
+						b2.setFont(mF);
+						b2.setText("Yes");
+				runStoryLine1();
+			}else if (b1.getText().equals("Sure")) {
+				kRes = "Wait ... .. ..... No, no, you might be right ... The puzzle might not be secure. It's back to passwords then.";
+				b1.setVisible(false);
+				b2.setVisible(false);
+				r1.setVisible(false);
+				r2.setVisible(false);
+				
+				runStoryLine1();
+
+		}
 				
 			}
+
+			
 		}); // 800, 510, 295, 75
 		//r1.setForeground(Color.orange);
 		r1.setVisible(false);
@@ -502,6 +610,46 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 				
 				if (b2.getText().equals("Fine, I'll do it")) {
 					GuiLoadingVickie.loading.setScreen(new Instruction(getWidth(), getHeight()));
+				}else if(b2.getText().equals("Let me do it again")) {
+					GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+				}else if(b2.getText().equals("Nope")) {
+					GuiLoadingVickie.loading.setScreen(new GameMenu(getWidth(), getHeight()));
+				}else
+					
+					if (b2.getText().equals("Just about anybody can beat it and they dont have to be a Gryffindor")) {
+						kRes = "I'll take that into consideration. Wait, you are a Gryffindor right?";
+						b1.setVisible(false);
+						b2.setVisible(false);
+						r1.setVisible(false);
+						r2.setVisible(false);
+						b1.setVisible(false);
+						b2.setVisible(false);
+						r1.setVisible(false);
+						r2.setVisible(false);
+							b1.setY(350);
+							b1.setFont(mF);
+							b1.setText("Sure");//I'll just come back later
+							//r1.setEnabled(false);
+							//r1.setBackground(null);
+							
+							b2.setY(480);
+							b2.setFont(mF);
+							b2.setText("Yes");
+							runStoryLine1();
+					}
+				if (b2.getText().equals("Yes")) {
+					kRes = "Wait ... .. ..... No, no, you might be right ... The puzzle might not be secure. It's back to passwords then.";
+					
+					b1.setVisible(false);
+					b2.setVisible(false);
+					r1.setVisible(false);
+					r2.setVisible(false);
+					b1.setVisible(false);
+					b2.setVisible(false);
+					r1.setVisible(false);
+					r2.setVisible(false);
+					runStoryLine1();
+					
 				}
 			}
 			
@@ -568,12 +716,74 @@ public class SirCadoganTheMadKnight extends FullFunctionScreen {
 						//y/n
 			}
 		}*/
+		
+		 skipp = new Graphic(1000, 25, 700, 700, "images/mSBoard.jpg");
+		skipp.preserveRatio = false;
+		skipp.resize(150, 60);
+		
+		
+		
+		
+		
+		viewObjects.add(skipp);
 
+		skip = new Button(1000, 25, 150, 60, "Instructions", new Action() {
+
+			@Override
+			public void act() {
+				timer.cancel();
+				GuiLoadingVickie.loading.setScreen(new Instruction(getWidth(), getHeight()));
+
+			}
+
+		});
+		try {
+			File fontFile = new File("images/HARRYP.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+			Font baseFont = font.deriveFont(150f);
+			Font a = font.deriveFont(55f);
+			Font c = font.deriveFont(38f); // 30 /40
+			Font b = font.deriveFont(38f);
+
+			Font question = font.deriveFont(70f);
+
+			Font hB = font.deriveFont(25f);
+			
+			skip.setFont(b);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		viewObjects.add(skip);
 	}
 
 	/*
 	 * P:Well, well, u did it!
 	 */
+	public void winner() {
+		kRes = "Great job! Now I know you are really a Gryffindor!";
+		
+		b1.setText("It's not really secure");
+		b2.setY(440);
+		b2.setFont(bF);
+		b2.setText("Just about anybody can beat it and they dont have to be a Gryffindor");
+		
+		runStoryLine1();
+	}
 	
+	public void loser() {
+		//...Are you really a gryffindor? Hermione was able to finish it in under a minute
+		//I'm not Hermione
+//Obviously not. Want to try again?
+		//y/n
+		kRes = "Are you really a Gryffindor? Hermione was able to finish it in under a minute.";
+		b1.setText("I'm not Hermione");
+		b2.setText("Let me do it again");
+
+		runStoryLine1();
+	}
+
 	
 }

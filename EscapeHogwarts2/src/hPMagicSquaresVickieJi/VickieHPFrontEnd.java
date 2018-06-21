@@ -33,7 +33,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 	private String numClicked; // stored number
 
-	private TextArea error; // error message saying you must click on keypad first
+	private TextColoredLabel error; // error message saying you must click on keypad first
 	private TextArea counter; // testing purposes
 
 	private TextColoredLabel hint1; // first hint
@@ -101,6 +101,12 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 	private Graphic tBorder;
 
+	private Button skip;
+
+	private Graphic skippy;
+
+	private Font kl;
+
 	public VickieHPFrontEnd(int width, int height) {
 		super(width, height);
 
@@ -142,10 +148,8 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		border = new Graphic(450, 50, 700, 700, "images/grid.png");
 		border.preserveRatio = false;
 		viewObjects.add(border);
-
-		error = new TextArea(50, 50, 200, 200, "ERROR: \n Please choose a # button");
-		viewObjects.add(error);
-		error.setVisible(false);
+		
+	
 
 		//counter = new TextArea(50, 50, 700, 700, "" + count); // testing purposes
 		//viewObjects.add(counter);
@@ -165,6 +169,35 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 		tTimer = new TextAreaColor(50, 50, 320, 150, "5:00", null, null);
 		viewObjects.add(tTimer);
+		
+		
+		try {
+			File fontFile = new File("images/HARRYP.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+			Font baseFont = font.deriveFont(150f);
+		b = font.deriveFont(38f);
+		kl = font.deriveFont(50f);
+			
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		
+		 skippy = new Graphic(50, 50, 700, 700, "images/mSBoard.jpg");
+			skippy.preserveRatio = false;
+			skippy.resize(320, 150);
+			skippy.setVisible(false);
+			viewObjects.add(skippy);
+
+			error = new TextColoredLabel(50, 50, 320, 150, "  Choose a number first", null, Color.black);
+			error.setFont(kl);
+			viewObjects.add(error);
+			error.setVisible(false);
+			
+		
 		
 		//TextColoredLabel f = new TextColoredLabel(50, 50, 320, 150, "5:00", Color.red, Color.black);
 		//viewObjects.add(f);
@@ -349,17 +382,48 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		hint1.setVisible(false);
 		hint3.setVisible(false);
 		hint2.setVisible(false);*/
+	
 		
-		Button test = new Button(0,0,50,50,"tesr", new Action() {
+		Graphic skipp = new Graphic(1000, 25, 700, 700, "images/mSBoard.jpg");
+		skipp.preserveRatio = false;
+		skipp.resize(150, 60);
+		
+		
+		
+		
+		
+		viewObjects.add(skipp);
+
+		skip = new Button(1000, 25, 150, 60, "Forfeit", new Action() {
 
 			@Override
 			public void act() {
-				setUpGrid();
-				
+				GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight(), false, false));
+
 			}
-			
+
 		});
-		viewObjects.add(test);
+		try {
+			File fontFile = new File("images/HARRYP.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+			Font baseFont = font.deriveFont(150f);
+			Font a = font.deriveFont(55f);
+			Font c = font.deriveFont(38f); // 30 /40
+			Font b = font.deriveFont(38f);
+
+			Font question = font.deriveFont(70f);
+
+			Font hB = font.deriveFont(25f);
+			
+			skip.setFont(b);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		viewObjects.add(skip);
+	
 
 		// hOne= new Button
 
@@ -456,6 +520,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 
 		numberButtons[num].setVisible(true);
 		error.setVisible(false);
+		skippy.setVisible(false);
 	}
 
 	public void changeButtonColor(int num, int initial) {
@@ -597,6 +662,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 		// System.out.println("updateGrid()");
 		if (numClicked.equals("0")) {
 			error.setVisible(true);
+			skippy.setVisible(true);
 		} else {
 			for (int i = 0; i < txtAreas.length; i++) {
 				// font();
@@ -1010,7 +1076,7 @@ public class VickieHPFrontEnd extends FullFunctionScreen implements JiHPSupport 
 				}
 			}
 		};
-		timer.schedule(complete, 1000, 500);
+		timer.schedule(complete, 1000, 1000);
 	}
 
 	public void hints(int num) {

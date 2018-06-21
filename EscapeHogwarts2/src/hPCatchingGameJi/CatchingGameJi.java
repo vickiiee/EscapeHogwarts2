@@ -36,7 +36,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 	private final int yPos = 0;
 	private int mouseX;
 	private int mouseY;
-	private int timeLeft = 12;
+	private int timeLeft;
 
 	ArrayList<Spider> spidersList = new ArrayList<Spider>();
 	private Button testBtn;
@@ -55,8 +55,9 @@ public class CatchingGameJi extends FullFunctionScreen{
 		livesTxt.setText("Lives Left: " + lives);
 		gameStatus.setForeground(Color.white);
 		timeLeftTxt.setForeground(Color.white);
-		//startGame();
-		//Timer();
+		startGame();
+		timeLeft = 12;
+		Timer();
 		//getMousePosition();
 		//testGenPotion();
 	}
@@ -255,10 +256,6 @@ public class CatchingGameJi extends FullFunctionScreen{
 		}
 	}
 
-	public void gameOver() {
-		System.out.print("You ran out of lives.");
-	}
-	
 	public void Timer() {
 		Timer timer = new Timer();
 		TimerTask task;
@@ -270,13 +267,22 @@ public class CatchingGameJi extends FullFunctionScreen{
 					timeLeft--;
 				} else {
 					cancel();
-					GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
+					gameOver();
+					
+					//GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
 				}
 			}
 		};
 		timer.schedule(task, 0, 1000);
 	}
 
+	public void gameOver() {
+		if(timeLeft <= 0) {
+			GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
+			System.out.println("over");
+		}
+	}
+	//
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0,0,getWidth(), getHeight(), "images/background4.jpg");
@@ -284,8 +290,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 
 		gameStarted = true;
 		if(gameStarted) {
-			Timer();
-			gameStarted = false;
+			//Timer();
 		}
 
 		livesTxt = new TextArea(100, 100, 500, 100, "Lives Left:");
