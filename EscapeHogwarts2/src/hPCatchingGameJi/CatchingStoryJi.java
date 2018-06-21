@@ -79,6 +79,7 @@ public class CatchingStoryJi extends FullFunctionScreen{
 					} else {
 						endS1 = true;
 						//GuiLoadingVickie.loading.setScreen(new CatchingGameJi(getWidth(), getHeight()));
+						continueScene();
 					}
 
 				}
@@ -87,6 +88,12 @@ public class CatchingStoryJi extends FullFunctionScreen{
 
 		};
 		timer.schedule(task, 0, 1000);
+	}
+	
+	public void continueScene() {
+		if(endS1) {
+			GuiLoadingVickie.loading.setScreen(new CatchingGameJi(getWidth(), getHeight()));
+		}
 	}
 
 	@Override
