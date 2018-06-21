@@ -19,6 +19,8 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import hPStartGame.GameMapDirectory;
+import hPStartGame.GuiLoadingVickie;
 
 public class CatchingGameJi extends FullFunctionScreen{
 
@@ -34,6 +36,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 	private final int yPos = 0;
 	private int mouseX;
 	private int mouseY;
+	private int timeLeft = 12;
 
 	ArrayList<Spider> spidersList = new ArrayList<Spider>();
 	private Button testBtn;
@@ -42,6 +45,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 	private boolean gameStarted;
 	private Point b;
 	private PointerInfo a;
+	private TextArea timeLeftTxt;
 
 	//count||hover
 
@@ -50,7 +54,9 @@ public class CatchingGameJi extends FullFunctionScreen{
 		livesTxt.setForeground(Color.white);
 		livesTxt.setText("Lives Left: " + lives);
 		gameStatus.setForeground(Color.white);
+		timeLeftTxt.setForeground(Color.white);
 		startGame();
+		Timer();
 		//getMousePosition();
 		//testGenPotion();
 	}
@@ -252,6 +258,24 @@ public class CatchingGameJi extends FullFunctionScreen{
 	public void gameOver() {
 		System.out.print("You ran out of lives.");
 	}
+	
+	public void Timer() {
+		Timer timer = new Timer();
+		TimerTask task;
+		task = new TimerTask() {
+			@Override
+			public void run() { 
+				if (timeLeft > 0) {
+					timeLeftTxt.setText("Time Left: " + timeLeft);
+					timeLeft--;
+				} else {
+					cancel();
+					GuiLoadingVickie.loading.setScreen(new GameMapDirectory(getWidth(), getHeight()));
+				}
+			}
+		};
+		timer.schedule(task, 0, 1000);
+	}
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
@@ -269,14 +293,7 @@ public class CatchingGameJi extends FullFunctionScreen{
 		gameStatus = new TextArea(300, 300, 500, 100, "");
 		viewObjects.add(gameStatus);
 
-		testBtn = new Button(500, 100, 200, 100, "remove", new Action() {
-
-			@Override
-			public void act() {
-				viewObjects.remove(spider);
-
-			}
-		});
-		viewObjects.add(testBtn);
+		timeLeftTxt = new TextArea(500, 100, 500, 500, "Time Left:" + timeLeft);
+		viewObjects.add(timeLeftTxt);
 	}
 }

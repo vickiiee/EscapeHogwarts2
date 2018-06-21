@@ -343,7 +343,7 @@ public class Scene1 extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new CatchingGameJi(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new CatchingStoryJi(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(cGame);
