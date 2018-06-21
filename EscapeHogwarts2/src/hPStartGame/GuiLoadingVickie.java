@@ -63,15 +63,15 @@ public class GuiLoadingVickie extends GUIApplication{
 		menu = new JiMenu(getWidth(), getHeight());
 		//scene1 = new Scene1(getWidth(), getHeight());
 		//magicSquares = new VickieHPFrontEnd(getWidth(), getHeight());
-		c4 = new ConnectFourAreej(getWidth(), getHeight());
+		//c4 = new ConnectFourAreej(getWidth(), getHeight());
 		
-		cline = new Storyline(getWidth(),getHeight());
-		story = new StephStory(getWidth(), getHeight());
-		story2 = new StephStory2(getWidth(), getHeight());
-		kStory = new DKTitle(getWidth(), getHeight());
+		//cline = new Storyline(getWidth(),getHeight());
+		//story = new StephStory(getWidth(), getHeight());
+		//story2 = new StephStory2(getWidth(), getHeight());
+		//kStory = new DKTitle(getWidth(), getHeight());
 		
-		cgame = new CatchingGameJi(getWidth(), getHeight());
-		cgamestory = new CatchingStoryJi(getWidth(), getHeight());
+		//cgame = new CatchingGameJi(getWidth(), getHeight());
+		//cgamestory = new CatchingStoryJi(getWidth(), getHeight());
 		
 		setScreen(menu);
 		
