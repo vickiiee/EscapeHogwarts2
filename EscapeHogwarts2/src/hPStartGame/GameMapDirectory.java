@@ -17,6 +17,7 @@ import hPCatchingGameJi.CatchingGameJi;
 import hPCatchingGameJi.CatchingStoryJi;
 import hPConnect4Areej.ConnectFourAreej;
 import hPConnect4Areej.GamePage;
+import hPMagicSquaresVickieJi.SirCadoganTheMadKnight;
 import hPMagicSquaresVickieJi.TextAreaHoverButton;
 import hPMagicSquaresVickieJi.VickieHPFrontEnd;
 import hpKevStoryLine.DKTitle;
@@ -197,7 +198,7 @@ public class GameMapDirectory extends FullFunctionScreen{
 			
 			@Override
 			public void act() {
-				GuiLoadingVickie.loading.setScreen(new VickieHPFrontEnd(getWidth(), getHeight()));
+				GuiLoadingVickie.loading.setScreen(new SirCadoganTheMadKnight(getWidth(), getHeight(), true, false));
 				
 			}
 		}, true);
@@ -294,10 +295,10 @@ public class GameMapDirectory extends FullFunctionScreen{
 		pointer10 = new Graphic(855, 60, 30, 40, "images/pPointer.png");
 		viewObjects.add(pointer10);
 		
-		Graphic t7 = new Graphic(500,0,300,300,"images/transBlack.png");
+		Graphic t7 = new Graphic(500,0,300,417,"images/ForbiddenForest.png");
 		viewObjects.add(t7);
-		t7.preserveRatio = false;
-		t7.resize(400, 450);
+		//t7.preserveRatio = false;
+		//t7.resize(400, 450);
 		t7.setVisible(false);
 		
 		TextColoredLabel fF = new TextColoredLabel(445, 225, 700, 100, "The Forbidden Forest", null, Color.magenta);
@@ -309,6 +310,7 @@ public class GameMapDirectory extends FullFunctionScreen{
 		
 		
 		button10 = new TextAreaHoverButton(855	, 60, 30, 40, "", null, fF, fF1, t1, null, true);
+		button10.additionalImage(t7);
 		viewObjects.add(button10);
 		
 		//
@@ -320,12 +322,13 @@ public class GameMapDirectory extends FullFunctionScreen{
 		TextColoredLabel sS = new TextColoredLabel(445, 225, 700, 100, "The Shrieking Shack", null, Color.magenta);
 		viewObjects.add(sS);
 		
-		TextColoredLabel sS1 = new TextColoredLabel(445, 325, 700, 200, "An abandoned house rumored to be haunted", null, Color.magenta);
+		TextColoredLabel sS1 = new TextColoredLabel(445, 325, 700, 100, "An abandoned house rumored to be haunted", null, Color.magenta);
 		sS1.setFont(b);
 		viewObjects.add(sS1);
 		
 		
 		button11 = new TextAreaHoverButton(213	, 200, 30, 40, "", null, sS, sS1, t1, null, true);
+		button11.additionalImage(t7);
 		viewObjects.add(button11);
 	}
 

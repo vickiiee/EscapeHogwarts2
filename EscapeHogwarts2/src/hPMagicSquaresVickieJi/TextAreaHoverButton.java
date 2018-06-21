@@ -172,8 +172,10 @@ public class TextAreaHoverButton extends Button {
 	public void additionalImage(Graphic d) {
 		this.aG = d;
 		
+
+		
 		aG.setX(z.getX()+z.getWidth()/4);
 		aG.setY(z.getY()+z.getHeight());
-		aG.resize(z.getWidth()/2, 80);
+		aG.resize(z.getWidth()/2, d.getHeight());
 	}
 }
